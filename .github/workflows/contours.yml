@@ -1,0 +1,61 @@
+name: Build NJ contour PMTiles
+on:
+  workflow_dispatch:
+    inputs:
+      bbox:
+        description: 'EPSG:6527 bbox west south east north (feet); default is Tewksbury area pilot'
+        required: false
+        default: '390000 650000 450000 710000'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - '.github/workflows/contours.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: contours-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install GDAL and Tippecanoe
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gdal-bin tippecanoe
+      - name: Generate contours from NJ statewide DEM
+        env:
+          BBOX: ${{ inputs.bbox || '390000 650000 450000 710000' }}
+        run: |
+          mkdir -p build public
+          read -r WEST SOUTH EAST NORTH <<< "$BBOX"
+          python3 scripts/build_contours.py --bbox "$WEST" "$SOUTH" "$EAST" "$NORTH"
+          test -s build/contours.geojsonseq
+      - name: Build PMTiles
+        run: |
+          tippecanoe -o public/contours.pmtiles -l contours -Z 9 -z 16 \
+            --no-feature-limit --no-tile-size-limit --force -P \
+            build/contours.geojsonseq
+          ls -lh public/contours.pmtiles
+      - name: Prepare Pages
+        run: |
+          cp site/index.html public/index.html
+          touch public/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
