@@ -50,7 +50,7 @@ jobs:
           ls -lh public/contours.pmtiles
       - name: Prepare Pages
         run: |
-          cp site/index.html public/index.html
+          if [ -f site/index.html ]; then cp site/index.html public/index.html; else printf "%s\n" "<h1>NJ contour tiles</h1>" "<p><a href=\"contours.pmtiles\">Download PMTiles</a></p>" > public/index.html; fi
           touch public/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
