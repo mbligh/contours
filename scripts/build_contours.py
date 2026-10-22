@@ -59,7 +59,11 @@ def main():
                 geojson = tile_dir / f"{x}_{y}.geojson"
                 subprocess.run(["gdal_contour", "-f", "GeoJSON", "-a", "elevation_ft",
                     "-i", "10", str(tif), str(geojson)], check=True)
-                features = json.loads(geojson.read_text()).get("features",[])
+                # Transform EPSG:6527 coordinates into WGS84 for Tippecanoe.
+                wgs84 = tile_dir / f"{x}_{y}.wgs84.geojson"
+                subprocess.run(["ogr2ogr", "-f", "GeoJSON", "-t_srs", "EPSG:4326",
+                    str(wgs84), str(geojson)], check=True)
+                features = json.loads(wgs84.read_text()).get("features",[])
                 for feature in features:
                     # Keep line geometry clipped to the non-overlapping tile interior.
                     # OGR's clipping avoids duplicated lines across neighboring patches.
@@ -68,6 +72,7 @@ def main():
                     target.write(json.dumps(feature,separators=(",",":"))+"\n")
                 tif.unlink()
                 geojson.unlink()
+                wgs84.unlink()
     print(f"Finished {total} patches: {out}")
 
 if __name__ == "__main__":
