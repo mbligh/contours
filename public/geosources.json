@@ -1,0 +1,13 @@
+[
+    { "layer": "Stores", "data": [
+        {
+            "id":"costco", "file": "geojson/costco", "type": "circle", 
+            "paint": { "circle-color": "#FF0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+        },
+        {
+            "id":"farm", "file": "geojson/farm", "type": "circle", 
+            "paint": { "circle-color": "#00FF00", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+        }
+    ] 
+    }
+]
