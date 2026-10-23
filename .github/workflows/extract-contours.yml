@@ -13,7 +13,11 @@ on:
       - '.github/workflows/extract-contours.yml'
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: contour-vectors-dataset
+  cancel-in-progress: false
 
 jobs:
   extract:
@@ -35,11 +39,20 @@ jobs:
           gzip -9 -n build/contours.geojsonseq
           (cd build && sha256sum contours.geojsonseq.gz > contours.geojsonseq.gz.sha256)
           ls -lh build/contours.geojsonseq.gz
-      - uses: actions/upload-artifact@v4
-        with:
-          name: contour-vectors
-          path: |
-            build/contours.geojsonseq.gz
-            build/contours.geojsonseq.gz.sha256
-          retention-days: 90
-          if-no-files-found: error
+      - name: Record extraction parameters
+        env:
+          BBOX: ${{ inputs.bbox || '390000 650000 450000 710000' }}
+        run: |
+          python - <<'PYMETA'
+          import json, os
+          from pathlib import Path
+          Path('build/extraction.json').write_text(json.dumps({
+              'bbox': [int(value) for value in os.environ['BBOX'].split()],
+              'crs': 'EPSG:6527', 'vertical_interval_ft': 10,
+              'source': 'https://maps.nj.gov/arcgis/rest/services/Elevation/NJ_10ft_DEM/ImageServer',
+          }, indent=2) + '\n')
+          PYMETA
+      - name: Publish versioned contour vector release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/dataset_releases create contour-vectors build

@@ -11,14 +11,13 @@ on:
       - 'scripts/dataset_releases'
   workflow_dispatch:
     inputs:
-      extraction_run_id:
-        description: 'Extraction run ID; blank reuses the latest successful extraction'
+      vector_release_tag:
+        description: 'Contour-vector release tag; blank reuses the latest complete vector release'
         required: false
         type: string
 
 permissions:
   contents: write
-  actions: read
 
 concurrency:
   group: contours-dataset
@@ -31,27 +30,38 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - name: Download extracted vectors from earlier workflow
+      - name: Download and verify released contour vectors
+        id: vectors
         env:
           GH_TOKEN: ${{ github.token }}
-          RUN_ID: ${{ github.event.workflow_run.id || inputs.extraction_run_id }}
-          REPO: ${{ github.repository }}
+          VECTOR_TAG: ${{ inputs.vector_release_tag }}
+          EXTRACTION_RUN: ${{ github.event.workflow_run.id }}
+          EXTRACTION_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
-          if [ -z "$RUN_ID" ]; then
-            RUN_ID=$(gh run list --repo "$REPO" --workflow extract-contours.yml --branch main --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+          if [ "$EVENT_NAME" = workflow_run ]; then
+            VECTOR_TAG="dataset-contour-vectors-${EXTRACTION_RUN}-${EXTRACTION_ATTEMPT}"
           fi
-          test -n "$RUN_ID"
-          mkdir -p build build/output
-          gh run download "$RUN_ID" --repo "$REPO" --name contour-vectors --dir build
+          args=()
+          if [ "$EVENT_NAME" = push ]; then
+            args+=(--allow-missing)
+          fi
+          python scripts/dataset_releases download contour-vectors build --tag "$VECTOR_TAG" "${args[@]}"
+      - name: Uncompress verified vectors
+        if: steps.vectors.outputs.found == 'true'
+        run: |
           cd build
           sha256sum -c contours.geojsonseq.gz.sha256
           gunzip contours.geojsonseq.gz
           test -s contours.geojsonseq
+          mkdir -p output
       - name: Install Tippecanoe
+        if: steps.vectors.outputs.found == 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y tippecanoe
       - name: Build PMTiles
+        if: steps.vectors.outputs.found == 'true'
         run: |
           tippecanoe -o build/output/contours.pmtiles -l contours -Z 9 -z 16 \
             --no-feature-limit --no-tile-size-limit --force -P \
@@ -59,6 +69,12 @@ jobs:
           test "$(stat -c%s build/output/contours.pmtiles)" -gt 10000
           ls -lh build/output/contours.pmtiles
       - name: Publish versioned contour release
+        if: steps.vectors.outputs.found == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python scripts/dataset_releases create contours build/output
+        run: python scripts/dataset_releases create contours build/output --input-manifest build/vector-selection.manifest.json
+      - name: Keep three versions of successfully consumed vectors
+        if: steps.vectors.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/dataset_releases cleanup --selection build/vector-selection.json

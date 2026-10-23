@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Regression tests for publication integrity and safe retention."""
-import copy
 import importlib.machinery
 import importlib.util
 import io
@@ -42,6 +41,33 @@ class PublicationTests(unittest.TestCase):
     def test_missing_deployed_release_prevents_any_cleanup(self):
         with self.assertRaises(StopIteration):
             m.expired([release('shipping', 1)], {'shipping': 99})
+
+    def test_vector_retention_is_independent_of_pages_datasets(self):
+        items = [release(kind, i) for kind in m.DATASETS for i in range(1, 7)]
+        victims = m.expired(items, {'contour-vectors': 5})
+        self.assertEqual([r['tag_name'] for r in victims],
+                         ['dataset-contour-vectors-2-1', 'dataset-contour-vectors-1-1'])
+
+    def test_vector_download_pins_trigger_release_and_records_provenance(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            selected = Path(tmp) / 'selection.json'
+            tag = 'dataset-contour-vectors-2-1'
+            items = [release('contour-vectors', i) for i in (1, 2, 3)]
+            manifest = {'dataset': 'contour-vectors', 'tag': tag, 'sha256': 'archive checksum'}
+            with patch.object(m, 'releases', return_value=items), patch.object(m, 'download_release', return_value=manifest) as download:
+                self.assertTrue(m.download('contour-vectors', tmp, tag, False, str(selected)))
+                self.assertEqual(download.call_args.args[1]['id'], 2)
+                self.assertEqual(json.loads(selected.read_text()), {'contour-vectors': 2})
+                source = json.loads(selected.with_suffix('.manifest.json').read_text())
+                self.assertEqual(source, {'release_id': 2, 'manifest': manifest})
+                with self.assertRaises(ValueError):
+                    m.download('contour-vectors', tmp, 'missing-tag', True, str(selected))
+
+    def test_initial_push_can_wait_for_first_vectors_but_manual_build_fails(self):
+        with patch.object(m, 'releases', return_value=[]):
+            self.assertFalse(m.download('contour-vectors', 'unused', '', True, 'unused'))
+            with self.assertRaises(ValueError):
+                m.download('contour-vectors', 'unused', '', False, 'unused')
 
     def test_archive_checksums_and_safe_member_names(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -97,6 +123,7 @@ class PublicationTests(unittest.TestCase):
                 self.assertEqual(Path('.pages/nested/data').read_text(), 'test data')
                 self.assertTrue(Path('.pages/.hidden').is_file())
                 self.assertTrue(Path('.pages/shipping/shipping.js').is_file())
+                self.assertFalse(Path('.pages/contours.geojsonseq.gz').exists())
                 self.assertEqual(json.loads(Path('build/selected-releases.json').read_text()), {'shipping': 1, 'contours': 1})
                 state = Path('.pages/mapping-build.json').read_bytes()
                 with patch.object(m, 'releases', return_value=selected), patch.object(m.urllib.request, 'urlopen', return_value=io.BytesIO(state)), patch.object(m, 'gh') as gh:

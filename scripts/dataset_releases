@@ -16,8 +16,10 @@ DATASETS = {
                  'shipping/shipping_fedex.geojson', 'shipping/shipping_ups_boxes.geojson',
                  'shipping/shipping.js'},
     'contours': {'contours.pmtiles'},
+    'contour-vectors': {'contours.geojsonseq.gz', 'contours.geojsonseq.gz.sha256', 'extraction.json'},
 }
-TAG = re.compile(r'^dataset-(shipping|contours)-[0-9]+-[0-9]+$')
+PAGE_DATASETS = ('shipping', 'contours')
+TAG = re.compile(r'^dataset-(shipping|contours|contour-vectors)-[0-9]+-[0-9]+$')
 REPO = os.environ.get('GITHUB_REPOSITORY', 'mbligh/mapping')
 
 
@@ -51,7 +53,7 @@ def write_json(path, data):
     Path(path).write_text(json.dumps(data, sort_keys=True, indent=2) + '\n')
 
 
-def create(dataset, root):
+def create(dataset, root, input_manifest=None):
     root = Path(root)
     for name in DATASETS[dataset]:
         if not (root / name).is_file():
@@ -69,6 +71,8 @@ def create(dataset, root):
                 'run': f'https://github.com/{REPO}/actions/runs/{run}',
                 'sha256': sha256(archive),
                 'files': {name: sha256(root / name) for name in sorted(DATASETS[dataset])}}
+    if input_manifest:
+        manifest['input'] = json.loads(Path(input_manifest).read_text())
     write_json(out / 'manifest.json', manifest)
     # A draft is invisible to selection until BOTH uploads have completed.
     gh('release', 'create', tag, '--repo', REPO, '--target', target, '--draft',
@@ -107,10 +111,44 @@ def extract(archive, output, dataset, manifest):
                     raise ValueError(f'Invalid or empty GeoJSON: {name}')
 
 
+def download_release(dataset, release, output):
+    dest = Path('build/download') / dataset
+    dest.mkdir(parents=True, exist_ok=True)
+    gh('release', 'download', release['tag_name'], '--repo', REPO,
+       '--pattern', 'dataset.tar.gz', '--pattern', 'manifest.json', '--dir', str(dest), '--clobber')
+    manifest = json.loads((dest / 'manifest.json').read_text())
+    if (manifest['schema'] != 1 or manifest['dataset'] != dataset
+            or manifest['tag'] != release['tag_name']
+            or set(manifest['files']) != DATASETS[dataset]
+            or sha256(dest / 'dataset.tar.gz') != manifest['sha256']):
+        raise ValueError(f'Invalid {dataset} release manifest or archive checksum')
+    extract(dest / 'dataset.tar.gz', Path(output), dataset, manifest)
+    return manifest
+
+
+def download(dataset, output, tag, allow_missing, selection):
+    candidates = ordered(releases(), dataset)
+    if tag:
+        candidates = [r for r in candidates if r['tag_name'] == tag]
+    if not candidates:
+        if allow_missing and not tag:
+            print('Waiting for the first contour-vector release; extraction will trigger the build.')
+            return False
+        raise ValueError(f'No complete {dataset} release found for {tag or "latest"}')
+    release = candidates[0]
+    manifest = download_release(dataset, release, output)
+    Path(selection).parent.mkdir(parents=True, exist_ok=True)
+    write_json(selection, {dataset: release['id']})
+    write_json(str(Path(selection).with_suffix('.manifest.json')), {
+        'release_id': release['id'], 'manifest': manifest})
+    print(f"Using {release['tag_name']}")
+    return True
+
+
 def assemble(output):
     all_releases = releases()
     selected = {}
-    for dataset in DATASETS:
+    for dataset in PAGE_DATASETS:
         candidates = ordered(all_releases, dataset)
         if not candidates:
             print(f'Waiting for the first complete {dataset} release; existing Pages left intact.')
@@ -134,17 +172,7 @@ def assemble(output):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     for dataset, release in selected.items():
-        dest = Path('build/download') / dataset
-        dest.mkdir(parents=True, exist_ok=True)
-        gh('release', 'download', release['tag_name'], '--repo', REPO,
-           '--pattern', 'dataset.tar.gz', '--pattern', 'manifest.json', '--dir', str(dest), '--clobber')
-        manifest = json.loads((dest / 'manifest.json').read_text())
-        if (manifest['schema'] != 1 or manifest['dataset'] != dataset
-                or manifest['tag'] != release['tag_name']
-                or set(manifest['files']) != DATASETS[dataset]
-                or sha256(dest / 'dataset.tar.gz') != manifest['sha256']):
-            raise ValueError(f'Invalid {dataset} release manifest or archive checksum')
-        extract(dest / 'dataset.tar.gz', output, dataset, manifest)
+        download_release(dataset, release, output)
     # Static content overlays datasets; public/ is the final user-controlled overlay.
     for directory in ('site', 'public'):
         if Path(directory).exists():
@@ -180,13 +208,25 @@ if __name__ == '__main__':
     create_parser = sub.add_parser('create')
     create_parser.add_argument('dataset', choices=DATASETS)
     create_parser.add_argument('root')
+    create_parser.add_argument('--input-manifest')
+    download_parser = sub.add_parser('download')
+    download_parser.add_argument('dataset', choices=DATASETS)
+    download_parser.add_argument('output')
+    download_parser.add_argument('--tag', default='')
+    download_parser.add_argument('--allow-missing', action='store_true')
+    download_parser.add_argument('--selection', default='build/vector-selection.json')
     assemble_parser = sub.add_parser('assemble')
     assemble_parser.add_argument('--output', default='.pages')
     cleanup_parser = sub.add_parser('cleanup')
     cleanup_parser.add_argument('--selection', default='build/selected-releases.json')
     args = parser.parse_args()
     if args.command == 'create':
-        create(args.dataset, args.root)
+        create(args.dataset, args.root, args.input_manifest)
+    elif args.command == 'download':
+        found = download(args.dataset, args.output, args.tag, args.allow_missing, args.selection)
+        if os.environ.get('GITHUB_OUTPUT'):
+            with open(os.environ['GITHUB_OUTPUT'], 'a') as stream:
+                stream.write(f'found={str(found).lower()}\n')
     elif args.command == 'assemble':
         changed = assemble(args.output)
         if os.environ.get('GITHUB_OUTPUT'):
