@@ -61,8 +61,9 @@ def main():
                     "-i", "10", str(tif), str(geojson)], check=True)
                 # Transform EPSG:6527 coordinates into WGS84 for Tippecanoe.
                 wgs84 = tile_dir / f"{x}_{y}.wgs84.geojson"
-                subprocess.run(["ogr2ogr", "-f", "GeoJSON", "-t_srs", "EPSG:4326",
-                    str(wgs84), str(geojson)], check=True)
+                subprocess.run(["ogr2ogr", "-f", "GeoJSON",
+                    "-clipsrc", str(x), str(y), str(x2), str(y2),
+                    "-t_srs", "EPSG:4326", str(wgs84), str(geojson)], check=True)
                 features = json.loads(wgs84.read_text()).get("features",[])
                 for feature in features:
                     # Keep line geometry clipped to the non-overlapping tile interior.
