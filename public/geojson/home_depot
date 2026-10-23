@@ -1,0 +1,4539 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "Overture Maps Foundation (places theme; individual rows carry CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+ "overture_release": "2026-10-21.0",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.49373626708984,
+     39.41587448120117
+    ]
+   },
+   "properties": {
+    "id": "2de709dd-5feb-4e5e-9d4e-64fd72dec3aa",
+    "name": "The Home Depot",
+    "street": "421 E Absecon Blvd",
+    "city": "Absecon",
+    "region": "NJ",
+    "postcode": "08201-2239",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16094843511",
+    "website": "https://www.homedepot.com/l/Absecon/NJ/Absecon/08201/975?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.49373626708984,
+     39.41587448120117
+    ]
+   },
+   "properties": {
+    "id": "aa4be821-b72b-449a-9fb4-33b9f710e709",
+    "name": "The Home Depot",
+    "street": "421 Absecon Blvd",
+    "city": "Absecon",
+    "region": "NJ",
+    "postcode": "08201",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16094843511",
+    "website": "https://www.homedepot.com/l/Absecon/NJ/Absecon/08201/975?emt=MSFBPage",
+    "confidence": 0.9999698739111423
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.49425506591797,
+     39.41628646850586
+    ]
+   },
+   "properties": {
+    "id": "28d04dfc-541a-4d23-bfae-bb8cad6b031b",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "421 E Absecon Blvd",
+    "city": "Absecon",
+    "region": "NJ",
+    "postcode": "08201",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "6094842663",
+    "website": "https://www.homedepot.com/l/Absecon/NJ/Absecon/08201/975/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.19803619384766,
+     40.78596878051758
+    ]
+   },
+   "properties": {
+    "id": "bb6b491e-dd8f-40c0-af2d-c400fc2b22c6",
+    "name": "The Home Depot",
+    "street": "60 Orange St",
+    "city": "Bloomfield",
+    "region": "NJ",
+    "postcode": "07003",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19736808700",
+    "website": "https://www.homedepot.com/l/Bloomfield/NJ/Bloomfield/07003/928?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.13040924072266,
+     40.072662353515625
+    ]
+   },
+   "properties": {
+    "id": "54d7200d-97ea-4742-9bbc-d5b0b9d0c9b6",
+    "name": "The Home Depot",
+    "street": "1722 RT-88",
+    "city": "Brick",
+    "region": "NJ",
+    "postcode": "08724-3032",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17328363220",
+    "website": "https://www.homedepot.com/l/Brick/NJ/Brick/08724/912?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.12968444824219,
+     40.07280731201172
+    ]
+   },
+   "properties": {
+    "id": "52994dcd-61d3-45a5-8bbc-e78752ecd02d",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1722 Rte 88",
+    "city": "Brick",
+    "region": "NJ",
+    "postcode": "08724",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7328366068",
+    "website": "https://www.homedepot.com/l/Brick/NJ/Brick/08724/912/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.55399322509766,
+     40.56407928466797
+    ]
+   },
+   "properties": {
+    "id": "fc2f93d5-d0a1-4042-827d-1c2a55b116db",
+    "name": "The Home Depot",
+    "street": "400 Promenade Blvd",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17324695883",
+    "website": "https://www.homedepot.com/l/Bridgewater-Route-28/NJ/Bridgewater/08807/947?emt=MSFBPage",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.67056274414062,
+     40.57598876953125
+    ]
+   },
+   "properties": {
+    "id": "05fede01-bc70-4ca6-9633-9609000156d7",
+    "name": "The Home Depot",
+    "street": "736 Route 202 South",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19082520101",
+    "website": "https://www.homedepot.com/l/Bridgewater-II-Route-202/NJ/Bridgewater/08807/962?emt=MSFBPage",
+    "confidence": 0.9879688024520874,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.67056274414062,
+     40.57598876953125
+    ]
+   },
+   "properties": {
+    "id": "017b2f69-39ea-4ef2-ac64-2e266e29e36f",
+    "name": "The Home Depot",
+    "street": "736 US Highway 202",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807-2551",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19082520101",
+    "website": "https://www.homedepot.com/l/Bridgewater-II-Route-202/NJ/Bridgewater/08807/962?emt=MSFBPage",
+    "confidence": 0.9969754219055176
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.6690902709961,
+     40.57662582397461
+    ]
+   },
+   "properties": {
+    "id": "aa7914c8-8588-4a0f-b549-e311d2f39921",
+    "name": "The Home Depot Rental",
+    "street": "736 ROUTE 202 SOUTH",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_home_and_garden_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store"
+    ],
+    "website": "https://www.compactpowerrents.com/locations",
+    "confidence": 0.7113484740257263
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.55482482910156,
+     40.564640045166016
+    ]
+   },
+   "properties": {
+    "id": "8dc2584e-3f0b-43e0-b5b4-1a614ff86fac",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "400 Promenade Blvd",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7327486501",
+    "website": "https://www.homedepot.com/l/Bridgewater-Rt-28/NJ/Bridgewater/08807/947/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.67109680175781,
+     40.57551956176758
+    ]
+   },
+   "properties": {
+    "id": "bc92097a-c342-4e02-9ec0-47c93cba903d",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "736 Rte 202",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9082524910",
+    "website": "https://www.homedepot.com/l/Bridgewater-II-Rt-202/NJ/Bridgewater/08807/962/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.8205337524414,
+     40.034114837646484
+    ]
+   },
+   "properties": {
+    "id": "c4cab30a-a03d-4dbe-9f89-55dc7bdd898e",
+    "name": "The Home Depot",
+    "street": "2703 Route 541",
+    "city": "Burlington",
+    "region": "NJ",
+    "postcode": "08060",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16093878178",
+    "website": "https://www.homedepot.com/l/Burlington/NJ/Westampton/08060/939?emt=MSFBPage",
+    "confidence": 0.9999903070169688,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.85391235351562,
+     39.04613494873047
+    ]
+   },
+   "properties": {
+    "id": "c8645577-5b24-43cb-b108-daf89d139ea6",
+    "name": "The Home Depot",
+    "street": "21 Indian Trail Rd",
+    "city": "Cape May Court House",
+    "region": "NJ",
+    "postcode": "08210-2611",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16094638794",
+    "website": "https://www.homedepot.com/l/Cape-May/NJ/Cape-May-Court-House/08210/943?emt=MSFBPage",
+    "confidence": 0.9999764912784099,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.85415649414062,
+     39.046016693115234
+    ]
+   },
+   "properties": {
+    "id": "56d41e74-6294-44cd-8c7f-1c572b294f09",
+    "name": "Truck Rental Center at The Home Depot",
+    "street": "21 Indian Trail Rd",
+    "city": "Cape May Court House",
+    "region": "NJ",
+    "postcode": "08210",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "6094638794",
+    "website": "https://www.homedepot.com/l/Cape-May/NJ/Cape-May-Court-House/08210/943/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.0390853881836,
+     39.92377471923828
+    ]
+   },
+   "properties": {
+    "id": "90a7478a-724d-4ef8-9aa5-6f84f9a86165",
+    "name": "Home Depot",
+    "street": "2232 RT-70 W",
+    "city": "Cherry Hill",
+    "region": "NJ",
+    "postcode": "08002-3345",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "furniture_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "furniture_store"
+    ],
+    "phone": "+18566637491",
+    "website": "www.homedepot.com",
+    "confidence": 0.7662929892539978,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.03865051269531,
+     39.92436599731445
+    ]
+   },
+   "properties": {
+    "id": "c924a8f5-7bdf-4022-b612-568caa8101e0",
+    "name": "The Home Depot",
+    "street": "2160 Route 70 West",
+    "city": "Cherry Hill",
+    "region": "NJ",
+    "postcode": "08002",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18563172001",
+    "website": "https://www.homedepot.com/l/Cherry-Hill/NJ/Cherry-Hill/08002/989?emt=MSFBPage",
+    "confidence": 0.9999723970651626,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.03839111328125,
+     39.92455291748047
+    ]
+   },
+   "properties": {
+    "id": "934118ec-cf6f-46c4-9ab7-9fecf641bc52",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "2160 Rte 70 W",
+    "city": "Cherry Hill",
+    "region": "NJ",
+    "postcode": "08002",
+    "basic_category": "rental_service",
+    "category": "machine_and_tool_rental",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "machine_and_tool_rental"
+    ],
+    "phone": "8566615408",
+    "website": "https://www.homedepot.com/l/Cherry-Hill/NJ/Cherry-Hill/08002/989/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1578369140625,
+     40.84307861328125
+    ]
+   },
+   "properties": {
+    "id": "4e9531a8-d803-4c5f-b2bf-b54c19d5060c",
+    "name": "The Home Depot",
+    "street": "955 Bloomfield Ave",
+    "city": "Clifton",
+    "region": "NJ",
+    "postcode": "07012",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19734724600",
+    "website": "https://www.homedepot.com/l/Clifton/NJ/Clifton/07012/908?emt=MSFBPage",
+    "confidence": 0.9745537638664246,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15779876708984,
+     40.8431396484375
+    ]
+   },
+   "properties": {
+    "id": "1031f20d-3d38-44bf-8a08-000b9831ddec",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "955 Bloomfield Ave",
+    "city": "Clifton",
+    "region": "NJ",
+    "postcode": "07012",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9739165355",
+    "website": "https://www.homedepot.com/l/Clifton/NJ/Clifton/07012/908/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29197692871094,
+     40.59133529663086
+    ]
+   },
+   "properties": {
+    "id": "1ea8d97a-704a-4ef1-bcd7-59df085289be",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1555 St Georges Ave Rt 35",
+    "city": "Colonia",
+    "region": "NJ",
+    "postcode": "07067",
+    "basic_category": "rental_service",
+    "category": "machine_and_tool_rental",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "machine_and_tool_rental"
+    ],
+    "phone": "7323962108",
+    "website": "https://www.homedepot.com/l/Colonia/NJ/Colonia/07067/981/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.50015258789062,
+     40.30441665649414
+    ]
+   },
+   "properties": {
+    "id": "6a918e97-f549-4fa1-be1c-3efcfa7622ee",
+    "name": "The Home Depot Distribution Center",
+    "street": "58 Station Rd",
+    "city": "Cranbury",
+    "region": "NJ",
+    "postcode": "08512",
+    "basic_category": "b2b_transportation_and_storage_service",
+    "category": "freight_and_cargo_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "b2b_service",
+     "b2b_transportation_and_storage_service",
+     "freight_and_cargo_service"
+    ],
+    "confidence": 0.5208294987678528
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.49835205078125,
+     40.30736541748047
+    ]
+   },
+   "properties": {
+    "id": "15d6cdb5-2b4c-4225-b23f-effaa14dc10a",
+    "name": "The Home Depot Distribution Center",
+    "street": "61 Station Rd",
+    "city": "Cranbury",
+    "region": "NJ",
+    "postcode": "08512",
+    "basic_category": "storage_facility",
+    "category": "storage_facility",
+    "category_hierarchy": [
+     "services_and_business",
+     "storage_facility"
+    ],
+    "phone": "+16093959122",
+    "website": "http://www.homedepot.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.93954467773438,
+     40.0247688293457
+    ]
+   },
+   "properties": {
+    "id": "15fcf841-b3b1-49b9-997b-a43c2cd07888",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "9000 Route 130",
+    "city": "Delran",
+    "region": "NJ",
+    "postcode": "08075",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "8568240510",
+    "website": "https://www.homedepot.com/l/Delran/NJ/Delran/08075/970/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.93901062011719,
+     40.02531814575195
+    ]
+   },
+   "properties": {
+    "id": "01931e18-065b-44a1-977a-875566139cc7",
+    "name": "The Home Depot",
+    "street": "9000 Route 130",
+    "city": "Delran Twp",
+    "region": "NJ",
+    "postcode": "08075",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18568241815",
+    "website": "https://www.homedepot.com/l/Delran/NJ/Delran/08075/970?emt=MSFBPage",
+    "confidence": 0.9836335778236389,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.09339904785156,
+     39.81940841674805
+    ]
+   },
+   "properties": {
+    "id": "e98ff346-1e49-41ce-9e8f-763290b73246",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1370 Hurffville Rd",
+    "city": "Deptford",
+    "region": "NJ",
+    "postcode": "08096",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "8563745400",
+    "website": "https://www.homedepot.com/l/Deptford/NJ/Deptford/08096/929/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.09386444091797,
+     39.81940841674805
+    ]
+   },
+   "properties": {
+    "id": "266fc555-4089-4d9a-9903-4f2755784310",
+    "name": "The Home Depot",
+    "street": "1370 Hurffville Rd",
+    "city": "Deptford Twp",
+    "region": "NJ",
+    "postcode": "08096",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18563747700",
+    "website": "https://www.homedepot.com/l/Deptford/NJ/Deptford/08096/929?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.56376647949219,
+     40.90300369262695
+    ]
+   },
+   "properties": {
+    "id": "84690598-94ba-49ff-a849-b8742b18307c",
+    "name": "The Home Depot",
+    "street": "530 Mt Pleasant Ave",
+    "city": "Dover",
+    "region": "NJ",
+    "postcode": "07801",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19734420101",
+    "website": "https://www.homedepot.com/l/Dover/NJ/Dover/07801/925?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.56368255615234,
+     40.903560638427734
+    ]
+   },
+   "properties": {
+    "id": "d432d165-a27d-4ef7-ab6e-95867e0f68b0",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "530 Mt Pleasant Ave",
+    "city": "Dover",
+    "region": "NJ",
+    "postcode": "07801",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9734422407",
+    "website": "https://www.homedepot.com/l/Dover/NJ/Dover/07801/925/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.38484191894531,
+     40.42924880981445
+    ]
+   },
+   "properties": {
+    "id": "0edb1cba-1b3b-4846-bf58-945ebbae971e",
+    "name": "Home Depot",
+    "street": "50 Race Track Rd",
+    "city": "East Brunswick",
+    "region": "NJ",
+    "postcode": "08816-3767",
+    "basic_category": "manufacturer",
+    "category": "industrial_equipment_manufacturer",
+    "category_hierarchy": [
+     "services_and_business",
+     "b2b_service",
+     "manufacturer",
+     "machinery_and_tool_manufacturer",
+     "industrial_equipment_manufacturer"
+    ],
+    "phone": "+17322572800",
+    "website": "http://homedepot.com",
+    "confidence": 0.5818645358085632
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.37316131591797,
+     40.810245513916016
+    ]
+   },
+   "properties": {
+    "id": "dd0a9a6b-947c-4278-8fa3-596270aa0aee",
+    "name": "The Home Depot",
+    "street": "902 Murray Rd",
+    "city": "East Hanover",
+    "region": "NJ",
+    "postcode": "07936",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19738874444",
+    "website": "https://www.homedepot.com/l/East-Hanover/NJ/East-Hanover/07936/901?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3731918334961,
+     40.81041717529297
+    ]
+   },
+   "properties": {
+    "id": "3b3435a9-2e3a-425f-8283-ca27a1896312",
+    "name": "Truck Rental Center at The Home Depot",
+    "street": "902 Murray Rd",
+    "city": "East Hanover",
+    "region": "NJ",
+    "postcode": "07936",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9738874444",
+    "website": "https://www.homedepot.com/l/E-Hanover/NJ/East-Hanover/07936/901/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.54438781738281,
+     40.257747650146484
+    ]
+   },
+   "properties": {
+    "id": "1d4d391b-a484-4eef-8f96-127b681e1fa2",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "739 Rte 33 W",
+    "city": "East Windsor",
+    "region": "NJ",
+    "postcode": "08520",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "6094262468",
+    "website": "https://www.homedepot.com/l/E-Windsor/NJ/East-Windsor/08520/982/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.54529571533203,
+     40.257328033447266
+    ]
+   },
+   "properties": {
+    "id": "3c2d7dbc-5d22-4aea-87e3-fa7a3737e084",
+    "name": "The Home Depot",
+    "street": "739 Route 33 West",
+    "city": "East Windsor Twp",
+    "region": "NJ",
+    "postcode": "08520",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16094262441",
+    "website": "https://www.homedepot.com/l/East-Windsor/NJ/East-Windsor/08520/982?emt=MSFBPage",
+    "confidence": 0.9999777962446212
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03740692138672,
+     40.29109191894531
+    ]
+   },
+   "properties": {
+    "id": "64653d41-a11c-41a0-b828-074d46ebc033",
+    "name": "The Home Depot",
+    "street": "310 State Hwy 36 Ste 100",
+    "city": "Eatontown",
+    "region": "NJ",
+    "postcode": "07764",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17329350100",
+    "website": "https://www.homedepot.com/l/West-Long-Branch/NJ/West-Long-Branch/07764/907?emt=MSFBPage",
+    "confidence": 0.982990026473999,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.36528778076172,
+     40.52363586425781
+    ]
+   },
+   "properties": {
+    "id": "ffd59963-010c-4fbd-8d6e-a8c9f6483f5c",
+    "name": "The Home Depot",
+    "street": "1035 US Highway 1",
+    "city": "Edison",
+    "region": "NJ",
+    "postcode": "08837-2904",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17329060501",
+    "website": "https://www.homedepot.com/l/Edison/NJ/Edison/08837/944?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.36548614501953,
+     40.52351379394531
+    ]
+   },
+   "properties": {
+    "id": "540f3bcb-1a7b-4696-b6a6-e205475a79ef",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1035 Rte 1",
+    "city": "Edison",
+    "region": "NJ",
+    "postcode": "08837",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7324527030",
+    "website": "https://www.homedepot.com/l/Edison/NJ/Edison/08837/944/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.61636352539062,
+     39.43561935424805
+    ]
+   },
+   "properties": {
+    "id": "b390e8a9-740c-4b00-8df1-1a0e131aa3cf",
+    "name": "The Home Depot",
+    "street": "6 Tower Avenue",
+    "city": "Egg Harbor Twp",
+    "region": "NJ",
+    "postcode": "08234",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16094079600",
+    "website": "https://www.homedepot.com/l/Egg-Harbor/NJ/Egg-Harbor-Township/08234/930?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24385070800781,
+     40.66322708129883
+    ]
+   },
+   "properties": {
+    "id": "ed127687-4dfb-4fff-9be1-5c2a7cbc8864",
+    "name": "The Home Depot",
+    "street": "977 W Grand Street",
+    "city": "Elizabeth",
+    "region": "NJ",
+    "postcode": "07202",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19082592600",
+    "website": "https://www.homedepot.com/l/Vh-Elizabeth/NJ/Elizabeth/07202/6905?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.16797637939453,
+     40.66551208496094
+    ]
+   },
+   "properties": {
+    "id": "c0346958-38d1-4c92-8dce-d004d6ed825b",
+    "name": "The Home Depot Distribution Center",
+    "street": "10 North Ave E",
+    "city": "Elizabeth",
+    "region": "NJ",
+    "postcode": "07201-2959",
+    "basic_category": "b2b_transportation_and_storage_service",
+    "category": "distribution_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "b2b_service",
+     "b2b_transportation_and_storage_service",
+     "freight_and_cargo_service",
+     "distribution_service"
+    ],
+    "phone": "19087871738",
+    "website": "https://careers.homedepot.com",
+    "confidence": 0.75,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.76118469238281,
+     40.243106842041016
+    ]
+   },
+   "properties": {
+    "id": "5d82b22e-5724-45ff-b913-d1d477665196",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1621 N Olden Ave",
+    "city": "Ewing",
+    "region": "NJ",
+    "postcode": "08638",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "6092787068",
+    "website": "https://www.homedepot.com/l/Ewing/NJ/Ewing/08638/976/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.76106262207031,
+     40.24342727661133
+    ]
+   },
+   "properties": {
+    "id": "ec43042a-6e30-42c0-95eb-5c39a47b7262",
+    "name": "The Home Depot",
+    "street": "1621 N. Olden Ave.",
+    "city": "Ewing Twp",
+    "region": "NJ",
+    "postcode": "08638",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16093933697",
+    "website": "https://www.homedepot.com/l/Ewing/NJ/Ewing/08638/976?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.85852813720703,
+     40.49348068237305
+    ]
+   },
+   "properties": {
+    "id": "c686648f-ef20-4a2c-8a14-bd1aa31bdede",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "244 Highway 202/31",
+    "city": "Flemington",
+    "region": "NJ",
+    "postcode": "08822",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9087884410",
+    "website": "",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1883773803711,
+     39.847862243652344
+    ]
+   },
+   "properties": {
+    "id": "b5fbf3f2-fa5d-4133-b8c1-15593969ae69",
+    "name": "The Home Depot",
+    "street": "244 N Main St",
+    "city": "Forked River",
+    "region": "NJ",
+    "postcode": "08731-2741",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16092426890",
+    "website": "https://www.homedepot.com/l/Forked-River/NJ/Forked-River/08731/969?emt=MSFBPage",
+    "confidence": 0.9999790999770164,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1882553100586,
+     39.847816467285156
+    ]
+   },
+   "properties": {
+    "id": "8fc0efdd-0ccd-4899-8cf9-603498c51883",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "244 N Main St",
+    "city": "Forked River",
+    "region": "NJ",
+    "postcode": "08731",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "6092423828",
+    "website": "https://www.homedepot.com/l/Forked-River/NJ/Forked-River/08731/969/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29293823242188,
+     40.25457763671875
+    ]
+   },
+   "properties": {
+    "id": "d34e162a-3abc-4141-b9cb-79aec386bc76",
+    "name": "The Home Depot",
+    "street": "300 Trotters Way",
+    "city": "Freehold",
+    "region": "NJ",
+    "postcode": "07728",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17326253000",
+    "website": "https://www.homedepot.com/l/Freehold/NJ/Freehold/07728/961?emt=MSFBPage",
+    "confidence": 0.9956498742103577,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.32051086425781,
+     40.65245819091797
+    ]
+   },
+   "properties": {
+    "id": "0c25e4a9-4c00-4f27-b8bc-528eea792676",
+    "name": "The Home Depot",
+    "street": "200 South Ave",
+    "city": "Garwood",
+    "region": "NJ",
+    "postcode": "07027",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19085180011",
+    "website": "https://www.homedepot.com/l/Vh-Garwood/NJ/Garwood/07027/6903?emt=MSFBPage",
+    "confidence": 0.9949824810028076,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03041076660156,
+     40.90974807739258
+    ]
+   },
+   "properties": {
+    "id": "aa1bfb2c-ebf0-4e44-9019-2a47440f66c3",
+    "name": "The Home Depot",
+    "street": "450 Hackensack Ave",
+    "city": "Hackensack",
+    "region": "NJ",
+    "postcode": "07601",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12013363041",
+    "website": "https://www.homedepot.com/l/Hackensack/NJ/Hackensack/07601/983?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02997589111328,
+     40.909297943115234
+    ]
+   },
+   "properties": {
+    "id": "987d6584-9ad3-4cb6-aa82-98d23917e80e",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "450 Hackensack Ave",
+    "city": "Hackensack",
+    "region": "NJ",
+    "postcode": "07601",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "2013363008",
+    "website": "https://www.homedepot.com/l/Hackensack/NJ/Hackensack/07601/983/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.83421325683594,
+     40.82973098754883
+    ]
+   },
+   "properties": {
+    "id": "a1dc2fc9-8a78-4ff5-839a-bc5a747406fe",
+    "name": "The Home Depot",
+    "street": "2045 State Route 57",
+    "city": "Hackettstown",
+    "region": "NJ",
+    "postcode": "07840-3533",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19086841822",
+    "website": "https://www.compactpowerrents.com/locations",
+    "confidence": 0.9999665298375487,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.19741821289062,
+     40.42239761352539
+    ]
+   },
+   "properties": {
+    "id": "b4450878-2191-4b11-b1c6-65f693872ef5",
+    "name": "The Home Depot",
+    "street": "3700 Hwy 35",
+    "city": "Hazlet",
+    "region": "NJ",
+    "postcode": "07730-1257",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17322641661",
+    "website": "https://www.homedepot.com/l/Hazlet/NJ/Hazlet/07730/926?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.22206115722656,
+     40.0250129699707
+    ]
+   },
+   "properties": {
+    "id": "f2d7e6f2-cdc5-411a-829c-f14bafe10474",
+    "name": "Home Services at The Home Depot",
+    "street": "1990 Rte 9",
+    "city": "Howell",
+    "region": "NJ",
+    "postcode": "07731",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "home_improvement_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "home_improvement_store"
+    ],
+    "phone": "7323058929",
+    "website": "https://www.homedepot.com/l/Howell/NJ/Howell/07731/933/services?cm_mmc=old-llm-933-x",
+    "confidence": 0.9325,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.25254821777344,
+     40.18695068359375
+    ]
+   },
+   "properties": {
+    "id": "e457aacf-9077-4d03-ac45-8f24f8cbb223",
+    "name": "The Home Depot",
+    "street": "1990 Route 9",
+    "city": "Howell",
+    "region": "NJ",
+    "postcode": "07731",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17324099996",
+    "website": "https://www.homedepot.com/l/Howell/NJ/Howell/07731/933?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.44793701171875,
+     40.39313507080078
+    ]
+   },
+   "properties": {
+    "id": "c52b9899-cf60-4864-b714-c6cd102c2d92",
+    "name": "Home Depot Distribution Center",
+    "street": "130 Interstate Blvd",
+    "city": "Jamesburg",
+    "region": "NJ",
+    "postcode": "08831-3038",
+    "basic_category": "storage_facility",
+    "category": "storage_facility",
+    "category_hierarchy": [
+     "services_and_business",
+     "storage_facility"
+    ],
+    "phone": "+17326563699",
+    "website": "http://www.homedepot.com/",
+    "confidence": 0.7557755708694458,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.04627990722656,
+     40.73069763183594
+    ]
+   },
+   "properties": {
+    "id": "d38c9548-9a19-43b4-a612-57664c2cdb5b",
+    "name": "Holland Tunnel Home Depot",
+    "city": "Jersey City",
+    "region": "NJ",
+    "basic_category": "travel_service",
+    "category": "travel_service",
+    "category_hierarchy": [
+     "travel_and_transportation",
+     "travel_service"
+    ],
+    "confidence": 0.7642263174057007
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.09800720214844,
+     40.68119812011719
+    ]
+   },
+   "properties": {
+    "id": "7552966f-a45b-4978-bb80-7f9a7b389fe5",
+    "name": "The Home Depot",
+    "street": "440 State Rt 440",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07305",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "website": "https://www.homedepot.com/l/storeDirectory",
+    "confidence": 0.8
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.09687042236328,
+     40.710506439208984
+    ]
+   },
+   "properties": {
+    "id": "2adbba84-f123-45cf-b917-604aee630bae",
+    "name": "The Home Depot",
+    "street": "440 State RT 440",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07305-4813",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12015219437",
+    "website": "https://www.homedepot.com/l/Jersey-City/NJ/Jersey-City/07305/935?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.04045867919922,
+     40.73064041137695
+    ]
+   },
+   "properties": {
+    "id": "db3a1e1c-5dbc-400f-b453-c5cff2a48854",
+    "name": "The Home Depot",
+    "street": "180 12th St",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07310",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12019636513",
+    "website": "https://www.homedepot.com/l/Holland-Tunnel/NJ/Jersey-City/07310/6845?emt=MSFBPage",
+    "confidence": 0.9933805465698242,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.09696197509766,
+     40.710548400878906
+    ]
+   },
+   "properties": {
+    "id": "d5189818-205c-4ea5-9413-0198a7ce35b2",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "440 State Rt 440",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07305",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "2019462101",
+    "website": "https://www.homedepot.com/l/Jersey-City/NJ/Jersey-City/07305/935/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.32747650146484,
+     40.515689849853516
+    ]
+   },
+   "properties": {
+    "id": "21bde1b9-6b90-418a-a284-206ffa64858f",
+    "name": "Home Depot Warehouse & Distribution Centers",
+    "street": "100 Riverside Dr",
+    "city": "Keasbey",
+    "region": "NJ",
+    "postcode": "08832-1203",
+    "basic_category": "storage_facility",
+    "category": "storage_facility",
+    "category_hierarchy": [
+     "services_and_business",
+     "storage_facility"
+    ],
+    "phone": "+17324172276",
+    "website": "http://www.ndc-nfi.com",
+    "confidence": 0.9456350207328796,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.32758331298828,
+     40.51663589477539
+    ]
+   },
+   "properties": {
+    "id": "fb9c3d88-1c87-4bc8-91ab-ca798499b6a5",
+    "name": "The Home Depot Distribution Center",
+    "street": "100 Riverside Dr",
+    "city": "Keasbey",
+    "region": "NJ",
+    "postcode": "08832-1203",
+    "basic_category": "b2b_transportation_and_storage_service",
+    "category": "distribution_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "b2b_service",
+     "b2b_transportation_and_storage_service",
+     "freight_and_cargo_service",
+     "distribution_service"
+    ],
+    "phone": "17327387217",
+    "website": "https://careers.homedepot.com",
+    "confidence": 0.75,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.16366577148438,
+     40.05465316772461
+    ]
+   },
+   "properties": {
+    "id": "a0e7d583-1969-4de8-98ef-26d3fd4aab0a",
+    "name": "Garden Center at The Home Depot",
+    "street": "1900 Shorrock St",
+    "city": "Lakewood",
+    "region": "NJ",
+    "postcode": "08701",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17329204200",
+    "website": "https://www.homedepot.com/l/Lakewood/NJ/Lakewood/08701/902?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.16222381591797,
+     40.054443359375
+    ]
+   },
+   "properties": {
+    "id": "19cbcca6-f8c4-415e-af56-1ff18c4bc35c",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1900 Shorrock St",
+    "city": "Lakewood",
+    "region": "NJ",
+    "postcode": "08701",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7329204108",
+    "website": "https://www.homedepot.com/l/Lakewood/NJ/Lakewood/08701/902/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.04546356201172,
+     39.86952209472656
+    ]
+   },
+   "properties": {
+    "id": "ab3c87c9-4140-49d9-a301-2f658d9ee158",
+    "name": "The Home Depot",
+    "street": "310 Whitehorse Pike, Suite 1",
+    "city": "Lawnside",
+    "region": "NJ",
+    "postcode": "08045",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "home_improvement_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "home_improvement_store"
+    ],
+    "phone": "+18565479600",
+    "website": "https://www.homedepot.com/l/Lawnside/NJ/Lawnside/08045/917?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24897766113281,
+     40.61791229248047
+    ]
+   },
+   "properties": {
+    "id": "d023e69b-18b9-47d1-9eae-195051cf42d2",
+    "name": "The Home Depot",
+    "street": "701 W Edgar Rd",
+    "city": "Linden",
+    "region": "NJ",
+    "postcode": "07036-3248",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19085231520",
+    "website": "https://www.homedepot.com/l/Linden/NJ/Linden/07036/934?emt=MSFBPage",
+    "confidence": 0.9891512393951416,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24897766113281,
+     40.61791229248047
+    ]
+   },
+   "properties": {
+    "id": "2c0a542e-12aa-4e64-87ff-f2d71c2200ff",
+    "name": "The Home Depot",
+    "street": "701 West Edgar Rd",
+    "city": "Linden",
+    "region": "NJ",
+    "postcode": "07036",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "home_improvement_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "home_improvement_store"
+    ],
+    "phone": "+19085231520",
+    "website": "https://www.homedepot.com/l/Linden/NJ/Linden/07036/934?emt=MSFBPage",
+    "confidence": 0.9952690005302429
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24829864501953,
+     40.6181526184082
+    ]
+   },
+   "properties": {
+    "id": "d2fd3730-73ad-4a5c-a45e-affc5a6988c6",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "701 W Edgar Rd",
+    "city": "Linden",
+    "region": "NJ",
+    "postcode": "07036",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9085232210",
+    "website": "https://www.homedepot.com/l/Linden/NJ/Linden/07036/934/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06568908691406,
+     40.88560104370117
+    ]
+   },
+   "properties": {
+    "id": "7beee390-4cb8-41d9-a4fa-d2cd69663d89",
+    "name": "The Home Depot",
+    "street": "99 State Route 17 North",
+    "city": "Lodi",
+    "region": "NJ",
+    "postcode": "07644",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12012269929",
+    "website": "https://www.homedepot.com/l/Lodi/NJ/Lodi/07644/932?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.14665222167969,
+     41.079280853271484
+    ]
+   },
+   "properties": {
+    "id": "304afaf8-893e-412a-8a8b-c78d0cc9e940",
+    "name": "The Home Depot",
+    "street": "465 State RT 17",
+    "city": "Mahwah",
+    "region": "NJ",
+    "postcode": "07430-2143",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12018189754",
+    "website": "https://www.homedepot.com/l/Mahwah/NJ/Mahwah/07430/963?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.14677429199219,
+     41.07976531982422
+    ]
+   },
+   "properties": {
+    "id": "75a787c4-76f3-420a-8518-b8709ad16294",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "465 State Rt 17",
+    "city": "Mahwah",
+    "region": "NJ",
+    "postcode": "07430",
+    "basic_category": "rental_service",
+    "category": "machine_and_tool_rental",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "machine_and_tool_rental"
+    ],
+    "phone": "2018255068",
+    "website": "",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.26832580566406,
+     39.695369720458984
+    ]
+   },
+   "properties": {
+    "id": "fafa4ef1-3810-4ef8-b47a-0c6274d68ece",
+    "name": "The Home Depot",
+    "street": "197 Route 72 W",
+    "city": "Manahawkin",
+    "region": "NJ",
+    "postcode": "08050-2817",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16099783600",
+    "website": "https://www.homedepot.com/l/Manahawkin/NJ/Stafford-Township/08050/951?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.18050384521484,
+     39.786197662353516
+    ]
+   },
+   "properties": {
+    "id": "d5fb8c49-7918-457b-85bd-7e250ebb1bc7",
+    "name": "The Home Depot",
+    "street": "320 Bridgeton Pike",
+    "city": "Mantua",
+    "region": "NJ",
+    "postcode": "08051",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18564641247",
+    "website": "https://www.homedepot.com/l/Mantua/NJ/Mantua/08051/974?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30400085449219,
+     40.34145736694336
+    ]
+   },
+   "properties": {
+    "id": "ff2c319b-b7bf-48ab-a3ad-49c9a9a2ad2b",
+    "name": "The Home Depot",
+    "street": "170 Union Hill Road",
+    "city": "Marlboro Twp",
+    "region": "NJ",
+    "postcode": "07751",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "home_improvement_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "home_improvement_store"
+    ],
+    "phone": "+17326177102",
+    "website": "https://www.homedepot.com/l/Marlboro/NJ/Morganville/07751/6911?emt=MSFBPage",
+    "confidence": 0.9953737854957581,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.42729949951172,
+     40.43999099731445
+    ]
+   },
+   "properties": {
+    "id": "3fdfe47f-ac62-4525-8f1f-01d28ccaf53b",
+    "name": "The Home Depot",
+    "street": "401 South Main Street",
+    "city": "Milltown",
+    "region": "NJ",
+    "postcode": "08850",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17324320500",
+    "website": "https://www.homedepot.com/l/Milltown/NJ/Milltown/08850/918?emt=MSFBPage",
+    "confidence": 0.9905205965042114,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.42674255371094,
+     40.440452575683594
+    ]
+   },
+   "properties": {
+    "id": "24b0592a-aab4-4707-9a68-e168f0114d86",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "401 S Main St",
+    "city": "Milltown",
+    "region": "NJ",
+    "postcode": "08850",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7323903200",
+    "website": "https://www.homedepot.com/l/Milltown/NJ/Milltown/08850/918/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.56659698486328,
+     40.394412994384766
+    ]
+   },
+   "properties": {
+    "id": "25ee8d44-890e-44a0-842b-8a3e60b6891b",
+    "name": "The Home Depot",
+    "street": "4095 US Highway 1",
+    "city": "Monmouth Junction",
+    "region": "NJ",
+    "postcode": "08852-2152",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17324385980",
+    "website": "https://www.homedepot.com/l/South-Brunswick/NJ/Monmouth-Junction/08852/6917?emt=MSFBPage",
+    "confidence": 0.9999766858100891,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.56593322753906,
+     40.39473342895508
+    ]
+   },
+   "properties": {
+    "id": "ff697ab7-d73a-4807-a80a-696798c43698",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "4095 US Highway 1",
+    "city": "Monmouth Junction",
+    "region": "NJ",
+    "postcode": "08852",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7323294408",
+    "website": "https://www.homedepot.com/l/S-Brunswick/NJ/Monmouth-Junction/08852/6917/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3517074584961,
+     40.85759353637695
+    ]
+   },
+   "properties": {
+    "id": "ccb38752-2409-4cc8-bb23-87e4f5a102fa",
+    "name": "The Home Depot",
+    "street": "79 Route 46 E",
+    "city": "Montville",
+    "region": "NJ",
+    "postcode": "07045",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "website": "https://www.homedepot.com/l/storeDirectory",
+    "confidence": 0.8
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.32207489013672,
+     40.85965347290039
+    ]
+   },
+   "properties": {
+    "id": "d2addf92-46a2-4714-baf6-4f6d4f8251a9",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "79 Route 46 E",
+    "city": "Montville",
+    "region": "NJ",
+    "postcode": "07045",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9732444168",
+    "website": "https://www.homedepot.com/l/Montville/NJ/Montville/07045/965/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.32172393798828,
+     40.86035919189453
+    ]
+   },
+   "properties": {
+    "id": "693bed6f-cc7f-48ce-92b6-4bb7eeeacd02",
+    "name": "The Home Depot",
+    "street": "79 Route 46 E",
+    "city": "Montville Twp",
+    "region": "NJ",
+    "postcode": "07045",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19735750823",
+    "website": "https://www.homedepot.com/l/Montville/NJ/Montville/07045/965?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30825805664062,
+     40.33914566040039
+    ]
+   },
+   "properties": {
+    "id": "efd4bd4f-39ef-4167-ad41-026b5c95a276",
+    "name": "Home Depot",
+    "street": "170 Union Hill Rd",
+    "city": "Morganville",
+    "region": "NJ",
+    "postcode": "07751",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "appliance_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "appliance_store"
+    ],
+    "phone": "7326177102",
+    "website": "http://www.homedepot.com/webapp/wcs/stores/servlet/BuildLinkToHomeDepot?id=SF_Misc_Affiliate_Landing&linktype=commerce&langId=-1&storeId=10051&catalogId=10053&cm_mmc=shopping-_-bingmaps&ci_src=18492716&ci_sku=BingBrandFinder",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.94967651367188,
+     39.94369125366211
+    ]
+   },
+   "properties": {
+    "id": "9caf8e85-b834-413b-bc3e-41244ed4dff3",
+    "name": "The Home Depot Pro Institutional",
+    "street": "804 E Gate Dr",
+    "city": "Mount Laurel",
+    "region": "NJ",
+    "postcode": "08054-1209",
+    "basic_category": "wholesaler",
+    "category": "wholesaler",
+    "category_hierarchy": [
+     "services_and_business",
+     "b2b_service",
+     "wholesaler"
+    ],
+    "phone": "18664126726",
+    "website": "https://www.supplyworks.com",
+    "confidence": 0.75,
+    "operating_status": "permanently_closed"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.96188354492188,
+     39.938385009765625
+    ]
+   },
+   "properties": {
+    "id": "ff6c7e44-e789-4d0e-b467-588333a704d8",
+    "name": "The Home Depot",
+    "street": "1200 Nixon Dr",
+    "city": "Mt Laurel",
+    "region": "NJ",
+    "postcode": "08054",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18562340880",
+    "website": "https://www.homedepot.com/l/Mount-Laurel/NJ/Mount-Laurel/08054/914?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.08087921142578,
+     40.22279739379883
+    ]
+   },
+   "properties": {
+    "id": "b3cdc851-f794-4ad6-b79e-ffebb039c890",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "3540 Rte 66",
+    "city": "Neptune",
+    "region": "NJ",
+    "postcode": "07753",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7329225070",
+    "website": "https://www.homedepot.com/l/Neptune/NJ/Neptune/07753/949/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.08143615722656,
+     40.22248077392578
+    ]
+   },
+   "properties": {
+    "id": "12425333-926a-4582-b8dd-4e40ce21cf15",
+    "name": "The Home Depot",
+    "street": "3540 Route 66",
+    "city": "Neptune Twp",
+    "region": "NJ",
+    "postcode": "07753",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17329226580",
+    "website": "https://www.homedepot.com/l/Neptune/NJ/Neptune/07753/949?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.19828796386719,
+     40.73124694824219
+    ]
+   },
+   "properties": {
+    "id": "0c3a7f4d-7876-4014-8130-8d3b0f922f46",
+    "name": "The Home Depot",
+    "street": "399-443 Springfield Ave",
+    "city": "Newark",
+    "region": "NJ",
+    "postcode": "07103",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19738480600",
+    "website": "https://www.homedepot.com/l/Newark/NJ/Newark/07103/980?emt=MSFBPage",
+    "confidence": 0.9999765241801739,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.19924926757812,
+     40.73155212402344
+    ]
+   },
+   "properties": {
+    "id": "b9704239-8d4d-437e-929e-74ff072190c4",
+    "name": "Tool & Truck Rental Center at The Home Depot",
+    "street": "399-443 Springfield Ave",
+    "city": "Newark",
+    "region": "NJ",
+    "postcode": "07103",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9736215878",
+    "website": "https://www.homedepot.com/",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.75115966796875,
+     41.065948486328125
+    ]
+   },
+   "properties": {
+    "id": "c9cb90fb-bd36-43dd-8a85-1bfe19e8e099",
+    "name": "The Home Depot",
+    "street": "7 North Park Dr.",
+    "city": "Newton",
+    "region": "NJ",
+    "postcode": "07860",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19733834206",
+    "website": "https://www.homedepot.com/l/Newton/NJ/Newton/07860/984?emt=MSFBPage",
+    "confidence": 0.9999806973576546,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.7513198852539,
+     41.06602096557617
+    ]
+   },
+   "properties": {
+    "id": "73dea6a3-7919-42bd-aa41-0809bf117614",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "7 N Park Dr",
+    "city": "Newton",
+    "region": "NJ",
+    "postcode": "07860",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9733002708",
+    "website": "https://www.homedepot.com/l/Newton/NJ/Newton/07860/984/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02017211914062,
+     40.80461883544922
+    ]
+   },
+   "properties": {
+    "id": "09014bc3-5acc-41a5-8d81-69d182be7e8c",
+    "name": "The Home Depot",
+    "street": "7605 Tonnelle Avenue",
+    "city": "North Bergen",
+    "region": "NJ",
+    "postcode": "07047",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12018688125",
+    "website": "https://www.homedepot.com/l/North-Bergen/NJ/North-Bergen/07047/8475?emt=MSFBPage",
+    "confidence": 0.9891512393951416,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.01958465576172,
+     40.80516815185547
+    ]
+   },
+   "properties": {
+    "id": "0f155fa6-8b93-4008-a601-256ca9012658",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "7605 Tonnelle Ave",
+    "city": "North Bergen",
+    "region": "NJ",
+    "postcode": "07047",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "2012954508",
+    "website": "https://www.homedepot.com/l/North-Bergen/NJ/North-Bergen/07047/8475/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30081176757812,
+     40.450809478759766
+    ]
+   },
+   "properties": {
+    "id": "a669b653-50aa-4d5c-b6f3-cb3c640417a7",
+    "name": "The Home Depot",
+    "street": "1090 Us Highway 9",
+    "city": "Old Bridge",
+    "region": "NJ",
+    "postcode": "08857",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "home_improvement_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "home_improvement_store"
+    ],
+    "phone": "+17327271417",
+    "website": "https://www.homedepot.com/l/Old-Bridge-II/NJ/Old-Bridge/08857/957?emt=MSFBPage",
+    "confidence": 0.9683153629302979,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30042266845703,
+     40.45151901245117
+    ]
+   },
+   "properties": {
+    "id": "8c8517d0-2f75-4da5-ac3e-bde187c2c62f",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1090 Rte 9",
+    "city": "Old Bridge",
+    "region": "NJ",
+    "postcode": "08857",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7323167410",
+    "website": "https://www.homedepot.com/l/Old-Bridge-II/NJ/Old-Bridge/08857/957/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.07219696044922,
+     40.956722259521484
+    ]
+   },
+   "properties": {
+    "id": "23502a7c-aee1-4c19-ba9e-aa46a53e5bbd",
+    "name": "The Home Depot",
+    "street": "520 Rt 17 North",
+    "city": "Paramus",
+    "region": "NJ",
+    "postcode": "07652",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12012623344",
+    "website": "https://www.homedepot.com/l/Paramus/NJ/Paramus/07652/904?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.07210540771484,
+     40.9567985534668
+    ]
+   },
+   "properties": {
+    "id": "e34f4b50-2cba-448a-9894-275ed947084b",
+    "name": "The Home Depot",
+    "street": "520 Rt 17 North",
+    "city": "Paramus",
+    "region": "NJ",
+    "postcode": "07652",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "website": "https://www.homedepot.com/l/storeDirectory",
+    "confidence": 0.954
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.07179260253906,
+     40.95625686645508
+    ]
+   },
+   "properties": {
+    "id": "dfa896e6-c6a2-4479-9101-8a962ad1b419",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "520 N State Rt 17",
+    "city": "Paramus",
+    "region": "NJ",
+    "postcode": "07652",
+    "basic_category": "rental_service",
+    "category": "machine_and_tool_rental",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "machine_and_tool_rental"
+    ],
+    "phone": "2012622044",
+    "website": "https://www.homedepot.com/l/Paramus/NJ/Paramus/07652/904/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.37247467041016,
+     40.865257263183594
+    ]
+   },
+   "properties": {
+    "id": "68abc334-7ce7-4ebe-a578-49ea1362c092",
+    "name": "The Home Depot",
+    "street": "780 US Highway 46",
+    "city": "Parsippany",
+    "region": "NJ",
+    "postcode": "07054-3401",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19733355917",
+    "website": "https://www.homedepot.com/l/Parsippany/NJ/Parsippany/07054/977?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.37184143066406,
+     40.86514663696289
+    ]
+   },
+   "properties": {
+    "id": "5970eea4-ce49-4457-b525-a13e8c353b24",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "780 Rte 46",
+    "city": "Parsippany",
+    "region": "NJ",
+    "postcode": "07054",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9733163309",
+    "website": "https://www.homedepot.com/l/Parsippany/NJ/Parsippany/07054/977/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.11984252929688,
+     40.8722038269043
+    ]
+   },
+   "properties": {
+    "id": "117378d9-776d-4838-b69f-1be3a5e9abe9",
+    "name": "The Home Depot",
+    "street": "103-179 Dayton Ave",
+    "city": "Passaic",
+    "region": "NJ",
+    "postcode": "07055",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "appliance_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "appliance_store"
+    ],
+    "phone": "9734712111",
+    "website": "https://www.homedepot.com/l/Passaic/NJ/Passaic/07055/950",
+    "confidence": 0.9933805465698242
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.12047576904297,
+     40.8715934753418
+    ]
+   },
+   "properties": {
+    "id": "029e2954-ecc3-418d-a95e-2a2a3db3ba2c",
+    "name": "The Home Depot",
+    "street": "103-179 Dayton Ave",
+    "city": "Passaic",
+    "region": "NJ",
+    "postcode": "07055",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19734712111",
+    "website": "https://www.homedepot.com/l/Passaic/NJ/Passaic/07055/950?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.17655181884766,
+     40.91300964355469
+    ]
+   },
+   "properties": {
+    "id": "c395216c-d7f9-4bd7-b382-875db4a6a5bb",
+    "name": "Home Depot",
+    "street": "55 Jersey St",
+    "city": "Paterson",
+    "region": "NJ",
+    "postcode": "07501-1701",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "home_improvement_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "home_improvement_store"
+    ],
+    "phone": "+18622391410",
+    "website": "http://www.homedepot.com",
+    "confidence": 0.627360999584198
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.14222717285156,
+     40.93352127075195
+    ]
+   },
+   "properties": {
+    "id": "c17e33a5-65d6-4d45-a22c-82ab26c0adcb",
+    "name": "The Home Depot",
+    "street": "75 McLean Blvd",
+    "city": "Paterson",
+    "region": "NJ",
+    "postcode": "07514-1454",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19733571305",
+    "website": "https://www.homedepot.com/l/Paterson/NJ/Paterson/07514/959?emt=MSFBPage",
+    "confidence": 0.9581524133682251,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.14218139648438,
+     40.933467864990234
+    ]
+   },
+   "properties": {
+    "id": "c64c716d-8f95-40eb-a060-cd4de3046bb1",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "75 Mclean Blvd",
+    "city": "Paterson",
+    "region": "NJ",
+    "postcode": "07514",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9735692060",
+    "website": "https://www.homedepot.com/l/Paterson/NJ/Paterson/07514/959/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.27859497070312,
+     40.5017204284668
+    ]
+   },
+   "properties": {
+    "id": "bf52d37f-78eb-4677-8233-2971c37259f4",
+    "name": "The Home Depot Distribution Center",
+    "street": "225 Elm St",
+    "city": "Perth Amboy",
+    "region": "NJ",
+    "postcode": "08861-4503",
+    "basic_category": "b2b_transportation_and_storage_service",
+    "category": "distribution_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "b2b_service",
+     "b2b_transportation_and_storage_service",
+     "freight_and_cargo_service",
+     "distribution_service"
+    ],
+    "phone": "17327710900",
+    "website": "https://careers.homedepot.com",
+    "confidence": 0.75,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.1418228149414,
+     40.68062210083008
+    ]
+   },
+   "properties": {
+    "id": "ce29d18d-722f-4524-a306-53675be026f4",
+    "name": "The Home Depot",
+    "street": "1209 US Highway 22",
+    "city": "Phillipsburg",
+    "region": "NJ",
+    "postcode": "08865",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19082130403",
+    "website": "https://www.homedepot.com/l/Phillipsburg/NJ/Phillipsburg/08865/931?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.14192962646484,
+     40.680641174316406
+    ]
+   },
+   "properties": {
+    "id": "f6f9914a-3985-4cd3-9771-2d1f415174e4",
+    "name": "The Home Depot",
+    "street": "1209 US Highway 22",
+    "city": "Phillipsburg",
+    "region": "NJ",
+    "postcode": "08865",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "(908) 213-0403",
+    "website": "https://www.homedepot.com/l/Phillipsburg/NJ/Phillipsburg/08865/931",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.67780303955078,
+     40.30048370361328
+    ]
+   },
+   "properties": {
+    "id": "c7a757ba-b84f-4784-a9cc-cc4eaffafac8",
+    "name": "The Home Depot",
+    "street": "701 Nassau Park Blvd",
+    "city": "Princeton",
+    "region": "NJ",
+    "postcode": "08540",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16099878686",
+    "website": "https://www.homedepot.com/l/West-Windsor/NJ/Princeton/08540/921?emt=MSFBPage",
+    "confidence": 0.9999752636313438,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.6777572631836,
+     40.30095291137695
+    ]
+   },
+   "properties": {
+    "id": "6627c6b1-df91-47ff-a752-08182db01276",
+    "name": "Truck Rental Center at The Home Depot",
+    "street": "701 Nassau Park Blvd",
+    "city": "Princeton",
+    "region": "NJ",
+    "postcode": "08540",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "6099878686",
+    "website": "https://www.homedepot.com/l/W-Windsor/NJ/Princeton/08540/921/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.85768127441406,
+     40.49336624145508
+    ]
+   },
+   "properties": {
+    "id": "c8b2ca20-2beb-4ac0-9bb5-7ed02557d418",
+    "name": "The Home Depot",
+    "street": "242 Hwy 202",
+    "city": "Raritan Twp",
+    "region": "NJ",
+    "postcode": "08822",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19087822577",
+    "website": "https://www.homedepot.com/l/Flemington/NJ/Flemington/08822/941?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3270034790039,
+     40.990150451660156
+    ]
+   },
+   "properties": {
+    "id": "ae9e85d6-0560-45b1-9beb-398c8633802b",
+    "name": "Home Depot Riverdale, Nj",
+    "street": "106 State RT 23",
+    "city": "Riverdale",
+    "region": "NJ",
+    "postcode": "07457",
+    "basic_category": "parking",
+    "category": "parking",
+    "category_hierarchy": [
+     "travel_and_transportation",
+     "parking"
+    ],
+    "phone": "+19732480585",
+    "website": "https://en.parkopedia.com/parking/lot/home_depot_riverdale_nj/riverdale/?vendor=here",
+    "confidence": 0.9992962419629097,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3270492553711,
+     40.99079895019531
+    ]
+   },
+   "properties": {
+    "id": "330df517-1610-4997-bf9b-46e15da64d91",
+    "name": "Truck Rental Center at The Home Depot",
+    "street": "106 State Rt 23",
+    "city": "Riverdale",
+    "region": "NJ",
+    "postcode": "07457",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9732480585",
+    "website": "https://www.homedepot.com/l/Riverdale-NJ/NJ/Riverdale/07457/919/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.62791442871094,
+     40.218299865722656
+    ]
+   },
+   "properties": {
+    "id": "b3a21f0e-811a-45bd-b43c-28732e63347a",
+    "name": "Home Depot",
+    "street": "Route 130",
+    "city": "Robbinsville",
+    "region": "NJ",
+    "postcode": "08691",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "appliance_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "appliance_store"
+    ],
+    "phone": "6095850411",
+    "website": "http://www.homedepot.com/webapp/wcs/stores/servlet/BuildLinkToHomeDepot?id=SF_Misc_Affiliate_Landing&linktype=commerce&langId=-1&storeId=10051&catalogId=10053&cm_mmc=shopping-_-bingmaps&ci_src=18492716&ci_sku=BingBrandFinder",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64535522460938,
+     40.19559097290039
+    ]
+   },
+   "properties": {
+    "id": "0428fcac-c979-4cbb-870a-83af7b2bb997",
+    "name": "The Home Depot",
+    "street": "750 US Highway 130",
+    "city": "Robbinsville",
+    "region": "NJ",
+    "postcode": "08691-2002",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16095850411",
+    "website": "https://www.homedepot.com/l/Hamilton/NJ/Robbinsville/08691/927?emt=MSFBPage",
+    "confidence": 0.9999681761801242,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.62789916992188,
+     40.20671081542969
+    ]
+   },
+   "properties": {
+    "id": "1b020dfc-951b-4f99-950b-3be9ba4d0ca9",
+    "name": "The Home Depot",
+    "street": "8 S Gold Dr",
+    "city": "Robbinsville",
+    "region": "NJ",
+    "postcode": "08691-1607",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_home_and_garden_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store"
+    ],
+    "phone": "+16096895300",
+    "website": "http://www.homedepot.com/",
+    "confidence": 0.5593243837356567
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64605712890625,
+     40.19496536254883
+    ]
+   },
+   "properties": {
+    "id": "646a5b4c-5241-47df-a318-580fe7c009c9",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "Route 130",
+    "city": "Robbinsville",
+    "region": "NJ",
+    "postcode": "08691",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "6098881980",
+    "website": "https://www.homedepot.com/l/Hamilton/NJ/Robbinsville/08691/927/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.4935531616211,
+     40.92854690551758
+    ]
+   },
+   "properties": {
+    "id": "4b8d6252-55e8-48f9-9255-5ae783e049e7",
+    "name": "Home Depot",
+    "street": "400 Commons Way",
+    "city": "Rockaway",
+    "region": "NJ",
+    "postcode": "07866-2030",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "home_improvement_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "home_improvement_store"
+    ],
+    "phone": "+19736272748",
+    "website": "http://www.homedepot.com/",
+    "confidence": 0.6709298491477966
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.05017852783203,
+     40.78328323364258
+    ]
+   },
+   "properties": {
+    "id": "0a4aa84a-c20a-49f6-a4a5-dcabe5b2b624",
+    "name": "The Home Depot",
+    "street": "1055 Paterson Plank Rd",
+    "city": "Secaucus",
+    "region": "NJ",
+    "postcode": "07094",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12012711200",
+    "website": "https://www.homedepot.com/l/Secaucus/NJ/Secaucus/07094/910?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.0501708984375,
+     40.7833137512207
+    ]
+   },
+   "properties": {
+    "id": "2e33cb53-a9ec-4d9c-98f6-18148792c851",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1055 Paterson Plank Rd",
+    "city": "Secaucus",
+    "region": "NJ",
+    "postcode": "07094",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "2012712405",
+    "website": "https://www.homedepot.com/l/Secaucus/NJ/Secaucus/07094/910/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.02655792236328,
+     39.71933364868164
+    ]
+   },
+   "properties": {
+    "id": "03fdc463-1081-4d4b-82f0-33fcb3d79bcd",
+    "name": "The Home Depot",
+    "street": "2735 Route 42",
+    "city": "Sicklerville",
+    "region": "NJ",
+    "postcode": "08081-5106",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "home_improvement_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "home_improvement_store"
+    ],
+    "phone": "+18567288600",
+    "website": "https://www.homedepot.com/l/Washington-Twsp-Monroe/NJ/Sicklerville/08081/942?emt=MSFBPage",
+    "confidence": 0.9972910284996033,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.0487060546875,
+     39.77859878540039
+    ]
+   },
+   "properties": {
+    "id": "9d29f0e7-a6b3-4102-a9ac-264b530c9d14",
+    "name": "The Home Depot",
+    "street": "2735 Route 42",
+    "city": "Sicklerville",
+    "region": "NJ",
+    "postcode": "08081",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "website": "https://www.homedepot.com/l/storeDirectory",
+    "confidence": 0.8
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.02655792236328,
+     39.71933364868164
+    ]
+   },
+   "properties": {
+    "id": "7833a9ba-15f0-47f6-b823-b4ca1a1c0492",
+    "name": "The Home Depot",
+    "street": "2735 Route 42",
+    "city": "Sicklerville",
+    "region": "NJ",
+    "postcode": "08081-5106",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18567288600",
+    "website": "https://www.homedepot.com/l/Washington-Twsp-Monroe/NJ/Sicklerville/08081/942?emt=MSFBPage",
+    "confidence": 0.9999065404832364
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.02751159667969,
+     39.71930694580078
+    ]
+   },
+   "properties": {
+    "id": "b7fd83c7-7139-4853-8b6b-1dce4d2e963e",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "2735 Rte 42",
+    "city": "Sicklerville",
+    "region": "NJ",
+    "postcode": "08081",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "8567403413",
+    "website": "https://www.homedepot.com/l/Washington-Twsp-Monroe/NJ/Sicklerville/08081/942/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.43161010742188,
+     40.558773040771484
+    ]
+   },
+   "properties": {
+    "id": "dc016f6e-5c9a-453c-9c78-2416c0220081",
+    "name": "Home Depot Store Support Center, South Plainfield, NJ",
+    "street": "3096 Hamilton Blvd",
+    "city": "South Plainfield",
+    "region": "NJ",
+    "postcode": "07080-1201",
+    "basic_category": "superstore",
+    "category": "superstore",
+    "category_hierarchy": [
+     "shopping",
+     "superstore"
+    ],
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.43268585205078,
+     40.55853271484375
+    ]
+   },
+   "properties": {
+    "id": "5545c189-b842-4fbe-b0eb-953e3ac3274f",
+    "name": "The Home Depot",
+    "street": "3100 Hamilton Blvd",
+    "city": "South Plainfield",
+    "region": "NJ",
+    "postcode": "07080",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17327525900",
+    "website": "https://www.homedepot.com/l/South-Plainfield/NJ/South-Plainfield/07080/903?emt=MSFBPage",
+    "confidence": 0.9891512393951416,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.43262481689453,
+     40.558143615722656
+    ]
+   },
+   "properties": {
+    "id": "48a115c5-7398-445d-9a37-76d86ea35ccd",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "3100 Hamilton Blvd",
+    "city": "South Plainfield",
+    "region": "NJ",
+    "postcode": "07080",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7324242603",
+    "website": "https://www.homedepot.com/l/S-Plainfield/NJ/South-Plainfield/07080/903/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.26853942871094,
+     39.69523620605469
+    ]
+   },
+   "properties": {
+    "id": "b6841ea4-ef79-4091-965a-fbb7ddb52527",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "197 Rte 72 W",
+    "city": "Stafford Township",
+    "region": "NJ",
+    "postcode": "08050",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "6099784121",
+    "website": "https://www.homedepot.com/l/Manahawkin/NJ/Stafford-Township/08050/951/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64899444580078,
+     40.86809158325195
+    ]
+   },
+   "properties": {
+    "id": "42dbdddb-3bcd-4d51-a7da-ff417e2ef3f0",
+    "name": "The Home Depot",
+    "street": "281 NJ-10",
+    "city": "Succasunna",
+    "region": "NJ",
+    "postcode": "07876",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19739277700",
+    "website": "https://www.homedepot.com/l/Roxbury/NJ/Succasunna/07876/909?emt=MSFBPage",
+    "confidence": 0.9999776033580303,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.62794494628906,
+     40.861473083496094
+    ]
+   },
+   "properties": {
+    "id": "67ca0726-87e0-4f95-a503-dfbe2b3beff8",
+    "name": "The Home Depot",
+    "street": "281 Rte 10",
+    "city": "Succasunna",
+    "region": "NJ",
+    "postcode": "07876",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "home_improvement_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "home_improvement_store"
+    ],
+    "phone": "9739277700",
+    "website": "https://www.homedepot.com/l/Roxbury/NJ/Succasunna/07876/909",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64900970458984,
+     40.868133544921875
+    ]
+   },
+   "properties": {
+    "id": "cb78ebcf-d884-4b8d-a304-d3ab751cf43b",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "281 Rte 10",
+    "city": "Succasunna",
+    "region": "NJ",
+    "postcode": "07876",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9739274654",
+    "website": "https://www.homedepot.com/l/Roxbury/NJ/Succasunna/07876/909/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.38502502441406,
+     39.78071594238281
+    ]
+   },
+   "properties": {
+    "id": "e52674cb-4678-4e20-a366-ffd2d22018ae",
+    "name": "The Home Depot Distribution Center",
+    "street": "2359 Center Square Rd",
+    "city": "Swedesboro",
+    "region": "NJ",
+    "postcode": "08085-1700",
+    "basic_category": "b2b_transportation_and_storage_service",
+    "category": "distribution_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "b2b_service",
+     "b2b_transportation_and_storage_service",
+     "freight_and_cargo_service",
+     "distribution_service"
+    ],
+    "phone": "18562419444",
+    "website": "https://careers.homedepot.com",
+    "confidence": 0.9992329529523849,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.35873413085938,
+     39.76815414428711
+    ]
+   },
+   "properties": {
+    "id": "17af5290-ef21-47c3-ab97-20f36e417d91",
+    "name": "The Home Depot Pro Institutional",
+    "street": "515 Heron Dr",
+    "city": "Swedesboro",
+    "region": "NJ",
+    "postcode": "08085-1713",
+    "basic_category": "wholesaler",
+    "category": "wholesaler",
+    "category_hierarchy": [
+     "services_and_business",
+     "b2b_service",
+     "wholesaler"
+    ],
+    "phone": "18664126726",
+    "website": "https://www.supplyworks.com",
+    "confidence": 0.75,
+    "operating_status": "permanently_closed"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.21240997314453,
+     39.990333557128906
+    ]
+   },
+   "properties": {
+    "id": "d41620a4-79e8-4bca-88ff-8e1d4244089f",
+    "name": "The Home Depot",
+    "street": "1334 Lakewood Rd",
+    "city": "Toms River",
+    "region": "NJ",
+    "postcode": "08755",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17322443400",
+    "website": "https://www.homedepot.com/l/Toms-River/NJ/Toms-River/08755/920?emt=MSFBPage",
+    "confidence": 0.9999804871976375,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.21324920654297,
+     39.99041748046875
+    ]
+   },
+   "properties": {
+    "id": "08f727f2-f266-45e3-98b5-1a0f716ad6f4",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1334 Lakewood Rd",
+    "city": "Toms River",
+    "region": "NJ",
+    "postcode": "08755",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7324732524",
+    "website": "https://www.homedepot.com/l/Toms-River/NJ/Toms-River/08755/920/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.23865509033203,
+     40.896568298339844
+    ]
+   },
+   "properties": {
+    "id": "5dd4aff0-95a8-46cf-83f1-399720a943a2",
+    "name": "The Home Depot",
+    "street": "545 Route 46",
+    "city": "Totowa",
+    "region": "NJ",
+    "postcode": "07512",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19738128390",
+    "website": "https://www.homedepot.com/l/Totowa/NJ/Totowa/07512/922?emt=MSFBPage",
+    "confidence": 0.999949798899889,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30331420898438,
+     40.68684005737305
+    ]
+   },
+   "properties": {
+    "id": "35a13385-443a-4272-808e-c7bad85e8cbe",
+    "name": "The Home Depot",
+    "street": "930 Springfield Rd",
+    "city": "Union",
+    "region": "NJ",
+    "postcode": "07083",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19086877907",
+    "website": "https://www.homedepot.com/l/Union/NJ/Union/07083/954?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30303955078125,
+     40.686729431152344
+    ]
+   },
+   "properties": {
+    "id": "b7e39278-80ca-4801-97f6-07ce97655c01",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "930 Springfield Rd",
+    "city": "Union",
+    "region": "NJ",
+    "postcode": "07083",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9088105810",
+    "website": "https://www.homedepot.com/l/Union-Rt-22/NJ/Union/07083/954/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29096984863281,
+     40.71601104736328
+    ]
+   },
+   "properties": {
+    "id": "f19af30f-63f2-4eef-bdc4-c3a630b6c6d2",
+    "name": "The Home Depot",
+    "street": "2445 Springfield Ave",
+    "city": "Vauxhall",
+    "region": "NJ",
+    "postcode": "07088-1046",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19086869804",
+    "website": "https://www.homedepot.com/l/915/NJ/Vauxhall/07088/915?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29240417480469,
+     40.716182708740234
+    ]
+   },
+   "properties": {
+    "id": "9d7c5fe1-75a3-4234-8956-fab6c2a0d73f",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "2445 Springfield Ave",
+    "city": "Vauxhall",
+    "region": "NJ",
+    "postcode": "07088",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9088105408",
+    "website": "https://www.homedepot.com/l/Union-Vauxhall/NJ/Vauxhall/07088/915/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.03494262695312,
+     39.42863082885742
+    ]
+   },
+   "properties": {
+    "id": "26fc76f1-5b3c-4def-910f-b294a3a5e0a0",
+    "name": "The Home Depot",
+    "street": "3849 South Delsea Dr",
+    "city": "Vineland",
+    "region": "NJ",
+    "postcode": "08360",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18562931155",
+    "website": "https://www.homedepot.com/l/Vineland/NJ/Vineland/08360/946?emt=MSFBPage",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.0344467163086,
+     39.42911911010742
+    ]
+   },
+   "properties": {
+    "id": "4ac6edc8-5a6e-4f3d-a013-9f9c7308ede3",
+    "name": "Truck Rental Center at The Home Depot",
+    "street": "3849 S Delsea Dr",
+    "city": "Vineland",
+    "region": "NJ",
+    "postcode": "08360",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "8562931155",
+    "website": "https://www.homedepot.com/l/Vineland/NJ/Vineland/08360/946/rentals?emt=TRCLLBing",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.4203872680664,
+     40.64239501953125
+    ]
+   },
+   "properties": {
+    "id": "f3d625ce-a83b-4b74-ba8d-8c80f9abb695",
+    "name": "The Home Depot",
+    "street": "1515 Route 22",
+    "city": "Watchung",
+    "region": "NJ",
+    "postcode": "07069",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19082227700",
+    "website": "https://www.homedepot.com/l/Watchung/NJ/Watchung/07069/906?emt=MSFBPage",
+    "confidence": 0.9999539317727089,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.42280578613281,
+     40.63859939575195
+    ]
+   },
+   "properties": {
+    "id": "173f13d9-70be-44ce-9524-e1a141db6c41",
+    "name": "The Home Depot",
+    "street": "1515 Route 22",
+    "city": "Watchung",
+    "region": "NJ",
+    "postcode": "07069",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "website": "https://www.homedepot.com/l/storeDirectory",
+    "confidence": 0.8
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.42131042480469,
+     40.64267349243164
+    ]
+   },
+   "properties": {
+    "id": "ea669da9-e0f1-4bc4-a8a3-139cd4ab6e93",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "1515 Rte 22",
+    "city": "Watchung",
+    "region": "NJ",
+    "postcode": "07069",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "9082222210",
+    "website": "https://www.homedepot.com/l/Watchung/NJ/Watchung/07069/906/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.93734741210938,
+     39.80648422241211
+    ]
+   },
+   "properties": {
+    "id": "893688f3-a57a-4154-a328-3f4bf12ee028",
+    "name": "The Home Depot",
+    "street": "116 Walker Ave",
+    "city": "West Berlin",
+    "region": "NJ",
+    "postcode": "08091-1423",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18567190335",
+    "website": "https://www.homedepot.com/l/Berlin-Township/NJ/West-Berlin/08091/940?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.9372329711914,
+     39.8065299987793
+    ]
+   },
+   "properties": {
+    "id": "05cf1498-b234-4e51-932d-2e5d98070dc4",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "116 Walker Ave",
+    "city": "West Berlin",
+    "region": "NJ",
+    "postcode": "08091",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "8567192202",
+    "website": "https://www.homedepot.com/l/Berlin-Township/NJ/West-Berlin/08091/940/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02338409423828,
+     40.297794342041016
+    ]
+   },
+   "properties": {
+    "id": "48b2a6ea-d565-4406-9ed2-801ebf16158c",
+    "name": "The Home Depot",
+    "street": "310 Highway 36",
+    "city": "West Long Branch",
+    "region": "NJ",
+    "postcode": "07764-1026",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "appliance_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "appliance_store"
+    ],
+    "phone": "+17329350100",
+    "website": "https://www.homedepot.com",
+    "confidence": 0.25,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.82099914550781,
+     40.03420639038086
+    ]
+   },
+   "properties": {
+    "id": "dc99224a-7e81-41d5-adc8-296ad5f495eb",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "2703 Rte 541",
+    "city": "Westampton",
+    "region": "NJ",
+    "postcode": "08060",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "6092393443",
+    "website": "https://www.homedepot.com/l/Burlington/NJ/Westampton/08060/939/rentals?emt=TRCLLBing",
+    "confidence": 0.85
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29601287841797,
+     40.539039611816406
+    ]
+   },
+   "properties": {
+    "id": "04581459-4db8-42f2-8d1c-373343f729da",
+    "name": "The Home Depot",
+    "street": "373 Us Highway 9 S",
+    "city": "Woodbridge",
+    "region": "NJ",
+    "postcode": "07095",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17327509890",
+    "website": "https://www.homedepot.com/l/Woodbridge/NJ/Woodbridge/07095/916?emt=MSFBPage",
+    "confidence": 0.9994573891162872,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29620361328125,
+     40.53899383544922
+    ]
+   },
+   "properties": {
+    "id": "16698e02-2abb-4953-bbf8-704aae449dd3",
+    "name": "The Home Depot",
+    "street": "373 US Highway 9 S",
+    "city": "Woodbridge",
+    "region": "NJ",
+    "postcode": "07095",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "website": "https://www.homedepot.com/l/storeDirectory",
+    "confidence": 0.954
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29622650146484,
+     40.53944778442383
+    ]
+   },
+   "properties": {
+    "id": "3022bc1a-a580-4019-a4ad-39d2e9abe283",
+    "name": "Tool & Truck Rental at The Home Depot",
+    "street": "373 US Highway 9 S",
+    "city": "Woodbridge",
+    "region": "NJ",
+    "postcode": "07095",
+    "basic_category": "rental_service",
+    "category": "truck_rental_service",
+    "category_hierarchy": [
+     "services_and_business",
+     "rental_service",
+     "vehicle_rental_service",
+     "truck_rental_service"
+    ],
+    "phone": "7326028354",
+    "website": "https://www.homedepot.com/l/Woodbridge/NJ/Woodbridge/07095/916/rentals?emt=TRGMBGoogleMaps",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2918930053711,
+     40.59088897705078
+    ]
+   },
+   "properties": {
+    "id": "cb239b3d-eb0d-4495-8e46-e1a93c46100c",
+    "name": "The Home Depot",
+    "street": "1555 Saint Georges Avenue",
+    "city": "Woodbridge Twp",
+    "region": "NJ",
+    "postcode": "07067",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17323887825",
+    "website": "https://www.homedepot.com/l/Colonia/NJ/Colonia/07067/981?emt=MSFBPage",
+    "confidence": 0.9999790403425693,
+    "operating_status": "open"
+   }
+  }
+ ]
+}

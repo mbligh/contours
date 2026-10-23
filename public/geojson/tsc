@@ -1,0 +1,1147 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "Overture Maps Foundation (places theme; individual rows carry CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+ "overture_release": "2026-10-21.0",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.98286437988281,
+     40.9870491027832
+    ]
+   },
+   "properties": {
+    "id": "3dcbf829-8a7b-43f3-9a04-021c61b1dbb9",
+    "name": "Tractor Supply Co.",
+    "street": "128 NJ-94",
+    "city": "Blairstown",
+    "region": "NJ",
+    "postcode": "07825",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19083620082",
+    "website": "https://www.tractorsupply.com/tsc/store_Blairstown-NJ-07825_1275",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.71968841552734,
+     40.1336669921875
+    ]
+   },
+   "properties": {
+    "id": "903a7ba2-99c8-4a70-af45-d1d007418a97",
+    "name": "Tractor Supply Co.",
+    "street": "397 US Highway 130",
+    "city": "Bordentown",
+    "region": "NJ",
+    "postcode": "08505",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "(609) 298-1502",
+    "website": "https://www.tractorsupply.com/tsc/store_Bordentown-NJ-08505_2462",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.7243881225586,
+     40.13095474243164
+    ]
+   },
+   "properties": {
+    "id": "dfab9405-18d9-464a-b61a-5e38863a1f67",
+    "name": "Tractor Supply Co.",
+    "street": "397 US-130",
+    "city": "Bordentown",
+    "region": "NJ",
+    "postcode": "08505",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+16092981502",
+    "website": "https://www.tractorsupply.com/tsc/store_Bordentown-NJ-08505_2462",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.21136474609375,
+     39.46236801147461
+    ]
+   },
+   "properties": {
+    "id": "1ca00be0-1e2b-44a1-a91c-c0c24ab2f8b0",
+    "name": "Tractor Supply Co.",
+    "street": "48 Cornwell Dr",
+    "city": "Bridgeton",
+    "region": "NJ",
+    "postcode": "08302",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+18564553944",
+    "website": "https://www.tractorsupply.com/tsc/store_Bridgeton-NJ-08302_1393",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.92700958251953,
+     39.51266860961914
+    ]
+   },
+   "properties": {
+    "id": "6a13065b-8458-46e5-8c48-b2c2241d35c4",
+    "name": "Tractor Supply Co.",
+    "street": "113 Wheat Rd",
+    "city": "Buena",
+    "region": "NJ",
+    "postcode": "08310",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+18566971846",
+    "website": "https://www.tractorsupply.com/tsc/store_Buena-NJ-08310_2466",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.09952545166016,
+     39.82783126831055
+    ]
+   },
+   "properties": {
+    "id": "8eccfe17-29e2-4a1f-ab21-e01ea5cf1750",
+    "name": "Tractor Supply Co.",
+    "street": "1745 Deptford Center Road",
+    "city": "Deptford",
+    "region": "NJ",
+    "postcode": "08096",
+    "basic_category": "animal_and_pet_store",
+    "category": "livestock_feed_and_supply_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "livestock_feed_and_supply_store"
+    ],
+    "phone": "+1 856-399-7667",
+    "website": "https://www.tractorsupply.com/tsc/store_Deptford-NJ-08096_3135",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.58841705322266,
+     39.4206428527832
+    ]
+   },
+   "properties": {
+    "id": "092a750c-875f-48d5-b915-74b01769ec7c",
+    "name": "Tractor Supply Co.",
+    "street": "6501 Black Horse Pike",
+    "city": "Egg Harbor Twp",
+    "region": "NJ",
+    "postcode": "08234-4509",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+16096462222",
+    "website": "https://www.tractorsupply.com/tsc/store_Eggharbortownship-NJ-08234_2240",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.01220703125,
+     39.73099899291992
+    ]
+   },
+   "properties": {
+    "id": "44a893a6-5db4-4ff8-afee-3476cc2180f6",
+    "name": "Tractor Supply Co.",
+    "street": "643 Berlin - Cross Keys Rd",
+    "city": "Gloucester Twp",
+    "region": "NJ",
+    "postcode": "08081",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18567283434",
+    "website": "https://www.tractorsupply.com/tsc/store_Sicklerville-NJ-08081_1299",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.78490447998047,
+     39.65275955200195
+    ]
+   },
+   "properties": {
+    "id": "1b8f1392-b5b6-40d1-b09e-fd73bf18f9d1",
+    "name": "Tractor Supply Co.",
+    "street": "70 Trenton Rd #206",
+    "city": "Hammonton",
+    "region": "NJ",
+    "postcode": "08037",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+16095611122",
+    "website": "https://www.tractorsupply.com/tsc/store_Hammonton-NJ-08037_2161",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.35497283935547,
+     41.15351104736328
+    ]
+   },
+   "properties": {
+    "id": "3b722e99-231e-41fe-8fce-e2ffbec04f8a",
+    "name": "Tractor Supply Co.",
+    "street": "1926 Union Valley Rd",
+    "city": "Hewitt",
+    "region": "NJ",
+    "postcode": "07421-3020",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19737282020",
+    "website": "https://www.tractorsupply.com/tsc/store_Hewitt-NJ-07421_2266",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.62992095947266,
+     40.52366638183594
+    ]
+   },
+   "properties": {
+    "id": "97bc0286-3389-46cf-8ba3-fca619cebcaf",
+    "name": "Tractor Supply Co.",
+    "street": "256 State Rd, 13 US-206 Ste",
+    "city": "Hillsborough",
+    "region": "NJ",
+    "postcode": "08844",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19084310539",
+    "website": "https://www.tractorsupply.com/tsc/store_Hillsborough-NJ-08844_1864",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3636245727539,
+     39.600833892822266
+    ]
+   },
+   "properties": {
+    "id": "4d6455ff-dfc4-4e2b-b726-b0a03f472e72",
+    "name": "Tractor Supply Co.",
+    "street": "630 US-9",
+    "city": "Little Egg Harbor Twp",
+    "region": "NJ",
+    "postcode": "08087",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16092960645",
+    "website": "https://www.tractorsupply.com/tsc/store_Littleeggharbor-NJ-08087_1835",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.3542251586914,
+     39.75322723388672
+    ]
+   },
+   "properties": {
+    "id": "eaa62d97-af61-455b-b355-fb51e3226451",
+    "name": "Tractor Supply Co.",
+    "street": "1586 Center Square Rd",
+    "city": "Logan Twp",
+    "region": "NJ",
+    "postcode": "08085",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+18564678484",
+    "website": "https://www.tractorsupply.com/tsc/store_Logantownship-NJ-08085_2431",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.1877212524414,
+     39.77621078491211
+    ]
+   },
+   "properties": {
+    "id": "31ca3828-d563-41eb-b888-f093801b7d38",
+    "name": "Tractor Supply Co.",
+    "street": "667 North Bridgeton Pike",
+    "city": "Mantua Township",
+    "region": "NJ",
+    "postcode": "08051",
+    "basic_category": "animal_and_pet_store",
+    "category": "livestock_feed_and_supply_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "livestock_feed_and_supply_store"
+    ],
+    "phone": "+1 856-259-5276",
+    "website": "https://www.tractorsupply.com/tsc/store_Mantua-NJ-08051_2967",
+    "confidence": 0.9704464823007584,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.87891387939453,
+     39.01338577270508
+    ]
+   },
+   "properties": {
+    "id": "97e7cc6d-4c05-4547-8e72-592b1a65d685",
+    "name": "Tractor Supply Co.",
+    "street": "3801 US-9 #1",
+    "city": "Middle Twp",
+    "region": "NJ",
+    "postcode": "08242",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+16098861101",
+    "website": "https://www.tractorsupply.com/tsc/store_Riogrande-NJ-08242_2281",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.12535858154297,
+     40.40507507324219
+    ]
+   },
+   "properties": {
+    "id": "87a528c7-6366-45b4-94e9-526b22b3b0a8",
+    "name": "Tractor Supply Co.",
+    "street": "1515 NJ-35",
+    "city": "Middletown",
+    "region": "NJ",
+    "postcode": "07748",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+17326717770",
+    "website": "https://www.tractorsupply.com/tsc/store_Middletown-NJ-07748_2304",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.47279357910156,
+     40.268802642822266
+    ]
+   },
+   "properties": {
+    "id": "abc5138d-b97d-45eb-9e86-39e9c2fee112",
+    "name": "Tractor Supply Co.",
+    "street": "3 Gateway Blvd",
+    "city": "Monroe Twp",
+    "region": "NJ",
+    "postcode": "08831",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16094484444",
+    "website": "https://www.tractorsupply.com/tsc/store_Monroetownship-NJ-08831_2114",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.70726776123047,
+     40.83122253417969
+    ]
+   },
+   "properties": {
+    "id": "1bc41ff6-eff5-4f06-b76a-4152313875c1",
+    "name": "Tractor Supply Co.",
+    "street": "293 US-206 #15A",
+    "city": "Mt Olive Twp",
+    "region": "NJ",
+    "postcode": "07836",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+19732522925",
+    "website": "https://www.tractorsupply.com/tsc/store_Flanders-NJ-07836_1155",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.7281265258789,
+     41.10567092895508
+    ]
+   },
+   "properties": {
+    "id": "84591dd6-ba59-4d36-b3ae-2dcb4ecbf580",
+    "name": "Tractor Supply Co.",
+    "street": "135 Hampton House Rd",
+    "city": "Newton",
+    "region": "NJ",
+    "postcode": "07860",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19739400749",
+    "website": "https://www.tractorsupply.com/tsc/store_Newton-NJ-07860_2435",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.20030212402344,
+     39.80792236328125
+    ]
+   },
+   "properties": {
+    "id": "22620e91-a9c6-46b5-afeb-1f4c69e6fa64",
+    "name": "Tractor Supply Co.",
+    "street": "599 US-9",
+    "city": "Ocean Twp",
+    "region": "NJ",
+    "postcode": "08758",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+16096933030",
+    "website": "https://www.tractorsupply.com/tsc/store_Waretown-NJ-08758_2254",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.35621643066406,
+     40.35002899169922
+    ]
+   },
+   "properties": {
+    "id": "fe920e5e-aebc-42b6-a7b1-4a6036fba840",
+    "name": "Tractor Supply Co.",
+    "street": "1976 Englishtown Rd",
+    "city": "Old Bridge Twp",
+    "region": "NJ",
+    "postcode": "08831",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17326057873",
+    "website": "https://www.tractorsupply.com/tsc/store_Monroe-NJ-08831_2449",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.49871826171875,
+     39.60776138305664
+    ]
+   },
+   "properties": {
+    "id": "afffccb8-e333-4bd6-9f22-7beb7dae5d75",
+    "name": "Tractor Supply Co.",
+    "street": "812 South Broadway",
+    "city": "Pennsville",
+    "region": "NJ",
+    "postcode": "08070",
+    "basic_category": "animal_and_pet_store",
+    "category": "livestock_feed_and_supply_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "livestock_feed_and_supply_store"
+    ],
+    "phone": "+1 856-243-6150",
+    "website": "https://www.tractorsupply.com/tsc/store_Pennsville-NJ-08070_2915",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.14552307128906,
+     40.6781120300293
+    ]
+   },
+   "properties": {
+    "id": "4f355b4a-872a-417a-b0de-83dc6031c8cd",
+    "name": "Tractor Supply Co.",
+    "street": "1280 US-22",
+    "city": "Phillipsburg",
+    "region": "NJ",
+    "postcode": "08865",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+19083862088",
+    "website": "https://www.tractorsupply.com/tsc/store_Phillipsburg-NJ-08865_2572",
+    "confidence": 0.9999951940856129,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.33928680419922,
+     39.64420700073242
+    ]
+   },
+   "properties": {
+    "id": "9ed3abc5-36be-4d4a-b1f8-d6b7ee4182ca",
+    "name": "Tractor Supply Co.",
+    "street": "862 NJ-45",
+    "city": "Pilesgrove Twp",
+    "region": "NJ",
+    "postcode": "08098",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+18567697284",
+    "website": "https://www.tractorsupply.com/tsc/store_Pilesgrove-NJ-08098_780",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.86097717285156,
+     40.47252655029297
+    ]
+   },
+   "properties": {
+    "id": "2d0d95fc-52a2-4d6d-9549-af4fbc5c04e8",
+    "name": "Tractor Supply Co.",
+    "street": "144 US Highway 202",
+    "city": "Ringoes",
+    "region": "NJ",
+    "postcode": "08551-1907",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19082842021",
+    "website": "https://www.tractorsupply.com/tsc/store_Ringoes-NJ-08551_1144",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.52049255371094,
+     40.89275360107422
+    ]
+   },
+   "properties": {
+    "id": "f060c1f6-4d28-4b76-8460-d0d3752c058d",
+    "name": "Tractor Supply Co.",
+    "street": "279 US-46",
+    "city": "Rockaway",
+    "region": "NJ",
+    "postcode": "07866",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+19737844500",
+    "website": "https://www.tractorsupply.com/tsc/store_Rockaway-NJ-07866_2594",
+    "confidence": 0.9999892705188692,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.70507049560547,
+     39.210697174072266
+    ]
+   },
+   "properties": {
+    "id": "60c53784-b978-4b42-b960-845d40903633",
+    "name": "Tractor Supply Co.",
+    "street": "13 New Jersey 50",
+    "city": "Seaville",
+    "region": "NJ",
+    "postcode": "08230",
+    "basic_category": "animal_and_pet_store",
+    "category": "livestock_feed_and_supply_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "livestock_feed_and_supply_store"
+    ],
+    "phone": "+1 609-436-9571",
+    "website": "https://www.tractorsupply.com/tsc/store_Seaville-NJ-08230_2906",
+    "confidence": 0.970809318125248,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.75006103515625,
+     39.975242614746094
+    ]
+   },
+   "properties": {
+    "id": "83324a2b-9a20-41e9-84e8-c5844b5dc807",
+    "name": "Tractor Supply Co.",
+    "street": "1869 South Pemberton Road, NJ-38",
+    "city": "Southampton Twp",
+    "region": "NJ",
+    "postcode": "08088",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16097029953",
+    "website": "https://www.tractorsupply.com/tsc/store_Southampton-NJ-08088_778",
+    "confidence": 0.9999680685296655,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.61386108398438,
+     41.225589752197266
+    ]
+   },
+   "properties": {
+    "id": "769801df-35ce-4189-ae8b-be32ced9f9d8",
+    "name": "Tractor Supply Co.",
+    "street": "775 State RT 23",
+    "city": "Sussex",
+    "region": "NJ",
+    "postcode": "07461-3330",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+19738757087",
+    "website": "https://www.tractorsupply.com/tsc/store_Sussex-NJ-07461_322",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.0896987915039,
+     40.2583122253418
+    ]
+   },
+   "properties": {
+    "id": "0f16354a-15f8-425d-b258-9030945a2a0f",
+    "name": "Tractor Supply Co.",
+    "street": "1535 West Park Ave",
+    "city": "Tinton Falls",
+    "region": "NJ",
+    "postcode": "07712",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+17324933377",
+    "website": "https://www.tractorsupply.com/tsc/store_Tintonfalls-NJ-07712_2227",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.22925567626953,
+     40.0432014465332
+    ]
+   },
+   "properties": {
+    "id": "ae38c9ca-ea3d-4f4f-a1cc-201e10a8ecb1",
+    "name": "Tractor Supply Co.",
+    "street": "80 NJ-70",
+    "city": "Toms River",
+    "region": "NJ",
+    "postcode": "08755",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+17323643083",
+    "website": "https://www.tractorsupply.com/tsc/store_Tomsriver-NJ-08755_2475",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.51264190673828,
+     40.18079376220703
+    ]
+   },
+   "properties": {
+    "id": "859e0f81-f4a4-4b28-ba2c-8963917cc474",
+    "name": "Tractor Supply Co.",
+    "street": "701 Rte 524",
+    "city": "Upper Freehold Twp",
+    "region": "NJ",
+    "postcode": "08501",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+16092594970",
+    "website": "https://www.tractorsupply.com/tsc/store_Allentown-NJ-08501_1447",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.04029846191406,
+     39.44187545776367
+    ]
+   },
+   "properties": {
+    "id": "bfcb8ef6-6a9a-46ae-8675-bfb8111eac04",
+    "name": "Tractor Supply Co.",
+    "street": "3095 S Delsea Dr",
+    "city": "Vineland",
+    "region": "NJ",
+    "postcode": "08360",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+18566913101",
+    "website": "https://www.tractorsupply.com/tsc/store_Vineland-NJ-08360_113",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.47544860839844,
+     40.64480972290039
+    ]
+   },
+   "properties": {
+    "id": "815e070f-15d1-4a5f-9e42-e52af4d68c68",
+    "name": "Tractor Supply Co.",
+    "street": "69 Stirling Rd",
+    "city": "Warren",
+    "region": "NJ",
+    "postcode": "07059",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+17323346867",
+    "website": "https://www.tractorsupply.com/tsc/store_Warren-NJ-07059_2747",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.00605773925781,
+     40.752342224121094
+    ]
+   },
+   "properties": {
+    "id": "13bb094c-0ba6-4d1c-98d7-92716eea0f3a",
+    "name": "Tractor Supply Co.",
+    "street": "398 W Washington Ave, Rte 57 West #4",
+    "city": "Washington",
+    "region": "NJ",
+    "postcode": "07882",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19086893202",
+    "website": "https://www.tractorsupply.com/tsc/store_Washington-NJ-07882_792",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.92899322509766,
+     39.807106018066406
+    ]
+   },
+   "properties": {
+    "id": "e352468f-da32-44ce-99a0-10e279b847f3",
+    "name": "Tractor Supply Co.",
+    "street": "901 S Route 73",
+    "city": "West Berlin",
+    "region": "NJ",
+    "postcode": "08091",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "(856) 809-2320",
+    "website": "https://www.tractorsupply.com/tsc/store_Westberlin-NJ-08091_2578",
+    "confidence": 0.77,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.9089584350586,
+     39.78508377075195
+    ]
+   },
+   "properties": {
+    "id": "ac5fa421-b9f2-4b20-82d7-21b579acd0df",
+    "name": "Tractor Supply Co.",
+    "street": "901 S Route 73",
+    "city": "West Berlin",
+    "region": "NJ",
+    "postcode": "08091-2617",
+    "brand": "Tractor Supply Co.",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "+18568092320",
+    "website": "https://www.tractorsupply.com/tsc/store_Westberlin-NJ-08091_2578",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  }
+ ]
+}

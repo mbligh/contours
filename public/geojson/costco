@@ -8,35 +8,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.10509490966797,
-     40.672664642333984
-    ]
-   },
-   "properties": {
-    "id": "b787b9d0-8499-429b-9a36-b019e97a4259",
-    "name": "Costco Gas Station",
-    "street": "21 Goldsborough Dr",
-    "city": "Bayonne",
-    "region": "NJ",
-    "postcode": "07002",
-    "basic_category": "gas_station",
-    "category": "gas_station",
-    "category_hierarchy": [
-     "travel_and_transportation",
-     "fueling_station",
-     "gas_station"
-    ],
-    "phone": "+12013542335",
-    "website": "https://www.costco.com/",
-    "confidence": 0.9912734627723694,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.15754699707031,
      40.05487060546875
     ]
@@ -125,34 +96,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.13648223876953,
-     40.8316535949707
-    ]
-   },
-   "properties": {
-    "id": "6e11b10c-46a5-46a5-8e76-91e880b9fdc8",
-    "name": "ATM Costco",
-    "street": "20 Bridewell Pl",
-    "city": "Clifton",
-    "region": "NJ",
-    "postcode": "07014",
-    "brand": "Citibank",
-    "basic_category": "atm",
-    "category": "atm",
-    "category_hierarchy": [
-     "services_and_business",
-     "financial_service",
-     "atm"
-    ],
-    "confidence": 0.8,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.13722229003906,
      40.83131408691406
     ]
@@ -213,66 +156,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.37983703613281,
-     40.81240463256836
-    ]
-   },
-   "properties": {
-    "id": "fd6c10d9-ad64-4817-be75-314b1b09ccb1",
-    "name": "Costco Pharmacy",
-    "street": "156 Sr-10 West",
-    "city": "East Hanover",
-    "region": "NJ",
-    "postcode": "07936",
-    "basic_category": "pharmacy_and_drug_store",
-    "category": "pharmacy",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "pharmacy_and_drug_store",
-     "pharmacy"
-    ],
-    "phone": "(973) 560-4125",
-    "website": "https://rx.costco.com",
-    "confidence": 0.77
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.37945556640625,
-     40.81266403198242
-    ]
-   },
-   "properties": {
-    "id": "57e362fc-5f0f-4b7c-8c15-814132688694",
-    "name": "T-Mobile at Costco",
-    "street": "156 NJ-10",
-    "city": "East Hanover",
-    "region": "NJ",
-    "postcode": "07936",
-    "brand": "T-Mobile",
-    "basic_category": "electronics_store",
-    "category": "mobile_phone_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "electronics_store",
-     "mobile_phone_store"
-    ],
-    "phone": "+18624050452",
-    "website": "https://www.t-mobile.com/stores/bd/t-mobile-east-hanover-nj-07936-1c31?utm_source=facebook&utm_medium=lastmile&utm_campaign=1C31",
-    "confidence": 0.9199122190475464,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.37583923339844,
      40.530426025390625
     ]
@@ -296,122 +179,6 @@
     "phone": "+17324912023",
     "website": "http://www.costco.com/",
     "confidence": 0.9813855886459351,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.29544067382812,
-     40.88032913208008
-    ]
-   },
-   "properties": {
-    "id": "d1bcc43f-86fd-4eb1-9c06-7a6faab7ebdd",
-    "name": "Norcostco Eastern Costume",
-    "street": "333 US-46",
-    "city": "Fairfield",
-    "region": "NJ",
-    "postcode": "07004",
-    "brand": "Norcostco Minneapolis",
-    "basic_category": "arts_crafts_and_hobby_store",
-    "category": "costume_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "arts_crafts_and_hobby_store",
-     "costume_store"
-    ],
-    "phone": "+19735753503",
-    "website": "http://www.norcostco.com/",
-    "confidence": 0.9199122190475464,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.45983123779297,
-     40.88554382324219
-    ]
-   },
-   "properties": {
-    "id": "d0b9b692-7d1c-4f0f-b59c-f51624c7a1e3",
-    "name": "Norcostco Eastern Costumes",
-    "street": "333A US Highway 46",
-    "city": "Fairfield",
-    "region": "NJ",
-    "postcode": "07004-2480",
-    "basic_category": "home_service",
-    "category": "interior_design",
-    "category_hierarchy": [
-     "services_and_business",
-     "home_service",
-     "interior_design"
-    ],
-    "confidence": 0.95,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.85118865966797,
-     40.521446228027344
-    ]
-   },
-   "properties": {
-    "id": "91835c57-4c67-4d5e-8340-6d76f4eae3c7",
-    "name": "T-Mobile at Costco",
-    "street": "2A Walter E Foran Blvd N",
-    "city": "Flemington",
-    "region": "NJ",
-    "postcode": "08822",
-    "basic_category": "electronics_store",
-    "category": "mobile_phone_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "electronics_store",
-     "mobile_phone_store"
-    ],
-    "phone": "9086360360",
-    "website": "https://www.t-mobile.com/stores/bd/t-mobile-flemington-nj-08822-1c86?utm_source=bing&utm_medium=lastmile&utm_campaign=1C86",
-    "confidence": 0.9989128685534,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.04109954833984,
-     40.87656784057617
-    ]
-   },
-   "properties": {
-    "id": "94ee0b38-2941-46e8-8843-7e2dde8b043d",
-    "name": "ATM Costco",
-    "street": "80 S River St",
-    "city": "Hackensack",
-    "region": "NJ",
-    "postcode": "07601",
-    "brand": "Citibank",
-    "basic_category": "atm",
-    "category": "atm",
-    "category_hierarchy": [
-     "services_and_business",
-     "financial_service",
-     "atm"
-    ],
-    "confidence": 0.8,
     "operating_status": "open"
    }
   },
@@ -480,65 +247,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.17080688476562,
-     40.4196662902832
-    ]
-   },
-   "properties": {
-    "id": "a2bde40a-6866-48e3-bc6f-4883b8052bdd",
-    "name": "Costco Pharmacy",
-    "street": "2835 NJ-35",
-    "city": "Hazlet",
-    "region": "NJ",
-    "postcode": "07730",
-    "basic_category": "pharmacy_and_drug_store",
-    "category": "pharmacy",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "pharmacy_and_drug_store",
-     "pharmacy"
-    ],
-    "phone": "+17323353850",
-    "confidence": 0.2829536199569702
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.17095947265625,
-     40.4196662902832
-    ]
-   },
-   "properties": {
-    "id": "dcb61faf-daa3-4b92-83cb-e55d3978938a",
-    "name": "T-Mobile at Costco",
-    "street": "2835 State Route 35",
-    "city": "Hazlet",
-    "region": "NJ",
-    "postcode": "07730-1516",
-    "brand": "T-Mobile",
-    "basic_category": "electronics_store",
-    "category": "mobile_phone_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "electronics_store",
-     "mobile_phone_store"
-    ],
-    "phone": "+18482076997",
-    "website": "https://www.t-mobile.com/stores/bd/t-mobile-hazlet-nj-07730-3c68?utm_source=facebook&utm_medium=lastmile&utm_campaign=3C68",
-    "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.23954010009766,
      40.703834533691406
     ]
@@ -559,88 +267,6 @@
     "phone": "9088107207",
     "website": "",
     "confidence": 0.9199122190475464,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.45228576660156,
-     40.3547477722168
-    ]
-   },
-   "properties": {
-    "id": "c54bb8f1-47f3-48e5-9a0b-5a6cf9d51a48",
-    "name": "Costco DC, Monroe Twp, NJ",
-    "street": "10 Costco Dr",
-    "city": "Jamesburg",
-    "region": "NJ",
-    "postcode": "08831-1129",
-    "basic_category": "b2b_transportation_and_storage_service",
-    "category": "freight_and_cargo_service",
-    "category_hierarchy": [
-     "services_and_business",
-     "b2b_service",
-     "b2b_transportation_and_storage_service",
-     "freight_and_cargo_service"
-    ],
-    "website": "https://www.google.com/?gws_rd=ssl#q=costco+warehouse+monroe+township+nj",
-    "confidence": 0.7201616168022156
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.466064453125,
-     40.36107635498047
-    ]
-   },
-   "properties": {
-    "id": "f9cc388d-26f4-4244-8a8f-cf81f2f0c1ec",
-    "name": "Costco Dist Center, New Jersey",
-    "city": "Jamesburg",
-    "region": "NJ",
-    "basic_category": "shopping",
-    "category": "shopping",
-    "category_hierarchy": [
-     "shopping"
-    ],
-    "website": "http://www.costco.com/",
-    "confidence": 0.8225998282432556,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.67504119873047,
-     40.28160858154297
-    ]
-   },
-   "properties": {
-    "id": "8ca206f2-9939-448d-a8be-3782162f8941",
-    "name": "T-Mobile at Costco",
-    "street": "4100 Quakerbridge Rd",
-    "city": "Lawrence Township",
-    "region": "NJ",
-    "postcode": "08648",
-    "basic_category": "electronics_store",
-    "category": "mobile_phone_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "electronics_store",
-     "mobile_phone_store"
-    ],
-    "phone": "6094017857",
-    "website": "https://www.t-mobile.com/stores/bd/t-mobile-lawrence-township-nj-08648-3c67?utm_source=bing&utm_medium=lastmile&utm_campaign=3C67",
-    "confidence": 0.9962283243894577,
     "operating_status": "open"
    }
   },
@@ -767,87 +393,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.45541381835938,
-     40.35506820678711
-    ]
-   },
-   "properties": {
-    "id": "1c3f2488-3b23-42bc-9ad6-05d334446ba6",
-    "name": "Costco 265",
-    "street": "250 Possum Hollow Rd",
-    "city": "Monroe Twp",
-    "region": "NJ",
-    "postcode": "08831-4518",
-    "basic_category": "warehouse_club_store",
-    "category": "warehouse_club_store",
-    "category_hierarchy": [
-     "shopping",
-     "warehouse_club_store"
-    ],
-    "phone": "+17329922050",
-    "website": "https://www.google.com/?gws_rd=ssl#q=costco+warehouse+monroe+township+nj",
-    "confidence": 0.9199122190475464
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.45173645019531,
-     40.35513687133789
-    ]
-   },
-   "properties": {
-    "id": "16b2ac63-b11a-4802-bac2-0438af760636",
-    "name": "Costco Distribution Center",
-    "street": "10 Costco Dr",
-    "city": "Monroe Twp",
-    "region": "NJ",
-    "postcode": "08831-1129",
-    "basic_category": "travel_service",
-    "category": "travel_service",
-    "category_hierarchy": [
-     "travel_and_transportation",
-     "travel_service"
-    ],
-    "phone": "+17329922070",
-    "website": "www.costco.com",
-    "confidence": 0.7710351943969727
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.45155334472656,
-     40.354774475097656
-    ]
-   },
-   "properties": {
-    "id": "8ae0450a-5deb-4306-95d8-d0799965ea17",
-    "name": "Costco Wholesale",
-    "street": "10 Costco Dr",
-    "city": "Monroe Twp",
-    "region": "NJ",
-    "postcode": "08831-1129",
-    "basic_category": "discount_store",
-    "category": "discount_store",
-    "category_hierarchy": [
-     "shopping",
-     "discount_store"
-    ],
-    "phone": "+17325210162",
-    "website": "https://costco-wholesale-nj-38.hub.biz",
-    "confidence": 0.723167896270752
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.45440673828125,
      40.35679626464844
     ]
@@ -906,82 +451,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.30422973632812,
-     40.36163330078125
-    ]
-   },
-   "properties": {
-    "id": "a674ea25-7a74-468e-b911-7bfe8246e33a",
-    "name": "Costco Gasoline",
-    "street": "12 U.S. 9",
-    "city": "Morganville",
-    "region": "NJ",
-    "postcode": "07751",
-    "basic_category": "fueling_station",
-    "website": "https://www.costco.com",
-    "confidence": 0.77
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.30240631103516,
-     40.36241912841797
-    ]
-   },
-   "properties": {
-    "id": "dc30deed-3416-4e2c-ace6-2b33d358a14d",
-    "name": "Costco Pharmacy",
-    "city": "Morganville",
-    "region": "NJ",
-    "postcode": "07751",
-    "basic_category": "pharmacy_and_drug_store",
-    "category": "pharmacy",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "pharmacy_and_drug_store",
-     "pharmacy"
-    ],
-    "website": "http://rx.costco.com",
-    "confidence": 0.77
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.9072265625,
-     39.97174072265625
-    ]
-   },
-   "properties": {
-    "id": "595d1bfa-6d75-43c9-8e45-1860385a9ea7",
-    "name": "Costco Pharmacy",
-    "street": "100 Centerton Rd",
-    "city": "Mount Laurel",
-    "region": "NJ",
-    "postcode": "08054",
-    "basic_category": "pharmacy_and_drug_store",
-    "category": "pharmacy",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "pharmacy_and_drug_store",
-     "pharmacy"
-    ],
-    "website": "https://rx.costco.com",
-    "confidence": 0.77
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.90706634521484,
      39.97176742553711
     ]
@@ -1006,34 +475,6 @@
     "website": "http://www.costco.com/",
     "confidence": 0.9614610075950623,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.24362182617188,
-     40.40141677856445
-    ]
-   },
-   "properties": {
-    "id": "3980d4c4-f0a9-4d68-950b-5d019bfa2c26",
-    "name": "Costco",
-    "street": "100 Grand Ave",
-    "city": "North Brunswick",
-    "region": "NJ",
-    "postcode": "08902",
-    "brand": "BMO",
-    "basic_category": "atm",
-    "category": "atm",
-    "category_hierarchy": [
-     "services_and_business",
-     "financial_service",
-     "atm"
-    ],
-    "website": "https://usbranches.bmo.com/nj/north-brunswick/cwd90137/",
-    "confidence": 0.8
    }
   },
   {
@@ -1072,28 +513,27 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.45916748046875,
-     40.61195755004883
+     -74.24362182617188,
+     40.40141677856445
     ]
    },
    "properties": {
-    "id": "4f2295e3-93fa-446a-a927-5d1b59ab3ab4",
+    "id": "3980d4c4-f0a9-4d68-950b-5d019bfa2c26",
     "name": "Costco",
-    "street": "1290 Us Highway 22 E",
-    "city": "North Plainfield",
+    "street": "100 Grand Ave",
+    "city": "North Brunswick",
     "region": "NJ",
-    "postcode": "07060",
-    "brand": "Costco",
-    "basic_category": "warehouse_club_store",
-    "category": "warehouse_club_store",
+    "postcode": "08902",
+    "brand": "BMO",
+    "basic_category": "atm",
+    "category": "atm",
     "category_hierarchy": [
-     "shopping",
-     "warehouse_club_store"
+     "services_and_business",
+     "financial_service",
+     "atm"
     ],
-    "phone": "+19085465666",
-    "website": "http://www.costco.com/",
-    "confidence": 0.9813855886459351,
-    "operating_status": "open"
+    "website": "https://usbranches.bmo.com/nj/north-brunswick/cwd90137/",
+    "confidence": 0.8
    }
   },
   {
@@ -1129,56 +569,28 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.45658111572266,
-     40.61362838745117
+     -74.45916748046875,
+     40.61195755004883
     ]
    },
    "properties": {
-    "id": "069ce6ae-6a94-4526-b2e3-2883ee51bdf1",
-    "name": "Costco Pharmacy",
-    "street": "1280 US-22",
+    "id": "4f2295e3-93fa-446a-a927-5d1b59ab3ab4",
+    "name": "Costco",
+    "street": "1290 Us Highway 22 E",
     "city": "North Plainfield",
     "region": "NJ",
     "postcode": "07060",
-    "basic_category": "pharmacy_and_drug_store",
-    "category": "pharmacy",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "pharmacy_and_drug_store",
-     "pharmacy"
-    ],
-    "phone": "+19085465676",
-    "website": "http://www.costco.com/",
-    "confidence": 0.5932301878929138,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.42325592041016,
-     40.61374282836914
-    ]
-   },
-   "properties": {
-    "id": "2445ef0c-2c1d-4c60-82f3-1ad0d56ddcc5",
-    "name": "Costco Wholesale",
-    "street": "1290 US Highway 22 E",
-    "city": "North Plainfield",
-    "region": "NJ",
-    "postcode": "07060",
+    "brand": "Costco",
     "basic_category": "warehouse_club_store",
     "category": "warehouse_club_store",
     "category_hierarchy": [
      "shopping",
      "warehouse_club_store"
     ],
-    "phone": "9085465666",
-    "website": "https://www.costco.com/warehouse-locations/north-plainfield-NJ-1166.html?utm_term=KW&utm_campaign=Homepage&utm_medium=BingPlaces&utm_source=Bing&utm_content=Link",
-    "confidence": 0.85
+    "phone": "+19085465666",
+    "website": "http://www.costco.com/",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
    }
   },
   {
@@ -1206,93 +618,6 @@
     ],
     "website": "https://www.costco.com/warehouse-locations/ocean-township-nj-329.html",
     "confidence": 0.9722161889076233,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.0445327758789,
-     40.22846984863281
-    ]
-   },
-   "properties": {
-    "id": "76cf84dc-ce43-40d3-ab7c-1d23abe4e64e",
-    "name": "Costco Gas",
-    "street": "2361 State Route 66",
-    "city": "Ocean",
-    "region": "NJ",
-    "postcode": "07712-3961",
-    "basic_category": "gas_station",
-    "category": "gas_station",
-    "category_hierarchy": [
-     "travel_and_transportation",
-     "fueling_station",
-     "gas_station"
-    ],
-    "phone": "+17324810023",
-    "website": "https://www.costco.com",
-    "confidence": 0.55,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.04548645019531,
-     40.23358917236328
-    ]
-   },
-   "properties": {
-    "id": "cc053cfd-4054-4095-97fa-d84dbd869376",
-    "name": "Costco Pharmacy",
-    "street": "2361 Hwy 66",
-    "city": "Ocean",
-    "region": "NJ",
-    "postcode": "07712",
-    "basic_category": "pharmacy_and_drug_store",
-    "category": "pharmacy",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "pharmacy_and_drug_store",
-     "pharmacy"
-    ],
-    "website": "https://rx.costco.com",
-    "confidence": 0.77
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.04564666748047,
-     40.233619689941406
-    ]
-   },
-   "properties": {
-    "id": "614e7596-61c5-428f-8504-b81066411e1b",
-    "name": "T-Mobile at Costco",
-    "street": "2361 Highway 66",
-    "city": "Ocean",
-    "region": "NJ",
-    "postcode": "07712",
-    "basic_category": "electronics_store",
-    "category": "mobile_phone_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "electronics_store",
-     "mobile_phone_store"
-    ],
-    "phone": "8489979977",
-    "website": "https://www.t-mobile.com/stores/bd/t-mobile-ocean-nj-07712-2c66?utm_source=bing&utm_medium=lastmile&utm_campaign=2C66",
-    "confidence": 0.9199122190475464,
     "operating_status": "open"
    }
   },
@@ -1353,34 +678,6 @@
     "phone": "+19089057210",
     "website": "https://www.costco.com",
     "confidence": 0.9892359375953674,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.06250762939453,
-     40.862457275390625
-    ]
-   },
-   "properties": {
-    "id": "8f7850cd-e78e-40c6-b087-f259d2b1b756",
-    "name": "ATM Costco",
-    "street": "1 Teterboro Landing Dr",
-    "city": "Teterboro",
-    "region": "NJ",
-    "postcode": "07608",
-    "brand": "Citibank",
-    "basic_category": "atm",
-    "category": "atm",
-    "category_hierarchy": [
-     "services_and_business",
-     "financial_service",
-     "atm"
-    ],
-    "confidence": 0.8,
     "operating_status": "open"
    }
   },
@@ -1451,35 +748,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.28759765625,
-     40.694114685058594
-    ]
-   },
-   "properties": {
-    "id": "a376f742-1d0c-48a4-9e56-9471f07bf0b6",
-    "name": "T-Mobile at Costco",
-    "street": "1055 Hudson St",
-    "city": "Union",
-    "region": "NJ",
-    "postcode": "07083",
-    "basic_category": "electronics_store",
-    "category": "mobile_phone_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "electronics_store",
-     "mobile_phone_store"
-    ],
-    "phone": "9085604489",
-    "website": "https://www.t-mobile.com/stores/bd/t-mobile-union-nj-07083-3c62?utm_source=bing&utm_medium=lastmile&utm_campaign=3C62",
-    "confidence": 0.983587446808815
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.56905364990234,
      40.90684127807617
     ]
@@ -1501,33 +769,6 @@
     "website": "https://www.costco.com/warehouse-locations/wharton-nj-315.html",
     "confidence": 0.9722161889076233,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.25174713134766,
-     40.8883171081543
-    ]
-   },
-   "properties": {
-    "id": "d5b1d92a-75b9-4600-9ff6-a00fd70c551d",
-    "name": "ATM Costco",
-    "street": "77 Willowbrook Blvd",
-    "city": "Wayne",
-    "region": "NJ",
-    "postcode": "07470",
-    "brand": "Citibank",
-    "basic_category": "atm",
-    "category": "atm",
-    "category_hierarchy": [
-     "services_and_business",
-     "financial_service",
-     "atm"
-    ],
-    "confidence": 0.8
    }
   },
   {
@@ -1586,97 +827,6 @@
     "phone": "+19733394006",
     "website": "http://www.costco.com/",
     "confidence": 0.9879688024520874,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.25240325927734,
-     40.88662338256836
-    ]
-   },
-   "properties": {
-    "id": "017a9929-0f00-4d27-9cfd-c44f5523ca98",
-    "name": "Costco Tire Center",
-    "street": "77 Willowbrook Blvd",
-    "city": "Wayne",
-    "region": "NJ",
-    "postcode": "07470",
-    "basic_category": "automotive_service",
-    "category": "tire_shop",
-    "category_hierarchy": [
-     "travel_and_transportation",
-     "vehicle_service",
-     "automotive_service",
-     "tire_shop"
-    ],
-    "phone": "(973) 812-8661",
-    "website": "https://tires.costco.com",
-    "confidence": 0.77
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.25497436523438,
-     40.89010238647461
-    ]
-   },
-   "properties": {
-    "id": "baf7b15c-7e09-4c9c-8729-d1be814bcdd1",
-    "name": "T-Mobile at Costco",
-    "street": "149 NJ-23",
-    "city": "Wayne",
-    "region": "NJ",
-    "postcode": "07470",
-    "brand": "T-Mobile",
-    "basic_category": "electronics_store",
-    "category": "mobile_phone_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "electronics_store",
-     "mobile_phone_store"
-    ],
-    "phone": "+19732815043",
-    "website": "https://www.t-mobile.com/stores/bd/t-mobile-wayne-nj-07470-3c61?utm_source=facebook&utm_medium=lastmile&utm_campaign=3C61",
-    "confidence": 0.9955901962518692,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.25497436523438,
-     40.89010238647461
-    ]
-   },
-   "properties": {
-    "id": "782f74b3-b982-4067-8749-80102c273bce",
-    "name": "T-Mobile at Costco",
-    "street": "149 State Route 23",
-    "city": "Wayne",
-    "region": "NJ",
-    "postcode": "07470-6900",
-    "brand": "T-Mobile",
-    "basic_category": "electronics_store",
-    "category": "mobile_phone_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "electronics_store",
-     "mobile_phone_store"
-    ],
-    "phone": "+19732815043",
-    "website": "https://www.t-mobile.com/stores/bd/t-mobile-wayne-nj-07470-3c61?utm_source=facebook&utm_medium=lastmile&utm_campaign=3C61",
-    "confidence": 0.8530065417289734,
     "operating_status": "open"
    }
   },
