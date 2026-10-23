@@ -22,6 +22,10 @@
         {
             "id":"chipotle", "file": "geojson/chipotle", "type": "circle", 
             "paint": { "circle-color": "#FF0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+        },
+        {
+            "id":"food", "file": "geojson/food", "type": "circle", 
+            "paint": { "circle-color": "#0000FF", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
         }
     ] }
 

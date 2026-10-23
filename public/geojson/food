@@ -1,0 +1,250 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "Overture Maps Foundation (places theme; individual rows carry CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+ "overture_release": "2026-10-21.0",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.74942779541016,
+     40.67275619506836
+    ]
+   },
+   "properties": {
+    "id": "7ec93abe-b02c-4980-b019-f1eeb756b5e4",
+    "name": "Oldwick General Store",
+    "street": "57 Old Tpke",
+    "city": "Oldwick",
+    "region": "NJ",
+    "postcode": "08858-7001",
+    "basic_category": "casual_eatery",
+    "category": "delicatessen",
+    "category_hierarchy": [
+     "food_and_drink",
+     "casual_eatery",
+     "delicatessen"
+    ],
+    "phone": "+19085727475",
+    "website": "https://theoldwickgeneralstore.com/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.74951934814453,
+     40.6724853515625
+    ]
+   },
+   "properties": {
+    "id": "a2bb2cd8-b837-4c19-9ca5-8d32d97ec73e",
+    "name": "The Tewksbury Inn",
+    "street": "55 Old Turnpike Rd",
+    "city": "Oldwick",
+    "region": "NJ",
+    "postcode": "08858",
+    "brand": "Tewksbury Inn",
+    "basic_category": "restaurant",
+    "category": "american_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "north_american_restaurant",
+     "american_restaurant"
+    ],
+    "phone": "+19084392641",
+    "website": "http://www.thetewksburyinn.com/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.79630279541016,
+     40.793914794921875
+    ]
+   },
+   "properties": {
+    "id": "94ed2776-ebf0-4a70-867e-c24a4641d3e0",
+    "name": "OMG Burger & Brew",
+    "street": "141 Schooleys Mountain Rd",
+    "city": "Long Valley",
+    "region": "NJ",
+    "postcode": "07853",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19088677778",
+    "website": "http://Www.omgburgerandbrew.com/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64959716796875,
+     40.87873840332031
+    ]
+   },
+   "properties": {
+    "id": "cb3083e1-1c33-48a1-8fb3-78ba239c51c6",
+    "name": "Ora Indian Kitchen",
+    "street": "1140 US-46",
+    "city": "Roxbury Twp",
+    "region": "NJ",
+    "postcode": "07852",
+    "basic_category": "restaurant",
+    "category": "indian_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "asian_restaurant",
+     "south_asian_restaurant",
+     "indian_restaurant"
+    ],
+    "phone": "+19734001111",
+    "confidence": 0.5219002962112427
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.1567153930664,
+     40.70090103149414
+    ]
+   },
+   "properties": {
+    "id": "93abe01d-fe5b-430d-8248-e09307550d73",
+    "name": "Clove Fine Indian Cuisine",
+    "street": "201 Strykers Rd",
+    "city": "Phillipsburg",
+    "region": "NJ",
+    "postcode": "08865-5400",
+    "basic_category": "restaurant",
+    "category": "indian_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "asian_restaurant",
+     "south_asian_restaurant",
+     "indian_restaurant"
+    ],
+    "phone": "+19084543396",
+    "website": "http://www.clovenj.com/",
+    "confidence": 0.9517408609390259,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.61299133300781,
+     40.56863784790039
+    ]
+   },
+   "properties": {
+    "id": "993c7a2d-b29a-4e24-a102-4d8d32ae08d9",
+    "name": "Kuay Tiew Noodles & More",
+    "street": "42 W Main St",
+    "city": "Somerville",
+    "region": "NJ",
+    "postcode": "08876",
+    "basic_category": "restaurant",
+    "category": "thai_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "asian_restaurant",
+     "southeast_asian_restaurant",
+     "thai_restaurant"
+    ],
+    "phone": "+19083939555",
+    "website": "http://www.ktsomerville.com/",
+    "confidence": 0.9934269189834595,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.90951538085938,
+     40.636898040771484
+    ]
+   },
+   "properties": {
+    "id": "eabfdebf-533c-4f48-af5a-61fcf6e2e3bc",
+    "name": "Pru Thai",
+    "street": "6 E Main St #101",
+    "city": "Clinton",
+    "region": "NJ",
+    "postcode": "08809",
+    "basic_category": "restaurant",
+    "category": "thai_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "asian_restaurant",
+     "southeast_asian_restaurant",
+     "thai_restaurant"
+    ],
+    "phone": "+19087350703",
+    "website": "http://pruthai.com/",
+    "confidence": 0.9858976602554321,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.79823303222656,
+     40.328487396240234
+    ]
+   },
+   "properties": {
+    "id": "5fc1a391-588e-4f93-9179-61bb4f169ebe",
+    "name": "Pru Thai",
+    "street": "NJ-31",
+    "city": "Pennington",
+    "region": "NJ",
+    "postcode": "08534",
+    "basic_category": "restaurant",
+    "category": "thai_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "asian_restaurant",
+     "southeast_asian_restaurant",
+     "thai_restaurant"
+    ],
+    "phone": "+16097372111",
+    "website": "http://www.pruthai.com",
+    "confidence": 0.9519274234771729,
+    "operating_status": "open"
+   }
+  }
+ ]
+}
