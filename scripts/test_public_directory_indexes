@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""Check nested links, filename escaping, and preservation of authored pages."""
+import importlib.machinery
+import importlib.util
+from pathlib import Path
+import tempfile
+import unittest
+
+loader = importlib.machinery.SourceFileLoader('indexes', str(Path(__file__).with_name('public_directory_indexes')))
+spec = importlib.util.spec_from_loader(loader.name, loader)
+m = importlib.util.module_from_spec(spec)
+loader.exec_module(m)
+
+
+class DirectoryIndexTests(unittest.TestCase):
+    def test_recursive_listing_escapes_names_and_preserves_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / 'public'
+            deep = root / 'geojson' / 'nested & more' / 'deep'
+            deep.mkdir(parents=True)
+            data = deep / 'A & <B>#?.geojson'
+            data.write_text('original data')
+            m.generate(root)
+            self.assertFalse((root / 'index.html').exists())
+            self.assertIn('href="nested%20%26%20more/"', (root / 'geojson/index.html').read_text())
+            self.assertIn('href="deep/"', (deep.parent / 'index.html').read_text())
+            page = (deep / 'index.html').read_text()
+            self.assertIn('href="../"', page)
+            self.assertIn('href="A%20%26%20%3CB%3E%23%3F.geojson"', page)
+            self.assertIn('A &amp; &lt;B&gt;#?.geojson', page)
+            self.assertEqual(data.read_text(), 'original data')
+
+    def test_preserves_public_and_site_indexes_but_indexes_their_children(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / 'public'
+            site = Path(tmp) / 'site'
+            (root / 'authored/child').mkdir(parents=True)
+            (root / 'legacy/child').mkdir(parents=True)
+            (site / 'legacy').mkdir(parents=True)
+            public_index = root / 'authored/index.html'
+            site_index = site / 'legacy/index.html'
+            public_index.write_text('public home')
+            site_index.write_text('site home')
+            m.generate(root, site)
+            self.assertEqual(public_index.read_text(), 'public home')
+            self.assertEqual(site_index.read_text(), 'site home')
+            self.assertFalse((root / 'legacy/index.html').exists())
+            for name in ('authored', 'legacy'):
+                self.assertTrue((root / name / 'child/index.html').is_file())
+
+    def test_missing_public_directory_is_harmless(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(m.generate(Path(tmp) / 'missing'), [])
+
+
+unittest.main()

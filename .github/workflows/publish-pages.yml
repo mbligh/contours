@@ -8,6 +8,8 @@ on:
       - '.github/workflows/publish-pages.yml'
       - 'scripts/dataset_releases'
       - 'scripts/test_dataset_releases'
+      - 'scripts/public_directory_indexes'
+      - 'scripts/test_public_directory_indexes'
   workflow_run:
     workflows: ['Refresh NJ shipping locations', 'Build NJ contour PMTiles']
     types: [completed]
@@ -47,7 +49,11 @@ jobs:
         with:
           python-version: '3.12'
       - name: Check assembly, checksum validation, and retention
-        run: python scripts/test_dataset_releases
+        run: |
+          python scripts/test_dataset_releases
+          python scripts/test_public_directory_indexes
+      - name: Generate recursive public directory listings
+        run: python scripts/public_directory_indexes public --fallback-root site
       - name: Assemble latest complete releases and static files
         id: assemble
         env:

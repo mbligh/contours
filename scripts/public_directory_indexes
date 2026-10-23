@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+"""Generate browsable indexes for public subdirectories before Pages assembly."""
+import argparse
+from html import escape
+from pathlib import Path
+from urllib.parse import quote
+
+
+def generate(root, fallback_root=None):
+    root = Path(root)
+    if not root.is_dir():
+        return []
+    fallback_root = Path(fallback_root) if fallback_root else None
+    created = []
+    for directory in sorted(p for p in root.rglob('*') if p.is_dir() and not p.is_symlink()):
+        relative = directory.relative_to(root)
+        index = directory / 'index.html'
+        if index.exists() or (fallback_root and (fallback_root / relative / 'index.html').exists()):
+            continue
+        title = escape('/' + relative.as_posix() + '/')
+        rows = ['<li><a href="../">../</a></li>']
+        for entry in sorted(directory.iterdir(), key=lambda p: (not p.is_dir(), p.name.casefold(), p.name)):
+            if entry.name == 'index.html':
+                continue
+            suffix = '/' if entry.is_dir() else ''
+            href = quote(entry.name, safe='') + suffix
+            rows.append(f'<li><a href="{escape(href, quote=True)}">{escape(entry.name + suffix)}</a></li>')
+        index.write_text(
+            '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+            f'<title>Index of {title}</title>\n'
+            '<style>body{font:16px system-ui,sans-serif;max-width:60rem;margin:3rem auto;'
+            'padding:0 1.5rem;color:#202830;background:#fafbfc}'
+            'h1{font-size:1.5rem}ul{list-style:none;padding:0}'
+            'li{padding:.4rem 0}a{color:#1456a0;text-underline-offset:.2em}</style>\n'
+            f'</head>\n<body>\n<h1>Index of {title}</h1>\n<ul>\n'
+            + '\n'.join(rows) + '\n</ul>\n</body>\n</html>\n', encoding='utf-8')
+        created.append(index)
+    return created
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('root', nargs='?', default='public')
+    parser.add_argument('--fallback-root', default='site', help='Preserve index pages from this overlay too')
+    args = parser.parse_args()
+    for index in generate(args.root, args.fallback_root):
+        print(f'Generated {index}')
