@@ -44,3 +44,7 @@ Successful dataset builds trigger publishing automatically. Release events and c
 After successful deployment, the publisher keeps three complete versions per dataset and deletes older generated releases, assets, and tags. It preserves newer releases created during deployment and does not touch unrelated releases or draft uploads. Failed deployments never expire versions. See [project.md](project.md) for implementation details. Contour vectors also use versioned Release assets. After successfully producing PMTiles, the build keeps three vector versions independently of shipping and PMTiles retention. Each PMTiles release records the vector release it consumed.
 
 Every subdirectory copied from `public/` gets an automatically generated directory listing, recursively. For example, `/geojson/` lists the files and child folders under `public/geojson/`. Existing `index.html` pages in `public/` or the corresponding `site/` folder are preserved. Listings are generated during publishing, so no index files need to be committed manually.
+
+## Interactive map
+
+Open [the MapLibre demo](https://mapping.mbligh.org/maplibre-demo/). Its source is [public/maplibre-demo/index.html](public/maplibre-demo/index.html); changes publish through **Publish mapping pages**, independently of dataset builds. Shipping and contours load from this site's relative paths. Surveillance loads from the separate surveillance site. The former URL under `mbligh.github.io/tools/maplibre-demo/` has a redirect in the tools repository.

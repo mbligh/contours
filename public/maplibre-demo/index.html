@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tewksbury Vector Map — MapLibre + OpenFreeMap</title>
+<link href="https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.css" rel="stylesheet">
+<style>
+  html,body,#map{height:100%;margin:0}
+  body{font:14px system-ui,sans-serif}
+  #map{position:absolute;inset:0}
+  .panel{position:absolute;top:14px;left:14px;z-index:1;background:rgba(255,255,255,.95);padding:14px;border-radius:10px;box-shadow:0 2px 12px #0003;max-width:260px}
+  .panel h1{font-size:16px;margin:0 0 10px}
+  label{display:block;margin:8px 0 4px}
+  select,button{padding:7px;border:1px solid #aaa;border-radius:5px;background:white}
+  .coords{margin-top:10px;color:#444;font-variant-numeric:tabular-nums;font-size:12px}
+  .hint{font-size:12px;color:#555;margin-top:8px}
+  #error{color:#a00;font-size:12px;margin-top:8px}
+  @media(max-width:500px){.panel{max-width:180px;padding:10px}}
+</style>
+</head>
+<body>
+<div id="map" role="application" aria-label="Interactive map of Tewksbury, New Jersey"></div>
+<section class="panel">
+  <h1>Tewksbury vector map</h1>
+  <label for="style">OpenFreeMap style</label>
+  <select id="style">
+    <option value="bright">Bright</option>
+    <option value="hybrid" selected>NJ Satellite + roads/trails/labels</option>
+  </select>
+  <button id="reset" type="button">Tewksbury</button>
+  <label><input id="parcels" type="checkbox"> Hunterdon parcels</label>
+  <label><input id="contours" type="checkbox"> NJ contours (100–10 ft)</label>
+  <label><input id="surveillance" type="checkbox"> Surveillance</label>
+  <label><input id="shipping" type="checkbox"> Shipping (UPS / FedEx / post offices)</label>
+  <label><input id="fedex-boxes" type="checkbox"> FedEx drop boxes</label>
+  <label><input id="ups-boxes" type="checkbox"> UPS drop boxes</label>
+  <div class="hint" id="shipping-status"></div>
+  <div class="hint"><strong>Draw:</strong> <button id="draw-line" type="button">Draw line</button> <button id="edit-line" type="button">Edit</button></div>
+  <div class="hint" id="draw-status">Draw lines, then select Edit to move vertices or drag midpoints.</div>
+  <div class="hint" id="parcel-status">Enable at zoom 14 or higher</div>
+  <div class="coords" id="coords" aria-live="off">Loading map…</div>
+  <div class="hint">Drag to pan · scroll/pinch to zoom · Ctrl+drag to tilt</div>
+  <div id="error" role="alert"></div>
+</section>
+<script type="module">
+import {initShipping} from '../shipping/shipping.js';
+import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.mjs';
+import {Protocol, PMTiles} from 'https://esm.sh/pmtiles@4.5.0';
+import {TerraDraw, TerraDrawLineStringMode, TerraDrawSelectMode} from 'https://esm.sh/terra-draw@1.24.2';
+import {TerraDrawMapLibreGLAdapter} from 'https://esm.sh/terra-draw-maplibre-gl-adapter@1.1.2';
+
+const surveillanceArchiveUrl='https://mbligh.github.io/surveillance/surveillance.pmtiles';
+const pmProtocol=new Protocol();
+maplibregl.addProtocol('pmtiles',pmProtocol.tile);
+const surveillanceArchive=new PMTiles(surveillanceArchiveUrl);
+pmProtocol.add(surveillanceArchive);
+const HOME = {center: [-74.771, 40.692], zoom: 12.5};
+const styles = {
+  liberty: 'https://tiles.openfreemap.org/styles/liberty',
+  bright: 'https://tiles.openfreemap.org/styles/bright'
+};
+const error = document.getElementById('error');
+window.addEventListener('error', e => { error.textContent = 'JavaScript error: ' + e.message; });
+window.addEventListener('unhandledrejection', e => { error.textContent = 'Map initialization error: ' + (e.reason?.message || e.reason); });
+try {
+  const map = new maplibregl.Map({
+    container: 'map', style: {version:8,sources:{},layers:[]}, ...HOME,
+    attributionControl: false
+  });
+  map.addControl(new maplibregl.NavigationControl(), 'top-right');
+  map.addControl(new maplibregl.ScaleControl({unit:'imperial'}), 'bottom-left');
+  map.addControl(new maplibregl.AttributionControl({compact:true}), 'bottom-right');
+  // Drawing stays independent of the parcel and contour overlays.
+  const draw = new TerraDraw({
+    adapter:new TerraDrawMapLibreGLAdapter({map}),
+    modes:[
+      new TerraDrawLineStringMode(),
+      new TerraDrawSelectMode({
+        pointerDistance:12,
+        flags:{linestring:{feature:{
+          draggable:false,
+          coordinates:{midpoints:{draggable:true},draggable:true,deletable:false}
+        }}},
+        styles:{midPointWidth:4,midPointColor:'#000000',selectionPointWidth:5,midPointOutlineWidth:1,selectionPointOutlineWidth:1}
+      })
+    ]
+  });
+  let drawStarted=false;
+  let drawMode='select';
+  const drawStatus=document.getElementById('draw-status');
+  function setDrawMode(mode){
+    if(!drawStarted){drawStatus.textContent='Waiting for map to load…';return;}
+    draw.setMode(mode);
+    drawMode=mode;
+    drawStatus.textContent=mode==='linestring'
+      ? 'Click to add points; double-click to finish the line.'
+      : mode==='select'
+        ? 'Click a line to edit. Drag large vertices or small midpoints; right-click deletion is disabled.'
+        : 'Pan and zoom normally.';
+  }
+  document.getElementById('draw-line').onclick=()=>setDrawMode('linestring');
+  document.getElementById('edit-line').onclick=()=>setDrawMode('select');
+  // Terra Draw owns MapLibre sources. A setStyle() call removes those sources,
+  // so stop before changing styles and recreate them after style.load.
+  function startDraw(){
+    if(drawStarted) return;
+    draw.start();
+    drawStarted=true;
+    draw.setMode(drawMode);
+  }
+  function stopDraw(){
+    if(!drawStarted) return;
+    draw.stop();
+    drawStarted=false;
+  }
+  map.on('style.load',startDraw);
+  function update() {
+    const c=map.getCenter();
+    document.getElementById('coords').textContent =
+      `Lat ${c.lat.toFixed(5)} · Lon ${c.lng.toFixed(5)} · Zoom ${map.getZoom().toFixed(2)}`;
+  }
+  // NJOGIS statewide parcel service, queried by current viewport to avoid huge downloads.
+  const parcelUrl = 'https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/ArcGIS/rest/services/Parcels_Composite_NJ_WM/FeatureServer/0/query';
+  const empty = {type:'FeatureCollection', features:[]};
+  let parcelTimer, parcelAbort, parcelRequest = 0;
+  // Area-weighted centroid of a polygon ring; fallback to bounding-box center.
+  function ringCenter(ring) {
+    let twiceArea=0, x=0, y=0;
+    for(let i=0;i<ring.length-1;i++){
+      const [ax,ay]=ring[i], [bx,by]=ring[i+1], cross=ax*by-bx*ay;
+      twiceArea+=cross; x+=(ax+bx)*cross; y+=(ay+by)*cross;
+    }
+    if(Math.abs(twiceArea)>1e-12) return [x/(3*twiceArea),y/(3*twiceArea)];
+    const xs=ring.map(p=>p[0]), ys=ring.map(p=>p[1]);
+    return [(Math.min(...xs)+Math.max(...xs))/2,(Math.min(...ys)+Math.max(...ys))/2];
+  }
+  function parcelLabelPoints(data) {
+    const seen=new Set(), features=[];
+    for(const feature of data.features || []) {
+      const p=feature.properties || {};
+      const key=p.PAMS_PIN || [p.PCLBLOCK,p.PCLLOT].join(':');
+      if(seen.has(key)) continue;
+      const g=feature.geometry;
+      if(!g || !['Polygon','MultiPolygon'].includes(g.type)) continue;
+      const polygons=g.type==='Polygon' ? [g.coordinates] : g.coordinates;
+      const rings=polygons.map(poly=>poly[0]).filter(r=>r?.length>=4);
+      if(!rings.length) continue;
+      // Largest outer ring is a stable representative for multipart parcels.
+      const ring=rings.reduce((a,b)=>a.length>=b.length?a:b);
+      const center=ringCenter(ring);
+      features.push({type:'Feature',properties:p,geometry:{type:'Point',coordinates:center}});
+      seen.add(key);
+    }
+    return {type:'FeatureCollection',features};
+  }
+  const parcelCheck = document.getElementById('parcels');
+  const contourCheck = document.getElementById('contours');
+  const surveillanceCheck = document.getElementById('surveillance');
+  let surveillanceLayerName;
+  async function installSurveillance(){
+    if(!surveillanceCheck.checked) {
+      if(map.getLayer('surveillance-points')) map.setLayoutProperty('surveillance-points','visibility','none');
+      return;
+    }
+    try {
+      if(!surveillanceLayerName) {
+        const metadata=await surveillanceArchive.getMetadata();
+        surveillanceLayerName=metadata.vector_layers?.[0]?.id || metadata.layers?.[0]?.id;
+        if(!surveillanceLayerName) throw new Error('No vector layer found in PMTiles metadata');
+      }
+      if(!map.isStyleLoaded()) return;
+      if(!map.getSource('surveillance-tiles')) map.addSource('surveillance-tiles',{
+        type:'vector',url:'pmtiles://'+surveillanceArchiveUrl,
+        attribution:'Flock camera locations; © OpenStreetMap contributors'
+      });
+      if(!map.getLayer('surveillance-points')) map.addLayer({
+        id:'surveillance-points',type:'circle',source:'surveillance-tiles','source-layer':surveillanceLayerName,
+        paint:{
+          'circle-radius':['interpolate',['linear'],['zoom'],4,2.5,12,5,16,7],
+          'circle-color':'#ed174b',
+          'circle-stroke-color':'#ffffff','circle-stroke-width':1.5,
+          'circle-opacity':0.9
+        }
+      });
+      map.setLayoutProperty('surveillance-points','visibility','visible');
+    } catch(e) {
+      error.textContent='Surveillance overlay failed: '+(e?.message||e);
+      console.error(e);
+    }
+  }
+  surveillanceCheck.addEventListener('change',installSurveillance);
+  map.on('click','surveillance-points',event=>{
+    if(!surveillanceCheck.checked || !event.features?.length) return;
+    const props=event.features[0].properties||{};
+    const container=document.createElement('div');
+    const title=document.createElement('strong');
+    title.textContent=props.camera_title || (props.source==='OSM'?'OSM surveillance camera':'Flock Surveillance camera');
+    container.appendChild(title);
+    for(const [key,value] of Object.entries(props)){
+      if(value===null || typeof value==='object') continue;
+      const row=document.createElement('div');
+      row.textContent=key+': '+String(value);
+      container.appendChild(row);
+    }
+    new maplibregl.Popup().setLngLat(event.lngLat).setDOMContent(container).addTo(map);
+  });
+  map.on('mouseenter','surveillance-points',()=>{if(surveillanceCheck.checked) map.getCanvas().style.cursor='pointer';});
+  map.on('mouseleave','surveillance-points',()=>{map.getCanvas().style.cursor='';});
+  initShipping(map,maplibregl);
+  // 10-foot NJ DEM-derived contour lines; progressively reveal finer intervals.
+  const contourArchiveUrl=new URL('../contours.pmtiles',import.meta.url).href;
+  const contourArchive=new PMTiles(contourArchiveUrl);
+  pmProtocol.add(contourArchive);
+  const contourInterval=[
+    'step',['zoom'],100,
+    12,50,
+    14,20,
+    16,10
+  ];
+  function installContours(){
+    if(!map.getSource('nj-contours')) map.addSource('nj-contours',{
+      type:'vector',url:'pmtiles://'+contourArchiveUrl,
+      attribution:'Contours derived from NJOGIS statewide DEM'
+    });
+    if(!map.getLayer('nj-contour-lines')) map.addLayer({
+      id:'nj-contour-lines',type:'line',source:'nj-contours',
+      'source-layer':'contours',minzoom:9,
+      filter:['==',['%', ['get','elevation_ft'],contourInterval],0],
+      paint:{
+        'line-color':'#ff00dc',
+        'line-opacity':0.9,
+        'line-width':['case',['==',['%', ['get','elevation_ft'],100],0],2.2,1.25]
+      }
+    });
+    if(!map.getLayer('nj-contour-labels')) map.addLayer({
+      id:'nj-contour-labels',type:'symbol',source:'nj-contours',
+      'source-layer':'contours',minzoom:12,
+      filter:['==',['%', ['get','elevation_ft'],contourInterval],0],
+      layout:{
+        'symbol-placement':'line',
+        'symbol-spacing':450,
+        'text-field':['to-string',['get','elevation_ft']],
+        'text-font':['Open Sans Regular','Arial Unicode MS Regular'],
+        'text-size':['interpolate',['linear'],['zoom'],12,10,16,12],
+        'text-rotation-alignment':'map',
+        'text-pitch-alignment':'viewport',
+        'text-keep-upright':true,
+        'text-max-angle':25,
+        'text-padding':8
+      },
+      paint:{
+        'text-color':'#b0008f',
+        'text-halo-color':'#ffffff',
+        'text-halo-width':2,
+        'text-halo-blur':0.4
+      }
+    });
+    map.setLayoutProperty('nj-contour-labels','visibility',contourCheck.checked?'visible':'none');
+    map.setLayoutProperty('nj-contour-lines','visibility',contourCheck.checked?'visible':'none');
+  }
+  contourCheck.addEventListener('change',()=>{
+    if(map.isStyleLoaded()) installContours();
+  });
+  const parcelStatus = document.getElementById('parcel-status');
+  function installParcels() {
+    if (!map.getSource('nj-parcels')) map.addSource('nj-parcels', {type:'geojson', data:empty});
+    if (!map.getLayer('nj-parcel-fill')) map.addLayer({id:'nj-parcel-fill',type:'fill',source:'nj-parcels',paint:{'fill-color':'#ff9800','fill-opacity':0.06}});
+    if (!map.getLayer('nj-parcel-outline')) map.addLayer({id:'nj-parcel-outline',type:'line',source:'nj-parcels',paint:{'line-color':'#ff6b00','line-width':1.5}});
+    if (!map.getSource('nj-parcel-labels')) map.addSource('nj-parcel-labels', {type:'geojson',data:empty});
+    if (!map.getLayer('nj-parcel-label')) map.addLayer({
+      id:'nj-parcel-label', type:'symbol', source:'nj-parcel-labels', minzoom:16,
+      layout:{
+        'text-field':['concat','Block ',['to-string',['coalesce',['get','PCLBLOCK'],'?']],
+          '\nLot ',['to-string',['coalesce',['get','PCLLOT'],'?']]],
+        'text-size':11, 'text-anchor':'center', 'text-max-width':10,
+        'text-allow-overlap':false, 'text-optional':true
+      },
+      paint:{'text-color':'#743500','text-halo-color':'#ffffff','text-halo-width':1.5}
+    });
+    const visibility = parcelCheck.checked ? 'visible' : 'none';
+    map.setLayoutProperty('nj-parcel-fill','visibility',visibility);
+    map.setLayoutProperty('nj-parcel-outline','visibility',visibility);
+    map.setLayoutProperty('nj-parcel-label','visibility',visibility);
+  }
+  async function loadParcels() {
+    clearTimeout(parcelTimer);
+    parcelAbort?.abort();
+    const request = ++parcelRequest;
+    if (!map.getSource('nj-parcels')) return;
+    if (!parcelCheck.checked || map.getZoom() < 14) {
+      map.getSource('nj-parcels').setData(empty);
+      map.getSource('nj-parcel-labels')?.setData(empty);
+      parcelStatus.textContent = parcelCheck.checked ? 'Zoom to 14+ to display parcels' : 'Enable at zoom 14 or higher';
+      return;
+    }
+    const b=map.getBounds();
+    const params=new URLSearchParams({
+      where:'1=1', geometry:JSON.stringify({xmin:b.getWest(),ymin:b.getSouth(),xmax:b.getEast(),ymax:b.getNorth(),spatialReference:{wkid:4326}}),
+      geometryType:'esriGeometryEnvelope', inSR:'4326', spatialRel:'esriSpatialRelIntersects',
+      outFields:'PAMS_PIN,PCLBLOCK,PCLLOT,PROP_LOC', outSR:'4326', returnGeometry:'true',
+      maxRecordCountFactor:'1', resultRecordCount:'2000', f:'geojson'
+    });
+    parcelAbort=new AbortController();
+    parcelStatus.textContent='Loading parcel boundaries…';
+    try {
+      const response=await fetch(parcelUrl+'?'+params,{signal:parcelAbort.signal});
+      if(!response.ok) throw new Error('HTTP '+response.status);
+      const data=await response.json();
+      if(data.error) throw new Error(data.error.message);
+      if(request!==parcelRequest || !map.getSource('nj-parcels')) return;
+      map.getSource('nj-parcels').setData(data);
+      map.getSource('nj-parcel-labels')?.setData(parcelLabelPoints(data));
+      const n=data.features?.length || 0;
+      parcelStatus.textContent=n>=2000 ? 'Showing first 2,000 parcels; zoom in for full coverage' : n+' parcels in view';
+    } catch(e) {
+      if(e.name!=='AbortError') {parcelStatus.textContent='Parcel load failed: '+e.message; console.error(e);}
+    }
+  }
+  function scheduleParcels(){clearTimeout(parcelTimer);parcelTimer=setTimeout(loadParcels,300);}
+  map.on('style.load',()=>{installContours();installParcels();scheduleParcels();installSurveillance();});
+  map.on('moveend',scheduleParcels);
+  parcelCheck.addEventListener('change',()=>{if(map.isStyleLoaded()){installParcels();loadParcels();}});
+  // Query the polygon layer, not the labels, so parcels remain clickable at zoom 14+.
+  map.on('click','nj-parcel-fill',event=>{
+    if (!parcelCheck.checked || !event.features?.length) return;
+    const p=event.features[0].properties || {};
+    const popup=document.createElement('div');
+    for(const [label,key] of [['Block','PCLBLOCK'],['Lot','PCLLOT'],['Property address','PROP_LOC'],['PAMS PIN','PAMS_PIN']]){
+      const row=document.createElement('div');
+      const strong=document.createElement('strong');
+      strong.textContent=label+': ';
+      row.append(strong,document.createTextNode(String(p[key] ?? 'Not available')));
+      popup.appendChild(row);
+    }
+    new maplibregl.Popup().setLngLat(event.lngLat).setDOMContent(popup).addTo(map);
+  });
+  map.on('mouseenter','nj-parcel-fill',()=>{if(parcelCheck.checked) map.getCanvas().style.cursor='pointer';});
+  map.on('mouseleave','nj-parcel-fill',()=>{map.getCanvas().style.cursor='';});
+  map.on('move', update);
+  map.on('load', update);
+  map.on('error', event => {
+    error.textContent = 'Map resource failed to load. Check network access and browser console.';
+    console.error('MapLibre:', event.error);
+  });
+  // Hybrid styles keep OpenFreeMap line and symbol layers, but remove its
+  // opaque background and polygon fills so the orthophoto remains visible.
+  // Parcel layers are reinstalled by the existing style.load handler.
+  const orthos = 'https://maps.nj.gov/arcgis/rest/services/Basemap/Orthos_Natural_2020_NJ_WM/MapServer/tile/{z}/{y}/{x}';
+  let styleRequest = 0;
+  async function changeStyle(choice) {
+    const request = ++styleRequest;
+    error.textContent = '';
+    if (styles[choice]) { stopDraw(); map.setStyle(styles[choice]); return; }
+    try {
+      const style = choice === 'satellite'
+        ? {version:8,sources:{},layers:[]}
+        : await (async () => {
+            const response=await fetch(styles.bright);
+            if(!response.ok) throw new Error('OpenFreeMap style HTTP '+response.status);
+            return response.json();
+          })();
+      if(request!==styleRequest) return;
+      style.sources['nj-orthos'] = {
+        type:'raster', tiles:[orthos], tileSize:256,
+        attribution:'2020 aerial imagery © NJ Office of GIS'
+      };
+      if(choice==='hybrid') {
+        // Keep transport, trails and geographic labels, but suppress the
+        // OpenMapTiles POI source-layer (shops, restaurants, petrol stations,
+        // banks, etc.). This is independent of our optional shipping markers.
+        style.layers=style.layers.filter(layer =>
+          ['line','symbol','circle'].includes(layer.type) &&
+          layer['source-layer']!=='poi' &&
+          !/(^|[-_])poi(s)?($|[-_])/.test(layer.id.toLowerCase()));
+        // Light halos make road and trail labels readable against imagery.
+        for(const layer of style.layers) {
+          if(layer.type==='symbol' && layer.layout?.['text-field']) {
+            layer.paint={...layer.paint,
+              'text-halo-color':'#ffffff','text-halo-width':1.5};
+          }
+        }
+      }
+      style.layers.unshift({id:'nj-orthos',type:'raster',source:'nj-orthos'});
+      stopDraw();
+      map.setStyle(style);
+    } catch(e) {
+      if(request!==styleRequest) return;
+      error.textContent='Basemap switch failed: '+(e?.message || e);
+      console.error(e);
+    }
+  }
+  document.getElementById('style').addEventListener('change', event => {
+    changeStyle(event.target.value);
+  });
+  changeStyle('hybrid');
+  document.getElementById('reset').addEventListener('click', () => map.flyTo({...HOME, bearing:0, pitch:0}));
+} catch (e) {
+  error.textContent = 'Map initialization failed: ' + (e?.message || e);
+  console.error(e);
+}
+</script>
+</body>
+</html>
