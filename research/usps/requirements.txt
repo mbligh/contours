@@ -1,0 +1,5 @@
+numpy==2.3.5
+pyarrow==26.0.0
+pyshp==3.1.6
+scipy==1.17.0
+shapely==2.2.0
