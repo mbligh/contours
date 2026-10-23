@@ -98,8 +98,13 @@ class OvertureTests(unittest.TestCase):
         self.assertEqual(len(queries), 2)
         self.assertEqual(len(result['features']), 1)
 
-    def test_concatenation_retains_overlapping_results(self):
+    def test_combined_results_are_deduplicated_across_queries(self):
         queries, result = self.run_cli(['--name', 'Costco', '--name', 'Costco'])
+        self.assertEqual(len(queries), 2)
+        self.assertEqual(len(result['features']), 1)
+
+    def test_deduplication_can_be_disabled(self):
+        queries, result = self.run_cli(['--name', 'Costco', '--name', 'Costco', '--dedupe-distance-feet', '0'])
         self.assertEqual(len(queries), 2)
         self.assertEqual(len(result['features']), 2)
 
@@ -123,6 +128,60 @@ class OvertureTests(unittest.TestCase):
         self.assertIn('%Costco%', queries[0][1])
         self.assertIn('%Home Depot%', queries[0][1])
         self.assertIsNone(result)
+
+
+
+class DeduplicationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        with patch.dict(sys.modules, {'duckdb': types.SimpleNamespace()}):
+            cls.dedupe = staticmethod(runpy.run_path(str(SCRIPT))['deduplicate_features'])
+
+    def point(self, name='Store', north_feet=0, confidence=None, id='first'):
+        import math
+        lat = 40.7 + math.degrees(north_feet * 0.3048 / 6371008.8)
+        props = {'name': name, 'id': id, 'street': '57 Main St'}
+        if confidence is not None:
+            props['confidence'] = confidence
+        return {'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [-74.7, lat]}, 'properties': props}
+
+    def test_radius_and_same_name_with_normalized_case_and_whitespace(self):
+        first = self.point()
+        close = self.point('  STORE  ', 99, id='close')
+        far = self.point(north_feet=101, id='far')
+        different = self.point('Different store', 1)
+        self.assertEqual(self.dedupe([first, close, far, different]), [first, far, different])
+
+    def test_highest_confidence_keeps_its_attributes_without_mutation(self):
+        import copy
+        low = self.point(confidence=0.7)
+        high = self.point(north_feet=50, confidence=0.99, id='better')
+        high['properties']['street'] = '57 Old Tpke'
+        records = [low, high]
+        original = copy.deepcopy(records)
+        self.assertEqual(self.dedupe(records), [high])
+        self.assertEqual(records, original)
+
+    def test_missing_confidence_and_empty_names(self):
+        first, duplicate = self.point(), self.point(north_feet=20)
+        unnamed1, unnamed2 = self.point(''), self.point('')
+        self.assertEqual(self.dedupe([first, duplicate, unnamed1, unnamed2]), [first, unnamed1, unnamed2])
+        self.assertEqual(self.dedupe([]), [])
+
+    def test_no_transitive_chain_past_radius(self):
+        records = [self.point(north_feet=n, confidence=c) for n, c in [(0, 0.9), (80, 0.8), (160, 0.7)]]
+        self.assertEqual(self.dedupe(records), [records[0], records[2]])
+
+    def test_user_example_is_not_nearby(self):
+        records = [self.point('Oldwick General Store'), self.point('Oldwick General Store')]
+        records[0]['geometry']['coordinates'] = [-74.83706665039062, 40.641754150390625]
+        records[1]['geometry']['coordinates'] = [-74.74942779541016, 40.67275619506836]
+        self.assertEqual(self.dedupe(records), records)
+
+    def test_custom_radius(self):
+        records = [self.point(), self.point(north_feet=150)]
+        self.assertEqual(self.dedupe(records), records)
+        self.assertEqual(self.dedupe(records, 200), records[:1])
 
 
 if __name__ == '__main__':
