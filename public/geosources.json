@@ -2,15 +2,15 @@
     { "layer": "Stores", "data": [
         {
             "id":"costco", "file": "geojson/costco", "type": "circle", 
-            "paint": { "circle-color": "#FFFF00", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#0000FF", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
         },
         {
             "id":"tsc", "file": "geojson/tsc", "type": "circle", 
-            "paint": { "circle-color": "#FF0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#8B0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
         },
         {
             "id":"tjs", "file": "geojson/tjs", "type": "circle", 
-            "paint": { "circle-color": "#FF0000", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
+            "paint": { "circle-color": "#00FF00", "circle-radius": 5, "circle-stroke-color": "#ffffff", "circle-stroke-width": 1}
         },
         {
             "id":"home_depot", "file": "geojson/home_depot", "type": "circle", 
