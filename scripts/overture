@@ -5,6 +5,7 @@ Examples:
     scripts/overture --name Costco
     scripts/overture --name "Home Depot" --state NY
     scripts/overture --name Costco --name "Home Depot" -o stores.geojson
+    scripts/overture --name Costco -o - > stores.geojson
     scripts/overture --category supermarket
     scripts/overture --name Costco --category supermarket
     scripts/overture --list-categories market     # find category names
@@ -22,6 +23,7 @@ CDLA-Permissive-2.0). Credit "Overture Maps Foundation" when you use the output.
 """
 
 import argparse
+from contextlib import nullcontext
 import json
 import re
 import sys
@@ -180,7 +182,7 @@ def main():
     p.add_argument("--release", help="Overture release, e.g. 2026-09-23.0 (default: latest)")
     p.add_argument("--min-confidence", type=float, default=0.0,
                    help="drop places below this Overture confidence score (0-1)")
-    p.add_argument("-o", "--output", help="output file (default: <names>_<state>.geojson)")
+    p.add_argument("-o", "--output", help="output file, or - for stdout (default: <names>_<state>.geojson)")
     args = p.parse_args()
 
     if args.list_categories is None and not (args.name or args.category):
@@ -275,11 +277,15 @@ def main():
         label = "_".join(args.name + args.category).lower()
         slug = re.sub(r"[^a-z0-9]+", "-", label).strip("-")
         out = f"{slug}_{state.lower()}.geojson"
-    with open(out, "w", encoding="utf-8") as fh:
+    with nullcontext(sys.stdout) if out == "-" else open(out, "w", encoding="utf-8") as fh:
         json.dump(collection, fh, indent=1)
-    print(f"Wrote {len(features)} places to {out}", file=sys.stderr)
+        if out == "-":
+            fh.write("\n")
+    destination = "stdout" if out == "-" else out
+    print(f"Wrote {len(features)} places to {destination}", file=sys.stderr)
 
 
 if __name__ == "__main__":
     main()
+
 

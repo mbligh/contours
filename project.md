@@ -71,6 +71,7 @@ Pages runs `node scripts/test_geosources.cjs` to check the committed config, gro
 
 `scripts/overture` accepts repeated `--name` arguments. Extraction runs one query per name on a shared DuckDB connection and concatenates the resulting features into one GeoJSON FeatureCollection, in argument order. Each query retains the state, exact-name, category, and confidence filters. Overlapping matches are retained rather than deduplicated. Category-only extraction still runs one query; category discovery retains its combined-name query to avoid double-counting. The output retains release/licensing metadata and the existing combined-name default filename.
 
-Example: `scripts/overture --name Costco --name "Home Depot" -o stores.geojson`.
+Example: `scripts/overture --name Costco --name "Home Depot" -o stores.geojson`. Use `-o -` (or `--output -`) to write the GeoJSON to stdout for piping or redirection; progress and diagnostics remain on stderr. Stdout is left open and no file named `-` is created.
 
 Run `python scripts/test_overture` for offline CLI regression checks using a simulated remote DuckDB connection; these do not download Overture data.
+

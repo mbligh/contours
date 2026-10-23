@@ -11,7 +11,7 @@ import types
 import unittest
 from unittest.mock import patch
 
-SCRIPT = Path(__file__).with_name('overture')
+SCRIPT = Path(__file__).resolve().with_name('overture')
 
 
 class Connection:
@@ -59,6 +59,24 @@ class OvertureTests(unittest.TestCase):
                     contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
                 runpy.run_path(str(SCRIPT), run_name='__main__')
             return con.queries, json.loads(out.read_text()) if out.exists() else None
+
+    def test_stdout_output_is_json_without_creating_a_file(self):
+        for flag in ('-o', '--output'):
+            with self.subTest(flag=flag), tempfile.TemporaryDirectory() as temp:
+                con = Connection()
+                stdout, stderr = io.StringIO(), io.StringIO()
+                argv = [str(SCRIPT), '--release', '2026-09-23.0',
+                        '--name', 'Costco', '--name', 'Home Depot', flag, '-']
+                with contextlib.chdir(temp), patch.dict(sys.modules, {'duckdb': types.SimpleNamespace(connect=lambda: con)}), \
+                        patch.object(sys, 'argv', argv), contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                    runpy.run_path(str(SCRIPT), run_name='__main__')
+                self.assertFalse(stdout.closed, 'Do not close the caller stdout stream')
+                result = json.loads(stdout.getvalue())
+                self.assertEqual([f['properties']['name'] for f in result['features']], ['Costco', 'Home Depot'])
+                self.assertTrue(stdout.getvalue().endswith('\n'))
+                self.assertIn('Overture release:', stderr.getvalue())
+                self.assertIn('Wrote 2 places to stdout', stderr.getvalue())
+                self.assertEqual(list(Path(temp).iterdir()), [], 'No output file, including a literal dash')
 
     def test_multiple_names_query_independently_and_concatenate(self):
         queries, result = self.run_cli(['--name', 'Costco', '--name', 'Home Depot', '--category', 'hardware_store', '--min-confidence', '0.8'])
@@ -109,3 +127,4 @@ class OvertureTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
