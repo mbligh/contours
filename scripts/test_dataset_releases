@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+"""Regression tests for publication integrity and safe retention."""
+import copy
+import importlib.machinery
+import importlib.util
+import io
+import json
+from pathlib import Path
+import tarfile
+import tempfile
+import unittest
+from unittest.mock import patch
+
+loader = importlib.machinery.SourceFileLoader('datasets', str(Path(__file__).with_name('dataset_releases')))
+spec = importlib.util.spec_from_loader(loader.name, loader)
+m = importlib.util.module_from_spec(spec)
+loader.exec_module(m)
+
+
+def release(dataset, n, **changes):
+    result = {'id': n, 'draft': False, 'published_at': f'2026-10-{n:02}T00:00:00Z',
+              'tag_name': f'dataset-{dataset}-{n}-1',
+              'assets': [{'name': 'dataset.tar.gz'}, {'name': 'manifest.json'}]}
+    result.update(changes)
+    return result
+
+
+class PublicationTests(unittest.TestCase):
+    def test_selection_ignores_drafts_incomplete_and_unrelated_releases(self):
+        items = [release('shipping', 1), release('shipping', 2, draft=True),
+                 release('shipping', 3, assets=[]), release('shipping', 4, tag_name='v4')]
+        self.assertEqual([r['id'] for r in m.ordered(items, 'shipping')], [1])
+
+    def test_retention_keeps_deployed_three_and_concurrent_newer_versions(self):
+        items = [release(kind, i) for kind in m.DATASETS for i in range(1, 7)]
+        items += [release('shipping', 10, draft=True), release('shipping', 11, tag_name='v11')]
+        victims = m.expired(items, {'shipping': 5, 'contours': 6})
+        self.assertEqual({r['tag_name'] for r in victims},
+                         {'dataset-shipping-1-1', 'dataset-shipping-2-1',
+                          'dataset-contours-1-1', 'dataset-contours-2-1', 'dataset-contours-3-1'})
+
+    def test_missing_deployed_release_prevents_any_cleanup(self):
+        with self.assertRaises(StopIteration):
+            m.expired([release('shipping', 1)], {'shipping': 99})
+
+    def test_archive_checksums_and_safe_member_names(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            archive = root / 'data.tar.gz'
+            data = b'PMTiles' + b'x' * 11000
+            with tarfile.open(archive, 'w:gz') as tar:
+                member = tarfile.TarInfo('contours.pmtiles')
+                member.size = len(data)
+                tar.addfile(member, io.BytesIO(data))
+            import hashlib
+            manifest = {'files': {'contours.pmtiles': hashlib.sha256(data).hexdigest()}}
+            m.extract(archive, root / 'out', 'contours', manifest)
+            manifest['files']['contours.pmtiles'] = 'bad'
+            with self.assertRaises(ValueError):
+                m.extract(archive, root / 'out', 'contours', manifest)
+            with tarfile.open(archive, 'w:gz') as tar:
+                tar.addfile(tarfile.TarInfo('../outside'))
+            with self.assertRaises(ValueError):
+                m.extract(archive, root / 'out', 'contours', manifest)
+            self.assertFalse((root / 'outside').exists())
+
+    def test_assembly_downloads_both_and_includes_public_paths_and_dotfiles(self):
+        import os
+        with tempfile.TemporaryDirectory() as tmp:
+            previous = Path.cwd()
+            try:
+                os.chdir(tmp)
+                Path('public/nested').mkdir(parents=True)
+                Path('public/nested/data').write_text('test data')
+                Path('public/.hidden').write_text('dotfile')
+                Path('site').mkdir()
+                Path('site/index.html').write_text('home')
+                selected = [release(k, 1) for k in m.DATASETS]
+                def download(*args, **kwargs):
+                    dataset = args[2].split('-')[1]
+                    dest = Path(args[args.index('--dir') + 1])
+                    files = {}
+                    with tarfile.open(dest / 'dataset.tar.gz', 'w:gz') as tar:
+                        for name in m.DATASETS[dataset]:
+                            content = (b'PMTiles' + b'x' * 11000 if dataset == 'contours' else
+                                       b'{"type":"FeatureCollection","features":[{"type":"Feature"}]}'
+                                       if name.endswith('.geojson') else b'// module')
+                            entry = tarfile.TarInfo(name)
+                            entry.size = len(content)
+                            tar.addfile(entry, io.BytesIO(content))
+                            import hashlib
+                            files[name] = hashlib.sha256(content).hexdigest()
+                    m.write_json(dest / 'manifest.json', {'schema': 1, 'dataset': dataset,
+                        'tag': args[2], 'files': files, 'sha256': m.sha256(dest / 'dataset.tar.gz')})
+                with patch.object(m, 'releases', return_value=selected), patch.object(m, 'gh', side_effect=download), patch.object(m.urllib.request, 'urlopen', side_effect=OSError):
+                    self.assertTrue(m.assemble('.pages'))
+                self.assertEqual(Path('.pages/nested/data').read_text(), 'test data')
+                self.assertTrue(Path('.pages/.hidden').is_file())
+                self.assertTrue(Path('.pages/shipping/shipping.js').is_file())
+                self.assertEqual(json.loads(Path('build/selected-releases.json').read_text()), {'shipping': 1, 'contours': 1})
+                state = Path('.pages/mapping-build.json').read_bytes()
+                with patch.object(m, 'releases', return_value=selected), patch.object(m.urllib.request, 'urlopen', return_value=io.BytesIO(state)), patch.object(m, 'gh') as gh:
+                    self.assertFalse(m.assemble('.pages'))
+                    gh.assert_not_called()
+            finally:
+                os.chdir(previous)
+
+
+unittest.main()

@@ -1,0 +1,70 @@
+name: Publish mapping pages
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/**'
+      - 'site/**'
+      - '.github/workflows/publish-pages.yml'
+      - 'scripts/dataset_releases'
+      - 'scripts/test_dataset_releases'
+  workflow_run:
+    workflows: ['Refresh NJ shipping locations', 'Build NJ contour PMTiles']
+    types: [completed]
+    branches: [main]
+  release:
+    types: [published, edited, deleted]
+  repository_dispatch:
+    types: [mapping-release-assets-updated]
+  workflow_dispatch:
+  # Individual asset uploads/replacements emit no Actions release event.
+  # Polling catches those edits; unchanged inputs do not redeploy.
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: mapping-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check assembly, checksum validation, and retention
+        run: python scripts/test_dataset_releases
+      - name: Assemble latest complete releases and static files
+        id: assemble
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/dataset_releases assemble
+      - uses: actions/configure-pages@v5
+        if: steps.assemble.outputs.changed == 'true'
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.assemble.outputs.changed == 'true'
+        with:
+          path: .pages
+      - name: Deploy Pages
+        if: steps.assemble.outputs.changed == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Keep three versions of each deployed dataset
+        if: steps.assemble.outputs.changed == 'true' && steps.deployment.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/dataset_releases cleanup

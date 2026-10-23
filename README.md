@@ -8,7 +8,7 @@ The initial workflow defaults to a **60,000 × 60,000 ft pilot** around Tewksbur
 
 1. In repository Settings → Pages, choose **GitHub Actions** as the deployment source.
 2. Run **Extract NJ contour vectors** to download DEM data and generate 10-foot contour geometry. This uploads a compressed `contour-vectors` artifact retained for 90 days.
-3. After successful extraction, **Build NJ contour PMTiles** runs automatically, downloads the artifact, and publishes the PMTiles file. You can also manually dispatch this workflow with the extraction run ID to rebuild tiles without extracting vectors again.
+3. After successful extraction, **Build NJ contour PMTiles** runs automatically, downloads the artifact, and stores the PMTiles file in a versioned GitHub Release. **Publish mapping pages** then deploys it with shipping and static files. You can also manually dispatch this workflow with the extraction run ID to rebuild tiles without extracting vectors again.
 4. Once deployed, the archive is at https://mbligh.github.io/mapping/contours.pmtiles.
 
 Changing tile zoom/simplification settings requires only rerunning the PMTiles workflow with a retained extraction run ID. Changing the geographic extent or contour geometry requires rerunning extraction.
@@ -31,5 +31,14 @@ This is an initial, unverified build pipeline. Adjacent processing patches overl
 
 ## Shipping datasets
 
-Shipping scripts, data, regression checks, and the browser module are in [shipping/](shipping/README.md). A separate **Refresh NJ shipping locations** workflow refreshes all sources and publishes them at https://mbligh.github.io/mapping/shipping/.
+Shipping scripts, data, regression checks, and the browser module are in [shipping/](shipping/README.md). A separate **Refresh NJ shipping locations** workflow refreshes all sources and produces a versioned Release. **Publish mapping pages** serves the combined site, including shipping at https://mbligh.github.io/mapping/shipping/.
 
+## Pages publishing and retention
+
+**Publish mapping pages** is the only workflow that deploys the site. Contour and shipping builds remain independent and store their completed outputs as non-expiring Release assets (`dataset.tar.gz` and `manifest.json`). The publisher downloads the latest complete release of each, checks their SHA-256 checksums, and assembles the site.
+
+To add a page or file, commit it under `public/`: `public/example.html` becomes `https://mbligh.github.io/mapping/example.html`. All nested files and dotfiles are included. Legacy `site/` files are also included; `public/` takes precedence on collisions. Dataset paths are `contours.pmtiles` and `shipping/`. The publisher reserves `.nojekyll` and `mapping-build.json`.
+
+Successful dataset builds trigger publishing automatically. Release events and changes to static files also trigger it. Direct asset uploads/replacements are detected by a check every 15 minutes (subject to GitHub scheduling delays); unchanged inputs do not redeploy. Integrations can send `repository_dispatch` type `mapping-release-assets-updated` for an immediate check. Archives and their checksum manifests must stay consistent.
+
+After successful deployment, the publisher keeps three complete versions per dataset and deletes older generated releases, assets, and tags. It preserves newer releases created during deployment and does not touch unrelated releases or draft uploads. Failed deployments never expire versions. See [project.md](project.md) for implementation details. Intermediate contour-vector Actions artifacts still have 90-day retention; this does not affect released PMTiles.

@@ -5,24 +5,19 @@ on:
     paths:
       - '.github/workflows/shipping.yml'
       - 'shipping/**'
+      - 'scripts/dataset_releases'
   workflow_dispatch:
   schedule:
     - cron: '25 9 * * 0'
 permissions:
   contents: write
-  pages: write
-  id-token: write
-# Both independent publishers retain all assets and serialize Pages deployments.
 concurrency:
-  group: contours-pages
+  group: shipping-dataset
   cancel-in-progress: false
 jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 120
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -77,25 +72,7 @@ jobs:
             echo 'Unable to publish shipping datasets after 5 attempts' >&2
             exit 1
           fi
-      - name: Prepare shipping and preserve published contours
-        run: |
-          mkdir -p public/shipping
-          cp shipping/*.geojson shipping/shipping.js public/shipping/
-          cp site/index.html public/index.html
-          touch public/.nojekyll
-          curl -fL --retry 3 https://mbligh.github.io/mapping/contours.pmtiles -o public/contours.pmtiles
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('public/contours.pmtiles')
-          with p.open('rb') as f:
-              assert f.read(7)==b'PMTiles', 'Invalid published contour archive'
-          assert p.stat().st_size>10000, 'Published contour archive is too small'
-          PY
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
-      - name: Deploy Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
+      - name: Publish versioned shipping release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/dataset_releases create shipping .
