@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+"""Validate the complete set of generated shipping datasets before publication."""
+import json
+import math
+from collections import Counter
+from pathlib import Path
+
+ROOT=Path(__file__).resolve().parent
+minimums={'shipping.geojson':100,'shipping_extra.geojson':10,'shipping_fedex.geojson':200,'shipping_ups_boxes.geojson':100}
+for name,minimum in minimums.items():
+    data=json.loads((ROOT/name).read_text())
+    assert data.get('type')=='FeatureCollection',name
+    features=data['features']
+    assert len(features)>=minimum,(name,len(features))
+    for f in features:
+        g=f['geometry'];p=f['properties'];c=g['coordinates']
+        assert g['type']=='Point' and len(c)==2,(name,g)
+        assert all(isinstance(v,(int,float)) and math.isfinite(v) for v in c),(name,c)
+        assert -75.57<=c[0]<=-73.88 and 38.88<=c[1]<=41.36,(name,c)
+        assert p.get('carrier') and p.get('source'),(name,p)
+    counts=Counter(f['properties']['carrier'] for f in features)
+    if name=='shipping_extra.geojson':assert counts['CVS UPS']>0 and counts['All The Places']>0
+    if name=='shipping_fedex.geojson':
+        assert all(f['properties']['carrier']=='FedEx' for f in features)
+        assert all(f['properties']['location_type'] in ('staffed','drop_box') for f in features)
+    if name=='shipping_ups_boxes.geojson':
+        assert len({f['properties']['ref'] for f in features})==len(features)
+        assert all(f['properties']['source_url'].startswith('https://www.mailinglocations.com/') for f in features)
+    print(f'{name}: {len(features)} valid points; {dict(counts)}')
+print('All shipping data checks passed')

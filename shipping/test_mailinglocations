@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Regression checks for directory classification, coordinates and completeness."""
+import runpy
+from pathlib import Path
+
+m=runpy.run_path(str(Path(__file__).with_name('build_mailinglocations')))
+url='https://www.mailinglocations.com/ups-39199-construction-specialists-lebanon-nj'
+html='''<h1>UPS - Construction Specialists - LEBANON</h1>
+<address>UPS<br>Construction Specialists<br>3 WERNER WAY<br>LEBANON, NJ 08833</address>
+<div>Facility Type: UPS DROP BOX<br></div><a href="tel:9088790100">(908) 879-0100</a>
+<iframe src="https://www.google.com/maps/embed/v1/place?q=40.646075,-74.843054"></iframe>'''
+feature=m['parse_location'](html,url,'2026-10-23T00:00:00+00:00')
+p=feature['properties']
+assert feature['geometry']['coordinates']==[-74.843054,40.646075]
+assert p['name']=='Construction Specialists'
+assert p['address']=='3 WERNER WAY LEBANON, NJ 08833'
+assert p['ref']=='mailinglocations:ups:39199'
+assert p['website']==url and p['source_url']==url
+assert p['hours']==''  # Never infer 24/7 availability.
+assert 'Unverified' in p['verification']
+assert m['parse_location'](html.replace('UPS DROP BOX','THE UPS STORE'),url,'now') is None
+for bad in [html.replace('40.646075,-74.843054','LEBANON NJ'),html.replace('40.646075,-74.843054','0,0'),html.replace('NJ 08833','NY 08833')]:
+    try:m['parse_location'](bad,url,'now')
+    except ValueError:pass
+    else:raise AssertionError('Invalid geometry/address must not be published')
+city='''<h1>FedEx, UPS, USPS Locations in LEBANON, NJ</h1>
+<div class="well box"><a href="/ups-39199-construction-specialists-lebanon-nj">Construction Specialists</a><br>UPS DROP BOX</div>
+<div class="well box"><a href="/ups-39200-ups-store-lebanon-nj">UPS Store</a><br>THE UPS STORE</div>
+<div class="well box"><a href="https://example.com/ups-1-fake-nj">Fake</a><br>UPS DROP BOX</div>'''
+assert m['drop_box_links'](city)==[url]
+assert m['city_links']('<a href="/city-lebanon-nj">Lebanon</a><a href="/city-lebanon-nj">Again</a><a href="/city-test-ny">NY</a>')==['https://www.mailinglocations.com/city-lebanon-nj']
+pages={'one':city,'two':city,url:html}
+assert len(m['crawl'](lambda u:pages[u],['one','two']))==1
+try:m['crawl'](lambda u:pages[u] if u!=url else '<html>broken detail page</html>', ['one'])
+except RuntimeError:pass
+else:raise AssertionError('Missing detail data must fail the build')
+# A reclassified record may legitimately be omitted; a missing facility type
+# must fail instead of silently shrinking the layer.
+print('MailingLocations types, provenance, numeric coordinates, state validation and alias deduplication checks passed')
+

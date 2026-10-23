@@ -1,0 +1,143 @@
+#!/usr/bin/env python3
+"""Fetch NJ UPS drop boxes explicitly identified by MailingLocations.com."""
+import argparse
+import hashlib
+import json
+import math
+import re
+import threading
+import time
+import urllib.parse
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
+from pathlib import Path
+from bs4 import BeautifulSoup
+
+BASE='https://www.mailinglocations.com'
+INDEX=BASE+'/state-nj'
+OUT=(Path(__file__).resolve().parent / 'shipping_ups_boxes.geojson')
+
+def site_url(href, pattern):
+    url=urllib.parse.urljoin(BASE,href)
+    p=urllib.parse.urlsplit(url)
+    if p.hostname!='www.mailinglocations.com' or not re.fullmatch(pattern,p.path):return None
+    return BASE+p.path
+
+def city_links(html):
+    soup=BeautifulSoup(html,'html.parser')
+    return sorted({u for a in soup.select('a[href]') if (u:=site_url(a['href'],r'/city-.+-nj'))})
+
+def drop_box_links(html):
+    soup=BeautifulSoup(html,'html.parser')
+    heading=soup.find('h1')
+    if not heading or 'Locations in' not in heading.get_text() or not heading.get_text().strip().endswith('NJ'):
+        raise ValueError('Unexpected NJ city page')
+    links=set()
+    for card in soup.select('.well.box'):
+        if not re.search(r'\bUPS DROP BOX\b',card.get_text(' ',strip=True),re.I):continue
+        for a in card.select('a[href]'):
+            if url:=site_url(a['href'],r'/ups-\d+-.+-nj'):links.add(url)
+    return sorted(links)
+
+def parse_location(html,url,retrieved_at):
+    soup=BeautifulSoup(html,'html.parser')
+    text=soup.get_text('\n',strip=True)
+    facility=re.search(r'Facility Type:\s*([^\n]+)',text,re.I)
+    if not facility:raise ValueError('Missing facility type')
+    if facility[1].strip().upper()!='UPS DROP BOX':return None
+    address=soup.find('address')
+    lines=list(address.stripped_strings) if address else []
+    if len(lines)<4 or not re.search(r',\s*NJ\s+\d{5}\b',lines[-1]):
+        raise ValueError('Missing NJ street address')
+    coords=None
+    # Read the coordinates already published in the directory's map. No Google
+    # request, API key, address geocoding or town-centre fallback is used.
+    for frame in soup.select('iframe[src]'):
+        p=urllib.parse.urlsplit(frame['src'])
+        if p.hostname not in ('www.google.com','maps.google.com'):continue
+        q=urllib.parse.parse_qs(p.query).get('q',[''])[0]
+        if not re.fullmatch(r'\s*-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?\s*',q):continue
+        lat,lon=map(float,q.split(','))
+        if all(map(math.isfinite,(lon,lat))) and -75.57<=lon<=-73.88 and 38.88<=lat<=41.36:
+            coords=[lon,lat];break
+    if coords is None:raise ValueError('Missing numeric NJ map coordinates')
+    phone=soup.select_one('a[href^="tel:"]')
+    ref=re.search(r'/ups-(\d+)-',url)[1]
+    return {'type':'Feature','geometry':{'type':'Point','coordinates':coords},'properties':{
+        'carrier':'UPS','name':lines[1] if lines[1]!='UPS' else 'UPS Drop Box',
+        'service_type':'UPS Drop Box','location_type':'drop_box',
+        'address':' '.join(lines[2:]),'street_address':' '.join(lines[2:-1]),
+        'hours':'','phone':phone.get_text(' ',strip=True) if phone else '',
+        'ref':'mailinglocations:ups:'+ref,'osm':'','website':url,
+        'source':'MailingLocations.com','source_url':url,'retrieved_at':retrieved_at,
+        'verification':'Unverified directory listing; no last-verified date supplied',
+        'coordinate_source':'Directory map coordinates; exact box position unverified',
+    }}
+
+class Fetcher:
+    def __init__(self,cache_dir):
+        self.cache=Path(cache_dir);self.cache.mkdir(parents=True,exist_ok=True)
+        self.lock=threading.Lock();self.next_request=0
+    def fetched_at(self,url):
+        path=self.cache/(hashlib.sha256(url.encode()).hexdigest()+'.html')
+        return datetime.fromtimestamp(path.stat().st_mtime,timezone.utc).isoformat()
+    def __call__(self,url):
+        path=self.cache/(hashlib.sha256(url.encode()).hexdigest()+'.html')
+        if path.exists() and time.time()-path.stat().st_mtime<6*86400:
+            return path.read_text()
+        for attempt in range(3):
+            # At most 3 workers and about 2 requests/sec across all workers.
+            with self.lock:
+                delay=max(0,self.next_request-time.monotonic())
+                self.next_request=max(time.monotonic(),self.next_request)+0.5
+            if delay:time.sleep(delay)
+            try:
+                request=urllib.request.Request(url,headers={'User-Agent':'NJ shipping map research; github.com/mbligh/mapping'})
+                with urllib.request.urlopen(request,timeout=45) as response:
+                    html=response.read().decode('utf-8','replace')
+                path.write_text(html)
+                return html
+            except Exception:
+                if attempt==2:raise
+                time.sleep(2**attempt)
+
+def crawl(fetch,cities=None):
+    cities=cities or city_links(fetch(INDEX))
+    if not cities:raise RuntimeError('No NJ city pages discovered')
+    links=set();features=[];errors=[]
+    with ThreadPoolExecutor(max_workers=3) as pool:
+        def discover(url):return drop_box_links(fetch(url))
+        for i,result in enumerate(pool.map(discover,cities),1):
+            links.update(result)
+            if i%50==0 or i==len(cities):print(f'MailingLocations: {i}/{len(cities)} cities; {len(links)} UPS box pages',flush=True)
+        def parse(url):
+            try:
+                html=fetch(url)
+                timestamp=fetch.fetched_at(url) if hasattr(fetch,'fetched_at') else datetime.now(timezone.utc).isoformat()
+                return parse_location(html,url,timestamp),None
+            except Exception as e:return None,f'{url}: {e}'
+        ordered=sorted(links)
+        for i,(feature,error) in enumerate(pool.map(parse,ordered),1):
+            if error:errors.append(error)
+            elif feature:features.append(feature)
+            if i%100==0 or i==len(ordered):print(f'MailingLocations: {i}/{len(ordered)} box pages; {len(features)} with coordinates',flush=True)
+    if errors:raise RuntimeError('Refusing partial data; '+str(len(errors))+' failed pages: '+'; '.join(errors[:10]))
+    # City aliases can point to the same record. Keep all distinct directory IDs;
+    # the map conservatively merges same-address records with nearby OSM boxes.
+    return list({f['properties']['ref']:f for f in features}.values())
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--cache-dir',default='/tmp/mailinglocations-cache')
+    parser.add_argument('--city-url',action='append',help='Limit to explicit city pages for inspection')
+    parser.add_argument('--output',type=Path,default=OUT)
+    args=parser.parse_args()
+    features=crawl(Fetcher(args.cache_dir),args.city_url)
+    if not args.city_url and len(features)<100:raise SystemExit('Too few UPS boxes; refusing incomplete statewide data')
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    args.output.write_text(json.dumps({'type':'FeatureCollection','features':features},separators=(',',':')))
+    print(f'Wrote {len(features)} MailingLocations NJ UPS drop boxes',flush=True)
+
+if __name__=='__main__':main()
+

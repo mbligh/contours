@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+"""Regression checks for FedEx locator classification and metadata."""
+import runpy
+
+build = runpy.run_path(__file__.replace('test_fedex', 'build_fedex'))['build']
+
+def point(name, ref, **props):
+    return {'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [-74.7, 40.7]},
+            'properties': {'name': name, 'ref': ref, 'addr:state': 'NJ', 'addr:street_address': '12 Main St', **props}}
+
+data = [
+    point('FedEx OnSite', 'one', located_in='Walgreens', opening_hours='Mo-Fr 09:00-17:00', website='https://local.fedex.com/one'),
+    point('FedEx OnSite', 'one'),
+    point('FedEx Drop Box', 'two'),
+    point('FedEx ShipSite', 'three', located_in='Office Depot'),
+    point("Kohl's", 'four'), point('FedEx Air Freight Center', 'five'),
+    point('FedEx OnSite', 'six', **{'addr:state': 'NY'}),
+    point('FedEx OnSite', 'seven', opening_hours='closed'),
+]
+out = build(data)
+assert len(out) == 3
+walgreens, box, office = [f['properties'] for f in out]
+assert walgreens['name'] == 'FedEx OnSite at Walgreens'
+assert walgreens['hours'] == 'Mo-Fr 09:00-17:00'
+assert walgreens['website'] == 'https://local.fedex.com/one'
+assert walgreens['address'] == '12 Main St NJ'
+assert walgreens['location_type'] == 'staffed'
+assert box['location_type'] == 'drop_box'
+assert office['host'] == 'Office Depot'
+assert office['service_type'] == 'FedEx ShipSite'
+print('FedEx classification, deduplication, exclusions and metadata checks passed')
+

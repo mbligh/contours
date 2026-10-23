@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+"""Build NJ FedEx shipping points from ATP's FedEx locator spider."""
+import json
+import sys
+import urllib.request
+from collections import Counter
+from pathlib import Path
+
+OUT = (Path(__file__).resolve().parent / 'shipping_fedex.geojson')
+URL = 'https://data.alltheplaces.xyz/runs/latest/output/fedex.geojson'
+STAFFED = {
+    'FedEx OnSite', 'FedEx Authorized ShipCenter', 'FedEx ShipSite',
+    'FedEx Office Print & Ship Center', 'FedEx Office Ship Center',
+    'FedEx Ship Center',
+}
+
+def build(features):
+    out, seen = [], set()
+    for f in features:
+        p, g = f.get('properties') or {}, f.get('geometry') or {}
+        if str(p.get('addr:state') or '').strip().upper() not in ('NJ', 'NEW JERSEY'):
+            continue
+        service = p.get('name') or ''
+        if service not in STAFFED | {'FedEx Drop Box', 'FedEx Express Drop Box'}:
+            continue  # Freight facilities and Kohl's returns aren't general drop-offs.
+        c = g.get('coordinates') or []
+        if g.get('type') != 'Point' or len(c) != 2 or not all(isinstance(v, (int, float)) for v in c):
+            continue
+        hours = p.get('opening_hours') or ''
+        if hours.strip().lower() in ('closed', 'off', 'no'):
+            continue
+        ref = str(p.get('ref') or f.get('id') or '')
+        key = ref or (tuple(c), p.get('addr:street_address'), service)
+        if key in seen:
+            continue
+        seen.add(key)
+        host = p.get('located_in') or ''
+        street = p.get('addr:street_address') or ' '.join(filter(None, [p.get('addr:housenumber'), p.get('addr:street')]))
+        out.append({'type': 'Feature', 'geometry': g, 'properties': {
+            'carrier': 'FedEx', 'name': f'{service} at {host}' if host else service,
+            'service_type': service, 'host': host,
+            'location_type': 'staffed' if service in STAFFED else 'drop_box',
+            'address': ' '.join(filter(None, [street, p.get('addr:city'), p.get('addr:state'), p.get('addr:postcode')])),
+            'hours': hours, 'phone': p.get('phone') or '', 'ref': ref,
+            'website': p.get('website') or '', 'osm': '',
+            'source': 'FedEx locator via All The Places',
+            'source_url': p.get('@source_uri') or URL,
+        }})
+    return out
+
+def main():
+    if len(sys.argv) > 1:
+        data = json.loads(Path(sys.argv[1]).read_text())
+    else:
+        req = urllib.request.Request(URL, headers={'User-Agent': 'Personal NJ shipping map (github.com/mbligh/mapping)'})
+        with urllib.request.urlopen(req, timeout=120) as response:
+            data = json.load(response)
+    features = build(data['features'])
+    counts = Counter(f['properties']['location_type'] for f in features)
+    if counts['staffed'] < 100 or counts['drop_box'] < 100:
+        raise SystemExit(f'Too few FedEx locations: {dict(counts)}; refusing incomplete data')
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps({'type': 'FeatureCollection', 'features': features}, separators=(',', ':')))
+    print(f'FedEx NJ: {dict(counts)}', flush=True)
+    print(f'FedEx staffed hosts: {dict(Counter(f["properties"]["host"] or f["properties"]["service_type"] for f in features if f["properties"]["location_type"] == "staffed"))}', flush=True)
+
+if __name__ == '__main__':
+    main()
+

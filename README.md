@@ -28,3 +28,8 @@ Suggested MapLibre intervals by zoom: 100 ft (10–11), 50 ft (12–13), 20 ft (
 ## Limitations
 
 This is an initial, unverified build pipeline. Adjacent processing patches overlap by one DEM pixel and contour lines are clipped to their assigned patch interiors. The build uses a regional rectangle rather than an administrative county boundary. PMTiles HTTP byte-range serving must be tested on the deployed URL; Cloudflare R2 may be needed if GitHub Pages does not support it reliably.
+
+## Shipping datasets
+
+Shipping scripts, data, regression checks, and the browser module are in [shipping/](shipping/README.md). A separate **Refresh NJ shipping locations** workflow refreshes all sources and publishes them at https://mbligh.github.io/mapping/shipping/.
+

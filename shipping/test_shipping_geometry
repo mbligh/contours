@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Check OSM area placement and the Branchburg FedEx regression."""
+import ast
+from pathlib import Path
+from types import SimpleNamespace
+import osmium
+
+# Load definitions without executing the statewide fetch at module scope.
+source=ast.parse(Path(__file__).with_name('build_shipping.py').read_text())
+definitions=[n for n in source.body if isinstance(n,(ast.FunctionDef,ast.ClassDef))]
+ns={'osmium':osmium,'features':[],'seen':set()}
+exec(compile(ast.Module(body=definitions,type_ignores=[]),'build_shipping.py','exec'),ns)
+point=ns['representative_point']
+assert point([]) is None
+assert point([(0,0),(2,0),(2,2),(0,2),(0,0)])==(1,1)
+assert point([(0,0),(2,0),(2,2)])==(2,0)  # Open way keeps its existing point.
+assert point([(0,0),(1,0),(2,0),(0,0)])==(2,0)  # Degenerate area.
+assert point([(0,0),(0,2),(2,2),(2,0),(0,0)])==(1,1)  # Either winding.
+
+# OSM way 756435518, version 4: its old middle vertex was 64m from FedEx.
+outline=[(-74.7118595,40.6045755),(-74.7124433,40.6047839),
+         (-74.711913,40.6056398),(-74.7113294,40.6054314),
+         (-74.7118595,40.6045755)]
+way=SimpleNamespace(id=756435518,tags={'brand':'FedEx','name':'FedEx','shop':'copyshop','building':'yes'},
+                    nodes=[SimpleNamespace(location=osmium.osm.Location(*c)) for c in outline])
+handler=ns['Handler']()
+handler.way(way)
+f=ns['features'][0]
+assert f['properties']['osm']=='way/756435518'
+assert f['geometry']['coordinates']==[-74.711886,40.605108]
+assert f['properties']['location_type']=='staffed'
+way.id=2;way.nodes=[SimpleNamespace(location=osmium.osm.Location())]
+handler.way(way)
+assert len(ns['features'])==1  # Missing geometry is skipped.
+way.id=3;way.tags={'name':'FedEx','disused':'yes'}
+way.nodes=[SimpleNamespace(location=osmium.osm.Location(*c)) for c in outline]
+handler.way(way)
+assert len(ns['features'])==1  # Closed sites remain excluded.
+print('OSM area centroids, fallbacks and Branchburg FedEx placement checks passed')
+
