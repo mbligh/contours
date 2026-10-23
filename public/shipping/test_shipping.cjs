@@ -1,6 +1,13 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 async function main(){
+const path=require('node:path');
+const demo=path.resolve(__dirname,'../maplibre-demo/index.html');
+const html=fs.readFileSync(demo,'utf8');
+const moduleImport=html.match(/import\s*\{\s*initShipping\s*\}\s*from\s*['"]([^'"]+)['"]/);
+assert.ok(moduleImport,'Demo imports the shipping module');
+assert.equal(path.resolve(path.dirname(demo),moduleImport[1]),path.join(__dirname,'shipping.js'),
+  'Raw-checkout demo import must resolve to the real public shipping module');
 const source=fs.readFileSync(__dirname+'/shipping.js','utf8');
 const {mergeShipping,initShipping}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 const elements={};

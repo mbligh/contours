@@ -4,7 +4,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/shipping.yml'
-      - 'shipping/**'
+      - 'public/shipping/**'
       - 'scripts/dataset_releases'
   workflow_dispatch:
   schedule:
@@ -29,39 +29,39 @@ jobs:
       - run: pip install osmium beautifulsoup4
       - name: Check shipping importers and browser module
         run: |
-          python shipping/test_fedex
-          python shipping/test_shipping_geometry
-          python shipping/test_mailinglocations
-          python shipping/test_usps
-          python shipping/test_shipping_extra
-          node shipping/test_shipping.cjs
-          python shipping/validate_data
+          python public/shipping/test_fedex
+          python public/shipping/test_shipping_geometry
+          python public/shipping/test_mailinglocations
+          python public/shipping/test_usps
+          python public/shipping/test_shipping_extra
+          node public/shipping/test_shipping.cjs
+          python public/shipping/validate_data
       - name: Download New Jersey OSM extract
         run: curl -fL --retry 3 https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf -o /tmp/new-jersey.osm.pbf
-      - run: python -u shipping/build_shipping.py
-      - run: python -u shipping/build_usps
-      - run: python -u shipping/build_shipping_extra.py
-      - run: python -u shipping/build_fedex
+      - run: python -u public/shipping/build_shipping.py
+      - run: python -u public/shipping/build_usps
+      - run: python -u public/shipping/build_shipping_extra.py
+      - run: python -u public/shipping/build_fedex
       - uses: actions/cache/restore@v4
         with:
           path: /tmp/mailinglocations-cache
           key: shipping-mailinglocations-v1-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: shipping-mailinglocations-v1-
-      - run: python -u shipping/build_mailinglocations
+      - run: python -u public/shipping/build_mailinglocations
       - uses: actions/cache/save@v4
         if: always()
         with:
           path: /tmp/mailinglocations-cache
           key: shipping-mailinglocations-v1-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Validate rebuilt shipping data
-        run: python shipping/validate_data
+        run: python public/shipping/validate_data
       - name: Commit shipping datasets
         env:
           BRANCH: ${{ github.ref_name }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add shipping/*.geojson
+          git add public/shipping/*.geojson
           if ! git diff --cached --quiet; then
             git commit -m "Refresh NJ shipping locations"
             for attempt in 1 2 3 4 5; do
@@ -78,4 +78,4 @@ jobs:
       - name: Publish versioned shipping release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python scripts/dataset_releases create shipping .
+        run: python scripts/dataset_releases create shipping public

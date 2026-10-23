@@ -51,8 +51,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check configured map layers
-        run: node scripts/test_geosources.cjs
+      - name: Check map browser modules
+        run: |
+          node scripts/test_geosources.cjs
+          node public/shipping/test_shipping.cjs
       - name: Check assembly, checksum validation, and retention
         run: |
           python scripts/test_dataset_releases

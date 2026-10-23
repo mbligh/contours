@@ -31,7 +31,7 @@ This is an initial, unverified build pipeline. Adjacent processing patches overl
 
 ## Shipping datasets
 
-Shipping scripts, data, regression checks, and the browser module are in [shipping/](shipping/README.md). A separate **Refresh NJ shipping locations** workflow refreshes all sources and produces a versioned Release. **Publish mapping pages** serves the combined site, including shipping at https://mbligh.github.io/mapping/shipping/.
+Shipping scripts, data, regression checks, and the browser module are in [public/shipping/](public/shipping/README.md). A separate **Refresh NJ shipping locations** workflow refreshes all sources and produces a versioned Release. **Publish mapping pages** serves the combined site, including shipping at https://mbligh.github.io/mapping/shipping/.
 
 ## Pages publishing and retention
 
