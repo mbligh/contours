@@ -2,14 +2,14 @@
 """Extract store locations from the Overture Maps Places dataset as GeoJSON.
 
 Examples:
-    python overture_stores.py --name Costco
-    python overture_stores.py --name "Home Depot" --state NY
-    python overture_stores.py --name Costco --name "Home Depot" -o stores.geojson
-    python overture_stores.py --category supermarket
-    python overture_stores.py --name Costco --category supermarket
-    python overture_stores.py --list-categories market     # find category names
-    python overture_stores.py --list-categories --list-level top   # top-level groups
-    python overture_stores.py --name Costco --release 2026-09-23.0
+    scripts/overture --name Costco
+    scripts/overture --name "Home Depot" --state NY
+    scripts/overture --name Costco --name "Home Depot" -o stores.geojson
+    scripts/overture --category supermarket
+    scripts/overture --name Costco --category supermarket
+    scripts/overture --list-categories market     # find category names
+    scripts/overture --list-categories --list-level top   # top-level groups
+    scripts/overture --name Costco --release 2026-09-23.0
 
 Requires:  pip install duckdb
 
@@ -160,7 +160,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     p.add_argument("--state", default="NJ", help="two-letter state code (default NJ)")
     p.add_argument("--name", action="append", default=[],
-                   help="store name to match; repeat for several (substring, case-insensitive)")
+                   help="store name to match; repeat to query each name separately and combine results "
+                        "(substring, case-insensitive)")
     p.add_argument("--exact", action="store_true",
                    help="require an exact name match instead of a substring match")
     p.add_argument("--category", action="append", default=[],
@@ -234,24 +235,32 @@ def main():
         return
 
     # --- extraction ----------------------------------------------------------------
-    where, params = where_clauses(columns, state, args.name, args.exact,
-                                  args.category, args.min_confidence)
-    sql = (f"SELECT {', '.join(select_list(columns))}\n"
-           f"FROM read_parquet('{path}', hive_partitioning=1)\n"
-           f"WHERE {chr(10).join('  AND ' + w if i else w for i, w in enumerate(where))}\n"
-           "ORDER BY region, city, name")
-    cur = con.execute(sql, params)
-    cols = [d[0] for d in cur.description]
     features = []
-    for row in cur.fetchall():
-        rec = dict(zip(cols, row))
-        lon, lat = rec.pop("lon"), rec.pop("lat")
-        rec = {k: v for k, v in rec.items() if v is not None}
-        features.append({
-            "type": "Feature",
-            "geometry": {"type": "Point", "coordinates": [lon, lat]},
-            "properties": rec,
-        })
+    # Reuse one connection/schema lookup, but execute a separate query per name.
+    # Category-only extraction still runs once with no name restriction.
+    for name in args.name or [None]:
+        names = [name] if name is not None else []
+        where, params = where_clauses(columns, state, names, args.exact,
+                                      args.category, args.min_confidence)
+        sql = (f"SELECT {', '.join(select_list(columns))}\n"
+               f"FROM read_parquet('{path}', hive_partitioning=1)\n"
+               f"WHERE {chr(10).join('  AND ' + w if i else w for i, w in enumerate(where))}\n"
+               "ORDER BY region, city, name")
+        cur = con.execute(sql, params)
+        cols = [d[0] for d in cur.description]
+        count = 0
+        for row in cur.fetchall():
+            rec = dict(zip(cols, row))
+            lon, lat = rec.pop("lon"), rec.pop("lat")
+            rec = {k: v for k, v in rec.items() if v is not None}
+            features.append({
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": rec,
+            })
+            count += 1
+        if name is not None:
+            print(f"{name}: {count} places", file=sys.stderr)
 
     collection = {
         "type": "FeatureCollection",
@@ -273,3 +282,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

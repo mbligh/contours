@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+"""Exercise CLI extraction offline; substitute only the remote DuckDB connection."""
+import contextlib
+import io
+import json
+from pathlib import Path
+import runpy
+import sys
+import tempfile
+import types
+import unittest
+from unittest.mock import patch
+
+SCRIPT = Path(__file__).with_name('overture')
+
+
+class Connection:
+    def __init__(self):
+        self.queries = []
+        self.rows = []
+        self.description = []
+
+    def execute(self, sql, params=None):
+        if sql.startswith('DESCRIBE'):
+            self.rows = [(name,) for name in ('id', 'names', 'bbox', 'addresses', 'brand', 'basic_category', 'confidence', 'operating_status')]
+        elif params is not None:
+            assert '\\n' not in sql, 'SQL must use real newlines'
+            self.queries.append((sql, params))
+            if 'GROUP BY' in sql:
+                self.rows = [('supermarket', 2)]
+                return self
+            self.description = [(name,) for name in ('id', 'name', 'lon', 'lat', 'street')]
+            def row(name):
+                return (name.lower(), name, -74.7, 40.7, '123 Main St')
+            if '%Costco%' in params or 'costco' in params:
+                self.rows = [row('Costco')]
+            elif '%Home Depot%' in params:
+                self.rows = [row('Home Depot')]
+            elif '%Missing%' in params:
+                self.rows = []
+            else:
+                self.rows = [row('Category match')]
+        return self
+
+    def fetchall(self):
+        return self.rows
+
+
+class OvertureTests(unittest.TestCase):
+    def run_cli(self, flags, explicit_output=True):
+        con = Connection()
+        fake = types.SimpleNamespace(connect=lambda: con)
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp) / 'stores.geojson'
+            argv = [str(SCRIPT), '--release', '2026-09-23.0', *flags]
+            if explicit_output:
+                argv += ['-o', str(out)]
+            with patch.dict(sys.modules, {'duckdb': fake}), patch.object(sys, 'argv', argv), \
+                    contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                runpy.run_path(str(SCRIPT), run_name='__main__')
+            return con.queries, json.loads(out.read_text()) if out.exists() else None
+
+    def test_multiple_names_query_independently_and_concatenate(self):
+        queries, result = self.run_cli(['--name', 'Costco', '--name', 'Home Depot', '--category', 'hardware_store', '--min-confidence', '0.8'])
+        self.assertEqual(len(queries), 2)
+        for index, (_, params) in enumerate(queries):
+            own, other = ('%Costco%', '%Home Depot%') if index == 0 else ('%Home Depot%', '%Costco%')
+            self.assertIn(own, params)
+            self.assertNotIn(other, params)
+            self.assertIn('hardware_store', params)
+            self.assertIn(0.8, params)
+            self.assertIn('NJ', params)
+        self.assertEqual([f['properties']['name'] for f in result['features']], ['Costco', 'Home Depot'])
+        self.assertEqual(result['overture_release'], '2026-09-23.0')
+        self.assertEqual(result['features'][0]['geometry']['coordinates'], [-74.7, 40.7])
+        self.assertEqual(result['features'][1]['properties']['street'], '123 Main St')
+
+    def test_empty_query_does_not_discard_other_results(self):
+        queries, result = self.run_cli(['--name', 'Missing', '--name', 'Costco'])
+        self.assertEqual(len(queries), 2)
+        self.assertEqual(len(result['features']), 1)
+
+    def test_concatenation_retains_overlapping_results(self):
+        queries, result = self.run_cli(['--name', 'Costco', '--name', 'Costco'])
+        self.assertEqual(len(queries), 2)
+        self.assertEqual(len(result['features']), 2)
+
+    def test_single_exact_name(self):
+        queries, result = self.run_cli(['--name', 'Costco', '--exact', '--state', 'NY'])
+        self.assertEqual(len(queries), 1)
+        self.assertIn('costco', queries[0][1])
+        self.assertNotIn('%Costco%', queries[0][1])
+        self.assertIn('NY', queries[0][1])
+        self.assertEqual(len(result['features']), 1)
+
+    def test_category_only_still_queries_once(self):
+        queries, result = self.run_cli(['--category', 'supermarket'])
+        self.assertEqual(len(queries), 1)
+        self.assertNotIn('ILIKE', queries[0][0])
+        self.assertEqual(len(result['features']), 1)
+
+    def test_category_listing_still_uses_one_combined_query(self):
+        queries, result = self.run_cli(['--list-categories', '--list-level', 'basic', '--name', 'Costco', '--name', 'Home Depot'])
+        self.assertEqual(len(queries), 1)
+        self.assertIn('%Costco%', queries[0][1])
+        self.assertIn('%Home Depot%', queries[0][1])
+        self.assertIsNone(result)
+
+
+if __name__ == '__main__':
+    unittest.main()

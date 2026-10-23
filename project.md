@@ -66,3 +66,11 @@ Pages runs `node scripts/test_geosources.cjs` to check the committed config, gro
 ## Source research
 
 `research/usps/` contains a read-only, reproducible comparison of NJ USPS collection boxes from ATP and Overture Infrastructure/Places. It records release/input provenance, state-boundary selection, conservative carrier classification, exact ID/reference matches, and proximity candidates. Its scratch downloads and extracts do not modify shipping inputs or public assets; research changes do not trigger dataset refreshes. See `research/usps/README.md` and `comparison.json` for the October 23, 2026 findings.
+
+## Overture Places extraction
+
+`scripts/overture` accepts repeated `--name` arguments. Extraction runs one query per name on a shared DuckDB connection and concatenates the resulting features into one GeoJSON FeatureCollection, in argument order. Each query retains the state, exact-name, category, and confidence filters. Overlapping matches are retained rather than deduplicated. Category-only extraction still runs one query; category discovery retains its combined-name query to avoid double-counting. The output retains release/licensing metadata and the existing combined-name default filename.
+
+Example: `scripts/overture --name Costco --name "Home Depot" -o stores.geojson`.
+
+Run `python scripts/test_overture` for offline CLI regression checks using a simulated remote DuckDB connection; these do not download Overture data.
