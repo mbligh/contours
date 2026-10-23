@@ -1,0 +1,717 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "Overture Maps Foundation (places theme; individual rows carry CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+ "overture_release": "2026-10-21.0",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.14287567138672,
+     40.05832290649414
+    ]
+   },
+   "properties": {
+    "id": "4f51c9ed-1051-4dd3-a9af-f22563f37274",
+    "name": "Trader Joe's",
+    "street": "110 Brick Plaza",
+    "city": "Brick",
+    "region": "NJ",
+    "postcode": "08723",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+17324774781",
+    "website": "https://locations.traderjoes.com/nj/brick/615/",
+    "confidence": 0.9999787322998047,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.55652618408203,
+     40.56357955932617
+    ]
+   },
+   "properties": {
+    "id": "2bb9d2da-4cd0-419e-9830-083c9d4ca2b6",
+    "name": "Trader Joe's",
+    "street": "315 Promenade Blvd",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+17328050268",
+    "website": "https://locations.traderjoes.com/nj/bridgewater/614/",
+    "confidence": 0.9583381414413452,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.03312683105469,
+     39.92897033691406
+    ]
+   },
+   "properties": {
+    "id": "35d6652f-195f-429c-b89b-ac16b55a90bb",
+    "name": "Trader Joe's",
+    "street": "775 Haddonfield Rd",
+    "city": "Cherry Hill",
+    "region": "NJ",
+    "postcode": "08002",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+18564880801",
+    "website": "https://locations.traderjoes.com/nj/cherry-hill/613/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15145874023438,
+     40.8365364074707
+    ]
+   },
+   "properties": {
+    "id": "3e7efc89-b986-4def-a689-97918e117a14",
+    "name": "Trader Joe's",
+    "street": "259 Allwood Road",
+    "city": "Clifton",
+    "region": "NJ",
+    "postcode": "07012",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+19737775020",
+    "website": "https://locations.traderjoes.com/nj/clifton/610/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.50775909423828,
+     40.866939544677734
+    ]
+   },
+   "properties": {
+    "id": "3e2e426c-9b08-40f7-8898-0af84dbaae13",
+    "name": "Trader Joe's",
+    "street": "3056 State Route 10 West",
+    "city": "Denville",
+    "region": "NJ",
+    "postcode": "07834",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+19735373672",
+    "website": "https://locations.traderjoes.com/nj/denville/617/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.99019622802734,
+     40.808597564697266
+    ]
+   },
+   "properties": {
+    "id": "8f73e8f6-fe8e-442e-8066-8d9b20139f75",
+    "name": "Trader Joe's",
+    "street": "715 River Rd",
+    "city": "Edgewater",
+    "region": "NJ",
+    "postcode": "07020-1108",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "12019455932",
+    "website": "https://www.traderjoes.com",
+    "confidence": 0.95,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.97745513916016,
+     40.81948471069336
+    ]
+   },
+   "properties": {
+    "id": "eb39b46d-e0aa-4b76-bb4e-68c9deaac0e1",
+    "name": "Trader Joe's",
+    "street": "715 River Rd",
+    "city": "Edgewater",
+    "region": "NJ",
+    "postcode": "07020",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+12019455932",
+    "website": "https://locations.traderjoes.com/nj/edgewater/606/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.92403411865234,
+     39.88949966430664
+    ]
+   },
+   "properties": {
+    "id": "c96d4848-6169-4a3c-ae85-89e8e3e26533",
+    "name": "Trader Joe's",
+    "street": "300 P Route 73 S",
+    "city": "Evesham Twp",
+    "region": "NJ",
+    "postcode": "08053",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+18569883323",
+    "website": "https://locations.traderjoes.com/nj/marlton/631/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.39143371582031,
+     40.78940200805664
+    ]
+   },
+   "properties": {
+    "id": "b6295f84-cd92-461d-b1d4-396e200e04dc",
+    "name": "Trader Joe's",
+    "street": "176 Columbia Turnpike",
+    "city": "Florham Park",
+    "region": "NJ",
+    "postcode": "07932",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+19733770679",
+    "website": "https://locations.traderjoes.com/nj/florham-park/604/",
+    "confidence": 0.9596138000488281,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29234313964844,
+     40.28181838989258
+    ]
+   },
+   "properties": {
+    "id": "b39a84cd-2f2c-4307-92dc-aff979a22b9f",
+    "name": "Trader Joe's",
+    "street": "4331 Route 9 Unit 3",
+    "city": "Freehold",
+    "region": "NJ",
+    "postcode": "07728",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+17324621539",
+    "website": "https://locations.traderjoes.com/nj/freehold/590/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02986907958984,
+     40.753700256347656
+    ]
+   },
+   "properties": {
+    "id": "806a2044-aef4-43c6-9b13-f4bfa4cc1f06",
+    "name": "Trader Joe's",
+    "street": "1350 Willow Ave.",
+    "city": "Hoboken",
+    "region": "NJ",
+    "postcode": "07030",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+12017144790",
+    "website": "https://locations.traderjoes.com/nj/hoboken/611/",
+    "confidence": 0.9583381414413452,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30760192871094,
+     40.559776306152344
+    ]
+   },
+   "properties": {
+    "id": "2eee37e1-ef72-4b80-9b25-088117188b56",
+    "name": "Trader Joe's",
+    "street": "675 US-1",
+    "city": "Iselin",
+    "region": "NJ",
+    "postcode": "08830",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "website": "https://locations.traderjoes.com/nj/iselin/593/",
+    "confidence": 0.9476643204689026,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.0354232788086,
+     40.71392822265625
+    ]
+   },
+   "properties": {
+    "id": "63d3c2ed-32cb-452c-9d2e-527e6ef26444",
+    "name": "Trader Joe's",
+    "street": "55 Hudson St",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07302",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "website": "https://locations.traderjoes.com/nj/jersey-city/874/",
+    "confidence": 0.8
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.12248229980469,
+     40.40304946899414
+    ]
+   },
+   "properties": {
+    "id": "728103b6-3a4e-4a54-82b0-51f54d971192",
+    "name": "Trader Joe's",
+    "street": "1447 NJ-35",
+    "city": "Middletown Township",
+    "region": "NJ",
+    "postcode": "07748",
+    "basic_category": "shopping",
+    "category": "shopping",
+    "category_hierarchy": [
+     "shopping"
+    ],
+    "phone": "7328083237",
+    "website": "https://locations.traderjoes.com/nj/middletown-township/591/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.29590606689453,
+     40.72284698486328
+    ]
+   },
+   "properties": {
+    "id": "ec74009a-2ed6-4077-8903-a74a3ffd3742",
+    "name": "Trader Joe's",
+    "street": "187 Millburn Ave",
+    "city": "Millburn",
+    "region": "NJ",
+    "postcode": "07041-1845",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+19732180912",
+    "website": "https://locations.traderjoes.com/nj/millburn/609/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.45817565917969,
+     40.46286392211914
+    ]
+   },
+   "properties": {
+    "id": "59eb5c62-199e-4916-a641-1bede768aefa",
+    "name": "Trader Joe's",
+    "street": "869 US-1",
+    "city": "North Brunswick Twp",
+    "region": "NJ",
+    "postcode": "08902",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+17329931403",
+    "website": "https://locations.traderjoes.com/nj/north-brunswick/612/",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.07075500488281,
+     40.94829559326172
+    ]
+   },
+   "properties": {
+    "id": "a5f022ca-979b-4ca1-bb6d-5482cb5606f7",
+    "name": "Trader Joe's",
+    "street": "404 Rt 17 N",
+    "city": "Paramus",
+    "region": "NJ",
+    "postcode": "07652",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+12012659624",
+    "website": "https://locations.traderjoes.com/nj/paramus/605/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.66121673583984,
+     40.31047821044922
+    ]
+   },
+   "properties": {
+    "id": "224b6474-bb49-4964-ba38-5d8cfdd4e44f",
+    "name": "Trader Joe's",
+    "street": "3528 Brunswick Pike",
+    "city": "Princeton",
+    "region": "NJ",
+    "postcode": "08540",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "+16098970581",
+    "website": "https://locations.traderjoes.com/nj/princeton/607/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06102752685547,
+     40.31642150878906
+    ]
+   },
+   "properties": {
+    "id": "73355b7c-0109-44dd-8d4c-7cee9d000669",
+    "name": "Trader Joe's",
+    "street": "1031 Broad St",
+    "city": "Shrewsbury",
+    "region": "NJ",
+    "postcode": "07702",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+17323892535",
+    "website": "https://locations.traderjoes.com/nj/shrewsbury/608/",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.23028564453125,
+     40.95958709716797
+    ]
+   },
+   "properties": {
+    "id": "b7d88452-f522-4566-861f-ec88ccd0fa52",
+    "name": "Trader Joe's",
+    "street": "910 Hamburg Turnpike",
+    "city": "Wayne",
+    "region": "NJ",
+    "postcode": "07470",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+19738724604",
+    "website": "https://locations.traderjoes.com/nj/wayne/603/",
+    "confidence": 0.9583381414413452,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.24246215820312,
+     40.96123504638672
+    ]
+   },
+   "properties": {
+    "id": "39cc892b-f82f-439d-95de-db0d3cbb8e7a",
+    "name": "Trader Joe's",
+    "street": "910 Hamburg Tpke",
+    "city": "Wayne",
+    "region": "NJ",
+    "postcode": "07470",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "(973) 872-4604",
+    "website": "https://locations.traderjoes.com/nj/wayne/603/",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.26795196533203,
+     40.79314422607422
+    ]
+   },
+   "properties": {
+    "id": "bc25ba21-5d1f-45db-997e-9411005e1983",
+    "name": "Trader Joe's",
+    "street": "457 Mt Pleasant Ave",
+    "city": "West Orange",
+    "region": "NJ",
+    "postcode": "07052",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "website": "https://locations.traderjoes.com/nj/west-orange/592/",
+    "confidence": 0.8,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3499984741211,
+     40.65212631225586
+    ]
+   },
+   "properties": {
+    "id": "c286b98f-901e-4362-8331-dfdf1b3d1abc",
+    "name": "Trader Joe's",
+    "street": "155 Elm St",
+    "city": "Westfield",
+    "region": "NJ",
+    "postcode": "07090",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+19083010910",
+    "website": "https://locations.traderjoes.com/nj/westfield/601/",
+    "confidence": 0.9583381414413452,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03598022460938,
+     40.99301528930664
+    ]
+   },
+   "properties": {
+    "id": "cef56a4b-3df3-4363-b6ab-177ef8bd0937",
+    "name": "Trader Joe's",
+    "street": "20 Irvington St",
+    "city": "Westwood",
+    "region": "NJ",
+    "postcode": "07675",
+    "brand": "Trader Joe's",
+    "basic_category": "food_and_beverage_store",
+    "category": "specialty_foods_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "specialty_foods_store"
+    ],
+    "phone": "+12012630134",
+    "website": "https://locations.traderjoes.com/nj/westwood/602/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  }
+ ]
+}

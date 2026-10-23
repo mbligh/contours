@@ -1,7 +1,6 @@
 #!/bin/bash
 scripts/overture --name Costco --exact -o public/geojson/costco
-scripts/overture --name 'Tractor Supply Co.' --exact -o public/geojson/tsc1
-scripts/overture --name 'Tractor Supply' --exact -o public/geojson/tsc2
-cat public/geojson/tsc1 public/geojson/tsc2 > public/geojson/tsc
-rm public/geojson/tsc1 public/geojson/tsc2
+scripts/overture --name 'Tractor Supply' --name 'Tractor Supply Co.' --exact -o public/geojson/tsc2
 scripts/overture --name 'Chipotle'  -o public/geojson/chipotle
+scripts/overture --name 'Home Depot' --name "The Home Depot" --exact -o public/geojson/home_depot
+scripts/overture --name "Trader Joe's" -o public/geojson/tjs
