@@ -6,16 +6,15 @@ from pathlib import Path
 from urllib.parse import quote
 
 
-def generate(root, fallback_root=None):
+def generate(root):
     root = Path(root)
     if not root.is_dir():
         return []
-    fallback_root = Path(fallback_root) if fallback_root else None
     created = []
-    for directory in sorted(p for p in root.rglob('*') if p.is_dir() and not p.is_symlink()):
+    for directory in root + sorted(p for p in root.rglob('*') if p.is_dir() and not p.is_symlink()):
         relative = directory.relative_to(root)
         index = directory / 'index.html'
-        if index.exists() or (fallback_root and (fallback_root / relative / 'index.html').exists()):
+        if index.exists():
             continue
         title = escape('/' + relative.as_posix() + '/')
         rows = ['<li><a href="../">../</a></li>']
@@ -42,7 +41,6 @@ def generate(root, fallback_root=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('root', nargs='?', default='public')
-    parser.add_argument('--fallback-root', default='site', help='Preserve index pages from this overlay too')
     args = parser.parse_args()
-    for index in generate(args.root, args.fallback_root):
+    for index in generate(args.root)
         print(f'Generated {index}')

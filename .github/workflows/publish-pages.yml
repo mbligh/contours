@@ -52,7 +52,7 @@ jobs:
           python scripts/test_dataset_releases
           python scripts/test_public_directory_indexes
       - name: Generate recursive public directory listings
-        run: python scripts/public_directory_indexes public --fallback-root site
+        run: python scripts/public_directory_indexes public
       - name: Assemble latest complete releases and static files
         id: assemble
         env:
