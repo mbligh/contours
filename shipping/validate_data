@@ -19,6 +19,12 @@ for name,minimum in minimums.items():
         assert -75.57<=c[0]<=-73.88 and 38.88<=c[1]<=41.36,(name,c)
         assert p.get('carrier') and p.get('source'),(name,p)
     counts=Counter(f['properties']['carrier'] for f in features)
+    if name=='shipping.geojson':
+        boxes=[f for f in features if f['properties']['carrier']=='USPS' and f['properties'].get('location_type')=='drop_box']
+        assert len(boxes)>=1000,('Missing USPS collection boxes',len(boxes))
+        assert len({f['properties']['ref'] for f in boxes})==len(boxes),'Duplicate USPS box references'
+        assert all(f['properties']['source']=='USPS locator via All The Places' for f in boxes)
+        assert all('collection_times' in f['properties'] for f in boxes)
     if name=='shipping_extra.geojson':assert counts['CVS UPS']>0 and counts['All The Places']>0
     if name=='shipping_fedex.geojson':
         assert all(f['properties']['carrier']=='FedEx' for f in features)

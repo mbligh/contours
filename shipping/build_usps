@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""Add ATP USPS collection boxes to the shared NJ shipping GeoJSON."""
+import argparse
+import json
+import math
+from pathlib import Path
+import urllib.parse
+import urllib.request
+
+OUT = Path(__file__).resolve().parent / 'shipping.geojson'
+URL = 'https://data.alltheplaces.xyz/runs/latest/output/usps_collection_boxes.geojson'
+MINIMUM = 1000
+
+
+def build(features):
+    boxes = {}
+    for feature in features:
+        p, geometry = feature.get('properties') or {}, feature.get('geometry') or {}
+        if str(p.get('addr:state') or '').strip().upper() not in ('NJ', 'NEW JERSEY'):
+            continue
+        coordinates = geometry.get('coordinates') or []
+        ref = str(p.get('ref') or '').strip()
+        if not ref or p.get('amenity') != 'post_box':
+            raise ValueError('NJ USPS record lacks a box reference or post_box classification')
+        if (geometry.get('type') != 'Point' or len(coordinates) != 2
+                or not all(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) for v in coordinates)
+                or not (-75.57 <= coordinates[0] <= -73.88 and 38.88 <= coordinates[1] <= 41.36)):
+            raise ValueError(f'Invalid NJ USPS box coordinates: {ref}: {geometry}')
+        street = p.get('addr:street_address') or ' '.join(filter(None, [p.get('addr:housenumber'), p.get('addr:street')]))
+        address = ' '.join(str(v) for v in [street, p.get('addr:city'), 'NJ', p.get('addr:postcode')] if v)
+        box = {'type': 'Feature', 'id': 'usps:' + ref, 'geometry': geometry, 'properties': {
+            'carrier': 'USPS', 'name': p.get('name') or 'USPS Collection Box',
+            'service_type': 'USPS Collection Box', 'location_type': 'drop_box',
+            'address': address, 'ref': ref, 'collection_times': p.get('collection_times') or '',
+            'indoor': p.get('indoor') or '', 'note': p.get('note') or '',
+            'hours': '', 'osm': '', 'source': 'USPS locator via All The Places',
+            'source_url': p.get('@source_uri') or URL, 'atp_id': feature.get('id') or '',
+            'website': 'https://tools.usps.com/locations/home.htm?' + urllib.parse.urlencode({
+                'address': address, 'locationType': 'collectionbox',
+            }),
+        }}
+        if ref in boxes and boxes[ref] != box:
+            raise ValueError(f'Conflicting duplicate USPS box reference: {ref}')
+        boxes[ref] = box
+    return [boxes[ref] for ref in sorted(boxes)]
+
+
+def combine(existing, boxes):
+    if existing.get('type') != 'FeatureCollection' or not isinstance(existing.get('features'), list):
+        raise ValueError('Invalid base shipping FeatureCollection')
+    retained = [f for f in existing['features'] if not (
+        f.get('properties', {}).get('carrier') == 'USPS'
+        and f.get('properties', {}).get('location_type') == 'drop_box')]
+    return {**existing, 'features': retained + boxes}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('input', nargs='?', type=Path, help='Previously downloaded ATP GeoJSON')
+    parser.add_argument('--output', type=Path, default=OUT, help='Existing shared shipping file to update')
+    args = parser.parse_args()
+    if args.input:
+        data = json.loads(args.input.read_text())
+    else:
+        request = urllib.request.Request(URL, headers={'User-Agent': 'NJ shipping map; github.com/mbligh/mapping'})
+        with urllib.request.urlopen(request, timeout=180) as response:
+            data = json.load(response)
+    if data.get('type') != 'FeatureCollection' or not isinstance(data.get('features'), list):
+        raise ValueError('Invalid ATP FeatureCollection')
+    boxes = build(data['features'])
+    if len(boxes) < MINIMUM:
+        raise ValueError(f'Only {len(boxes)} NJ USPS boxes; refusing incomplete data')
+    combined = combine(json.loads(args.output.read_text()), boxes)
+    temp = args.output.with_suffix('.geojson.tmp')
+    temp.write_text(json.dumps(combined, separators=(',', ':')))
+    temp.replace(args.output)
+    print(f'Added {len(boxes)} NJ USPS collection boxes ({sum(bool(f["properties"]["collection_times"]) for f in boxes)} with collection times); {len(combined["features"])} total shipping points', flush=True)
+
+
+if __name__ == '__main__':
+    main()

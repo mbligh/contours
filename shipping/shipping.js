@@ -64,12 +64,13 @@ export function initShipping(map,maplibregl,{dataBaseUrl}={}){
   const baseUrl=dataBaseUrl||new URL('./',import.meta.url).href;
   const dataUrl=file=>new URL(file,baseUrl).href;
   const empty={type:'FeatureCollection',features:[]};
-  // Weekly shipping data from OSM, USGS, CVS and FedEx via ATP.
+  // Weekly shipping data, including USPS collection boxes in the shared file.
   const shippingCheck=document.getElementById('shipping');
   const shippingStatus=document.getElementById('shipping-status');
   const fedexBoxesCheck=document.getElementById('fedex-boxes');
   const upsBoxesCheck=document.getElementById('ups-boxes');
-  const shippingEnabled=()=>shippingCheck.checked||fedexBoxesCheck.checked||upsBoxesCheck.checked;
+  const uspsBoxesCheck=document.getElementById('usps-boxes');
+  const shippingEnabled=()=>shippingCheck.checked||fedexBoxesCheck.checked||upsBoxesCheck.checked||uspsBoxesCheck.checked;
   let shippingRequest=0;
   function installShipping(){
     if(!map.getSource('shipping'))map.addSource('shipping',{type:'geojson',data:empty});
@@ -89,6 +90,12 @@ export function initShipping(map,maplibregl,{dataBaseUrl}={}){
       filter:['all',['==',['get','carrier'],'UPS'],['==',['get','location_type'],'drop_box']],
       paint:{'circle-radius':4,'circle-color':'#79512d','circle-stroke-color':'#fff','circle-stroke-width':1}
     });
+    if(!map.getLayer('usps-collection-boxes'))map.addLayer({
+      id:'usps-collection-boxes',type:'circle',source:'shipping',
+      filter:['all',['==',['get','carrier'],'USPS'],['==',['get','location_type'],'drop_box']],
+      paint:{'circle-radius':4,'circle-color':'#1675bf','circle-stroke-color':'#fff','circle-stroke-width':1}
+    });
+    map.setLayoutProperty('usps-collection-boxes','visibility',uspsBoxesCheck.checked?'visible':'none');
     map.setLayoutProperty('ups-drop-boxes','visibility',upsBoxesCheck.checked?'visible':'none');
     map.setLayoutProperty('shipping-points','visibility',shippingCheck.checked?'visible':'none');
     map.setLayoutProperty('fedex-drop-boxes','visibility',fedexBoxesCheck.checked?'visible':'none');
@@ -119,11 +126,12 @@ export function initShipping(map,maplibregl,{dataBaseUrl}={}){
       const result=mergeShipping(data.features,additions);
       map.getSource('shipping').setData({type:'FeatureCollection',features:result.features});
       const countBoxes=carrier=>result.features.filter(f=>f.properties.carrier===carrier&&f.properties.location_type==='drop_box').length;
-      const boxes=countBoxes('FedEx'),upsBoxes=countBoxes('UPS');
+      const boxes=countBoxes('FedEx'),upsBoxes=countBoxes('UPS'),uspsBoxes=countBoxes('USPS');
       shippingStatus.textContent=[
-        shippingCheck.checked?(result.features.length-boxes-upsBoxes)+' shipping locations':null,
+        shippingCheck.checked?(result.features.length-boxes-upsBoxes-uspsBoxes)+' shipping locations':null,
         fedexBoxesCheck.checked?boxes+' FedEx drop boxes':null,
         upsBoxesCheck.checked?upsBoxes+' UPS drop boxes':null,
+        uspsBoxesCheck.checked?uspsBoxes+' USPS collection boxes':null,
         result.merged+' duplicates merged',
         warnings.length?'Some data unavailable: '+warnings.join('; '):null
       ].filter(Boolean).join(' · ');
@@ -137,10 +145,11 @@ export function initShipping(map,maplibregl,{dataBaseUrl}={}){
   shippingCheck.addEventListener('change',shippingChanged);
   fedexBoxesCheck.addEventListener('change',shippingChanged);
   upsBoxesCheck.addEventListener('change',shippingChanged);
+  uspsBoxesCheck.addEventListener('change',shippingChanged);
   function shippingPopup(e){
     if(!e.features?.length)return;
     const p=e.features[0].properties,container=document.createElement('div');
-    for(const [label,key] of [['Carrier','carrier'],['Name','name'],['Type','service_type'],['Retailer','host'],['Address','address'],['Hours','hours'],['Phone','phone'],['Verification','verification'],['Position','coordinate_source']]){
+    for(const [label,key] of [['Carrier','carrier'],['Name','name'],['Type','service_type'],['Retailer','host'],['Address','address'],['Hours','hours'],['Collection times','collection_times'],['Indoor / lobby','indoor'],['Notes','note'],['Phone','phone'],['Verification','verification'],['Position','coordinate_source']]){
       if(!p[key])continue;
       const line=document.createElement('div'),strong=document.createElement('strong');
       strong.textContent=label+': ';line.append(strong,document.createTextNode(String(p[key])));container.append(line);
@@ -151,11 +160,11 @@ export function initShipping(map,maplibregl,{dataBaseUrl}={}){
       const line=document.createElement('div'),link=document.createElement('a');
       link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=label;line.append(link);container.append(line);
     }
-    addLink(p.website,p.carrier==='FedEx'?'View FedEx location':p.source?.includes('MailingLocations')?'View directory listing':'View store details');
+    addLink(p.website,p.carrier==='USPS'?'View USPS locator':p.carrier==='FedEx'?'View FedEx location':p.source?.includes('MailingLocations')?'View directory listing':'View store details');
     for(const osm of (p.osm||'').split(';').filter(Boolean))addLink('https://www.openstreetmap.org/'+osm,'View OSM details');
     new maplibregl.Popup().setLngLat(e.lngLat).setDOMContent(container).addTo(map);
   }
-  for(const layer of ['shipping-points','fedex-drop-boxes','ups-drop-boxes']){
+  for(const layer of ['shipping-points','fedex-drop-boxes','ups-drop-boxes','usps-collection-boxes']){
     map.on('click',layer,shippingPopup);
     map.on('mouseenter',layer,()=>{map.getCanvas().style.cursor='pointer';});
     map.on('mouseleave',layer,()=>{map.getCanvas().style.cursor='';});
@@ -169,4 +178,3 @@ export function initShipping(map,maplibregl,{dataBaseUrl}={}){
   if(map.isStyleLoaded())restoreShipping();
   return {install:installShipping,load:loadShipping};
 }
-

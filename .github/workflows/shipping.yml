@@ -32,11 +32,13 @@ jobs:
           python shipping/test_fedex
           python shipping/test_shipping_geometry
           python shipping/test_mailinglocations
+          python shipping/test_usps
           node shipping/test_shipping.cjs
           python shipping/validate_data
       - name: Download New Jersey OSM extract
         run: curl -fL --retry 3 https://download.geofabrik.de/north-america/us/new-jersey-latest.osm.pbf -o /tmp/new-jersey.osm.pbf
       - run: python -u shipping/build_shipping.py
+      - run: python -u shipping/build_usps
       - run: python -u shipping/build_shipping_extra.py
       - run: python -u shipping/build_fedex
       - uses: actions/cache/restore@v4

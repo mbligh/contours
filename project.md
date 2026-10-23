@@ -5,7 +5,7 @@
 - Maintain New Jersey mapping datasets and their reproducible build pipelines.
 - Keep contour extraction, contour tile generation, and shipping refreshes in separate GitHub Actions workflows.
 - Keep shipping code, regression checks, browser module, and generated GeoJSON together in `shipping/`.
-- Refresh shipping from OSM, USGS National Map, All The Places, CVS verification pages, and MailingLocations. Preserve provenance and conservative deduplication.
+- Refresh shipping from OSM, USGS National Map, All The Places, CVS verification pages, and MailingLocations. Include ATP's dedicated NJ USPS collection-box output directly in `shipping.geojson`, preserving collection times, indoor/lobby indicators, notes, and source box IDs. Preserve provenance and conservative deduplication.
 - Publish shipping assets at `https://mbligh.github.io/mapping/shipping/` without removing existing contour tiles.
 - Commit generated shipping data after successful validation.
 
@@ -14,6 +14,8 @@
 Contour scripts remain in `scripts/`. Extraction publishes compressed contour geometry, its checksum, and extraction parameters as a versioned `contour-vectors` Release; the contour workflow turns that geometry into `contours.pmtiles`. Vector releases have no automatic expiry.
 
 Shipping importers write their four GeoJSON files beside the scripts, independent of the caller's working directory. `shipping/shipping.js` owns browser loading, merging, controls, styling, and popups; the map in `public/maplibre-demo/` imports this module via `../shipping/shipping.js`.
+
+After the OSM/USGS base build, `shipping/build_usps` appends USPS collection boxes from ATP. It filters NJ, checks geometry and unique source references, and refuses incomplete inputs before atomically replacing the shared file. The MapLibre demo has an independent **USPS collection boxes** checkbox with smaller blue points; the existing shipping checkbox continues to show staffed locations and post offices. Popups distinguish collection times from opening hours and show indoor/lobby indicators and notes. USPS boxes use the existing shared shipping source and remain separate from colocated post offices and other carriers. No Overture source is used.
 
 Dataset builds never deploy Pages. Shipping validates and commits refreshed data, then publishes a versioned release containing `dataset.tar.gz` and `manifest.json`. Contours independently builds PMTiles from the retained vector Release and publishes the same release format. The manifest records the exact source commit, workflow run, file checksums, and archive checksum. Releases remain drafts until all assets are uploaded. Tags follow `dataset-<shipping|contours|contour-vectors>-<run-id>-<attempt>`; these generated tags are reserved for this pipeline.
 

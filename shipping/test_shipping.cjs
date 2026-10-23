@@ -13,14 +13,18 @@ const map={
   isStyleLoaded:()=>true,
   on(type,layer,callback){if(typeof layer==='function')events[type]=layer;else events[type+':'+layer]=callback;},
 };
-const document={getElementById(id){return elements[id]??={checked:false,addEventListener(type,fn){this[type]=fn;}};}};
+const node=()=>({children:[],textContent:'',append(...items){this.children.push(...items);}});
+const document={getElementById(id){return elements[id]??={checked:false,addEventListener(type,fn){this[type]=fn;}};},createElement:node,createTextNode:text=>({textContent:text})};
+let popupContent;
+const maplibregl={Popup:class{setLngLat(){return this;}setDOMContent(content){popupContent=content;return this;}addTo(){return this;}}};
 const feature=(carrier,name,address,coords=[-74.7,40.7],props={})=>({type:'Feature',geometry:{type:'Point',coordinates:coords},properties:{carrier,name,address,...props}});
 const fedex=feature('FedEx','FedEx OnSite at Walgreens','12 Main Avenue Union NJ 07083',undefined,{host:'Walgreens',service_type:'FedEx OnSite',location_type:'staffed',source:'FedEx locator via All The Places',website:'https://local.fedex.com/example'});
 const box=feature('FedEx','FedEx Drop Box','12 Main Avenue Union NJ 07083',undefined,{location_type:'drop_box',source:'FedEx locator via All The Places'});
 const osm=feature('FedEx','Walgreens','12 Main Ave',undefined,{osm:'node/1',hours:'Mo-Fr 09:00-17:00',location_type:'staffed'});
+const uspsBox=feature('USPS','USPS Collection Box','12 Main Ave',undefined,{location_type:'drop_box',collection_times:'Mo-Fr 17:00; Sa 12:00',indoor:'yes',note:'Holiday pickup may be earlier.',source:'USPS locator via All The Places',website:'https://tools.usps.com/locations/home.htm?address=12+Main+Ave'});
 global.document=document;
-global.fetch=async url=>({ok:true,json:async()=>({type:'FeatureCollection',features:url.includes('shipping_fedex')?[fedex,box]:url.endsWith('/shipping.geojson')?[osm]:[]})});
-const controller=initShipping(map,{}, {dataBaseUrl:'https://example.test/shipping/'});
+global.fetch=async url=>({ok:true,json:async()=>({type:'FeatureCollection',features:url.includes('shipping_fedex')?[fedex,box]:url.endsWith('/shipping.geojson')?[osm,uspsBox]:[]})});
+const controller=initShipping(map,maplibregl, {dataBaseUrl:'https://example.test/shipping/'});
 const context={mergeShipping,installShipping:controller.install,loadShipping:controller.load};
 Object.defineProperty(context,'fetch',{get:()=>global.fetch,set:value=>{global.fetch=value;}});
 let result=context.mergeShipping([osm],[fedex,box]);
@@ -73,7 +77,7 @@ async function check(){
   assert.equal(layers['shipping-points'].layout.visibility,'none');
   assert.equal(layers['fedex-drop-boxes'].layout.visibility,'visible','Boxes work independently');
   assert.match(elements['shipping-status'].textContent,/1 FedEx drop boxes/);
-  assert.equal(sources.shipping.data.features.length,2);
+  assert.equal(sources.shipping.data.features.length,3);
   elements.shipping.checked=true;elements['fedex-boxes'].checked=false;
   context.installShipping();await context.loadShipping();
   assert.equal(layers['shipping-points'].layout.visibility,'visible');
@@ -93,9 +97,37 @@ async function check(){
   assert.equal(layers['fedex-drop-boxes'].layout.visibility,'none');
   assert.equal(layers['ups-drop-boxes'].layout.visibility,'visible');
   assert.match(elements['shipping-status'].textContent,/1 UPS drop boxes/);
-  console.log('Shipping merge, metadata, independent UPS/FedEx toggles and style reload checks passed');
+  elements['ups-boxes'].checked=false;elements['usps-boxes'].checked=true;
+  await elements['usps-boxes'].change();
+  // The change handler launches loading asynchronously; wait for its result.
+  await context.loadShipping();
+  assert.equal(layers['usps-collection-boxes'].layout.visibility,'visible','USPS works independently');
+  assert.equal(layers['shipping-points'].layout.visibility,'none');
+  assert.equal(layers['ups-drop-boxes'].layout.visibility,'none');
+  assert.equal(layers['fedex-drop-boxes'].layout.visibility,'none');
+  assert.match(elements['shipping-status'].textContent,/1 USPS collection boxes/);
+  elements.shipping.checked=true;
+  await context.loadShipping();
+  assert.match(elements['shipping-status'].textContent,/1 shipping locations/,'General count excludes USPS boxes');
+  for(const key of Object.keys(layers))delete layers[key];
+  for(const key of Object.keys(sources))delete sources[key];
+  await events['style.load']();
+  assert.equal(layers['usps-collection-boxes'].layout.visibility,'visible','USPS survives basemap changes');
+  const office=feature('Post office','Post Office',uspsBox.properties.address,uspsBox.geometry.coordinates);
+  assert.equal(context.mergeShipping([office,uspsBox],[fedex,box]).features.length,4,'USPS box stays distinct from colocated offices and other carriers');
+  events['click:usps-collection-boxes']({features:[uspsBox],lngLat:[-74.7,40.7]});
+  const text=n=>n.textContent+(n.children||[]).map(text).join('');
+  assert.match(text(popupContent),/Collection times: Mo-Fr 17:00; Sa 12:00/);
+  assert.match(text(popupContent),/Indoor \/ lobby: yes/);
+  assert.match(text(popupContent),/Holiday pickup may be earlier/);
+  assert.match(text(popupContent),/View USPS locator/);
+  assert.doesNotMatch(text(popupContent),/Hours:/,'Pickup times must not be presented as opening hours');
+  elements.shipping.checked=false;elements['usps-boxes'].checked=false;
+  await elements['usps-boxes'].change();
+  assert.equal(layers['usps-collection-boxes'].layout.visibility,'none');
+  assert.equal(sources.shipping.data.features.length,0,'Disabling the final checkbox clears data');
+  console.log('Shipping merge, metadata, independent UPS/FedEx/USPS toggles, popups and style reload checks passed');
 }
 await check();
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
-

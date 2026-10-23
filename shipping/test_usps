@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+"""Regression checks for collection-box identity, metadata, and safe refreshes."""
+import copy
+import json
+from pathlib import Path
+import runpy
+import subprocess
+import sys
+import tempfile
+import unittest
+
+SCRIPT = Path(__file__).with_name('build_usps')
+MODULE = runpy.run_path(str(SCRIPT))
+
+
+class CollectionBoxes(unittest.TestCase):
+    def setUp(self):
+        self.box = {'type': 'Feature', 'id': 'atp-id',
+                    'geometry': {'type': 'Point', 'coordinates': [-74.7, 40.7]},
+                    'properties': {'ref': '0887600001', 'amenity': 'post_box', 'addr:state': 'NJ',
+                                   'addr:street_address': '161 Meister Ave', 'addr:city': 'Branchburg',
+                                   'addr:postcode': '08876', 'collection_times': 'Mo-Fr 17:00; Sa 12:00',
+                                   'indoor': 'yes', 'note': 'Holiday collection may be earlier.'}}
+
+    def test_metadata_and_identity(self):
+        boxes = MODULE['build']([self.box, self.box])
+        self.assertEqual(len(boxes), 1)
+        p = boxes[0]['properties']
+        self.assertEqual(boxes[0]['id'], 'usps:0887600001')
+        self.assertEqual(p['collection_times'], self.box['properties']['collection_times'])
+        self.assertEqual(p['hours'], '')
+        self.assertEqual(p['indoor'], 'yes')
+        self.assertEqual(p['note'], self.box['properties']['note'])
+        self.assertEqual(p['carrier'], 'USPS')
+        self.assertIn('Branchburg NJ 08876', p['address'])
+        self.assertIn('locationType=collectionbox', p['website'])
+
+    def test_filter_and_conflicts(self):
+        other = copy.deepcopy(self.box)
+        other['properties']['addr:state'] = 'PA'
+        self.assertEqual(MODULE['build']([other]), [])
+        other = copy.deepcopy(self.box)
+        other['geometry']['coordinates'][0] = -74.8
+        with self.assertRaises(ValueError):
+            MODULE['build']([self.box, other])
+        for coordinates in [[float('nan'), 40.7], [-80, 40.7], [True, 40.7]]:
+            other = copy.deepcopy(self.box)
+            other['geometry']['coordinates'] = coordinates
+            with self.assertRaises(ValueError):
+                MODULE['build']([other])
+
+    def test_refresh_preserves_other_features(self):
+        kept = [{'type': 'Feature', 'properties': {'carrier': carrier, 'location_type': kind}}
+                for carrier, kind in [('Post office', 'staffed'), ('FedEx', 'drop_box'), ('UPS', 'drop_box')]]
+        base = {'type': 'FeatureCollection', 'features': kept}
+        boxes = MODULE['build']([self.box])
+        refreshed = MODULE['combine'](base, boxes)
+        self.assertEqual(refreshed['features'][:3], kept)
+        self.assertEqual(MODULE['combine'](refreshed, boxes), refreshed)
+        self.assertEqual(base['features'], kept)
+
+    def test_incomplete_download_does_not_overwrite_base(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base, source = Path(directory)/'shipping.geojson', Path(directory)/'source.json'
+            original = '{"type":"FeatureCollection","features":[]}'
+            base.write_text(original)
+            source.write_text(json.dumps({'type': 'FeatureCollection', 'features': [self.box]}))
+            result = subprocess.run([sys.executable, str(SCRIPT), str(source), '--output', str(base)], capture_output=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(base.read_text(), original)
+
+
+if __name__ == '__main__':
+    unittest.main()
