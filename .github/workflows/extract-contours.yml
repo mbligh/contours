@@ -1,0 +1,45 @@
+name: Extract NJ contour vectors
+on:
+  workflow_dispatch:
+    inputs:
+      bbox:
+        description: 'EPSG:6527 bbox west south east north (feet)'
+        required: false
+        default: '390000 650000 450000 710000'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_contours.py'
+      - '.github/workflows/extract-contours.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install GDAL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gdal-bin
+      - name: Extract 10-foot contours
+        env:
+          BBOX: ${{ inputs.bbox || '390000 650000 450000 710000' }}
+        run: |
+          read -r WEST SOUTH EAST NORTH <<< "$BBOX"
+          python3 scripts/build_contours.py --bbox "$WEST" "$SOUTH" "$EAST" "$NORTH"
+          test -s build/contours.geojsonseq
+          gzip -9 -n build/contours.geojsonseq
+          sha256sum build/contours.geojsonseq.gz > build/contours.geojsonseq.gz.sha256
+          ls -lh build/contours.geojsonseq.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: contour-vectors
+          path: |
+            build/contours.geojsonseq.gz
+            build/contours.geojsonseq.gz.sha256
+          retention-days: 90
+          if-no-files-found: error
