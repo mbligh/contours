@@ -1,0 +1,275 @@
+#!/usr/bin/env python3
+"""Extract store locations from the Overture Maps Places dataset as GeoJSON.
+
+Examples:
+    python overture_stores.py --name Costco
+    python overture_stores.py --name "Home Depot" --state NY
+    python overture_stores.py --name Costco --name "Home Depot" -o stores.geojson
+    python overture_stores.py --category supermarket
+    python overture_stores.py --name Costco --category supermarket
+    python overture_stores.py --list-categories market     # find category names
+    python overture_stores.py --list-categories --list-level top   # top-level groups
+    python overture_stores.py --name Costco --release 2026-09-23.0
+
+Requires:  pip install duckdb
+
+How it works: DuckDB reads the public GeoParquet files straight from S3 and
+only fetches the blocks it needs. A rough bounding box for the state lets it
+skip most of the dataset; the address region is then used for the exact match.
+
+Data licensing: Overture Places rows carry their own licences (CC0, Apache-2.0,
+CDLA-Permissive-2.0). Credit "Overture Maps Foundation" when you use the output.
+"""
+
+import argparse
+import json
+import re
+import sys
+import urllib.request
+
+import duckdb
+
+STAC_CATALOG = "https://stac.overturemaps.org/catalog.json"
+S3_PATH = "s3://overturemaps-us-west-2/release/{release}/theme=places/type=place/*"
+
+# Rough (west, south, east, north) boxes, padded on purpose. They only narrow the
+# scan; the address region test does the exact state match.
+STATE_BBOX = {
+    "AL": (-88.5, 30.1, -84.9, 35.0), "AK": (-179.2, 51.2, -129.9, 71.5),
+    "AZ": (-114.9, 31.3, -109.0, 37.1), "AR": (-94.7, 33.0, -89.6, 36.5),
+    "CA": (-124.5, 32.5, -114.1, 42.1), "CO": (-109.1, 36.9, -102.0, 41.1),
+    "CT": (-73.8, 40.9, -71.7, 42.1), "DE": (-75.8, 38.4, -75.0, 39.9),
+    "DC": (-77.2, 38.7, -76.9, 39.0), "FL": (-87.7, 24.4, -80.0, 31.1),
+    "GA": (-85.7, 30.3, -80.8, 35.1), "HI": (-160.3, 18.8, -154.7, 22.3),
+    "ID": (-117.3, 41.9, -111.0, 49.1), "IL": (-91.6, 36.9, -87.0, 42.6),
+    "IN": (-88.2, 37.7, -84.7, 41.8), "IA": (-96.7, 40.3, -90.1, 43.6),
+    "KS": (-102.1, 36.9, -94.5, 40.1), "KY": (-89.6, 36.4, -81.9, 39.2),
+    "LA": (-94.1, 28.9, -88.8, 33.1), "ME": (-71.1, 43.0, -66.9, 47.5),
+    "MD": (-79.5, 37.9, -75.0, 39.8), "MA": (-73.6, 41.2, -69.9, 42.9),
+    "MI": (-90.5, 41.6, -82.1, 48.3), "MN": (-97.3, 43.4, -89.4, 49.4),
+    "MS": (-91.7, 30.1, -88.0, 35.1), "MO": (-95.8, 35.9, -89.1, 40.7),
+    "MT": (-116.1, 44.3, -104.0, 49.1), "NE": (-104.1, 39.9, -95.3, 43.1),
+    "NV": (-120.1, 35.0, -114.0, 42.1), "NH": (-72.6, 42.6, -70.6, 45.4),
+    "NJ": (-75.6, 38.9, -73.9, 41.4), "NM": (-109.1, 31.3, -103.0, 37.1),
+    "NY": (-79.8, 40.4, -71.8, 45.1), "NC": (-84.4, 33.8, -75.4, 36.7),
+    "ND": (-104.1, 45.9, -96.5, 49.1), "OH": (-84.9, 38.4, -80.5, 42.0),
+    "OK": (-103.1, 33.6, -94.4, 37.1), "OR": (-124.7, 41.9, -116.4, 46.3),
+    "PA": (-80.6, 39.7, -74.6, 42.3), "RI": (-71.9, 41.1, -71.1, 42.1),
+    "SC": (-83.4, 32.0, -78.5, 35.3), "SD": (-104.1, 42.4, -96.4, 45.95),
+    "TN": (-90.4, 34.9, -81.6, 36.7), "TX": (-106.7, 25.8, -93.5, 36.6),
+    "UT": (-114.1, 36.9, -109.0, 42.1), "VT": (-73.5, 42.7, -71.5, 45.1),
+    "VA": (-83.7, 36.5, -75.2, 39.5), "WA": (-124.9, 45.5, -116.9, 49.1),
+    "WV": (-82.7, 37.1, -77.7, 40.7), "WI": (-92.9, 42.4, -86.7, 47.1),
+    "WY": (-111.1, 40.9, -104.0, 45.1),
+}
+
+
+def latest_release():
+    """Ask Overture's STAC catalog which release is current."""
+    try:
+        with urllib.request.urlopen(STAC_CATALOG, timeout=20) as resp:
+            return json.load(resp)["latest"]
+    except Exception as exc:  # network error, format change, etc.
+        sys.exit(
+            f"Could not look up the latest Overture release ({exc}).\n"
+            "Pass one explicitly with --release (see docs.overturemaps.org)."
+        )
+
+
+def where_clauses(columns, state, names, exact, categories, min_conf):
+    """Build the shared WHERE clause list and its parameters (only uses columns that exist)."""
+    west, south, east, north = STATE_BBOX[state]
+    where = [
+        "bbox.xmin >= ? AND bbox.xmax <= ?",
+        "bbox.ymin >= ? AND bbox.ymax <= ?",
+        "upper(addresses[1].region) IN (?, ?)",
+    ]
+    params = [west, east, south, north, state, f"US-{state}"]
+
+    if names:
+        tests = []
+        for name in names:
+            needle = name.lower() if exact else f"%{name}%"
+            if exact:
+                tests.append("lower(names.primary) = ?")
+            else:
+                tests.append("names.primary ILIKE ?")
+            params.append(needle)
+            if "brand" in columns:
+                tests.append("lower(brand.names.primary) = ?" if exact else "brand.names.primary ILIKE ?")
+                params.append(needle)
+        where.append("(" + " OR ".join(tests) + ")")
+
+    if categories:
+        tests = []
+        for cat in categories:
+            cat = cat.lower().strip().replace(" ", "_")
+            if "taxonomy" in columns:
+                tests.append("taxonomy.primary = ?")
+                tests.append("list_contains(taxonomy.hierarchy, ?)")
+                params += [cat, cat]
+            if "basic_category" in columns:
+                tests.append("basic_category = ?")
+                params.append(cat)
+            if "categories" in columns:  # older releases only
+                tests.append("categories.primary = ?")
+                params.append(cat)
+        if not tests:
+            sys.exit("This release has no category columns.")
+        where.append("(" + " OR ".join(tests) + ")")
+
+    if "operating_status" in columns:
+        where.append("(operating_status IS NULL OR operating_status != 'closed')")
+    if "confidence" in columns and min_conf > 0:
+        where.append("confidence >= ?")
+        params.append(min_conf)
+    return where, params
+
+
+def select_list(columns):
+    sel = [
+        "id",
+        "names.primary AS name",
+        "bbox.xmin AS lon",
+        "bbox.ymin AS lat",
+        "addresses[1].freeform AS street",
+        "addresses[1].locality AS city",
+        "addresses[1].region AS region",
+        "addresses[1].postcode AS postcode",
+    ]
+    if "brand" in columns:
+        sel.append("brand.names.primary AS brand")
+    if "basic_category" in columns:
+        sel.append("basic_category")
+    if "taxonomy" in columns:
+        sel += ["taxonomy.primary AS category", "taxonomy.hierarchy AS category_hierarchy"]
+    elif "categories" in columns:
+        sel.append("categories.primary AS category")
+    if "phones" in columns:
+        sel.append("phones[1] AS phone")
+    if "websites" in columns:
+        sel.append("websites[1] AS website")
+    if "confidence" in columns:
+        sel.append("confidence")
+    if "operating_status" in columns:
+        sel.append("operating_status")
+    return sel
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    p.add_argument("--state", default="NJ", help="two-letter state code (default NJ)")
+    p.add_argument("--name", action="append", default=[],
+                   help="store name to match; repeat for several (substring, case-insensitive)")
+    p.add_argument("--exact", action="store_true",
+                   help="require an exact name match instead of a substring match")
+    p.add_argument("--category", action="append", default=[],
+                   help="Overture category, e.g. supermarket; repeat for several. A parent "
+                        "category such as 'restaurant' also matches everything under it. "
+                        "If combined with --name, a place must match both.")
+    p.add_argument("--list-categories", nargs="?", const="", metavar="TEXT",
+                   help="list category names (with counts) in the state instead of "
+                        "extracting; optional TEXT filters the names")
+    p.add_argument("--list-level", choices=["top", "basic", "primary"], default="primary",
+                   help="with --list-categories: 'top' = the broad top-level groups, 'basic' = "
+                        "Overture's mid-level basic categories, 'primary' = the most specific "
+                        "category on each place (default)")
+    p.add_argument("--limit", type=int, default=300,
+                   help="with --list-categories: max rows to print (default 60)")
+    p.add_argument("--release", help="Overture release, e.g. 2026-09-23.0 (default: latest)")
+    p.add_argument("--min-confidence", type=float, default=0.0,
+                   help="drop places below this Overture confidence score (0-1)")
+    p.add_argument("-o", "--output", help="output file (default: <names>_<state>.geojson)")
+    args = p.parse_args()
+
+    if args.list_categories is None and not (args.name or args.category):
+        p.error("give at least one --name or --category (or use --list-categories)")
+
+    state = args.state.strip().upper()
+    if state not in STATE_BBOX:
+        sys.exit(f"Unknown state '{args.state}'. Use a two-letter code such as NJ.")
+
+    release = args.release or latest_release()
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}\.\d+", release):
+        sys.exit(f"Unexpected release name '{release}' (expected e.g. 2026-09-23.0).")
+    print(f"Overture release: {release}", file=sys.stderr)
+
+    con = duckdb.connect()
+    con.execute("INSTALL httpfs; LOAD httpfs;")
+    con.execute("SET s3_region='us-west-2';")
+
+    path = S3_PATH.format(release=release)
+    columns = {
+        row[0] for row in con.execute(f"DESCRIBE SELECT * FROM read_parquet('{path}')").fetchall()
+    }
+    print(f"Category columns in this release: "
+          f"{[c for c in ('taxonomy', 'basic_category', 'categories') if c in columns]}",
+          file=sys.stderr)
+
+    # --- category discovery mode -------------------------------------------------
+    if args.list_categories is not None:
+        if args.list_level == "top" and "taxonomy" in columns:
+            cat_expr = "taxonomy.hierarchy[1]"
+        elif args.list_level == "basic" and "basic_category" in columns:
+            cat_expr = "basic_category"
+        elif "taxonomy" in columns:
+            cat_expr = "taxonomy.primary"
+        elif "categories" in columns:
+            cat_expr = "categories.primary"
+        else:
+            sys.exit("This release has no category columns.")
+        where, params = where_clauses(columns, state, args.name, args.exact, [], 0.0)
+        if args.list_categories:
+            where.append(f"{cat_expr} ILIKE ?")
+            params.append(f"%{args.list_categories}%")
+        sql = (f"SELECT {cat_expr} AS category, count(*) AS n "
+               f"FROM read_parquet('{path}', hive_partitioning=1) "
+               f"WHERE {' AND '.join(where)} GROUP BY 1 ORDER BY n DESC")
+        rows = con.execute(sql, params).fetchall()
+        for cat, n in rows[:args.limit]:
+            print(f"{n:7d}  {cat}")
+        if len(rows) > args.limit:
+            print(f"... {len(rows) - args.limit} more of {len(rows)} total "
+                  f"(raise --limit to see them)", file=sys.stderr)
+        return
+
+    # --- extraction ----------------------------------------------------------------
+    where, params = where_clauses(columns, state, args.name, args.exact,
+                                  args.category, args.min_confidence)
+    sql = (f"SELECT {', '.join(select_list(columns))}\n"
+           f"FROM read_parquet('{path}', hive_partitioning=1)\n"
+           f"WHERE {chr(10).join('  AND ' + w if i else w for i, w in enumerate(where))}\n"
+           "ORDER BY region, city, name")
+    cur = con.execute(sql, params)
+    cols = [d[0] for d in cur.description]
+    features = []
+    for row in cur.fetchall():
+        rec = dict(zip(cols, row))
+        lon, lat = rec.pop("lon"), rec.pop("lat")
+        rec = {k: v for k, v in rec.items() if v is not None}
+        features.append({
+            "type": "Feature",
+            "geometry": {"type": "Point", "coordinates": [lon, lat]},
+            "properties": rec,
+        })
+
+    collection = {
+        "type": "FeatureCollection",
+        "attribution": "Overture Maps Foundation (places theme; individual rows carry "
+                       "CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+        "overture_release": release,
+        "features": features,
+    }
+
+    out = args.output
+    if not out:
+        label = "_".join(args.name + args.category).lower()
+        slug = re.sub(r"[^a-z0-9]+", "-", label).strip("-")
+        out = f"{slug}_{state.lower()}.geojson"
+    with open(out, "w", encoding="utf-8") as fh:
+        json.dump(collection, fh, indent=1)
+    print(f"Wrote {len(features)} places to {out}", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()
