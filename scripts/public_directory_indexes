@@ -11,7 +11,7 @@ def generate(root):
     if not root.is_dir():
         return []
     created = []
-    for directory in root + sorted(p for p in root.rglob('*') if p.is_dir() and not p.is_symlink()):
+    for directory in [root] + sorted(p for p in root.rglob('*') if p.is_dir() and not p.is_symlink()):
         relative = directory.relative_to(root)
         index = directory / 'index.html'
         if index.exists():
@@ -42,5 +42,5 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('root', nargs='?', default='public')
     args = parser.parse_args()
-    for index in generate(args.root)
+    for index in generate(args.root):
         print(f'Generated {index}')
