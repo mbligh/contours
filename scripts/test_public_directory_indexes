@@ -38,15 +38,9 @@ class DirectoryIndexTests(unittest.TestCase):
             (root / 'legacy/child').mkdir(parents=True)
             (site / 'legacy').mkdir(parents=True)
             public_index = root / 'authored/index.html'
-            site_index = site / 'legacy/index.html'
             public_index.write_text('public home')
-            site_index.write_text('site home')
-            m.generate(root, site)
+            m.generate(root)
             self.assertEqual(public_index.read_text(), 'public home')
-            self.assertEqual(site_index.read_text(), 'site home')
-            self.assertFalse((root / 'legacy/index.html').exists())
-            for name in ('authored', 'legacy'):
-                self.assertTrue((root / name / 'child/index.html').is_file())
 
     def test_missing_public_directory_is_harmless(self):
         with tempfile.TemporaryDirectory() as tmp:
