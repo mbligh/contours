@@ -99,8 +99,6 @@ class PublicationTests(unittest.TestCase):
                 Path('public/nested').mkdir(parents=True)
                 Path('public/nested/data').write_text('test data')
                 Path('public/.hidden').write_text('dotfile')
-                Path('site').mkdir()
-                Path('site/index.html').write_text('home')
                 selected = [release(k, 1) for k in m.DATASETS]
                 def download(*args, **kwargs):
                     dataset = args[2].split('-')[1]
