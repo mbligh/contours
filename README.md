@@ -6,9 +6,12 @@ The initial workflow defaults to a **60,000 × 60,000 ft pilot** around Tewksbur
 
 ## Setup
 
-1. In repository Settings → Pages, choose **GitHub Actions** as the build/deployment source.
-2. Run the **Build NJ contour PMTiles** workflow (or allow a push-triggered build).
-3. Once successful, the archive is at https://mbligh.github.io/contours/contours.pmtiles.
+1. In repository Settings → Pages, choose **GitHub Actions** as the deployment source.
+2. Run **Extract NJ contour vectors** to download DEM data and generate 10-foot contour geometry. This uploads a compressed `contour-vectors` artifact retained for 90 days.
+3. After successful extraction, **Build NJ contour PMTiles** runs automatically, downloads the artifact, and publishes the PMTiles file. You can also manually dispatch this workflow with the extraction run ID to rebuild tiles without extracting vectors again.
+4. Once deployed, the archive is at https://mbligh.github.io/mapping/contours.pmtiles.
+
+Changing tile zoom/simplification settings requires only rerunning the PMTiles workflow with a retained extraction run ID. Changing the geographic extent or contour geometry requires rerunning extraction.
 
 ## Output
 
@@ -24,4 +27,4 @@ Suggested MapLibre intervals by zoom: 100 ft (10–11), 50 ft (12–13), 20 ft (
 
 ## Limitations
 
-This is an initial, unverified build pipeline. Adjacent processing patches overlap by one DEM pixel; contour segments can duplicate near patch boundaries. The build uses a regional rectangle rather than an administrative county boundary. PMTiles HTTP byte-range serving must be tested on the deployed URL; Cloudflare R2 may be needed if GitHub Pages does not support it reliably.
+This is an initial, unverified build pipeline. Adjacent processing patches overlap by one DEM pixel and contour lines are clipped to their assigned patch interiors. The build uses a regional rectangle rather than an administrative county boundary. PMTiles HTTP byte-range serving must be tested on the deployed URL; Cloudflare R2 may be needed if GitHub Pages does not support it reliably.
