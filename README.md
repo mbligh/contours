@@ -37,13 +37,13 @@ Shipping scripts, data, regression checks, and the browser module are in [shippi
 
 **Publish mapping pages** is the only workflow that deploys the site. Contour and shipping builds remain independent and store their completed outputs as non-expiring Release assets (`dataset.tar.gz` and `manifest.json`). The publisher downloads the latest complete release of each, checks their SHA-256 checksums, and assembles the site.
 
-To add a page or file, commit it under `public/`: `public/example.html` becomes `https://mbligh.github.io/mapping/example.html`. All nested files and dotfiles are included. Legacy `site/` files are also included; `public/` takes precedence on collisions. Dataset paths are `contours.pmtiles` and `shipping/`. The publisher reserves `.nojekyll` and `mapping-build.json`.
+To add a page or file, commit it under `public/`: `public/example.html` becomes `https://mbligh.github.io/mapping/example.html`. All nested files and dotfiles are included. Static website content is maintained in `public/`. Dataset paths are `contours.pmtiles` and `shipping/`. The publisher reserves `.nojekyll` and `mapping-build.json`.
 
 Successful dataset builds trigger publishing automatically. Release events and changes to static files also trigger it. Direct asset uploads/replacements are detected by a check every 15 minutes (subject to GitHub scheduling delays); unchanged inputs do not redeploy. Integrations can send `repository_dispatch` type `mapping-release-assets-updated` for an immediate check. Archives and their checksum manifests must stay consistent.
 
 After successful deployment, the publisher keeps three complete versions per dataset and deletes older generated releases, assets, and tags. It preserves newer releases created during deployment and does not touch unrelated releases or draft uploads. Failed deployments never expire versions. See [project.md](project.md) for implementation details. Contour vectors also use versioned Release assets. After successfully producing PMTiles, the build keeps three vector versions independently of shipping and PMTiles retention. Each PMTiles release records the vector release it consumed.
 
-Every subdirectory copied from `public/` gets an automatically generated directory listing, recursively. For example, `/geojson/` lists the files and child folders under `public/geojson/`. Existing `index.html` pages in `public/` or the corresponding `site/` folder are preserved. Listings are generated during publishing, so no index files need to be committed manually.
+The root of `public/` and every subdirectory get automatically generated directory listings, recursively. For example, `/geojson/` lists the files and child folders under `public/geojson/`. Existing `index.html` pages in `public/`, including an authored homepage, are preserved. Listings are generated during publishing, so no index files need to be committed manually.
 
 ## Interactive map
 
