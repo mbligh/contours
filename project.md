@@ -27,6 +27,8 @@ Only after a successful Pages deployment, cleanup retains the deployed release a
 
 Shipping runs weekly on Sunday at 09:25 UTC, on shipping changes to `main`, or manually. MailingLocations requests are throttled and cached for six days. Directory freshness and exact box positions remain unverified, and are identified in feature properties/popups.
 
+Unavailable live CVS verification retains the previously verified CVS access points with an explicit verification-status label while refreshing ATP UPS Stores. It never promotes new CVS candidates on failed verification, and rejects absent verified history or successful verification producing zero matches. This keeps independent carrier additions publishable during CVS outages without silently dropping existing CVS points.
+
 Contour extraction still automatically triggers the PMTiles workflow on success. That build pins the exact extraction run/attempt's vector tag. Manual PMTiles builds accept `vector_release_tag`; leaving it blank reuses the newest complete vector release. The PMTiles manifest records the vector release ID and full input manifest. Downloads validate the release archive and each file before decompressing and checking the vector checksum. Push-triggered PMTiles builds with no initial vector releases defer to the successful extraction trigger; manual builds and missing explicit tags fail clearly.
 
 Vector retention runs only after a PMTiles release has successfully been produced: retain the consumed vector version and its two predecessors, preserving any newer concurrent releases. Shipping and PMTiles continue to expire independently after successful Pages deployment. No contour geometry is stored as an expiring Actions artifact.

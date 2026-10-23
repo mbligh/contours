@@ -33,6 +33,7 @@ jobs:
           python shipping/test_shipping_geometry
           python shipping/test_mailinglocations
           python shipping/test_usps
+          python shipping/test_shipping_extra
           node shipping/test_shipping.cjs
           python shipping/validate_data
       - name: Download New Jersey OSM extract

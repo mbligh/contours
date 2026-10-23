@@ -16,6 +16,7 @@ python shipping/test_fedex
 python shipping/test_shipping_geometry
 python shipping/test_mailinglocations
 python shipping/test_usps
+python shipping/test_shipping_extra
 node shipping/test_shipping.cjs
 python shipping/validate_data
 ```
@@ -25,6 +26,8 @@ The separate **Refresh NJ shipping locations** workflow downloads the OSM extrac
 Run `python shipping/build_usps` after `build_shipping.py` to append USPS collection boxes to the shared `shipping.geojson`. It reads ATP's dedicated `usps_collection_boxes` output, selects NJ, preserves collection times, indoor/lobby indicators, notes, and box IDs, and refuses incomplete or invalid results. An optional positional input file reuses a downloaded ATP snapshot. Refreshing replaces existing USPS boxes by their source references, preserving all other features; boxes remain distinct from post offices at the same address. Collection times are pickup schedules, not opening hours.
 
 Each importer writes beside its own script, so it also works from another working directory. The MailingLocations importer supports `--city-url`, `--cache-dir`, and `--output` for targeted checks. Its directory records retain source links, retrieval timestamps, and unverified freshness/position labels.
+
+If live CVS verification is unavailable, the extras importer refreshes UPS Stores and retains only the CVS access points already verified in the tracked dataset, marking their verification status as unavailable for this refresh. It adds no new CVS candidates in this case and fails if no verified CVS history exists. A successful live check with zero matches still fails validation.
 
 ## Browser integration
 

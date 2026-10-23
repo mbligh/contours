@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+"""Unavailable CVS checks must retain verified data, never approve new stores."""
+import copy
+import json
+from pathlib import Path
+import runpy
+import tempfile
+import unittest
+from unittest.mock import patch
+
+MODULE=runpy.run_path(str(Path(__file__).with_name('build_shipping_extra.py')))
+
+
+class CvsAvailability(unittest.TestCase):
+    def setUp(self):
+        self.verified={'type':'Feature','geometry':{'type':'Point','coordinates':[-74.7,40.7]},
+                       'properties':{'carrier':'CVS UPS','address':'1 Main St NJ 08876',
+                                     'source':'CVS UPS Access Point page + All The Places coordinates'}}
+        self.previous={'type':'FeatureCollection','features':[self.verified]}
+
+    def test_preserve_only_previously_verified_cvs(self):
+        fresh_ups={'properties':{'carrier':'All The Places'}}
+        new_cvs={'properties':{'carrier':'CVS UPS','address':'Unverified new candidate'}}
+        original=copy.deepcopy(self.previous)
+        out=MODULE['preserve_verified_cvs']([fresh_ups,new_cvs],self.previous)
+        self.assertEqual(out[0],fresh_ups)
+        self.assertEqual(out[1]['geometry'],self.verified['geometry'])
+        self.assertEqual(out[1]['properties']['address'],self.verified['properties']['address'])
+        self.assertIn('live verification unavailable',out[1]['properties']['verification'])
+        self.assertEqual(len(out),2)
+        self.assertEqual(self.previous,original)
+
+    def test_unverified_history_is_not_accepted(self):
+        self.previous['features'][0]['properties']['source']='ATP candidate only'
+        with self.assertRaises(ValueError):MODULE['preserve_verified_cvs']([],self.previous)
+
+    def test_live_zero_matches_still_fails_without_overwrite(self):
+        candidate={'geometry':{'type':'Point','coordinates':[-74.7,40.7]},
+                   'properties':{'addr:state':'NJ','addr:city':'Town','addr:street_address':'1 Main St','addr:postcode':'08876'}}
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d)/'shipping_extra.geojson'
+            out.write_text(json.dumps(self.previous))
+            original=out.read_bytes()
+            namespace=MODULE['main'].__globals__
+            with patch.dict(namespace,{'OUT':out,'features_for':lambda name:[candidate]*10,
+                                       'cvs_page':lambda city:[],'time':type('Clock',(),{'sleep':staticmethod(lambda s:None)})}):
+                with self.assertRaises(SystemExit):MODULE['main']()
+            self.assertEqual(out.read_bytes(),original)
+
+    def test_unavailable_live_check_preserves_verified_history(self):
+        candidate={'geometry':{'type':'Point','coordinates':[-74.7,40.7]},
+                   'properties':{'addr:state':'NJ','addr:city':'Town','addr:street_address':'1 Main St','addr:postcode':'08876'}}
+        def unavailable(city):raise RuntimeError('HTTP 403')
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d)/'shipping_extra.geojson'
+            out.write_text(json.dumps(self.previous))
+            with patch.dict(MODULE['main'].__globals__,{'OUT':out,'features_for':lambda name:[candidate]*10,
+                                                       'cvs_page':unavailable}):
+                MODULE['main']()
+            features=json.loads(out.read_text())['features']
+            self.assertEqual(len(features),11)
+            cvs=[f for f in features if f['properties']['carrier']=='CVS UPS']
+            self.assertEqual(len(cvs),1)
+            self.assertIn('live verification unavailable',cvs[0]['properties']['verification'])
+
+
+if __name__=='__main__':unittest.main()
