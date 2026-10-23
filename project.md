@@ -37,6 +37,32 @@ Before Pages assembly, `scripts/public_directory_indexes` generates an `index.ht
 
 The MapLibre demo lives at `public/maplibre-demo/index.html` and is published by **Publish mapping pages** at `https://mapping.mbligh.org/maplibre-demo/`. Its shipping module and contour archive use relative URLs, so both the custom domain and the repository Pages path work. Shipping data URLs resolve relative to `shipping.js`. Surveillance remains at the separate `mbligh/surveillance` Pages site; OpenFreeMap, NJ ArcGIS services, and pinned CDN dependencies keep their existing URLs. The former `mbligh/tools/maplibre-demo/index.html` is a redirect preserving query strings and fragments. Demo changes trigger only the mapping Pages publisher.
 
+## Configured GeoJSON overlays
+
+`public/geosources.json` is a top-level array of toggleable point-overlay groups. Each group has a `name` (the existing `layer` key is also supported) and a non-empty `data` array. Each dataset has a `file` URL relative to geosources.json, a MapLibre `type` (`circle` by default, or `symbol`), and optional MapLibre `paint`, `layout`, `filter`, `minzoom`, and `maxzoom`. File extensions are optional; URLs must match actual filenames. Dataset `id` values may be descriptive but internal IDs are generated to prevent collisions with built-in overlays.
+
+`public/maplibre-demo/geosources.js` fetches the config once, creates one initially unchecked checkbox per group using its title, and installs every dataset in a checked group as a separately styled GeoJSON source/layer. GeoJSON is requested only when a group is enabled. Disabling hides all its layers; switching basemaps restores checked overlays. Point popups show feature properties as text. Configuration errors appear beside the controls; malformed groups do not block other groups. Existing shipping, surveillance, parcels, and contours retain their specialized controls and loading logic. The panel scrolls when controls exceed the viewport.
+
+To add an overlay, put its GeoJSON under `public/` and add its group/dataset entry to `public/geosources.json`; no JavaScript or HTML change is required. For example:
+
+```json
+[
+  {
+    "name": "Stores",
+    "data": [
+      {
+        "id": "costco",
+        "file": "geojson/costco",
+        "type": "circle",
+        "paint": {"circle-color": "#ff0000", "circle-radius": 5}
+      }
+    ]
+  }
+]
+```
+
+Pages runs `node scripts/test_geosources.cjs` to check the committed config, grouped toggles, URL resolution, styles, popups, error handling, and basemap restoration. Config and GeoJSON updates trigger only Pages publication.
+
 ## Source research
 
 `research/usps/` contains a read-only, reproducible comparison of NJ USPS collection boxes from ATP and Overture Infrastructure/Places. It records release/input provenance, state-boundary selection, conservative carrier classification, exact ID/reference matches, and proximity candidates. Its scratch downloads and extracts do not modify shipping inputs or public assets; research changes do not trigger dataset refreshes. See `research/usps/README.md` and `comparison.json` for the October 23, 2026 findings.

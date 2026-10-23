@@ -9,6 +9,7 @@ on:
       - 'scripts/test_dataset_releases'
       - 'scripts/public_directory_indexes'
       - 'scripts/test_public_directory_indexes'
+      - 'scripts/test_geosources.cjs'
   workflow_run:
     workflows: ['Refresh NJ shipping locations', 'Build NJ contour PMTiles']
     types: [completed]
@@ -47,6 +48,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check configured map layers
+        run: node scripts/test_geosources.cjs
       - name: Check assembly, checksum validation, and retention
         run: |
           python scripts/test_dataset_releases
