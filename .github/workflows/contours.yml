@@ -1,19 +1,19 @@
 name: Build NJ contour PMTiles
 on:
+  workflow_run:
+    workflows: ["Extract NJ contour vectors"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
     inputs:
-      bbox:
-        description: 'EPSG:6527 bbox west south east north (feet); default is Tewksbury area pilot'
-        required: false
-        default: '390000 650000 450000 710000'
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/**'
-      - '.github/workflows/contours.yml'
+      extraction_run_id:
+        description: 'Successful Extract NJ contour vectors run ID to reuse'
+        required: true
+        type: string
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -23,34 +23,40 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 45
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Install GDAL and Tippecanoe
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gdal-bin tippecanoe
-      - name: Generate contours from NJ statewide DEM
+      - name: Download extracted vectors from earlier workflow
         env:
-          BBOX: ${{ inputs.bbox || '390000 650000 450000 710000' }}
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id || inputs.extraction_run_id }}
+          REPO: ${{ github.repository }}
         run: |
           mkdir -p build public
-          read -r WEST SOUTH EAST NORTH <<< "$BBOX"
-          python3 scripts/build_contours.py --bbox "$WEST" "$SOUTH" "$EAST" "$NORTH"
-          test -s build/contours.geojsonseq
+          gh run download "$RUN_ID" --repo "$REPO" --name contour-vectors --dir build
+          cd build
+          sha256sum -c contours.geojsonseq.gz.sha256
+          gunzip contours.geojsonseq.gz
+          test -s contours.geojsonseq
+      - name: Install Tippecanoe
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tippecanoe
       - name: Build PMTiles
         run: |
           tippecanoe -o public/contours.pmtiles -l contours -Z 9 -z 16 \
             --no-feature-limit --no-tile-size-limit --force -P \
             build/contours.geojsonseq
+          test "$(stat -c%s public/contours.pmtiles)" -gt 10000
           ls -lh public/contours.pmtiles
       - name: Prepare Pages
         run: |
-          if [ -f site/index.html ]; then cp site/index.html public/index.html; else printf "%s\n" "<h1>NJ contour tiles</h1>" "<p><a href=\"contours.pmtiles\">Download PMTiles</a></p>" > public/index.html; fi
+          cp site/index.html public/index.html
           touch public/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
