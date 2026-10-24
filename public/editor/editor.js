@@ -51,7 +51,7 @@ function chooseMode(next) {
 }
 function setBusy(value) {
   busy = value;
-  for (const id of ['new','open','save','save-as','basemap']) el(id).disabled = value || !ready;
+  for (const id of ['new','open','open-url','save','save-as','basemap']) el(id).disabled = value || !ready;
   el('tools').disabled = value || !ready;
 }
 function confirmReplace() { return !dirty || window.confirm('Discard unsaved changes and replace the current layer?'); }
@@ -120,6 +120,29 @@ async function save(asNew = false) {
   } catch (error) { report(error); }
   finally { setBusy(false); showSelection(selected); }
 }
+el('open-url').onclick = async () => {
+  if (!confirmReplace()) return;
+  el('error').textContent = '';
+  const raw = el('open-url-input').value.trim();
+  if (!raw) { report(new Error('Enter a GeoJSON URL.')); return; }
+  try {
+    const url = new URL(raw, window.location.href);
+    if (!['http:', 'https:'].includes(url.protocol)) throw new Error('Only HTTP(S) URLs are supported.');
+    setBusy(true);
+    const response = await fetch(url.href);
+    if (!response.ok) throw new Error('GeoJSON HTTP ' + response.status);
+    const data = await response.json();
+    await installLayer(data);
+    fileHandle = undefined;
+    fileName = decodeURIComponent(url.pathname.split('/').pop() || 'remote.geojson');
+    refresh();
+    el('status').textContent = 'Opened ' + url.href + ' (read-only source; Save downloads or saves a local copy).';
+  } catch (error) { report(error); }
+  finally { setBusy(false); }
+};
+el('open-url-input').onkeydown = event => {
+  if (event.key === 'Enter') { event.preventDefault(); el('open-url').click(); }
+};
 el('save').onclick = () => save();
 el('save-as').onclick = () => save(true);
 el('new').onclick = async () => {
@@ -162,9 +185,9 @@ el('delete').onclick = () => {
   const id = selected; draw.removeFeatures([id]); records.delete(id); showSelection(undefined); refresh();
 };
 window.addEventListener('beforeunload', event => { if (dirty) { event.preventDefault(); event.returnValue = ''; } });
-el('file-help').textContent = supportsFiles
+el('file-help').textContent = 'URL imports require the remote server to allow CORS. URL sources cannot be written back directly. ' + (supportsFiles
   ? 'Open a local GeoJSON file. Save writes back to that file; new layers use Save as. Files stay on your device.'
-  : 'This browser opens files but saves a downloaded copy. Use desktop Chrome or Edge over HTTPS to save directly to the opened file.';
+  : 'This browser opens files but saves a downloaded copy. Use desktop Chrome or Edge over HTTPS to save directly to the opened file.');
 if (!supportsFiles) { el('save').textContent = 'Download'; el('save-as').hidden = true; }
 
 async function boot() {
