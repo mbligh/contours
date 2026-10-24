@@ -61,12 +61,12 @@ class OvertureTests(unittest.TestCase):
             return con.queries, json.loads(out.read_text()) if out.exists() else None
 
     def test_stdout_output_is_json_without_creating_a_file(self):
-        for flag in ('-o', '--output'):
-            with self.subTest(flag=flag), tempfile.TemporaryDirectory() as temp:
+        for output_args in ([], ['-o', '-'], ['--output', '-']):
+            with self.subTest(output_args=output_args), tempfile.TemporaryDirectory() as temp:
                 con = Connection()
                 stdout, stderr = io.StringIO(), io.StringIO()
                 argv = [str(SCRIPT), '--release', '2026-09-23.0',
-                        '--name', 'Costco', '--name', 'Home Depot', flag, '-']
+                        '--name', 'Costco', '--name', 'Home Depot', *output_args]
                 with contextlib.chdir(temp), patch.dict(sys.modules, {'duckdb': types.SimpleNamespace(connect=lambda: con)}), \
                         patch.object(sys, 'argv', argv), contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
                     runpy.run_path(str(SCRIPT), run_name='__main__')

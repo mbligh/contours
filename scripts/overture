@@ -219,7 +219,7 @@ def main():
                    help="drop places below this Overture confidence score (0-1)")
     p.add_argument("--dedupe-distance-feet", type=float, default=100,
                    help="merge same-name points within this distance (default 100 feet; 0 disables)")
-    p.add_argument("-o", "--output", help="output file, or - for stdout (default: <names>_<state>.geojson)")
+    p.add_argument("-o", "--output", default="-", help="output file, or - for stdout (default: stdout)")
     args = p.parse_args()
     if not math.isfinite(args.dedupe_distance_feet) or args.dedupe_distance_feet < 0:
         p.error("--dedupe-distance-feet must be a finite non-negative number")
@@ -318,10 +318,6 @@ def main():
     }
 
     out = args.output
-    if not out:
-        label = "_".join(args.name + args.category).lower()
-        slug = re.sub(r"[^a-z0-9]+", "-", label).strip("-")
-        out = f"{slug}_{state.lower()}.geojson"
     with nullcontext(sys.stdout) if out == "-" else open(out, "w", encoding="utf-8") as fh:
         json.dump(collection, fh, indent=1)
         if out == "-":
