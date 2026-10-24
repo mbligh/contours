@@ -104,7 +104,6 @@ class GroupTests(unittest.TestCase):
         first = point('Tractor Supply')
         near = point('Tractor Supply Co', north_feet=299)
         far = point('Tractor Supply', north_feet=-301)
-        far['properties']['street'] = '987 Different Road'
         other = point('Contractor Supply')
         self.assertEqual(deduplicate(collection(first, near, far, other))['features'], [first, far, other])
 
@@ -116,7 +115,6 @@ class GroupTests(unittest.TestCase):
     def test_radius_boundary_is_inclusive(self):
         self.assertEqual(len(deduplicate(collection(point(), point(north_feet=300)))['features']), 1)
         a, b = point(), point(north_feet=300.01)
-        b['properties']['street'] = '987 Different Road'
         self.assertEqual(len(deduplicate(collection(a, b))['features']), 2)
 
     def test_preserve_high_confidence_record_metadata_and_input(self):
