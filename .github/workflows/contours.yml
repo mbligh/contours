@@ -44,7 +44,7 @@ jobs:
           else
             # Explicit manual/push build: reuse the most recent successful extraction artifact.
             RUN_ID=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow extract-contours.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')
-            if [ -z "$RUN_ID" ]; then
+            if [ -z "$RUN_ID" ] || ! gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID/artifacts" --jq '.artifacts[].name' | grep -qx 'contour-vectors-combined'; then
               echo 'found=false' >> "$GITHUB_OUTPUT"
             else
               gh run download "$RUN_ID" --repo "$GITHUB_REPOSITORY" --name contour-vectors-combined --dir build
