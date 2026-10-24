@@ -156,6 +156,8 @@ def build_database(rows, output, expected_count, metadata, min_records=1):
         path = Path(temp) / 'njaddress.db'
         con = sqlite3.connect(path)
         count = 0
+        invalid_coordinates = 0
+        missing_coordinates = 0
         try:
             con.execute('PRAGMA page_size=4096')
             con.execute('PRAGMA journal_mode=OFF')
@@ -173,9 +175,13 @@ def build_database(rows, output, expected_count, metadata, min_records=1):
                 if lon is None or lat is None:
                     # Keep the address even when the source has no usable coordinate pair.
                     row[4:] = [None, None]
+                    missing_coordinates += 1
                 elif (not all(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) for v in (lon, lat))
                       or not -180 <= lon <= 180 or not -90 <= lat <= 90):
-                    raise ValueError(f'Invalid source coordinates at record {count + 1}')
+                    invalid_coordinates += 1
+                    if invalid_coordinates <= 5:
+                        print(f'Invalid source coordinate pair at record {count + 1}: {(lon, lat)!r}; retaining address with null coordinates', flush=True)
+                    row[4:] = [None, None]
                 batch.append(tuple(row))
                 count += 1
                 if len(batch) == 10000:
@@ -189,6 +195,8 @@ def build_database(rows, output, expected_count, metadata, min_records=1):
                 raise ValueError(f'Incomplete source: imported {count}, expected {expected_count}, minimum {min_records}')
             con.executemany('INSERT INTO metadata VALUES (?,?)',
                             [(key, json.dumps(value)) for key, value in {**metadata, 'records': count,
+                             'invalid_coordinate_pairs': invalid_coordinates,
+                             'missing_coordinate_pairs': missing_coordinates,
                              'built_at': datetime.now(timezone.utc).isoformat(),
                              'coordinate_system': 'WGS84 longitude/latitude (EPSG:4326)',
                              'attribution': 'NJ Office of Information Technology, Office of GIS (NJOGIS)'}.items()])
@@ -200,7 +208,9 @@ def build_database(rows, output, expected_count, metadata, min_records=1):
             con.close()
         result = validate_database(path)
         os.replace(path, output)
-    return {**result, 'bytes': output.stat().st_size, 'sha256': sha256(output)}
+    return {**result, 'invalid_coordinate_pairs': invalid_coordinates,
+            'missing_coordinate_pairs': missing_coordinates,
+            'bytes': output.stat().st_size, 'sha256': sha256(output)}
 
 
 def main():

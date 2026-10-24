@@ -24,8 +24,9 @@ are build products and are not committed to Git.
 | LAT | REAL | WGS84 latitude in degrees |
 
 SQLite's implicit `rowid` connects each row to `address_rtree`. Address records
-without a complete coordinate pair are retained with null coordinates and are
-omitted from the spatial index. `metadata` stores JSON-encoded source URL,
+without a complete, finite, valid longitude/latitude coordinate pair are retained
+with null coordinates and omitted from the spatial index. Invalid and missing
+pair counts are recorded in the build report and database metadata. `metadata` stores JSON-encoded source URL,
 Last-Modified header, ZIP checksum/size, source layer, record count, attribution,
 build time, and coordinate-system details. It contains no extra per-address data.
 

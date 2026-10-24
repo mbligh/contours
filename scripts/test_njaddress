@@ -68,11 +68,23 @@ class DatabaseTests(unittest.TestCase):
             self.build(path)
             before = path.read_bytes()
             for rows, expected, minimum in [(ROWS, 100, 1), (ROWS, len(ROWS), 100),
-                                             ([(*ROWS[0][:4], 181, 40)], 1, 1),
                                              ([(*ROWS[0][:3], 8858, -74, 40)], 1, 1)]:
                 with self.subTest(rows=rows, expected=expected), self.assertRaises(ValueError):
                     MODULE['build_database'](iter(rows), path, expected, {}, minimum)
                 self.assertEqual(path.read_bytes(), before)
+
+    def test_invalid_source_coordinates_keep_addresses_outside_rtree(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / 'address.db'
+            rows = [ROWS[0], (*ROWS[0][:4], 181, 40), (*ROWS[0][:4], float('nan'), 40),
+                    (*ROWS[0][:4], None, 40)]
+            result = self.build(path, rows)
+            self.assertEqual(result['records'], 4)
+            self.assertEqual(result['spatial_records'], 1)
+            self.assertEqual(result['invalid_coordinate_pairs'], 2)
+            self.assertEqual(result['missing_coordinate_pairs'], 1)
+            with sqlite3.connect(path) as con:
+                self.assertEqual(con.execute('SELECT LONG_,LAT FROM addresses WHERE rowid>1').fetchall(), [(None, None)] * 3)
 
     def test_validation_rejects_corrupted_spatial_index(self):
         with tempfile.TemporaryDirectory() as temp:
