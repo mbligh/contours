@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""Offline unit, real-data and stdin/stdout regression tests for uniqgeo."""
+import copy
+import json
+import math
+from pathlib import Path
+import random
+import runpy
+import subprocess
+import sys
+import unittest
+
+ROOT = Path(__file__).resolve().parent.parent
+SCRIPT = ROOT / 'scripts/uniqgeo'
+MODULE = runpy.run_path(str(SCRIPT))
+deduplicate = MODULE['deduplicate']
+names_match = MODULE['names_match']
+tokens = MODULE['name_tokens']
+distance = MODULE['distance_metres']
+EARTH = MODULE['EARTH_METRES']
+
+
+def point(name='The Home Depot', north_feet=0, east_feet=0, confidence=None, id='store'):
+    props = {'name': name, 'id': id, 'street': '123 Main St'}
+    if confidence is not None:
+        props['confidence'] = confidence
+    return {'type': 'Feature', 'properties': props,
+            'geometry': {'type': 'Point', 'coordinates': [
+                math.degrees(east_feet * .3048 / EARTH),
+                math.degrees(north_feet * .3048 / EARTH)]}}
+
+
+def collection(*features):
+    return {'type': 'FeatureCollection', 'features': list(features), 'attribution': 'Test source'}
+
+
+class NameTests(unittest.TestCase):
+    def test_requested_variants(self):
+        groups = [('The Home Depot', 'Home Depot', 'Home Depot Rental', 'The Home Depot Rental'),
+                  ('Tractor Supply', 'Tractor Supply Co', 'TRACTOR SUPPLY CO.')]
+        for group in groups:
+            for a in group:
+                for b in group:
+                    self.assertTrue(names_match(tokens(a), tokens(b)), (a, b))
+
+    def test_company_departments_case_accents_and_whitespace(self):
+        for variant in ['HOME   DEPOT', 'Home Dépot, Inc.', 'Garden Center at The Home Depot',
+                        'Home Depot Tool Rental', 'The Home Depot Garden Center']:
+            self.assertTrue(names_match(tokens('Home Depot'), tokens(variant)), variant)
+
+    def test_typo_with_exact_word_anchor(self):
+        for variant in ['Tractro Supply', 'Tractor Suply', 'Tractor Suppply', 'Tractor Supplx']:
+            self.assertTrue(names_match(tokens('Tractor Supply'), tokens(variant)), variant)
+
+    def test_negative_matches(self):
+        for a, b in [('Tractor Supply', 'Contractor Supply'), ('Home Depot', 'Home Goods'),
+                     ('Home Depot', 'Depot'), ('Tractor Supply', 'Supply'),
+                     ('Home Depot', 'Home Depot Credit'), ('Apple', 'Ample'),
+                     ('Tractor Supply', 'Tractro Suply'), ('', ''), (None, 'Store')]:
+            self.assertFalse(names_match(tokens(a), tokens(b)), (a, b))
+
+
+class GroupTests(unittest.TestCase):
+    def test_more_than_two_and_transitive_chain(self):
+        points = [point(name=n, east_feet=d, confidence=c, id=str(d)) for n, d, c in [
+            ('The Home Depot', 0, .7), ('Home Depot', 250, .99),
+            ('Home Depot Rental', 500, .8), ('Home Depot', 750, .9)]]
+        self.assertEqual(deduplicate(collection(*points))['features'], [points[1]])
+
+    def test_names_and_proximity_both_required(self):
+        first = point('Tractor Supply')
+        near = point('Tractor Supply Co', north_feet=299)
+        far = point('Tractor Supply', north_feet=-301)
+        other = point('Contractor Supply')
+        self.assertEqual(deduplicate(collection(first, near, far, other))['features'], [first, far, other])
+
+    def test_distance_flag_changes_grouping(self):
+        points = [point(), point(east_feet=200)]
+        self.assertEqual(len(deduplicate(collection(*points), 100)['features']), 2)
+        self.assertEqual(len(deduplicate(collection(*points), 300)['features']), 1)
+
+    def test_radius_boundary_is_inclusive(self):
+        self.assertEqual(len(deduplicate(collection(point(), point(north_feet=300)))['features']), 1)
+        self.assertEqual(len(deduplicate(collection(point(), point(north_feet=300.01)))['features']), 2)
+
+    def test_preserve_high_confidence_record_metadata_and_input(self):
+        low, high, other = point(confidence=.2), point(confidence=.99), point('Different store')
+        high['properties']['website'] = 'https://example.org/'
+        high['geometry']['coordinates'].append(12)
+        document = collection(low, other, high)
+        document['bbox'] = [-1, -1, 1, 1]
+        original = copy.deepcopy(document)
+        output = deduplicate(document)
+        self.assertEqual(output['features'], [other, high])
+        self.assertEqual(output['attribution'], 'Test source')
+        self.assertNotIn('bbox', output)
+        self.assertEqual(document, original)
+
+    def test_ties_missing_confidence_and_missing_names(self):
+        first, second = point(), point(id='second')
+        unnamed = [point(''), point(None), point('   ')]
+        unnamed[1]['properties'] = None
+        self.assertEqual(deduplicate(collection(first, second, *unnamed))['features'], [first, *unnamed])
+
+    def test_zero_radius_only_merges_coincident_points(self):
+        a, b, c = point(), point(), point(east_feet=1)
+        self.assertEqual(deduplicate(collection(a, b, c), 0)['features'], [a, c])
+
+    def test_longitude_wrap_and_poles(self):
+        a, b = point(), point()
+        for coords1, coords2 in [([179.9999, 0], [-179.9999, 0]), ([0, 89.9999], [180, 89.9999])]:
+            a['geometry']['coordinates'], b['geometry']['coordinates'] = coords1, coords2
+            self.assertEqual(len(deduplicate(collection(a, b))['features']), 1)
+        a['geometry']['coordinates'], b['geometry']['coordinates'] = [180, 0], [-180, 0]
+        self.assertEqual(len(deduplicate(collection(a, b), 0)['features']), 1)
+
+    def test_empty_input_and_single_feature(self):
+        self.assertEqual(deduplicate(collection())['features'], [])
+        feature = point()
+        self.assertEqual(deduplicate(feature)['features'], [feature])
+
+    def test_spatial_index_matches_exhaustive_pairwise_groups(self):
+        rng = random.Random(42)
+        features = [point(name=rng.choice(['Home Depot', 'The Home Depot Rental', 'Tractor Supply', 'Contractor Supply']),
+                          east_feet=rng.uniform(-2000, 2000), north_feet=rng.uniform(-2000, 2000), id=str(i))
+                    for i in range(150)]
+        adjacency = [set() for _ in features]
+        for i, a in enumerate(features):
+            for j in range(i):
+                b = features[j]
+                if (names_match(tokens(a['properties']['name']), tokens(b['properties']['name']))
+                        and distance(a['geometry']['coordinates'], b['geometry']['coordinates']) <= 300 * .3048):
+                    adjacency[i].add(j)
+                    adjacency[j].add(i)
+        expected, visited = [], set()
+        for i in range(len(features)):
+            if i in visited:
+                continue
+            pending, group = [i], set()
+            while pending:
+                node = pending.pop()
+                if node in group:
+                    continue
+                group.add(node)
+                pending.extend(adjacency[node] - group)
+            visited.update(group)
+            expected.append(features[min(group)])
+        self.assertEqual(deduplicate(collection(*features))['features'], expected)
+
+
+class FilterTests(unittest.TestCase):
+    def run_filter(self, text, *args):
+        return subprocess.run([sys.executable, str(SCRIPT), *args], input=text,
+                              text=True, capture_output=True, cwd='/tmp')
+
+    def test_real_home_depot_filter_and_duplicate_pairs(self):
+        text = (ROOT / 'public/geojson/home_depot').read_text()
+        document = json.loads(text)
+        result = self.run_filter(text)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        output = json.loads(result.stdout)
+        self.assertGreater(len(document['features']), 0)
+        self.assertLessEqual(len(output['features']), len(document['features']))
+        ids = {f['properties']['id'] for f in output['features']}
+        input_ids = {f['properties']['id'] for f in document['features']}
+        for dropped, retained in [
+            ('90a7478a-724d-4ef8-9aa5-6f84f9a86165', 'c924a8f5-7bdf-4022-b612-568caa8101e0'),  # Cherry Hill, 248 ft
+            ('e34f4b50-2cba-448a-9894-275ed947084b', '23502a7c-aee1-4c19-ba9e-aa46a53e5bbd'),  # Paramus, 38 ft
+            ('2de709dd-5feb-4e5e-9d4e-64fd72dec3aa', 'aa4be821-b72b-449a-9fb4-33b9f710e709'),  # Absecon, same point
+        ]:
+            if {dropped, retained} <= input_ids:
+                self.assertNotIn(dropped, ids)
+                self.assertIn(retained, ids)
+        # The live file can grow or be regenerated; check the general contract
+        # rather than hard-coding its current size (88 -> 79 on 2026-10-24).
+        for i, a in enumerate(output['features']):
+            for b in output['features'][:i]:
+                if names_match(tokens(a['properties'].get('name')), tokens(b['properties'].get('name'))):
+                    self.assertGreater(distance(a['geometry']['coordinates'], b['geometry']['coordinates']), 300 * .3048)
+        for key, value in document.items():
+            if key != 'features':
+                self.assertEqual(output[key], value)
+        rerun = self.run_filter(result.stdout)
+        self.assertEqual(json.loads(rerun.stdout), output, 'Filtering is idempotent')
+
+    def test_cli_aliases_and_changed_radius(self):
+        document = json.dumps(collection(point(), point(east_feet=200)))
+        for flag in ['-d', '--distance', '--distance-feet']:
+            result = self.run_filter(document, flag, '100')
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertEqual(len(json.loads(result.stdout)['features']), 2)
+
+    def test_invalid_input_fails_without_partial_stdout(self):
+        invalid = ['{bad', '[]', json.dumps({'type': 'FeatureCollection', 'features': {}}),
+                   json.dumps(collection({'type': 'Feature', 'properties': {}, 'geometry': {'type': 'LineString', 'coordinates': []}})),
+                   json.dumps(collection(point())).replace('[0.0, 0.0]', '[181, 0]'),
+                   json.dumps(collection(point())).replace('0.0', 'NaN', 1),
+                   json.dumps(collection(point())).replace('0.0', '1e999', 1)]
+        for text in invalid:
+            with self.subTest(text=text[:80]):
+                result = self.run_filter(text)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(result.stdout, '')
+                self.assertIn('uniqgeo:', result.stderr)
+
+    def test_invalid_distances(self):
+        for value in ['-1', 'nan', 'inf', 'not-a-number']:
+            result = self.run_filter(json.dumps(collection()), '--distance', value)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(result.stdout, '')
+
+
+if __name__ == '__main__':
+    unittest.main()

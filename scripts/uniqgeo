@@ -1,0 +1,215 @@
+#!/usr/bin/env python3
+"""Deduplicate named GeoJSON Points: stdin -> stdout, default radius 300 feet.
+
+Example: scripts/uniqgeo --distance-feet 300 < points.geojson > unique.geojson
+Duplicates form connected groups: A near B and B near C groups all three.
+Keep the highest-confidence record, breaking ties by original input order.
+"""
+import argparse
+from collections import defaultdict
+from functools import lru_cache
+from itertools import product
+import json
+import math
+import re
+import sys
+import unicodedata
+
+EARTH_METRES = 6371008.8
+FEET_TO_METRES = 0.3048
+SUFFIXES = (
+    ('tool', 'rental'), ('tool', 'rentals'), ('garden', 'center'),
+    ('rental',), ('rentals',), ('co',), ('company',), ('inc',),
+    ('incorporated',), ('corp',), ('corporation',), ('llc',),
+    ('ltd',), ('limited',),
+)
+
+
+def name_tokens(name):
+    """Normalize whole words, common company suffixes and department labels."""
+    if not isinstance(name, str):
+        return ()
+    text = ''.join(c for c in unicodedata.normalize('NFKD', name.casefold())
+                   if not unicodedata.combining(c))
+    words = tuple(re.findall(r'[^\W_]+', text, flags=re.UNICODE))
+    for prefix in (('garden', 'center', 'at'), ('tool', 'rental', 'at')):
+        if len(words) > len(prefix) and words[:len(prefix)] == prefix:
+            words = words[len(prefix):]
+    if len(words) > 1 and words[0] == 'the':
+        words = words[1:]
+    changed = True
+    while changed:
+        changed = False
+        for suffix in SUFFIXES:
+            if len(words) > len(suffix) and words[-len(suffix):] == suffix:
+                words = words[:-len(suffix)]
+                changed = True
+                break
+    return words
+
+
+def one_typo(a, b):
+    """One character insertion/deletion/substitution or adjacent transposition."""
+    if abs(len(a) - len(b)) > 1:
+        return False
+    if len(a) == len(b):
+        differences = [i for i, (x, y) in enumerate(zip(a, b)) if x != y]
+        return (len(differences) <= 1 or
+                (len(differences) == 2 and differences[1] == differences[0] + 1
+                 and a[differences[0]] == b[differences[1]]
+                 and a[differences[1]] == b[differences[0]]))
+    shorter, longer = (a, b) if len(a) < len(b) else (b, a)
+    for i, (x, y) in enumerate(zip(shorter, longer)):
+        if x != y:
+            return shorter[i:] == longer[i + 1:]
+    return True
+
+
+@lru_cache(maxsize=4096)
+def names_match(a, b):
+    """Match normalized tokens; permit one typo with an exact-word anchor.
+
+    Never use substring matching: Tractor is not a match for Contractor.
+    Single-word names require an exact normalized match.
+    """
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    if len(a) != len(b) or len(a) < 2:
+        return False
+    different = [(x, y) for x, y in zip(a, b) if x != y]
+    return (len(different) == 1 and min(map(len, different[0])) >= 5
+            and one_typo(*different[0]))
+
+
+def finite_number(value):
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+
+def json_float(value):
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError(f'Invalid JSON number: {value}')
+    return number
+
+
+def invalid_constant(value):
+    raise ValueError(f'Invalid JSON number: {value}')
+
+
+def read_points(document):
+    if not isinstance(document, dict):
+        raise ValueError('Expected a GeoJSON FeatureCollection or Point Feature')
+    if document.get('type') == 'Feature':
+        document = {'type': 'FeatureCollection', 'features': [document]}
+    if document.get('type') != 'FeatureCollection' or not isinstance(document.get('features'), list):
+        raise ValueError('Expected a GeoJSON FeatureCollection or Point Feature')
+    positions, names = [], []
+    for i, feature in enumerate(document['features']):
+        if not isinstance(feature, dict) or feature.get('type') != 'Feature':
+            raise ValueError(f'Feature {i}: expected a GeoJSON Feature')
+        geometry = feature.get('geometry')
+        if not isinstance(geometry, dict) or geometry.get('type') != 'Point':
+            raise ValueError(f'Feature {i}: expected Point geometry')
+        coordinates = geometry.get('coordinates')
+        if (not isinstance(coordinates, list) or len(coordinates) < 2
+                or not all(finite_number(c) for c in coordinates)
+                or not -180 <= coordinates[0] <= 180 or not -90 <= coordinates[1] <= 90):
+            raise ValueError(f'Feature {i}: invalid longitude/latitude coordinates')
+        properties = feature.get('properties')
+        if 'properties' not in feature or (properties is not None and not isinstance(properties, dict)):
+            raise ValueError(f'Feature {i}: properties must be an object or null')
+        lon, lat = coordinates[:2]
+        # Canonicalize equivalent positions for distance calculations only.
+        lon = 0 if abs(lat) == 90 else (lon + 180) % 360 - 180
+        positions.append((lon, lat))
+        names.append(name_tokens((properties or {}).get('name')))
+    return document, positions, names
+
+
+def distance_metres(a, b):
+    lon1, lat1 = map(math.radians, a)
+    lon2, lat2 = map(math.radians, b)
+    h = (math.sin((lat2 - lat1) / 2) ** 2
+         + math.cos(lat1) * math.cos(lat2) * math.sin((lon2 - lon1) / 2) ** 2)
+    return 2 * EARTH_METRES * math.asin(math.sqrt(min(1, max(0, h))))
+
+
+def deduplicate(document, distance_feet=300):
+    if not finite_number(distance_feet) or distance_feet < 0:
+        raise ValueError('Distance must be a finite non-negative number of feet')
+    document, positions, names = read_points(document)
+    features = document['features']
+    parents = list(range(len(features)))
+
+    def find(i):
+        while parents[i] != i:
+            parents[i] = parents[parents[i]]
+            i = parents[i]
+        return i
+
+    # Earth-centred 3D cells avoid longitude-wrap and polar edge cases. A pair
+    # within the arc radius also has chord distance <= radius, so it must be in
+    # the same or adjacent cells. Confirm candidates with great-circle distance.
+    radius = distance_feet * FEET_TO_METRES
+    cells = defaultdict(list)
+    offsets = tuple(product((-1, 0, 1), repeat=3))
+    for i, (lon, lat) in enumerate(positions):
+        if not names[i]:
+            continue  # Unnamed points must not all collapse into one group.
+        if radius == 0:
+            cell = (lon, lat)
+            candidates = cells[cell]
+        else:
+            longitude, latitude = map(math.radians, (lon, lat))
+            xyz = (EARTH_METRES * math.cos(latitude) * math.cos(longitude),
+                   EARTH_METRES * math.cos(latitude) * math.sin(longitude),
+                   EARTH_METRES * math.sin(latitude))
+            cell = tuple(math.floor(v / radius) for v in xyz)
+            candidates = (j for delta in offsets
+                          for j in cells.get(tuple(c + d for c, d in zip(cell, delta)), ()))
+        for j in candidates:
+            if (names_match(names[i], names[j])
+                    and distance_metres(positions[i], positions[j]) <= radius + 1e-8):
+                a, b = find(i), find(j)
+                if a != b:
+                    parents[b] = a
+        cells[cell].append(i)
+
+    groups = defaultdict(list)
+    for i in range(len(features)):
+        groups[find(i)].append(i)
+
+    def confidence(i):
+        value = (features[i].get('properties') or {}).get('confidence')
+        return value if finite_number(value) else -math.inf
+
+    survivors = sorted(max(group, key=confidence) for group in groups.values())
+    output = dict(document)
+    output['features'] = [features[i] for i in survivors]
+    if len(survivors) != len(features):
+        output.pop('bbox', None)  # Do not retain a now-stale collection extent.
+    return output
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('-d', '--distance', '--distance-feet', dest='distance_feet',
+                        type=float, default=300, metavar='FEET',
+                        help='maximum duplicate separation in feet (default: 300; 0: coincident points only)')
+    args = parser.parse_args()
+    try:
+        # Fully parse and validate before producing any output.
+        document = json.load(sys.stdin, parse_float=json_float, parse_constant=invalid_constant)
+        result = deduplicate(document, args.distance_feet)
+        json.dump(result, sys.stdout, ensure_ascii=False, allow_nan=False, indent=1)
+        sys.stdout.write('\n')
+    except (ValueError, TypeError, OverflowError) as error:
+        parser.exit(2, f'uniqgeo: {error}\n')
+    except BrokenPipeError:
+        return
+
+
+if __name__ == '__main__':
+    main()
