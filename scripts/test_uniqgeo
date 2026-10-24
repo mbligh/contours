@@ -60,6 +60,14 @@ class NameTests(unittest.TestCase):
             self.assertFalse(names_match(tokens(a), tokens(b)), (a, b))
 
 
+
+    def test_zip_normalization(self):
+        normalize = MODULE['address_key']
+        base = dict(street='83 Ver Valen St', city='Closter',
+                    region='NJ', postcode='07624')
+        extended = dict(base, postcode='07624-2612')
+        self.assertEqual(normalize(base), normalize(extended))
+
 class GroupTests(unittest.TestCase):
 
     def test_far_apart_fuzzy_address_match(self):
