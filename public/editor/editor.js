@@ -5,7 +5,6 @@ import {readLayer, writeLayer, parseProperties} from './model.mjs';
 
 const el = id => document.getElementById(id);
 const supportsFiles = !!(window.showOpenFilePicker && window.showSaveFilePicker && window.isSecureContext);
-const fileTypes = [{description:'GeoJSON', accept:{'application/geo+json':['.geojson','.json']}}];
 let map, draw, selected, fileHandle, fileName = 'Untitled.geojson';
 let metadata = {type:'FeatureCollection'}, records = new Map();
 let savedText = JSON.stringify({type:'FeatureCollection',features:[]});
@@ -101,7 +100,7 @@ async function save(asNew = false) {
     let handle = fileHandle;
     setBusy(true);
     if (supportsFiles) {
-      if (!handle || asNew) handle = await window.showSaveFilePicker({suggestedName:fileName, types:fileTypes});
+      if (!handle || asNew) handle = await window.showSaveFilePicker({suggestedName:fileName});
       const writable = await handle.createWritable();
       try { await writable.write(text); await writable.close(); }
       catch (error) { await writable.abort().catch(() => {}); throw error; }
@@ -128,7 +127,7 @@ el('open').onclick = async () => {
   if (!confirmReplace()) return;
   el('error').textContent = '';
   if (!supportsFiles) { el('file').value = ''; el('file').click(); return; }
-  try { const [handle] = await window.showOpenFilePicker({types:fileTypes, multiple:false}); setBusy(true); await openFile(await handle.getFile(), handle); }
+  try { const [handle] = await window.showOpenFilePicker({multiple:false}); setBusy(true); await openFile(await handle.getFile(), handle); }
   catch (error) { report(error); }
   finally { setBusy(false); }
 };
