@@ -12,7 +12,7 @@ const {chromium} = require('playwright');
     'https://esm.sh/terra-draw@1.24.2': 'terra-draw',
     'https://esm.sh/terra-draw-maplibre-gl-adapter@1.1.2': 'terra-draw-maplibre-gl-adapter'
   };
-  const bundle = await build({entryPoints:[path.join(root,'editor.js')],bundle:true,write:false,format:'esm',plugins:[{name:'local-cdn-dependencies',setup(builder){builder.onResolve({filter:/^https:/}, args => ({path:require.resolve(aliases[args.path])}));}}]});
+  const bundle = await build({entryPoints:[path.join(root,'editor.js')],bundle:true,write:false,format:'esm',plugins:[{name:'local-cdn-dependencies',setup(builder){builder.onResolve({filter:/^https:/}, args => builder.resolve(aliases[args.path], {kind:'import-statement',resolveDir:process.env.NODE_PATH}));}}]});
   const server=http.createServer((req,res)=>{
     const pathname=new URL(req.url,'http://localhost').pathname;
     if(pathname==='/editor.js'){res.setHeader('Content-Type','text/javascript');res.end(bundle.outputFiles[0].text);return;}
@@ -32,7 +32,7 @@ const {chromium} = require('playwright');
     const handle={name:'layer.geojson',getFile:async()=>new File([JSON.stringify(window.__fixture)],'layer.geojson'),createWritable:async()=>({write:async text=>{if(window.__saveFails)throw new Error('Simulated disk error');window.__pending=text;},close:async()=>window.__writes.push(window.__pending),abort:async()=>{}})};
     window.showOpenFilePicker=async()=>[handle];window.showSaveFilePicker=async()=>handle;
   },{fixture});
-  await page.route('https://unpkg.com/**',route=>route.fulfill({contentType:'text/css',body:fs.readFileSync(require.resolve('maplibre-gl/dist/maplibre-gl.css'),'utf8')}));
+  await page.route('https://unpkg.com/**',route=>route.fulfill({contentType:'text/css',body:fs.readFileSync(path.join(process.env.NODE_PATH,'maplibre-gl/dist/maplibre-gl.css'),'utf8')}));
   try {
     await page.goto(`http://127.0.0.1:${server.address().port}/`);
     await page.waitForFunction(()=>!document.getElementById('open').disabled);
@@ -72,4 +72,4 @@ const {chromium} = require('playwright');
     console.log('Browser checks passed: open/save round trip, properties, basemap restoration, points, trails, deletion, failed saves, rejected imports.');
   } catch(error) {await page.screenshot({path:'editor-test-failure.png',fullPage:true});throw error;}
   finally {await browser.close();await new Promise(resolve=>server.close(resolve));}
-})().catch(error=>{console.error(error);process.exitCode=1;});
+})().catch(error=>{console.error(error);process.exit(1);});
