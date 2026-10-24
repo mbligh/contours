@@ -27,5 +27,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install rapidfuzz
+        run: python -m pip install rapidfuzz
       - name: Test fuzzy matching, grouping, and GeoJSON filter
         run: python scripts/test_uniqgeo
