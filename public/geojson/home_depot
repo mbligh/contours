@@ -307,34 +307,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.6690902709961,
-     40.57662582397461
-    ]
-   },
-   "properties": {
-    "id": "aa7914c8-8588-4a0f-b549-e311d2f39921",
-    "name": "The Home Depot Rental",
-    "street": "736 ROUTE 202 SOUTH",
-    "city": "Bridgewater",
-    "region": "NJ",
-    "postcode": "08807",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_home_and_garden_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store"
-    ],
-    "website": "https://www.compactpowerrents.com/locations",
-    "confidence": 0.7113484740257263
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.8205337524414,
      40.034114837646484
     ]

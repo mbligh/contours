@@ -136,7 +136,7 @@ def distance_metres(a, b):
     return 2 * EARTH_METRES * math.asin(math.sqrt(min(1, max(0, h))))
 
 
-def deduplicate(document, distance_feet=300):
+def deduplicate(document, distance_feet=800):
     if not finite_number(distance_feet) or distance_feet < 0:
         raise ValueError('Distance must be a finite non-negative number of feet')
     document, positions, names = read_points(document)
@@ -196,8 +196,8 @@ def deduplicate(document, distance_feet=300):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('-d', '--distance', '--distance-feet', dest='distance_feet',
-                        type=float, default=300, metavar='FEET',
-                        help='maximum duplicate separation in feet (default: 300; 0: coincident points only)')
+                        type=float, default=800, metavar='FEET',
+                        help='maximum duplicate separation in feet (default: 800; 0: coincident points only)')
     args = parser.parse_args()
     try:
         # Fully parse and validate before producing any output.
