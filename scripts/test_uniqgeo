@@ -105,7 +105,7 @@ class GroupTests(unittest.TestCase):
         near = point('Tractor Supply Co', north_feet=299)
         far = point('Tractor Supply', north_feet=-301)
         other = point('Contractor Supply')
-        self.assertEqual(deduplicate(collection(first, near, far, other))['features'], [first, far, other])
+        self.assertEqual(deduplicate(collection(first, near, far, other), 300)['features'], [first, far, other])
 
     def test_distance_flag_changes_grouping(self):
         points = [point(), point(east_feet=200)]
@@ -113,9 +113,9 @@ class GroupTests(unittest.TestCase):
         self.assertEqual(len(deduplicate(collection(*points), 300)['features']), 1)
 
     def test_radius_boundary_is_inclusive(self):
-        self.assertEqual(len(deduplicate(collection(point(), point(north_feet=300)))['features']), 1)
+        self.assertEqual(len(deduplicate(collection(point(), point(north_feet=300)), 300)['features']), 1)
         a, b = point(), point(north_feet=300.01)
-        self.assertEqual(len(deduplicate(collection(a, b))['features']), 2)
+        self.assertEqual(len(deduplicate(collection(a, b), 300)['features']), 2)
 
     def test_preserve_high_confidence_record_metadata_and_input(self):
         low, high, other = point(confidence=.2), point(confidence=.99), point('Different store')
@@ -180,7 +180,7 @@ class GroupTests(unittest.TestCase):
                 pending.extend(adjacency[node] - group)
             visited.update(group)
             expected.append(features[min(group)])
-        self.assertEqual(deduplicate(collection(*features))['features'], expected)
+        self.assertEqual(deduplicate(collection(*features), 300)['features'], expected)
 
 
 class FilterTests(unittest.TestCase):
