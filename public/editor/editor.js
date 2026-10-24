@@ -2,6 +2,7 @@ import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-
 import {TerraDraw, TerraDrawPointMode, TerraDrawLineStringMode, TerraDrawSelectMode} from 'https://esm.sh/terra-draw@1.24.2';
 import {TerraDrawMapLibreGLAdapter} from 'https://esm.sh/terra-draw-maplibre-gl-adapter@1.1.2';
 import {readLayer, writeLayer, parseProperties} from './model.mjs';
+import {myMapsURL, importGeoData} from './import.mjs';
 
 const el = id => document.getElementById(id);
 const supportsFiles = !!(window.showOpenFilePicker && window.showSaveFilePicker && window.isSecureContext);
@@ -89,9 +90,9 @@ async function installLayer(data) {
   }
 }
 async function openFile(file, handle) {
-  const data = JSON.parse(await file.text());
+  const data = await importGeoData(new Uint8Array(await file.arrayBuffer()), file.name);
   await installLayer(data);
-  fileHandle = handle; fileName = file.name;
+  fileHandle = /\.geojson$|\.json$/i.test(file.name) ? handle : undefined; fileName = /\.(kml|kmz)$/i.test(file.name) ? file.name.replace(/\.(kml|kmz)$/i, '.geojson') : file.name;
   refresh(); el('status').textContent = 'Opened ' + fileName;
 }
 async function save(asNew = false) {
@@ -126,15 +127,15 @@ el('open-url').onclick = async () => {
   const raw = el('open-url-input').value.trim();
   if (!raw) { report(new Error('Enter a GeoJSON URL.')); return; }
   try {
-    const url = new URL(raw, window.location.href);
-    if (!['http:', 'https:'].includes(url.protocol)) throw new Error('Only HTTP(S) URLs are supported.');
+    const url = myMapsURL(raw);
     setBusy(true);
     const response = await fetch(url.href);
     if (!response.ok) throw new Error('GeoJSON HTTP ' + response.status);
-    const data = await response.json();
+    const data = await importGeoData(new Uint8Array(await response.arrayBuffer()), url.pathname);
     await installLayer(data);
     fileHandle = undefined;
-    fileName = decodeURIComponent(url.pathname.split('/').pop() || 'remote.geojson');
+    fileName = decodeURIComponent(url.pathname.split('/').pop() || 'remote.geojson').replace(/\.(kml|kmz)$/i, '.geojson');
+    if (url.pathname.endsWith('/kml')) fileName = 'mymaps.geojson';
     refresh();
     el('status').textContent = 'Opened ' + url.href + ' (read-only source; Save downloads or saves a local copy).';
   } catch (error) { report(error); }
@@ -154,7 +155,7 @@ el('open').onclick = async () => {
   if (!confirmReplace()) return;
   el('error').textContent = '';
   if (!supportsFiles) { el('file').value = ''; el('file').click(); return; }
-  try { const [handle] = await window.showOpenFilePicker({multiple:false}); setBusy(true); await openFile(await handle.getFile(), handle); }
+  try { const [handle] = await window.showOpenFilePicker({multiple:false,types:[{description:'GeoJSON, KML, KMZ',accept:{'application/octet-stream':['.geojson','.json','.kml','.kmz']}}]}); setBusy(true); await openFile(await handle.getFile(), handle); }
   catch (error) { report(error); }
   finally { setBusy(false); }
 };
