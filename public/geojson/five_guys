@@ -744,17 +744,18 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.03717803955078,
-     40.717918395996094
+     -74.09356689453125,
+     40.71107482910156
     ]
    },
    "properties": {
-    "id": "3ab405ba-71fd-45c1-89e4-d078ad5c2b01",
+    "id": "88f28a15-801f-42d1-b532-edfc51889299",
     "name": "Five Guys",
-    "street": "286 Washington St",
+    "street": "23 University Place Blvd.",
     "city": "Jersey City",
     "region": "NJ",
-    "postcode": "07302",
+    "postcode": "07305",
+    "brand": "Five Guys",
     "basic_category": "restaurant",
     "category": "burger_restaurant",
     "category_hierarchy": [
@@ -763,9 +764,10 @@
      "meat_restaurant",
      "burger_restaurant"
     ],
-    "phone": "",
-    "website": "http://fiveguys.com/",
-    "confidence": 0.9655
+    "phone": "+12013600201",
+    "website": "https://restaurants.fiveguys.com/23-university-place-blvd",
+    "confidence": 0.9436647891998291,
+    "operating_status": "open"
    }
   },
   {
@@ -803,18 +805,17 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.09356689453125,
-     40.71107482910156
+     -74.03717803955078,
+     40.717918395996094
     ]
    },
    "properties": {
-    "id": "88f28a15-801f-42d1-b532-edfc51889299",
+    "id": "3ab405ba-71fd-45c1-89e4-d078ad5c2b01",
     "name": "Five Guys",
-    "street": "23 University Place Blvd.",
+    "street": "286 Washington St",
     "city": "Jersey City",
     "region": "NJ",
-    "postcode": "07305",
-    "brand": "Five Guys",
+    "postcode": "07302",
     "basic_category": "restaurant",
     "category": "burger_restaurant",
     "category_hierarchy": [
@@ -823,10 +824,9 @@
      "meat_restaurant",
      "burger_restaurant"
     ],
-    "phone": "+12013600201",
-    "website": "https://restaurants.fiveguys.com/23-university-place-blvd",
-    "confidence": 0.9436647891998291,
-    "operating_status": "open"
+    "phone": "",
+    "website": "http://fiveguys.com/",
+    "confidence": 0.9655
    }
   },
   {
@@ -1816,37 +1816,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.25096893310547,
-     40.88956069946289
-    ]
-   },
-   "properties": {
-    "id": "e2899c26-5770-4683-8c3f-d578e2ade553",
-    "name": "Five Guys",
-    "street": "57 Route 23",
-    "city": "Wayne",
-    "region": "NJ",
-    "postcode": "07470",
-    "brand": "Five Guys",
-    "basic_category": "restaurant",
-    "category": "burger_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "meat_restaurant",
-     "burger_restaurant"
-    ],
-    "phone": "+19738378258",
-    "website": "https://restaurants.fiveguys.com/57-route-23",
-    "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.26915740966797,
      40.93921661376953
     ]
@@ -1869,6 +1838,37 @@
     ],
     "phone": "+19736330055",
     "website": "https://restaurants.fiveguys.com/1610-route-23",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.25096893310547,
+     40.88956069946289
+    ]
+   },
+   "properties": {
+    "id": "e2899c26-5770-4683-8c3f-d578e2ade553",
+    "name": "Five Guys",
+    "street": "57 Route 23",
+    "city": "Wayne",
+    "region": "NJ",
+    "postcode": "07470",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19738378258",
+    "website": "https://restaurants.fiveguys.com/57-route-23",
     "confidence": 0.9902192950248718,
     "operating_status": "open"
    }

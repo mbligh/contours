@@ -8,6 +8,63 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -74.70638275146484,
+     40.840301513671875
+    ]
+   },
+   "properties": {
+    "id": "37692f55-eeef-49c5-a142-a2b560e6c48e",
+    "name": "Tractor Supply",
+    "street": "239 Us Highway 206 Unit 15a",
+    "city": "Flanders",
+    "region": "NJ",
+    "postcode": "07836-9115",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19732522925",
+    "website": "https://www.tractorsupply.com",
+    "confidence": 0.55,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.02629852294922,
+     40.75077438354492
+    ]
+   },
+   "properties": {
+    "id": "4e4c11ce-621d-4293-9f8f-2f8c1b9fcd54",
+    "name": "Tractor Supply",
+    "street": "398 Route 57 W # 4",
+    "city": "Washington",
+    "region": "NJ",
+    "postcode": "07882-4335",
+    "basic_category": "department_store",
+    "category": "department_store",
+    "category_hierarchy": [
+     "shopping",
+     "department_store"
+    ],
+    "phone": "+19086893202",
+    "confidence": 0.25,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -74.98286437988281,
      40.9870491027832
     ]
@@ -39,35 +96,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.71968841552734,
-     40.1336669921875
-    ]
-   },
-   "properties": {
-    "id": "903a7ba2-99c8-4a70-af45-d1d007418a97",
-    "name": "Tractor Supply Co.",
-    "street": "397 US Highway 130",
-    "city": "Bordentown",
-    "region": "NJ",
-    "postcode": "08505",
-    "basic_category": "animal_and_pet_store",
-    "category": "pet_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "animal_and_pet_store",
-     "pet_store"
-    ],
-    "phone": "(609) 298-1502",
-    "website": "https://www.tractorsupply.com/tsc/store_Bordentown-NJ-08505_2462",
-    "confidence": 0.77
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.7243881225586,
      40.13095474243164
     ]
@@ -92,6 +120,35 @@
     "website": "https://www.tractorsupply.com/tsc/store_Bordentown-NJ-08505_2462",
     "confidence": 0.9199122190475464,
     "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.71968841552734,
+     40.1336669921875
+    ]
+   },
+   "properties": {
+    "id": "903a7ba2-99c8-4a70-af45-d1d007418a97",
+    "name": "Tractor Supply Co.",
+    "street": "397 US Highway 130",
+    "city": "Bordentown",
+    "region": "NJ",
+    "postcode": "08505",
+    "basic_category": "animal_and_pet_store",
+    "category": "pet_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "animal_and_pet_store",
+     "pet_store"
+    ],
+    "phone": "(609) 298-1502",
+    "website": "https://www.tractorsupply.com/tsc/store_Bordentown-NJ-08505_2462",
+    "confidence": 0.77
    }
   },
   {
@@ -1087,36 +1144,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.92899322509766,
-     39.807106018066406
-    ]
-   },
-   "properties": {
-    "id": "e352468f-da32-44ce-99a0-10e279b847f3",
-    "name": "Tractor Supply Co.",
-    "street": "901 S Route 73",
-    "city": "West Berlin",
-    "region": "NJ",
-    "postcode": "08091",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "(856) 809-2320",
-    "website": "https://www.tractorsupply.com/tsc/store_Westberlin-NJ-08091_2578",
-    "confidence": 0.77,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.9089584350586,
      39.78508377075195
     ]
@@ -1140,6 +1167,36 @@
     "phone": "+18568092320",
     "website": "https://www.tractorsupply.com/tsc/store_Westberlin-NJ-08091_2578",
     "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.92899322509766,
+     39.807106018066406
+    ]
+   },
+   "properties": {
+    "id": "e352468f-da32-44ce-99a0-10e279b847f3",
+    "name": "Tractor Supply Co.",
+    "street": "901 S Route 73",
+    "city": "West Berlin",
+    "region": "NJ",
+    "postcode": "08091",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "(856) 809-2320",
+    "website": "https://www.tractorsupply.com/tsc/store_Westberlin-NJ-08091_2578",
+    "confidence": 0.77,
     "operating_status": "open"
    }
   }

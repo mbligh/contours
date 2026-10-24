@@ -8,36 +8,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -75.0390853881836,
-     39.92377471923828
-    ]
-   },
-   "properties": {
-    "id": "90a7478a-724d-4ef8-9aa5-6f84f9a86165",
-    "name": "Home Depot",
-    "street": "2232 RT-70 W",
-    "city": "Cherry Hill",
-    "region": "NJ",
-    "postcode": "08002-3345",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "furniture_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "furniture_store"
-    ],
-    "phone": "+18566637491",
-    "website": "www.homedepot.com",
-    "confidence": 0.7662929892539978,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.38484191894531,
      40.42924880981445
     ]
@@ -189,37 +159,6 @@
     ]
    },
    "properties": {
-    "id": "2de709dd-5feb-4e5e-9d4e-64fd72dec3aa",
-    "name": "The Home Depot",
-    "street": "421 E Absecon Blvd",
-    "city": "Absecon",
-    "region": "NJ",
-    "postcode": "08201-2239",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "+16094843511",
-    "website": "https://www.homedepot.com/l/Absecon/NJ/Absecon/08201/975?emt=MSFBPage",
-    "confidence": 0.9722161889076233,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.49373626708984,
-     39.41587448120117
-    ]
-   },
-   "properties": {
     "id": "aa4be821-b72b-449a-9fb4-33b9f710e709",
     "name": "The Home Depot",
     "street": "421 Absecon Blvd",
@@ -307,67 +246,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.67056274414062,
-     40.57598876953125
-    ]
-   },
-   "properties": {
-    "id": "017b2f69-39ea-4ef2-ac64-2e266e29e36f",
-    "name": "The Home Depot",
-    "street": "736 US Highway 202",
-    "city": "Bridgewater",
-    "region": "NJ",
-    "postcode": "08807-2551",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "+19082520101",
-    "website": "https://www.homedepot.com/l/Bridgewater-II-Route-202/NJ/Bridgewater/08807/962?emt=MSFBPage",
-    "confidence": 0.9969754219055176
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.67056274414062,
-     40.57598876953125
-    ]
-   },
-   "properties": {
-    "id": "05fede01-bc70-4ca6-9633-9609000156d7",
-    "name": "The Home Depot",
-    "street": "736 Route 202 South",
-    "city": "Bridgewater",
-    "region": "NJ",
-    "postcode": "08807",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "+19082520101",
-    "website": "https://www.homedepot.com/l/Bridgewater-II-Route-202/NJ/Bridgewater/08807/962?emt=MSFBPage",
-    "confidence": 0.9879688024520874,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.55399322509766,
      40.56407928466797
     ]
@@ -392,6 +270,36 @@
     "website": "https://www.homedepot.com/l/Bridgewater-Route-28/NJ/Bridgewater/08807/947?emt=MSFBPage",
     "confidence": 0.9902192950248718,
     "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.67056274414062,
+     40.57598876953125
+    ]
+   },
+   "properties": {
+    "id": "017b2f69-39ea-4ef2-ac64-2e266e29e36f",
+    "name": "The Home Depot",
+    "street": "736 US Highway 202",
+    "city": "Bridgewater",
+    "region": "NJ",
+    "postcode": "08807-2551",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+19082520101",
+    "website": "https://www.homedepot.com/l/Bridgewater-II-Route-202/NJ/Bridgewater/08807/962?emt=MSFBPage",
+    "confidence": 0.9969754219055176
    }
   },
   {
@@ -1077,6 +985,37 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -74.09687042236328,
+     40.710506439208984
+    ]
+   },
+   "properties": {
+    "id": "2adbba84-f123-45cf-b917-604aee630bae",
+    "name": "The Home Depot",
+    "street": "440 State RT 440",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07305-4813",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "hardware_store"
+    ],
+    "phone": "+12015219437",
+    "website": "https://www.homedepot.com/l/Jersey-City/NJ/Jersey-City/07305/935?emt=MSFBPage",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -74.04045867919922,
      40.73064041137695
     ]
@@ -1130,37 +1069,6 @@
     ],
     "website": "https://www.homedepot.com/l/storeDirectory",
     "confidence": 0.8
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.09687042236328,
-     40.710506439208984
-    ]
-   },
-   "properties": {
-    "id": "2adbba84-f123-45cf-b917-604aee630bae",
-    "name": "The Home Depot",
-    "street": "440 State RT 440",
-    "city": "Jersey City",
-    "region": "NJ",
-    "postcode": "07305-4813",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "+12015219437",
-    "website": "https://www.homedepot.com/l/Jersey-City/NJ/Jersey-City/07305/935?emt=MSFBPage",
-    "confidence": 0.9813855886459351,
-    "operating_status": "open"
    }
   },
   {
@@ -1253,37 +1161,6 @@
     "phone": "+19085231520",
     "website": "https://www.homedepot.com/l/Linden/NJ/Linden/07036/934?emt=MSFBPage",
     "confidence": 0.9952690005302429
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.24897766113281,
-     40.61791229248047
-    ]
-   },
-   "properties": {
-    "id": "d023e69b-18b9-47d1-9eae-195051cf42d2",
-    "name": "The Home Depot",
-    "street": "701 W Edgar Rd",
-    "city": "Linden",
-    "region": "NJ",
-    "postcode": "07036-3248",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "+19085231520",
-    "website": "https://www.homedepot.com/l/Linden/NJ/Linden/07036/934?emt=MSFBPage",
-    "confidence": 0.9891512393951416,
-    "operating_status": "open"
    }
   },
   {
@@ -1754,35 +1631,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.07210540771484,
-     40.9567985534668
-    ]
-   },
-   "properties": {
-    "id": "e34f4b50-2cba-448a-9894-275ed947084b",
-    "name": "The Home Depot",
-    "street": "520 Rt 17 North",
-    "city": "Paramus",
-    "region": "NJ",
-    "postcode": "07652",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "do_it_yourself_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "do_it_yourself_store"
-    ],
-    "website": "https://www.homedepot.com/l/storeDirectory",
-    "confidence": 0.954
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.07219696044922,
      40.956722259521484
     ]
@@ -1874,37 +1722,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.12047576904297,
-     40.8715934753418
-    ]
-   },
-   "properties": {
-    "id": "029e2954-ecc3-418d-a95e-2a2a3db3ba2c",
-    "name": "The Home Depot",
-    "street": "103-179 Dayton Ave",
-    "city": "Passaic",
-    "region": "NJ",
-    "postcode": "07055",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "+19734712111",
-    "website": "https://www.homedepot.com/l/Passaic/NJ/Passaic/07055/950?emt=MSFBPage",
-    "confidence": 0.9813855886459351,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.14222717285156,
      40.93352127075195
     ]
@@ -1960,35 +1777,6 @@
     "website": "https://www.homedepot.com/l/Phillipsburg/NJ/Phillipsburg/08865/931?emt=MSFBPage",
     "confidence": 0.9722161889076233,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -75.14192962646484,
-     40.680641174316406
-    ]
-   },
-   "properties": {
-    "id": "f6f9914a-3985-4cd3-9771-2d1f415174e4",
-    "name": "The Home Depot",
-    "street": "1209 US Highway 22",
-    "city": "Phillipsburg",
-    "region": "NJ",
-    "postcode": "08865",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "(908) 213-0403",
-    "website": "https://www.homedepot.com/l/Phillipsburg/NJ/Phillipsburg/08865/931",
-    "confidence": 0.77
    }
   },
   {
@@ -2058,6 +1846,35 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -74.62789916992188,
+     40.20671081542969
+    ]
+   },
+   "properties": {
+    "id": "1b020dfc-951b-4f99-950b-3be9ba4d0ca9",
+    "name": "The Home Depot",
+    "street": "8 S Gold Dr",
+    "city": "Robbinsville",
+    "region": "NJ",
+    "postcode": "08691-1607",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "hardware_home_and_garden_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store"
+    ],
+    "phone": "+16096895300",
+    "website": "http://www.homedepot.com/",
+    "confidence": 0.5593243837356567
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -74.64535522460938,
      40.19559097290039
     ]
@@ -2082,35 +1899,6 @@
     "website": "https://www.homedepot.com/l/Hamilton/NJ/Robbinsville/08691/927?emt=MSFBPage",
     "confidence": 0.9999681761801242,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.62789916992188,
-     40.20671081542969
-    ]
-   },
-   "properties": {
-    "id": "1b020dfc-951b-4f99-950b-3be9ba4d0ca9",
-    "name": "The Home Depot",
-    "street": "8 S Gold Dr",
-    "city": "Robbinsville",
-    "region": "NJ",
-    "postcode": "08691-1607",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_home_and_garden_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store"
-    ],
-    "phone": "+16096895300",
-    "website": "http://www.homedepot.com/",
-    "confidence": 0.5593243837356567
    }
   },
   {
@@ -2149,66 +1937,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -75.0487060546875,
-     39.77859878540039
-    ]
-   },
-   "properties": {
-    "id": "9d29f0e7-a6b3-4102-a9ac-264b530c9d14",
-    "name": "The Home Depot",
-    "street": "2735 Route 42",
-    "city": "Sicklerville",
-    "region": "NJ",
-    "postcode": "08081",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "do_it_yourself_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "do_it_yourself_store"
-    ],
-    "website": "https://www.homedepot.com/l/storeDirectory",
-    "confidence": 0.8
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -75.02655792236328,
-     39.71933364868164
-    ]
-   },
-   "properties": {
-    "id": "03fdc463-1081-4d4b-82f0-33fcb3d79bcd",
-    "name": "The Home Depot",
-    "street": "2735 Route 42",
-    "city": "Sicklerville",
-    "region": "NJ",
-    "postcode": "08081-5106",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "home_improvement_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "home_improvement_store"
-    ],
-    "phone": "+18567288600",
-    "website": "https://www.homedepot.com/l/Washington-Twsp-Monroe/NJ/Sicklerville/08081/942?emt=MSFBPage",
-    "confidence": 0.9972910284996033,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -75.02655792236328,
      39.71933364868164
     ]
@@ -2232,6 +1960,35 @@
     "phone": "+18567288600",
     "website": "https://www.homedepot.com/l/Washington-Twsp-Monroe/NJ/Sicklerville/08081/942?emt=MSFBPage",
     "confidence": 0.9999065404832364
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.0487060546875,
+     39.77859878540039
+    ]
+   },
+   "properties": {
+    "id": "9d29f0e7-a6b3-4102-a9ac-264b530c9d14",
+    "name": "The Home Depot",
+    "street": "2735 Route 42",
+    "city": "Sicklerville",
+    "region": "NJ",
+    "postcode": "08081",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "website": "https://www.homedepot.com/l/storeDirectory",
+    "confidence": 0.8
    }
   },
   {
@@ -2485,6 +2242,35 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     -74.42280578613281,
+     40.63859939575195
+    ]
+   },
+   "properties": {
+    "id": "173f13d9-70be-44ce-9524-e1a141db6c41",
+    "name": "The Home Depot",
+    "street": "1515 Route 22",
+    "city": "Watchung",
+    "region": "NJ",
+    "postcode": "07069",
+    "brand": "The Home Depot",
+    "basic_category": "hardware_home_and_garden_store",
+    "category": "do_it_yourself_store",
+    "category_hierarchy": [
+     "shopping",
+     "specialty_store",
+     "hardware_home_and_garden_store",
+     "do_it_yourself_store"
+    ],
+    "website": "https://www.homedepot.com/l/storeDirectory",
+    "confidence": 0.8
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      -74.4203872680664,
      40.64239501953125
     ]
@@ -2509,35 +2295,6 @@
     "website": "https://www.homedepot.com/l/Watchung/NJ/Watchung/07069/906?emt=MSFBPage",
     "confidence": 0.9999539317727089,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.42280578613281,
-     40.63859939575195
-    ]
-   },
-   "properties": {
-    "id": "173f13d9-70be-44ce-9524-e1a141db6c41",
-    "name": "The Home Depot",
-    "street": "1515 Route 22",
-    "city": "Watchung",
-    "region": "NJ",
-    "postcode": "07069",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "do_it_yourself_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "do_it_yourself_store"
-    ],
-    "website": "https://www.homedepot.com/l/storeDirectory",
-    "confidence": 0.8
    }
   },
   {
@@ -2599,35 +2356,6 @@
     "website": "https://www.homedepot.com",
     "confidence": 0.25,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.29620361328125,
-     40.53899383544922
-    ]
-   },
-   "properties": {
-    "id": "16698e02-2abb-4953-bbf8-704aae449dd3",
-    "name": "The Home Depot",
-    "street": "373 US Highway 9 S",
-    "city": "Woodbridge",
-    "region": "NJ",
-    "postcode": "07095",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "do_it_yourself_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "do_it_yourself_store"
-    ],
-    "website": "https://www.homedepot.com/l/storeDirectory",
-    "confidence": 0.954
    }
   },
   {

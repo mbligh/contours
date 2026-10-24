@@ -482,37 +482,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.50711822509766,
-     40.43668746948242
-    ]
-   },
-   "properties": {
-    "id": "d40e4c90-c9cc-4586-a82a-788d66aef1c4",
-    "name": "Costco",
-    "street": "100 Grand Avenue",
-    "city": "North Brunswick",
-    "region": "NJ",
-    "postcode": "08902",
-    "brand": "Costco",
-    "basic_category": "wholesaler",
-    "category": "wholesale_grocer",
-    "category_hierarchy": [
-     "services_and_business",
-     "b2b_service",
-     "wholesaler",
-     "wholesale_grocer"
-    ],
-    "phone": "+17325093905",
-    "website": "http://www.costco.com/",
-    "confidence": 0.9813855886459351,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.24362182617188,
      40.40141677856445
     ]
@@ -541,27 +510,30 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.57868194580078,
-     40.577056884765625
+     -74.50711822509766,
+     40.43668746948242
     ]
    },
    "properties": {
-    "id": "35b7e880-966d-4d77-b8b0-8b90035d0d4f",
+    "id": "d40e4c90-c9cc-4586-a82a-788d66aef1c4",
     "name": "Costco",
-    "street": "1290 Us Hwy 22 E",
-    "city": "North Plainfield",
+    "street": "100 Grand Avenue",
+    "city": "North Brunswick",
     "region": "NJ",
-    "postcode": "07060",
-    "brand": "BMO",
-    "basic_category": "atm",
-    "category": "atm",
+    "postcode": "08902",
+    "brand": "Costco",
+    "basic_category": "wholesaler",
+    "category": "wholesale_grocer",
     "category_hierarchy": [
      "services_and_business",
-     "financial_service",
-     "atm"
+     "b2b_service",
+     "wholesaler",
+     "wholesale_grocer"
     ],
-    "website": "https://usbranches.bmo.com/nj/north-plainfield/cwd30413/",
-    "confidence": 0.8
+    "phone": "+17325093905",
+    "website": "http://www.costco.com/",
+    "confidence": 0.9813855886459351,
+    "operating_status": "open"
    }
   },
   {
@@ -598,27 +570,27 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.04552459716797,
-     40.2334098815918
+     -74.57868194580078,
+     40.577056884765625
     ]
    },
    "properties": {
-    "id": "53cfb3a6-d0f6-43eb-869a-c6395ac2c528",
+    "id": "35b7e880-966d-4d77-b8b0-8b90035d0d4f",
     "name": "Costco",
-    "street": "2361 STATE ROUTE 66",
-    "city": "OCEAN",
+    "street": "1290 Us Hwy 22 E",
+    "city": "North Plainfield",
     "region": "NJ",
-    "postcode": "07712-3961",
-    "brand": "Costco",
-    "basic_category": "warehouse_club_store",
-    "category": "warehouse_club_store",
+    "postcode": "07060",
+    "brand": "BMO",
+    "basic_category": "atm",
+    "category": "atm",
     "category_hierarchy": [
-     "shopping",
-     "warehouse_club_store"
+     "services_and_business",
+     "financial_service",
+     "atm"
     ],
-    "website": "https://www.costco.com/warehouse-locations/ocean-township-nj-329.html",
-    "confidence": 0.9722161889076233,
-    "operating_status": "open"
+    "website": "https://usbranches.bmo.com/nj/north-plainfield/cwd30413/",
+    "confidence": 0.8
    }
   },
   {

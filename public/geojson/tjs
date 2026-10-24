@@ -158,35 +158,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -73.99019622802734,
-     40.808597564697266
-    ]
-   },
-   "properties": {
-    "id": "8f73e8f6-fe8e-442e-8066-8d9b20139f75",
-    "name": "Trader Joe's",
-    "street": "715 River Rd",
-    "city": "Edgewater",
-    "region": "NJ",
-    "postcode": "07020-1108",
-    "basic_category": "food_and_beverage_store",
-    "category": "grocery_store",
-    "category_hierarchy": [
-     "shopping",
-     "food_and_beverage_store",
-     "grocery_store"
-    ],
-    "phone": "12019455932",
-    "website": "https://www.traderjoes.com",
-    "confidence": 0.95,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -73.97745513916016,
      40.81948471069336
     ]
@@ -209,6 +180,35 @@
     "phone": "+12019455932",
     "website": "https://locations.traderjoes.com/nj/edgewater/606/",
     "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.99019622802734,
+     40.808597564697266
+    ]
+   },
+   "properties": {
+    "id": "8f73e8f6-fe8e-442e-8066-8d9b20139f75",
+    "name": "Trader Joe's",
+    "street": "715 River Rd",
+    "city": "Edgewater",
+    "region": "NJ",
+    "postcode": "07020-1108",
+    "basic_category": "food_and_beverage_store",
+    "category": "grocery_store",
+    "category_hierarchy": [
+     "shopping",
+     "food_and_beverage_store",
+     "grocery_store"
+    ],
+    "phone": "12019455932",
+    "website": "https://www.traderjoes.com",
+    "confidence": 0.95,
     "operating_status": "open"
    }
   },
