@@ -4,3 +4,4 @@ scripts/overture --name 'Tractor Supply' --name 'Tractor Supply Co.' --exact -o 
 scripts/overture --name 'Chipotle'  -o public/geojson/chipotle
 scripts/overture --name 'Home Depot' --name "The Home Depot" --exact -o public/geojson/home_depot
 scripts/overture --name "Trader Joe's" -o public/geojson/tjs
+scripts/overture --name "Five Guys" -o public/geojson/five_guys

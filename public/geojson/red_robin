@@ -1,0 +1,427 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "Overture Maps Foundation (places theme; individual rows carry CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+ "overture_release": "2026-10-21.0",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.14364624023438,
+     40.05762481689453
+    ]
+   },
+   "properties": {
+    "id": "861124dc-8901-485f-a512-55adf90d1fab",
+    "name": "Red Robin Gourmet Burgers",
+    "street": "1054 Cedar Bridge Ave",
+    "city": "Brick",
+    "region": "NJ",
+    "postcode": "08723",
+    "brand": "Red Robin Gourmet Burgers",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17326088991",
+    "website": "https://www.redrobin.com/locations/nj/brick/brick-664",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.02009582519531,
+     39.93980407714844
+    ]
+   },
+   "properties": {
+    "id": "a6c89285-b10e-4d24-b19f-44baca77b471",
+    "name": "Red Robin Gourmet Burgers and Brews",
+    "street": "2100 NJ-38",
+    "city": "Cherry Hill",
+    "region": "NJ",
+    "postcode": "08002",
+    "brand": "Red Robin Racing",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18562834557",
+    "website": "http://www.redrobin.com/",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.13451385498047,
+     40.827239990234375
+    ]
+   },
+   "properties": {
+    "id": "14cbf89a-55b6-4998-99d3-69c1f219c6d8",
+    "name": "Red Robin Gourmet Burgers",
+    "street": "265 Nj 3 E",
+    "city": "Clifton",
+    "region": "NJ",
+    "postcode": "07014",
+    "basic_category": "bar",
+    "category": "pub",
+    "category_hierarchy": [
+     "food_and_drink",
+     "alcoholic_beverage_venue",
+     "bar",
+     "pub"
+    ],
+    "phone": "9734709222",
+    "website": "http://www.redrobin.com/locations?utm_source=bing&utm_medium=distrib&utm_campaign=bing-distrib",
+    "confidence": 0.9594897627830505,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.09741973876953,
+     39.83255386352539
+    ]
+   },
+   "properties": {
+    "id": "0163e4b0-c613-487c-afc1-640305bbf82a",
+    "name": "Red Robin",
+    "street": "1750 Deptford Center Rd",
+    "city": "Deptford Twp",
+    "region": "NJ",
+    "postcode": "08096",
+    "brand": "Red Robin Gourmet Burgers",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18568457583",
+    "website": "https://www.redrobin.com/locations/nj/deptford/deptford-661",
+    "confidence": 0.9647150039672852,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.38167572021484,
+     40.42388916015625
+    ]
+   },
+   "properties": {
+    "id": "0d95db8f-ba7b-481d-bf61-a227be4b4f5d",
+    "name": "Red Robin Gourmet Burgers and Brews",
+    "street": "755 State Highway 18, Spc 400A",
+    "city": "East Brunswick",
+    "region": "NJ",
+    "postcode": "08816",
+    "basic_category": "media_service",
+    "category": "video_film_production",
+    "category_hierarchy": [
+     "services_and_business",
+     "media_service",
+     "video_film_production"
+    ],
+    "phone": "7328511772",
+    "website": "https://www.redrobin.com/",
+    "confidence": 0.3466930687427521,
+    "operating_status": "permanently_closed"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64217376708984,
+     40.194541931152344
+    ]
+   },
+   "properties": {
+    "id": "83acb28c-0ee2-4938-8f55-a3931838f76c",
+    "name": "Red Robin Gourmet Burgers",
+    "street": "325 Marketplace Blvd",
+    "city": "Hamilton Twp",
+    "region": "NJ",
+    "postcode": "08691",
+    "brand": "Red Robin Gourmet Burgers",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+16095851100",
+    "website": "https://www.redrobin.com/locations/nj/hamilton/hamilton-655",
+    "confidence": 0.9750794172286987,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.6295394897461,
+     39.446266174316406
+    ]
+   },
+   "properties": {
+    "id": "4a891613-7673-4e02-af53-51dae8f9514b",
+    "name": "Red Robin Gourmet Burgers",
+    "street": "4259 Black Horse Pike",
+    "city": "Mays Landing",
+    "region": "NJ",
+    "postcode": "08330-3136",
+    "brand": "Red Robin Gourmet Burgers",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+16094850050",
+    "website": "https://www.redrobin.com/locations/nj/mayslanding/mays-landing-654",
+    "confidence": 0.9966758489608765,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.05558013916016,
+     40.9140739440918
+    ]
+   },
+   "properties": {
+    "id": "ab3ba209-2f3f-443b-82aa-383405e142df",
+    "name": "Red Robin Gourmet Burgers and Brews",
+    "street": "2220 Bergen Town Ctr",
+    "city": "Paramus",
+    "region": "NJ",
+    "postcode": "07652",
+    "basic_category": "bar",
+    "category": "bar",
+    "category_hierarchy": [
+     "food_and_drink",
+     "alcoholic_beverage_venue",
+     "bar"
+    ],
+    "phone": "2018430807",
+    "website": "https://locations.redrobin.com/nj/paramus/662/",
+    "confidence": 0.9808588624000549,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.55300903320312,
+     40.907039642333984
+    ]
+   },
+   "properties": {
+    "id": "9c628d98-f095-4f9f-a8d7-070d1c0bff4f",
+    "name": "Red Robin Gourmet Burgers",
+    "street": "301 Mount Hope Ave",
+    "city": "Rockaway",
+    "region": "NJ",
+    "postcode": "07866",
+    "basic_category": "bar",
+    "category": "pub",
+    "category_hierarchy": [
+     "food_and_drink",
+     "alcoholic_beverage_venue",
+     "bar",
+     "pub"
+    ],
+    "phone": "9739894390",
+    "website": "http://www.redrobin.com/locations?utm_source=bing&utm_medium=distrib&utm_campaign=bing-distrib",
+    "confidence": 0.9655,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.55425262451172,
+     40.90736770629883
+    ]
+   },
+   "properties": {
+    "id": "8665ce09-115d-4fd1-bde0-8ad83367e676",
+    "name": "Red Robin Gourmet Burgers And Brews",
+    "street": "301 Mount Hope Ave",
+    "city": "Rockaway",
+    "region": "NJ",
+    "postcode": "07866-2130",
+    "basic_category": "restaurant",
+    "category": "restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant"
+    ],
+    "phone": "19739894390",
+    "website": "https://www.redrobin.com",
+    "confidence": 0.4783121645450592,
+    "operating_status": "permanently_closed"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.04513549804688,
+     40.78995132446289
+    ]
+   },
+   "properties": {
+    "id": "a1e3fa66-06de-45b7-ab65-fcfb604c96d2",
+    "name": "Red Robin Gourmet Burgers and Brews",
+    "street": "450 Harmon Meadow Blvd",
+    "city": "Secaucus",
+    "region": "NJ",
+    "postcode": "07094",
+    "basic_category": "media_service",
+    "category": "video_film_production",
+    "category_hierarchy": [
+     "services_and_business",
+     "media_service",
+     "video_film_production"
+    ],
+    "phone": "2014719795",
+    "website": "https://www.redrobin.com/",
+    "confidence": 0.9939781302914024,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.43062591552734,
+     40.555171966552734
+    ]
+   },
+   "properties": {
+    "id": "6f7e5de7-548e-45f6-86d8-329ebfba2ed1",
+    "name": "Red Robin Gourmet Burgers",
+    "street": "6200 Hadley Rd",
+    "city": "South Plainfield",
+    "region": "NJ",
+    "postcode": "07080",
+    "brand": "Red Robin Gourmet Burgers",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19087539300",
+    "website": "https://www.redrobin.com/locations/nj/southplainfield/south-plainfield-451",
+    "confidence": 0.9722161889076233,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.03833770751953,
+     39.431026458740234
+    ]
+   },
+   "properties": {
+    "id": "e7bbe69a-7c71-4322-88ad-85ed38bbe464",
+    "name": "Red Robin",
+    "street": "3849 S Delsea Dr",
+    "city": "Vineland",
+    "region": "NJ",
+    "postcode": "08360-7401",
+    "brand": "Red Robin Gourmet Burgers",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18567767188",
+    "website": "https://www.redrobin.com/locations/nj/vineland/vineland-371",
+    "confidence": 0.9543429613113403,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30040740966797,
+     40.55415344238281
+    ]
+   },
+   "properties": {
+    "id": "dd86b6f0-9a31-4e83-bd3a-71477a9ea6e0",
+    "name": "Red Robin Gourmet Burgers",
+    "street": "264 Woodbridge Center Dr",
+    "city": "Woodbridge",
+    "region": "NJ",
+    "postcode": "07095",
+    "basic_category": "media_service",
+    "category": "video_film_production",
+    "category_hierarchy": [
+     "services_and_business",
+     "media_service",
+     "video_film_production"
+    ],
+    "phone": "7326343452",
+    "website": "",
+    "confidence": 0.9655
+   }
+  }
+ ]
+}

@@ -1,0 +1,1968 @@
+{
+ "type": "FeatureCollection",
+ "attribution": "Overture Maps Foundation (places theme; individual rows carry CC0-1.0, Apache-2.0 or CDLA-Permissive-2.0 licences)",
+ "overture_release": "2026-10-21.0",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.51638793945312,
+     39.43635559082031
+    ]
+   },
+   "properties": {
+    "id": "3c58b1c1-0fff-403c-95a6-88a2e6af08aa",
+    "name": "Five Guys",
+    "street": "720 White Horse Pike",
+    "city": "Absecon",
+    "region": "NJ",
+    "postcode": "08201",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+16096415518",
+    "website": "https://restaurants.fiveguys.com/720-white-horse-pike",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.08460998535156,
+     39.89196014404297
+    ]
+   },
+   "properties": {
+    "id": "371735b9-67ce-4974-8ff1-77c1b1de61c3",
+    "name": "Five Guys Burger & Fries",
+    "street": "130 Black Horse Pike",
+    "city": "Audubon",
+    "region": "NJ",
+    "postcode": "08106-1960",
+    "basic_category": "restaurant",
+    "category": "restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant"
+    ],
+    "website": "https://www.fiveguys.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.1062240600586,
+     40.66275405883789
+    ]
+   },
+   "properties": {
+    "id": "764058ad-859e-4c6a-b679-5d960a5e1011",
+    "name": "Five Guys",
+    "street": "301 Bayonne Crossing Way",
+    "city": "Bayonne",
+    "region": "NJ",
+    "postcode": "07002",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12014360300",
+    "website": "https://restaurants.fiveguys.com/301-bayonne-crossing-way",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.14749908447266,
+     40.05827331542969
+    ]
+   },
+   "properties": {
+    "id": "aabc75e4-9044-4d2e-81db-51c632be227e",
+    "name": "Five Guys",
+    "street": "588 Route 70",
+    "city": "Brick",
+    "region": "NJ",
+    "postcode": "08723",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17322624040",
+    "website": "https://restaurants.fiveguys.com/588-route-70",
+    "confidence": 0.9833531379699707,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.03759765625,
+     39.92164993286133
+    ]
+   },
+   "properties": {
+    "id": "f94e89cc-843d-4a32-9bf6-cd0173b5b8d7",
+    "name": "Five Guys",
+    "street": "2026 RT-70 W",
+    "city": "Cherry Hill",
+    "region": "NJ",
+    "postcode": "08002-2735",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18564888433",
+    "website": "https://restaurants.fiveguys.com/2026-marlton-pike-w",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.69556427001953,
+     40.779232025146484
+    ]
+   },
+   "properties": {
+    "id": "4136729f-4cb7-4ffa-86bf-a0e512cd1207",
+    "name": "Five Guys",
+    "street": "270 US-206",
+    "city": "Chester",
+    "region": "NJ",
+    "postcode": "07930",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19088882121",
+    "website": "https://restaurants.fiveguys.com/270-us-206",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.0091781616211,
+     39.98926544189453
+    ]
+   },
+   "properties": {
+    "id": "0c677575-e24a-4af3-9c35-263405af0f03",
+    "name": "Five Guys",
+    "street": "127 G US-130",
+    "city": "Cinnaminson",
+    "region": "NJ",
+    "postcode": "08077",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18564990018",
+    "website": "https://restaurants.fiveguys.com/127-g-route-130-south",
+    "confidence": 0.9819321632385254,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.94300842285156,
+     40.01763153076172
+    ]
+   },
+   "properties": {
+    "id": "d57b615b-a15f-4f68-bd00-1494c4da713d",
+    "name": "Five Guys",
+    "street": "1341 Fairview Blvd",
+    "city": "Delran Twp",
+    "region": "NJ",
+    "postcode": "08075",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18563931053",
+    "website": "https://restaurants.fiveguys.com/1341-fairview-blvd",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.50753784179688,
+     40.866878509521484
+    ]
+   },
+   "properties": {
+    "id": "334da153-d4ee-488f-a5a9-62b5a26066de",
+    "name": "Five Guys",
+    "street": "3056 Route 10 West Suite C-1",
+    "city": "Denville",
+    "region": "NJ",
+    "postcode": "07834",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19733660655",
+    "website": "https://restaurants.fiveguys.com/3056-route-10-west",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.09081268310547,
+     39.840328216552734
+    ]
+   },
+   "properties": {
+    "id": "4e3af8b4-6ca6-4e1b-b3da-a4a85803e51b",
+    "name": "Five Guys",
+    "street": "2000 Clements Bridge Rd",
+    "city": "Deptford Twp",
+    "region": "NJ",
+    "postcode": "08096",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18568455489",
+    "website": "https://restaurants.fiveguys.com/2000-clements-bridge-road",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3850326538086,
+     40.42927551269531
+    ]
+   },
+   "properties": {
+    "id": "d88df1fe-1b3e-45b8-a96f-b164b5e1d0ff",
+    "name": "Five Guys",
+    "street": "50 Race Track Rd",
+    "city": "East Brunswick",
+    "region": "NJ",
+    "postcode": "08826",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17322548888",
+    "website": "https://restaurants.fiveguys.com/50-race-track-rd",
+    "confidence": 0.9683628678321838,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3724365234375,
+     40.80751037597656
+    ]
+   },
+   "properties": {
+    "id": "e06b9553-4ef5-40ab-b416-5abaf1ed401f",
+    "name": "Five Guys",
+    "street": "240 Route 10",
+    "city": "East Hanover",
+    "region": "NJ",
+    "postcode": "07936",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19733860005",
+    "website": "https://restaurants.fiveguys.com/240-route-10",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.0893325805664,
+     40.83115768432617
+    ]
+   },
+   "properties": {
+    "id": "77808e9f-1407-49a9-b7a8-e2a5f5b5214c",
+    "name": "Five Guys",
+    "street": "54 Route 17 North",
+    "city": "East Rutherford",
+    "region": "NJ",
+    "postcode": "07073",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12013555344",
+    "website": "https://restaurants.fiveguys.com/54-route-17-north",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06877899169922,
+     40.808616638183594
+    ]
+   },
+   "properties": {
+    "id": "fcaaef09-381d-42d9-8243-3f1a59be4af4",
+    "name": "Five Guys",
+    "street": "1 American Dream Way Parks Court, Level 2",
+    "city": "East Rutherford",
+    "region": "NJ",
+    "postcode": "07073",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12012583484",
+    "website": "https://restaurants.fiveguys.com/1-american-dream-way",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.54582214355469,
+     40.26613998413086
+    ]
+   },
+   "properties": {
+    "id": "fad57740-2a2c-46c5-9ab0-bc098508b855",
+    "name": "Five Guys",
+    "street": "540 US Highway 130",
+    "city": "East Windsor Twp",
+    "region": "NJ",
+    "postcode": "08520",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+16093018348",
+    "website": "https://restaurants.fiveguys.com/540-us-highway-130",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.99221801757812,
+     40.803951263427734
+    ]
+   },
+   "properties": {
+    "id": "810228f0-0256-444f-91b8-f279ff5014ab",
+    "name": "Five Guys",
+    "street": "45 River Road",
+    "city": "Edgewater",
+    "region": "NJ",
+    "postcode": "07020",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12014824614",
+    "website": "https://restaurants.fiveguys.com/45-river-road",
+    "confidence": 0.9695853590965271,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.80272674560547,
+     40.264957427978516
+    ]
+   },
+   "properties": {
+    "id": "766e79ab-da06-456d-9c7f-a65a7975f166",
+    "name": "Five Guys",
+    "street": "7 Scotch Road",
+    "city": "Ewing Twp",
+    "region": "NJ",
+    "postcode": "08628",
+    "brand": "Five Guys",
+    "basic_category": "fast_food_restaurant",
+    "category": "fast_food_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "casual_eatery",
+     "fast_food_restaurant"
+    ],
+    "phone": "+16098827999",
+    "website": "https://restaurants.fiveguys.com/7-scotch-road",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.85398864746094,
+     40.499324798583984
+    ]
+   },
+   "properties": {
+    "id": "f8ced13f-3674-487b-b1df-1763e9df2bf2",
+    "name": "Five Guys",
+    "street": "75 Reaville Avenue",
+    "city": "Flemington",
+    "region": "NJ",
+    "postcode": "08822",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19082370783",
+    "website": "https://restaurants.fiveguys.com/75-reaville-avenue",
+    "confidence": 0.9913980960845947,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -73.96707916259766,
+     40.856117248535156
+    ]
+   },
+   "properties": {
+    "id": "600c6537-6a2b-4923-8f5e-d8e4351da1cc",
+    "name": "Five Guys",
+    "street": "2151 Lemoine Ave",
+    "city": "Fort Lee",
+    "region": "NJ",
+    "postcode": "07024",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "2015857555",
+    "website": "http://fiveguys.com/",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03125,
+     40.90976333618164
+    ]
+   },
+   "properties": {
+    "id": "66511dd1-b76e-4c90-ba83-d65c81406007",
+    "name": "Five Guys",
+    "street": "450 Hackensack Ave.",
+    "city": "Hackensack",
+    "region": "NJ",
+    "postcode": "07601",
+    "brand": "Five Guys",
+    "basic_category": "fast_food_restaurant",
+    "category": "fast_food_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "casual_eatery",
+     "fast_food_restaurant"
+    ],
+    "phone": "+15512282662",
+    "website": "https://restaurants.fiveguys.com/450-hackensack-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15595245361328,
+     40.740196228027344
+    ]
+   },
+   "properties": {
+    "id": "085adf06-3f62-4146-ac11-8da875c79ab5",
+    "name": "Five Guys",
+    "street": "701 Frank E Rodgers Blvd S",
+    "city": "Harrison",
+    "region": "NJ",
+    "postcode": "07029",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19734845047",
+    "website": "https://restaurants.fiveguys.com/701-frank-e-rodgers-boulevard-south",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.64534759521484,
+     40.502742767333984
+    ]
+   },
+   "properties": {
+    "id": "dc7e38f5-2b19-4630-96c5-ebf0a281bfbf",
+    "name": "Five Guys",
+    "street": "415 Amwell Rd",
+    "city": "Hillsborough",
+    "region": "NJ",
+    "postcode": "08844-1265",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19088293682",
+    "website": "https://restaurants.fiveguys.com/415-amwell-road",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.02991485595703,
+     40.74053192138672
+    ]
+   },
+   "properties": {
+    "id": "16527bf0-66d3-4dd2-aaff-c3d5850beb42",
+    "name": "Five Guys",
+    "street": "319 Washington St",
+    "city": "Hoboken",
+    "region": "NJ",
+    "postcode": "07030",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "(201) 683-3273",
+    "website": "http://www.fiveguys.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "permanently_closed"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.22721862792969,
+     40.1493034362793
+    ]
+   },
+   "properties": {
+    "id": "f14863d2-9b2d-4cdc-bd20-1c4eeb0e48fa",
+    "name": "Five Guys",
+    "street": "4220 Route 9 South",
+    "city": "Howell",
+    "region": "NJ",
+    "postcode": "07731",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17323646805",
+    "website": "https://restaurants.fiveguys.com/4220-route-9-south",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03717803955078,
+     40.717918395996094
+    ]
+   },
+   "properties": {
+    "id": "3ab405ba-71fd-45c1-89e4-d078ad5c2b01",
+    "name": "Five Guys",
+    "street": "286 Washington St",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07302",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "",
+    "website": "http://fiveguys.com/",
+    "confidence": 0.9655
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.03437042236328,
+     40.71577835083008
+    ]
+   },
+   "properties": {
+    "id": "bd105bbd-8fbc-428f-9dd9-35ca02e49227",
+    "name": "Five Guys",
+    "street": "101 Hudson St",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07302",
+    "brand": "Five Guys",
+    "basic_category": "fast_food_restaurant",
+    "category": "fast_food_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "casual_eatery",
+     "fast_food_restaurant"
+    ],
+    "phone": "+12014336700",
+    "website": "https://restaurants.fiveguys.com/101-hudson-st",
+    "confidence": 0.9789159893989563,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.09356689453125,
+     40.71107482910156
+    ]
+   },
+   "properties": {
+    "id": "88f28a15-801f-42d1-b532-edfc51889299",
+    "name": "Five Guys",
+    "street": "23 University Place Blvd.",
+    "city": "Jersey City",
+    "region": "NJ",
+    "postcode": "07305",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12013600201",
+    "website": "https://restaurants.fiveguys.com/23-university-place-blvd",
+    "confidence": 0.9436647891998291,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06477355957031,
+     40.88715744018555
+    ]
+   },
+   "properties": {
+    "id": "87f976ef-8b19-49b0-b471-04a00a8c8fcf",
+    "name": "Five Guys",
+    "street": "370 Essex St",
+    "city": "Lodi",
+    "region": "NJ",
+    "postcode": "07644",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "2015468108",
+    "website": "http://fiveguys.com/",
+    "confidence": 0.9713388085365295,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.40483856201172,
+     40.75224685668945
+    ]
+   },
+   "properties": {
+    "id": "911f8229-70bb-4565-9573-7426ef6bab67",
+    "name": "Five Guys",
+    "street": "233 Main Street",
+    "city": "Madison",
+    "region": "NJ",
+    "postcode": "07940",
+    "brand": "Five Guys",
+    "basic_category": "fast_food_restaurant",
+    "category": "fast_food_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "casual_eatery",
+     "fast_food_restaurant"
+    ],
+    "phone": "+19736600055",
+    "website": "https://restaurants.fiveguys.com/233-main-street",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.3057861328125,
+     40.313480377197266
+    ]
+   },
+   "properties": {
+    "id": "0ac6e528-4531-4e87-9bae-7c655ba04d4b",
+    "name": "Five Guys",
+    "street": "357 US Highway 9",
+    "city": "Manalapan",
+    "region": "NJ",
+    "postcode": "07726",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "7329726666",
+    "website": "https://order.fiveguys.com/menu/manalapan/",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.92696380615234,
+     39.89042663574219
+    ]
+   },
+   "properties": {
+    "id": "c9e5f352-1263-41c7-a0ee-b29f11d7c9e6",
+    "name": "Five Guys",
+    "street": "161 Route 73 S",
+    "city": "Marlton",
+    "region": "NJ",
+    "postcode": "08053-4120",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18568722002",
+    "website": "https://restaurants.fiveguys.com/161-rt-73-south",
+    "confidence": 0.9855680465698242,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -75.04053497314453,
+     39.42280578613281
+    ]
+   },
+   "properties": {
+    "id": "2c608f5b-239d-46f2-b6d3-913ed4ecd992",
+    "name": "Five Guys",
+    "street": "2180 N. 2nd St.",
+    "city": "Millville",
+    "region": "NJ",
+    "postcode": "08332",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18567655982",
+    "website": "https://restaurants.fiveguys.com/2180-n-2nd-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.20845031738281,
+     40.84199905395508
+    ]
+   },
+   "properties": {
+    "id": "bf14bb36-415b-4e09-aa76-c845a3cbbffc",
+    "name": "Five Guys Montclair NJ",
+    "street": "622 Valley Rd",
+    "city": "Montclair",
+    "region": "NJ",
+    "postcode": "07043-1470",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19737838988",
+    "website": "http://www.yelp.com/biz/five-guys-montclair",
+    "confidence": 0.5518714189529419
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.95933532714844,
+     39.94620895385742
+    ]
+   },
+   "properties": {
+    "id": "b49eb79b-66ae-4f6d-9393-9a8aa958baa0",
+    "name": "Five Guys",
+    "street": "1650 Nixon Drive",
+    "city": "Moorestown",
+    "region": "NJ",
+    "postcode": "08057",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18563164317",
+    "website": "https://restaurants.fiveguys.com/1650-nixon-drive",
+    "confidence": 0.9855680465698242,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.87605285644531,
+     39.970951080322266
+    ]
+   },
+   "properties": {
+    "id": "93f2c9ac-dce0-4cb3-b49f-c55b8b96aa18",
+    "name": "Five Guys",
+    "street": "3115 New Jersey 38",
+    "city": "Mt Laurel",
+    "region": "NJ",
+    "postcode": "08054",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18562422255",
+    "website": "https://restaurants.fiveguys.com/3115-new-jersey-38",
+    "confidence": 0.9784365296363831,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.04432678222656,
+     40.22824478149414
+    ]
+   },
+   "properties": {
+    "id": "7e55112d-47df-4f90-9c7f-8d9273a1313a",
+    "name": "Five Guys",
+    "street": "2301 Route 66",
+    "city": "Neptune Twp",
+    "region": "NJ",
+    "postcode": "07712",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17324930505",
+    "website": "https://restaurants.fiveguys.com/2301-route-66",
+    "confidence": 0.9243993759155273,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.44889068603516,
+     40.49796676635742
+    ]
+   },
+   "properties": {
+    "id": "49d03ae3-d874-40bb-ac9b-056b5e2254ce",
+    "name": "Five Guys",
+    "street": "47 Easton Ave.",
+    "city": "New Brunswick",
+    "region": "NJ",
+    "postcode": "08901",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18482099523",
+    "website": "https://restaurants.fiveguys.com/47-easton-ave",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.74378967285156,
+     41.06806564331055
+    ]
+   },
+   "properties": {
+    "id": "bbc8fff3-4c07-4d86-812f-736cc4a87c85",
+    "name": "Five Guys",
+    "street": "10 Hampton House Rd",
+    "city": "Newton",
+    "region": "NJ",
+    "postcode": "07860",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "9734335151",
+    "website": "https://restaurants.fiveguys.com/10-hampton-house-road",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.01181030273438,
+     40.81315612792969
+    ]
+   },
+   "properties": {
+    "id": "ac8faaa5-bf7a-4c92-af50-ecbb77735ffc",
+    "name": "Five Guys",
+    "street": "2100 88th Street",
+    "city": "North Bergen",
+    "region": "NJ",
+    "postcode": "07047",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12016627800",
+    "website": "https://restaurants.fiveguys.com/2100-88th-street",
+    "confidence": 0.9833531379699707,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.45861053466797,
+     40.4610710144043
+    ]
+   },
+   "properties": {
+    "id": "f509aeff-324f-4b62-93fa-f2cd24a0a599",
+    "name": "Five Guys",
+    "street": "507 Shoppes Blvd.",
+    "city": "North Brunswick",
+    "region": "NJ",
+    "postcode": "08902",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17322461060",
+    "website": "https://restaurants.fiveguys.com/507-shoppes-blvd",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30132293701172,
+     40.4493522644043
+    ]
+   },
+   "properties": {
+    "id": "c252789e-c4cf-46b1-b5fb-82542cb308c4",
+    "name": "Five Guys",
+    "street": "1114 Route 9 South",
+    "city": "Old Bridge",
+    "region": "NJ",
+    "postcode": "08857",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17327074500",
+    "website": "https://restaurants.fiveguys.com/1114-route-9-south",
+    "confidence": 0.9864453673362732,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.07645416259766,
+     40.916229248046875
+    ]
+   },
+   "properties": {
+    "id": "a73fbf10-c8d4-49f2-9f63-519783b9278c",
+    "name": "Five Guys",
+    "street": "1 Garden State Plaza",
+    "city": "Paramus",
+    "region": "NJ",
+    "postcode": "07652",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12018453333",
+    "website": "https://restaurants.fiveguys.com/1-garden-state-plaza",
+    "confidence": 0.9655132293701172,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.37663269042969,
+     40.86468505859375
+    ]
+   },
+   "properties": {
+    "id": "d1c5c768-11f0-467f-8334-e10c8a6bc54a",
+    "name": "Five Guys",
+    "street": "804 Rte 46",
+    "city": "Parsippany",
+    "region": "NJ",
+    "postcode": "07054",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "9733355454",
+    "website": "http://fiveguys.com/",
+    "confidence": 0.980396869957447
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.59197235107422,
+     40.33641815185547
+    ]
+   },
+   "properties": {
+    "id": "c6fc4ed1-d8a5-437a-b95e-9692a3c7a6b4",
+    "name": "Five Guys",
+    "street": "15 Schalks Crossing Road #104",
+    "city": "Plainsboro",
+    "region": "NJ",
+    "postcode": "08536",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+16097992222",
+    "website": "https://restaurants.fiveguys.com/15-schalks-crossing-road",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.13810729980469,
+     41.07244110107422
+    ]
+   },
+   "properties": {
+    "id": "9a1ba2cd-9eba-4028-a482-04ff8d639a87",
+    "name": "Five Guys",
+    "street": "1300 Route 17 North",
+    "city": "Ramsey",
+    "region": "NJ",
+    "postcode": "07446",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+12013993894",
+    "website": "https://restaurants.fiveguys.com/1300-route-17-north",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.87155151367188,
+     39.0219841003418
+    ]
+   },
+   "properties": {
+    "id": "da943cd2-212c-43dc-8d9a-ebfbcb71de5d",
+    "name": "Five Guys",
+    "street": "3151 Route 9 S",
+    "city": "Rio Grande",
+    "region": "NJ",
+    "postcode": "08242",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+16095362520",
+    "website": "https://restaurants.fiveguys.com/3151-route-9-south",
+    "confidence": 0.963629961013794,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.55814361572266,
+     40.90827560424805
+    ]
+   },
+   "properties": {
+    "id": "e9e0996f-d520-4860-b9e2-b4afdb417bad",
+    "name": "Five Guys",
+    "street": "367 Mount Hope Ave",
+    "city": "Rockaway",
+    "region": "NJ",
+    "postcode": "07866",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19739895555",
+    "website": "https://restaurants.fiveguys.com/367-mount-hope-ave",
+    "confidence": 0.9650043249130249,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.6500015258789,
+     40.87409973144531
+    ]
+   },
+   "properties": {
+    "id": "b775667a-dee6-46c7-a424-f887a71a2d04",
+    "name": "Five Guys",
+    "street": "461 Rt. 10 East",
+    "city": "Roxbury Twp",
+    "region": "NJ",
+    "postcode": "07852",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19736171855",
+    "website": "https://restaurants.fiveguys.com/461-rt-10-east",
+    "confidence": 0.9655013680458069,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.06172180175781,
+     40.327552795410156
+    ]
+   },
+   "properties": {
+    "id": "4fb646ac-94ba-4d9b-8452-6e8715624780",
+    "name": "Five Guys",
+    "street": "747 Broad St.",
+    "city": "Shrewsbury",
+    "region": "NJ",
+    "postcode": "07702",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17325301203",
+    "website": "https://restaurants.fiveguys.com/747-broad-st",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.99365234375,
+     39.74592971801758
+    ]
+   },
+   "properties": {
+    "id": "763adf05-17b4-46c3-bdd7-4bc28bd99e6c",
+    "name": "Five Guys",
+    "street": "493 Cross Keys Rd",
+    "city": "Sicklerville",
+    "region": "NJ",
+    "postcode": "08081-9749",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+18568755558",
+    "website": "https://restaurants.fiveguys.com/493-berlin-cross-keys-rd",
+    "confidence": 0.9926397800445557,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.59588623046875,
+     39.33014678955078
+    ]
+   },
+   "properties": {
+    "id": "8f720482-9f68-4622-8580-d0bccc0098a1",
+    "name": "Five Guys",
+    "street": "49A Bethel Rd",
+    "city": "Somers Point",
+    "region": "NJ",
+    "postcode": "08244",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "(609) 927-5489",
+    "website": "http://www.fiveguys.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.42561340332031,
+     40.54952621459961
+    ]
+   },
+   "properties": {
+    "id": "2b087659-5910-467b-a6b3-ccdb66b7f9d7",
+    "name": "Five Guys",
+    "street": "5020 Hadley Center Drive",
+    "city": "South Plainfield",
+    "region": "NJ",
+    "postcode": "07080",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19087563334",
+    "website": "https://restaurants.fiveguys.com/5020-hadley-center-drive",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.32044219970703,
+     40.685794830322266
+    ]
+   },
+   "properties": {
+    "id": "4214ed34-7a41-4bd2-a7bb-1d8846c1b266",
+    "name": "Five Guys",
+    "street": "201 Route 22 East",
+    "city": "Springfield",
+    "region": "NJ",
+    "postcode": "07081",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19736711118",
+    "website": "https://restaurants.fiveguys.com/201-route-22-east",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.25587463378906,
+     39.98118209838867
+    ]
+   },
+   "properties": {
+    "id": "f557bb5b-2909-49ff-8371-0cb57a14afa1",
+    "name": "Five Guys",
+    "street": "1311 Route 37 West",
+    "city": "Toms River",
+    "region": "NJ",
+    "postcode": "08755",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17323493600",
+    "website": "https://restaurants.fiveguys.com/1311-route-37-west",
+    "confidence": 0.9999887205761671,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.687744140625,
+     40.247703552246094
+    ]
+   },
+   "properties": {
+    "id": "4d6df004-970c-4019-b3d0-a770488c668d",
+    "name": "Five Guys",
+    "street": "3100 Quakerbridge Rd",
+    "city": "Trenton",
+    "region": "NJ",
+    "postcode": "08619",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+16098900327",
+    "website": "https://restaurants.fiveguys.com/3100-quakerbridge-rd",
+    "confidence": 0.9701046943664551,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.28882598876953,
+     40.72050476074219
+    ]
+   },
+   "properties": {
+    "id": "bee25376-1c03-4592-bdd2-0ab2abdbe632",
+    "name": "Five Guys",
+    "street": "2933 Vauxhall Rd",
+    "city": "Vauxhall",
+    "region": "NJ",
+    "postcode": "07088-1248",
+    "brand": "Five Guys",
+    "basic_category": "fast_food_restaurant",
+    "category": "fast_food_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "casual_eatery",
+     "fast_food_restaurant"
+    ],
+    "phone": "+19082064703",
+    "website": "https://restaurants.fiveguys.com/2933-vauxhall-rd",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.9825668334961,
+     39.852256774902344
+    ]
+   },
+   "properties": {
+    "id": "0f99a91d-a777-4ac6-b3ce-91f40baab324",
+    "name": "Five Guys",
+    "street": "700 Haddonfield Berlin Rd",
+    "city": "Voorhees",
+    "region": "NJ",
+    "postcode": "08043",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "(856) 783-5588",
+    "website": "http://fiveguys.com",
+    "confidence": 0.9199122190475464,
+    "operating_status": "permanently_closed"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.05204772949219,
+     40.15898895263672
+    ]
+   },
+   "properties": {
+    "id": "1e51457e-884e-4e00-97ee-9e93cea66665",
+    "name": "Five Guys",
+    "street": "1902 Rt. 35",
+    "city": "Wall Twp",
+    "region": "NJ",
+    "postcode": "07719",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+17323597550",
+    "website": "https://restaurants.fiveguys.com/1902-rt-35",
+    "confidence": 0.9984780877828598,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.40801239013672,
+     40.65143585205078
+    ]
+   },
+   "properties": {
+    "id": "31d3dba1-429e-4bc7-bdbf-9a7115fdf3a1",
+    "name": "Five Guys",
+    "street": "1701-54 US Route 22",
+    "city": "Watchung",
+    "region": "NJ",
+    "postcode": "07069",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19084900370",
+    "website": "https://restaurants.fiveguys.com/1701-54-us-route-22",
+    "confidence": 0.9960020184516907,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.25096893310547,
+     40.88956069946289
+    ]
+   },
+   "properties": {
+    "id": "e2899c26-5770-4683-8c3f-d578e2ade553",
+    "name": "Five Guys",
+    "street": "57 Route 23",
+    "city": "Wayne",
+    "region": "NJ",
+    "postcode": "07470",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19738378258",
+    "website": "https://restaurants.fiveguys.com/57-route-23",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.26915740966797,
+     40.93921661376953
+    ]
+   },
+   "properties": {
+    "id": "0b66acbe-0417-47da-b050-5112079c170f",
+    "name": "Five Guys",
+    "street": "1610 Route 23",
+    "city": "Wayne",
+    "region": "NJ",
+    "postcode": "07470",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19736330055",
+    "website": "https://restaurants.fiveguys.com/1610-route-23",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.30007934570312,
+     40.85337829589844
+    ]
+   },
+   "properties": {
+    "id": "7043a318-b678-431f-8b00-e0956ddb19de",
+    "name": "Five Guys",
+    "street": "895 Bloomfield Avenue",
+    "city": "West Caldwell",
+    "region": "NJ",
+    "postcode": "07006",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "(973) 521-7164",
+    "website": "http://gofiveguys.com/menu/west-caldwell/",
+    "confidence": 0.77
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.2554702758789,
+     40.79425048828125
+    ]
+   },
+   "properties": {
+    "id": "cba7ee05-bc9e-40ec-a053-7280d2f65afe",
+    "name": "Five Guys",
+    "street": "495 Prospect Ave.",
+    "city": "West Orange",
+    "region": "NJ",
+    "postcode": "07052",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19733800081",
+    "website": "https://restaurants.fiveguys.com/495-prospect-ave",
+    "confidence": 0.9597054719924927,
+    "operating_status": "open"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.34977722167969,
+     40.65043258666992
+    ]
+   },
+   "properties": {
+    "id": "312cdb83-8bb6-4eb1-bdf5-eb13aa7547cd",
+    "name": "Five Guys",
+    "street": "21 E Broad St",
+    "city": "Westfield",
+    "region": "NJ",
+    "postcode": "07090-2109",
+    "brand": "Five Guys",
+    "basic_category": "restaurant",
+    "category": "burger_restaurant",
+    "category_hierarchy": [
+     "food_and_drink",
+     "restaurant",
+     "meat_restaurant",
+     "burger_restaurant"
+    ],
+    "phone": "+19083896078",
+    "website": "https://restaurants.fiveguys.com/21-east-broad-street",
+    "confidence": 0.9902192950248718,
+    "operating_status": "open"
+   }
+  }
+ ]
+}
