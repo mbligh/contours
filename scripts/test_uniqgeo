@@ -104,7 +104,6 @@ class GroupTests(unittest.TestCase):
         near = point('Tractor Supply Co', north_feet=299)
         far = point('Tractor Supply', north_feet=-301)
         far['properties']['street'] = '987 Different Road'
-        far['properties'].pop('city', None)
         other = point('Contractor Supply')
         self.assertEqual(deduplicate(collection(first, near, far, other))['features'], [first, far, other])
 
