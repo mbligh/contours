@@ -1,0 +1,14 @@
+{
+  "center": [-74.771, 40.692],
+  "zoom": 12.5,
+  "defaultBasemap": "nj",
+  "basemaps": [
+    {
+      "id": "nj", "name": "NJ satellite",
+      "tiles": ["https://maps.nj.gov/arcgis/rest/services/Basemap/Orthos_Natural_2020_NJ_WM/MapServer/tile/{z}/{y}/{x}"],
+      "tileSize": 256,
+      "attribution": "2020 aerial imagery © NJ Office of GIS"
+    },
+    {"id": "bright", "name": "OpenFreeMap Bright", "style": "https://tiles.openfreemap.org/styles/bright"}
+  ]
+}

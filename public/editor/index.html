@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GeoJSON editor</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.css">
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<aside>
+  <h1>GeoJSON editor</h1>
+  <p class="subtle">One file · points and trails</p>
+  <label for="basemap">Basemap</label><select id="basemap" disabled></select>
+  <div class="buttons"><button id="new" disabled>New</button><button id="open" disabled>Open…</button><button id="save" disabled>Save</button><button id="save-as" disabled>Save as…</button></div>
+  <input id="file" type="file" accept=".geojson,.json,application/geo+json,application/json" hidden>
+  <p id="filename">Untitled.geojson</p>
+  <p id="file-help" class="subtle"></p>
+  <fieldset id="tools" disabled><legend>Edit layer</legend>
+    <div class="buttons"><button data-mode="select" aria-pressed="true">Select / move</button><button data-mode="point" aria-pressed="false">Add point</button><button data-mode="linestring" aria-pressed="false">Draw trail</button></div>
+    <p class="subtle">Click to place points. For trails, click each vertex and double-click to finish. Select a trail to drag its vertices or insert a vertex by dragging a midpoint. Escape cancels an unfinished trail.</p>
+    <label for="features">Features</label><select id="features" size="5" aria-label="Features in this layer"></select>
+    <label for="name">Name</label><input id="name" disabled>
+    <label for="description">Description</label><textarea id="description" rows="2" disabled></textarea>
+    <details><summary>All properties (JSON)</summary><textarea id="properties" rows="7" spellcheck="false" disabled></textarea><button id="apply-properties" disabled>Apply properties</button></details>
+    <button id="delete" disabled>Delete selected feature</button>
+  </fieldset>
+  <p id="status" role="status" aria-live="polite">Loading map…</p>
+  <p id="error" role="alert"></p>
+  <a href="../maplibre-demo/">Map viewer</a>
+</aside>
+<main id="map" aria-label="Editable map"></main>
+<script type="module" src="editor.js"></script>
+</body>
+</html>

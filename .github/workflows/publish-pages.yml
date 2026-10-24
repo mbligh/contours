@@ -55,8 +55,21 @@ jobs:
           node-version: '22'
       - name: Check map browser modules
         run: |
+          node --test public/editor/test-model.mjs
           node scripts/test_geosources.cjs
           node public/shipping/test_shipping.cjs
+      - name: Check GeoJSON editor in Chromium
+        run: |
+          npm install --prefix "$RUNNER_TEMP/editor-test" --no-save playwright@1.56.1 esbuild@0.25.12 maplibre-gl@6.11.2 terra-draw@1.24.2 terra-draw-maplibre-gl-adapter@1.1.2
+          "$RUNNER_TEMP/editor-test/node_modules/.bin/playwright" install --with-deps chromium
+          NODE_PATH="$RUNNER_TEMP/editor-test/node_modules" node public/editor/test-browser.cjs
+      - name: Upload editor screenshot on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: editor-test-failure
+          path: editor-test-failure.png
+          if-no-files-found: ignore
       - name: Check assembly, checksum validation, and retention
         run: |
           python scripts/test_njaddress
@@ -84,4 +97,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/dataset_releases cleanup
+
 
