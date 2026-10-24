@@ -106,7 +106,7 @@ def address_key(properties):
         if not isinstance(value, str) or not value.strip():
             return ''  # Incomplete addresses must not create false matches.
         if field == 'postcode':
-            match = re.search(r'\\b\\d{5}\\b', value)
+            match = re.search(r'\b\d{5}\b', value)
             if not match:
                 return ''
             value = match.group()
