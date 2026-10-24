@@ -78,7 +78,12 @@ jobs:
           gzip -1 -n build/contours.geojsonseq
           (cd build && sha256sum contours.geojsonseq.gz > contours.geojsonseq.gz.sha256)
           ls -lh build/contours.geojsonseq.gz
-      - name: Publish versioned contour vector release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python scripts/dataset_releases create contour-vectors build
+      - name: Upload combined vectors for downstream build
+        uses: actions/upload-artifact@v4
+        with:
+          name: contour-vectors-combined
+          path: |
+            build/contours.geojsonseq.gz
+            build/contours.geojsonseq.gz.sha256
+            build/extraction.json
+          retention-days: 3
