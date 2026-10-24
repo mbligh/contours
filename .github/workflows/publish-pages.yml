@@ -60,7 +60,7 @@ jobs:
           node public/shipping/test_shipping.cjs
       - name: Check GeoJSON editor in Chromium
         run: |
-          npm install --prefix "$RUNNER_TEMP/editor-test" --no-save playwright@1.56.1 esbuild@0.25.12 maplibre-gl@6.11.2 terra-draw@1.24.2 terra-draw-maplibre-gl-adapter@1.1.2
+          npm install --prefix "$RUNNER_TEMP/editor-test" --no-save playwright@1.56.1 esbuild@0.25.12 maplibre-gl@6.11.2 terra-draw@1.24.2 terra-draw-maplibre-gl-adapter@1.1.2 @tmcw/togeojson@7.1.2 fflate@0.8.2
           "$RUNNER_TEMP/editor-test/node_modules/.bin/playwright" install --with-deps chromium
           NODE_PATH="$RUNNER_TEMP/editor-test/node_modules" node public/editor/test-browser.cjs
       - name: Upload editor screenshot on failure
