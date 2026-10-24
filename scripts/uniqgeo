@@ -115,17 +115,6 @@ def address_key(properties):
     return ' '.join(parts)
 
 
-def address_candidates(keys):
-    """Block on house number and ZIP to avoid quadratic all-pairs comparisons."""
-    blocks = defaultdict(list)
-    for i, key in enumerate(keys):
-        if not key:
-            continue
-        words = key.split()
-        if words and words[0].isdigit():
-            blocks[(words[0], words[-1])].append(i)
-    return blocks
-
 def finite_number(value):
     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
@@ -224,15 +213,18 @@ def deduplicate(document, distance_feet=800):
     # Keep this pass on the original input, not just spatial survivors.
     from rapidfuzz import fuzz
     keys = [address_key(f.get('properties')) for f in features]
-    for indices in address_candidates(keys).values():
-        for offset, i in enumerate(indices):
-            for j in indices[:offset]:
-                if names_match(names[i], names[j]) and fuzz.ratio(keys[i], keys[j]) >= 90:
-                    print(f'uniqgeo: address match features {j} and {i}: '
-                          f'{keys[j]!r} <> {keys[i]!r}', file=sys.stderr)
-                    a, b = find(i), find(j)
-                    if a != b:
-                        parents[b] = a
+    # Compare by business name first; neither ZIP nor house number is a gate.
+    for i, key in enumerate(keys):
+        if not key or not names[i]:
+            continue
+        for j in range(i):
+            if (keys[j] and names_match(names[i], names[j])
+                    and fuzz.ratio(key, keys[j]) >= 90):
+                print(f'uniqgeo: address match features {j} and {i}: '
+                      f'{keys[j]!r} <> {key!r}', file=sys.stderr)
+                a, b = find(i), find(j)
+                if a != b:
+                    parents[b] = a
 
     groups = defaultdict(list)
     for i in range(len(features)):
