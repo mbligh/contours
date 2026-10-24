@@ -56,9 +56,17 @@ def main():
                         if attempt == 3:
                             raise
                         time.sleep(3*(attempt+1))
+                # Mask invalid/sentinel elevations outside DEM coverage.
+                cleaned = tile_dir / f"{x}_{y}.clean.tif"
+                subprocess.run(["gdal_calc.py", "-A", str(tif),
+                    "--outfile", str(cleaned), "--calc",
+                    "where((A > -1000) * (A < 10000) * isfinite(A), A, -9999)",
+                    "--NoDataValue=-9999", "--type=Float32",
+                    "--co=COMPRESS=DEFLATE", "--overwrite", "--quiet"], check=True)
+                tif.unlink()
                 geojson = tile_dir / f"{x}_{y}.geojson"
                 subprocess.run(["gdal_contour", "-f", "GeoJSON", "-a", "elevation_ft",
-                    "-i", "10", str(tif), str(geojson)], check=True)
+                    "-i", "10", str(cleaned), str(geojson)], check=True)
                 # Transform EPSG:6527 coordinates into WGS84 for Tippecanoe.
                 wgs84 = tile_dir / f"{x}_{y}.wgs84.geojson"
                 subprocess.run(["ogr2ogr", "-f", "GeoJSON",
@@ -71,7 +79,7 @@ def main():
                     feature["properties"] = {"elevation_ft":round(feature["properties"]["elevation_ft"])}
                     feature["properties"]["major"] = int(feature["properties"]["elevation_ft"] % 100 == 0)
                     target.write(json.dumps(feature,separators=(",",":"))+"\n")
-                tif.unlink()
+                cleaned.unlink()
                 geojson.unlink()
                 wgs84.unlink()
     print(f"Finished {total} patches: {out}")
