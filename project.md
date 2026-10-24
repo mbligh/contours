@@ -3,7 +3,7 @@
 ## Requirements
 
 - Maintain New Jersey mapping datasets and their reproducible build pipelines.
-- Keep contour extraction, contour tile generation, and shipping refreshes in separate GitHub Actions workflows.
+- Keep contour extraction, contour tile generation, shipping refreshes, and NJ address builds in separate GitHub Actions workflows.
 - Keep shipping code, regression checks, browser module, and generated GeoJSON together in `public/shipping/`.
 - Refresh shipping from OSM, USGS National Map, All The Places, CVS verification pages, and MailingLocations. Include ATP's dedicated NJ USPS collection-box output directly in `shipping.geojson`, preserving collection times, indoor/lobby indicators, notes, and source box IDs. Preserve provenance and conservative deduplication.
 - Publish shipping assets at `https://mbligh.github.io/mapping/shipping/` without removing existing contour tiles.
@@ -90,4 +90,11 @@ A duplicate pair must satisfy both spherical distance and fuzzy `properties.name
 An in-memory Earth-centred spatial grid finds nearby candidates, including across the antimeridian and near poles. Exact great-circle checks plus union-find construct connected components, so three or more duplicates and chains are grouped even if a group's endpoints exceed the radius. Each component retains its highest numeric-confidence record intact; ties or missing confidence use earliest input order. Surviving records retain their input order and collection metadata is preserved, except a stale collection bbox is removed when records are dropped. Source data is never edited.
 
 Run `python scripts/test_uniqgeo` for unit and subprocess/pipe checks. Tests include requested name variants and exclusions, multiple duplicates and chains, confidence selection, metadata, unchanged input, custom/zero distances, globe edge cases, an exhaustive comparison against the spatial index, invalid input, and the actual `public/geojson/home_depot` file. On October 24, 2026 its 88 points reduce to 79, including duplicate pairs in Cherry Hill and Paramus. The independent **Test GeoJSON deduplication filter** workflow runs these checks on filter/test/fixture changes, pull requests, or manual dispatch, without rebuilding shipping.
+
+
+## NJ address SQLite dataset
+
+The separate **Build NJ address database** workflow downloads the complete NJOGIS bulk file geodatabase and uses the system Python/GDAL reader to strip each address to `FULLADDR, STATE, POST_COMM, POST_CODE, LONG_, LAT`. It imports all source rows, preserves text ZIP codes, creates case-insensitive full-address/ZIP and locality/address indexes, and builds a SQLite R-tree keyed by implicit rowid for proximity candidate searches. Records without coordinates remain searchable by address. A separate metadata table and release manifest retain source provenance and checksums. The build rejects source/import count mismatches and suspiciously small statewide inputs, then validates SQLite and spatial-index integrity before atomically replacing the output.
+
+It runs on the first of every month at 08:41 UTC, manually, or when address build code changes. Successful builds publish versioned `njaddress` releases with a raw `njaddress.db` asset plus the existing checksum-verified archive/manifest format. **Publish mapping pages** also runs after successful address builds and includes the newest complete address release as `https://mapping.mbligh.org/njaddress.db`. Address releases are optional until the initial build completes, so existing Pages publication is not blocked. Their retention is independent and keeps three deployed versions, like the other page datasets. The database is never committed to Git. See [njaddress.md](njaddress.md) for schema, query examples, and build instructions. Run `python scripts/test_njaddress` for offline checks; the GDAL integration case runs in the address workflow.
 

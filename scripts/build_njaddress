@@ -1,0 +1,235 @@
+#!/usr/bin/env python3
+"""Build an indexed six-field NJ address SQLite database from NJOGIS's bulk GDB.
+
+Requires GDAL's Python bindings (Debian/Ubuntu: python3-gdal). Run with the
+system Python. SQLite construction and validation use only the standard library.
+"""
+import argparse
+from contextlib import closing
+from datetime import datetime, timezone
+import hashlib
+import json
+import math
+import os
+from pathlib import Path, PurePosixPath
+import shutil
+import sqlite3
+import tempfile
+import time
+import urllib.request
+import zipfile
+
+SOURCE_URL = 'https://geoapps.nj.gov/njgin/address/Addr_NG911.gdb.zip'
+FIELDS = ('FULLADDR', 'STATE', 'POST_COMM', 'POST_CODE', 'LONG_', 'LAT')
+SCHEMA = '''
+CREATE TABLE addresses (
+    FULLADDR TEXT, STATE TEXT, POST_COMM TEXT, POST_CODE TEXT,
+    LONG_ REAL, LAT REAL
+);
+CREATE TABLE metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL) WITHOUT ROWID;
+PRAGMA user_version=1;
+'''
+INDEXES = '''
+CREATE INDEX addresses_fulladdr ON addresses
+    (FULLADDR COLLATE NOCASE, POST_CODE);
+CREATE INDEX addresses_locality ON addresses
+    (POST_COMM COLLATE NOCASE, FULLADDR COLLATE NOCASE);
+CREATE VIRTUAL TABLE address_rtree USING rtree(id, min_lon, max_lon, min_lat, max_lat);
+INSERT INTO address_rtree SELECT rowid, LONG_, LONG_, LAT, LAT FROM addresses
+    WHERE LONG_ IS NOT NULL AND LAT IS NOT NULL;
+ANALYZE;
+'''
+
+
+def sha256(path):
+    with Path(path).open('rb') as stream:
+        return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+
+def download(url, destination):
+    """Retry the whole download; never append an incomplete or HTML response."""
+    request = urllib.request.Request(url, headers={
+        'User-Agent': 'NJ address dataset build (github.com/mbligh/mapping)'})
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(request, timeout=120) as response, destination.open('wb') as out:
+                if response.status != 200:
+                    raise ValueError(f'Expected complete download; received HTTP {response.status}')
+                shutil.copyfileobj(response, out, length=1024 * 1024)
+                out.flush()
+                expected = response.headers.get('Content-Length')
+                if expected and destination.stat().st_size != int(expected):
+                    raise ValueError('Incomplete source download')
+                return {'url': url, 'last_modified': response.headers.get('Last-Modified'),
+                        'sha256': sha256(destination), 'bytes': destination.stat().st_size}
+        except (OSError, ValueError):
+            if attempt == 3:
+                raise
+            time.sleep(2 ** attempt)
+
+
+def unpack_gdb(archive, destination):
+    """Extract only the GDB, rejecting unsafe paths before writing anything."""
+    with zipfile.ZipFile(archive) as source:
+        entries = source.infolist()
+        roots = set()
+        for entry in entries:
+            path = PurePosixPath(entry.filename)
+            if path.is_absolute() or '..' in path.parts or '\\' in entry.filename:
+                raise ValueError('Unsafe ZIP member')
+            for index, part in enumerate(path.parts):
+                if part.lower().endswith('.gdb'):
+                    roots.add(PurePosixPath(*path.parts[:index + 1]))
+                    break
+        if len(roots) != 1:
+            raise ValueError(f'Expected one geodatabase; found {len(roots)}')
+        root = roots.pop()
+        for entry in entries:
+            path = PurePosixPath(entry.filename)
+            if root != path and root not in path.parents:
+                continue
+            target = destination / path
+            if entry.is_dir():
+                target.mkdir(parents=True, exist_ok=True)
+            else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                with source.open(entry) as inp, target.open('wb') as out:
+                    shutil.copyfileobj(inp, out)
+    return destination / root
+
+
+def open_addresses(gdb):
+    from osgeo import ogr
+    ogr.UseExceptions()
+    dataset = ogr.Open(str(gdb), 0)
+    if dataset is None:
+        raise ValueError(f'Cannot open geodatabase: {gdb}')
+    matches = []
+    for layer in dataset:
+        definition = layer.GetLayerDefn()
+        if all(definition.GetFieldIndex(field) >= 0 for field in FIELDS):
+            matches.append(layer.GetName())
+    if len(matches) != 1:
+        raise ValueError(f'Expected one address layer with {FIELDS}; found {matches}')
+    layer = dataset.GetLayerByName(matches[0])
+    count = layer.GetFeatureCount(force=1)
+    if count < 0:
+        raise ValueError('Cannot determine source feature count')
+    layer.ResetReading()
+
+    def rows():
+        # Keep dataset alive for the lifetime of this iterator.
+        for feature in layer:
+            yield tuple(feature.GetField(field) for field in FIELDS)
+        _ = dataset
+
+    return rows(), count, matches[0]
+
+
+def validate_database(path):
+    with closing(sqlite3.connect(f'{Path(path).resolve().as_uri()}?mode=ro', uri=True)) as con:
+        if con.execute('PRAGMA quick_check').fetchone() != ('ok',):
+            raise ValueError('SQLite integrity check failed')
+        if tuple(row[1] for row in con.execute('PRAGMA table_info(addresses)')) != FIELDS:
+            raise ValueError('Unexpected address columns')
+        count = con.execute('SELECT count(*) FROM addresses').fetchone()[0]
+        if not count:
+            raise ValueError('Empty address database')
+        expected = con.execute('SELECT count(*) FROM addresses WHERE LONG_ IS NOT NULL AND LAT IS NOT NULL').fetchone()[0]
+        indexed = con.execute('SELECT count(*) FROM address_rtree').fetchone()[0]
+        if expected != indexed or con.execute("SELECT rtreecheck('address_rtree')").fetchone() != ('ok',):
+            raise ValueError('Spatial index is incomplete or invalid')
+        if con.execute('''SELECT count(*) FROM addresses a JOIN address_rtree r ON a.rowid=r.id
+                          WHERE a.LONG_ < r.min_lon OR a.LONG_ > r.max_lon
+                             OR a.LAT < r.min_lat OR a.LAT > r.max_lat''').fetchone()[0]:
+            raise ValueError('Spatial index does not contain source coordinates')
+        indexes = {row[1] for row in con.execute('PRAGMA index_list(addresses)')}
+        if not {'addresses_fulladdr', 'addresses_locality'} <= indexes:
+            raise ValueError('Address lookup indexes are missing')
+        return {'records': count, 'spatial_records': indexed}
+
+
+def build_database(rows, output, expected_count, metadata, min_records=1):
+    output = Path(output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='.njaddress-', dir=output.parent) as temp:
+        path = Path(temp) / 'njaddress.db'
+        con = sqlite3.connect(path)
+        count = 0
+        try:
+            con.execute('PRAGMA page_size=4096')
+            con.execute('PRAGMA journal_mode=OFF')
+            con.execute('PRAGMA synchronous=OFF')
+            con.executescript(SCHEMA)
+            batch = []
+            for row in rows:
+                if len(row) != len(FIELDS):
+                    raise ValueError('Unexpected number of source fields')
+                row = list(row)
+                for index in range(4):
+                    if row[index] is not None and not isinstance(row[index], str):
+                        raise ValueError(f'{FIELDS[index]} must be text (ZIP leading zeros must be preserved)')
+                lon, lat = row[4:]
+                if lon is None or lat is None:
+                    # Keep the address even when the source has no usable coordinate pair.
+                    row[4:] = [None, None]
+                elif (not all(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) for v in (lon, lat))
+                      or not -180 <= lon <= 180 or not -90 <= lat <= 90):
+                    raise ValueError(f'Invalid source coordinates at record {count + 1}')
+                batch.append(tuple(row))
+                count += 1
+                if len(batch) == 10000:
+                    con.executemany('INSERT INTO addresses VALUES (?,?,?,?,?,?)', batch)
+                    batch.clear()
+                    if count % 500000 == 0:
+                        print(f'Imported {count:,} addresses', flush=True)
+            if batch:
+                con.executemany('INSERT INTO addresses VALUES (?,?,?,?,?,?)', batch)
+            if count != expected_count or count < min_records:
+                raise ValueError(f'Incomplete source: imported {count}, expected {expected_count}, minimum {min_records}')
+            con.executemany('INSERT INTO metadata VALUES (?,?)',
+                            [(key, json.dumps(value)) for key, value in {**metadata, 'records': count,
+                             'built_at': datetime.now(timezone.utc).isoformat(),
+                             'coordinate_system': 'WGS84 longitude/latitude (EPSG:4326)',
+                             'attribution': 'NJ Office of Information Technology, Office of GIS (NJOGIS)'}.items()])
+            con.commit()
+            print('Building address and spatial indexes', flush=True)
+            con.executescript(INDEXES)
+            con.commit()
+        finally:
+            con.close()
+        result = validate_database(path)
+        os.replace(path, output)
+    return {**result, 'bytes': output.stat().st_size, 'sha256': sha256(output)}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source', help='existing .gdb directory or ZIP (default: download NJOGIS bulk GDB)')
+    parser.add_argument('--output', default='build/njaddress/njaddress.db')
+    parser.add_argument('--min-records', type=int, default=3000000,
+                        help='reject smaller statewide builds (default: 3000000)')
+    parser.add_argument('--report', default='build/njaddress-report.json')
+    args = parser.parse_args()
+    with tempfile.TemporaryDirectory(prefix='njaddress-source-') as temp:
+        temp = Path(temp)
+        if args.source:
+            source = Path(args.source)
+            provenance = {'path': str(source), 'sha256': sha256(source)} if source.is_file() else {'path': str(source)}
+        else:
+            source = temp / 'source.zip'
+            print(f'Downloading {SOURCE_URL}', flush=True)
+            provenance = download(SOURCE_URL, source)
+            print(f'Downloaded {provenance["bytes"]:,} bytes', flush=True)
+        gdb = source if source.is_dir() else unpack_gdb(source, temp / 'extract')
+        rows, expected, layer = open_addresses(gdb)
+        result = build_database(rows, args.output, expected,
+                                {'source': provenance, 'layer': layer}, args.min_records)
+    report = {**result, 'source': provenance, 'source_layer': layer, 'source_records': expected}
+    Path(args.report).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.report).write_text(json.dumps(report, indent=2) + '\n')
+    print(json.dumps(report, indent=2))
+
+
+if __name__ == '__main__':
+    main()

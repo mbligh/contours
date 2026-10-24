@@ -4,6 +4,7 @@ import importlib.machinery
 import importlib.util
 import io
 import json
+import runpy
 from pathlib import Path
 import tarfile
 import tempfile
@@ -20,6 +21,8 @@ def release(dataset, n, **changes):
     result = {'id': n, 'draft': False, 'published_at': f'2026-10-{n:02}T00:00:00Z',
               'tag_name': f'dataset-{dataset}-{n}-1',
               'assets': [{'name': 'dataset.tar.gz'}, {'name': 'manifest.json'}]}
+    if dataset == 'njaddress':
+        result['assets'].append({'name': 'njaddress.db'})
     result.update(changes)
     return result
 
@@ -90,8 +93,9 @@ class PublicationTests(unittest.TestCase):
                 m.extract(archive, root / 'out', 'contours', manifest)
             self.assertFalse((root / 'outside').exists())
 
-    def test_assembly_downloads_both_and_includes_public_paths_and_dotfiles(self):
+    def test_assembly_downloads_datasets_and_includes_public_paths_and_dotfiles(self):
         import os
+        builder = runpy.run_path(str(Path(__file__).resolve().with_name('build_njaddress')))
         with tempfile.TemporaryDirectory() as tmp:
             previous = Path.cwd()
             try:
@@ -104,11 +108,16 @@ class PublicationTests(unittest.TestCase):
                     dataset = args[2].split('-')[1]
                     dest = Path(args[args.index('--dir') + 1])
                     files = {}
+                    if dataset == 'njaddress':
+                        builder['build_database'](iter([('1 Main Street', 'NJ', 'Oldwick', '08858', -74.7, 40.7)]),
+                                                  dest / 'fixture.db', 1, {})
                     with tarfile.open(dest / 'dataset.tar.gz', 'w:gz') as tar:
                         for name in m.DATASETS[dataset]:
                             content = (b'PMTiles' + b'x' * 11000 if dataset == 'contours' else
                                        b'{"type":"FeatureCollection","features":[{"type":"Feature"}]}'
                                        if name.endswith('.geojson') else b'// module')
+                            if dataset == 'njaddress':
+                                content = (dest / 'fixture.db').read_bytes()
                             entry = tarfile.TarInfo(name)
                             entry.size = len(content)
                             tar.addfile(entry, io.BytesIO(content))
@@ -122,7 +131,8 @@ class PublicationTests(unittest.TestCase):
                 self.assertTrue(Path('.pages/.hidden').is_file())
                 self.assertTrue(Path('.pages/shipping/shipping.js').is_file())
                 self.assertFalse(Path('.pages/contours.geojsonseq.gz').exists())
-                self.assertEqual(json.loads(Path('build/selected-releases.json').read_text()), {'shipping': 1, 'contours': 1})
+                self.assertTrue(Path('.pages/njaddress.db').is_file())
+                self.assertEqual(json.loads(Path('build/selected-releases.json').read_text()), {'shipping': 1, 'contours': 1, 'njaddress': 1})
                 state = Path('.pages/mapping-build.json').read_bytes()
                 with patch.object(m, 'releases', return_value=selected), patch.object(m.urllib.request, 'urlopen', return_value=io.BytesIO(state)), patch.object(m, 'gh') as gh:
                     self.assertFalse(m.assemble('.pages'))
@@ -130,5 +140,31 @@ class PublicationTests(unittest.TestCase):
             finally:
                 os.chdir(previous)
 
+    def test_address_release_requires_raw_asset(self):
+        good = release('njaddress', 1)
+        self.assertTrue(m.complete(good, 'njaddress'))
+        good['assets'] = [{'name': 'dataset.tar.gz'}, {'name': 'manifest.json'}]
+        self.assertFalse(m.complete(good, 'njaddress'))
+
+    def test_address_dataset_missing_initially_does_not_block_existing_pages(self):
+        import os
+        with tempfile.TemporaryDirectory() as tmp:
+            previous = Path.cwd()
+            try:
+                os.chdir(tmp)
+                items = [release(k, 1) for k in m.PAGE_DATASETS]
+                with patch.object(m, 'releases', return_value=items), \
+                        patch.object(m, 'download_release') as download, \
+                        patch.object(m.urllib.request, 'urlopen', side_effect=OSError):
+                    self.assertTrue(m.assemble('.pages'))
+                self.assertEqual({call.args[0] for call in download.call_args_list}, set(m.PAGE_DATASETS))
+            finally:
+                os.chdir(previous)
+
+    def test_njaddress_retention_preserves_three_and_newer_releases(self):
+        items = [release('njaddress', n) for n in range(1, 7)]
+        self.assertEqual([r['id'] for r in m.expired(items, {'njaddress': 5})], [2, 1])
+
 
 unittest.main()
+

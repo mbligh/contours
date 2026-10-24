@@ -10,8 +10,10 @@ on:
       - 'scripts/public_directory_indexes'
       - 'scripts/test_public_directory_indexes'
       - 'scripts/test_geosources.cjs'
+      - 'scripts/build_njaddress'
+      - 'scripts/test_njaddress'
   workflow_run:
-    workflows: ['Refresh NJ shipping locations', 'Build NJ contour PMTiles']
+    workflows: ['Refresh NJ shipping locations', 'Build NJ contour PMTiles', 'Build NJ address database']
     types: [completed]
     branches: [main]
   release:
@@ -57,6 +59,7 @@ jobs:
           node public/shipping/test_shipping.cjs
       - name: Check assembly, checksum validation, and retention
         run: |
+          python scripts/test_njaddress
           python scripts/test_dataset_releases
           python scripts/test_public_directory_indexes
       - name: Generate recursive public directory listings
@@ -81,3 +84,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/dataset_releases cleanup
+

@@ -16,10 +16,12 @@ DATASETS = {
                  'shipping/shipping_fedex.geojson', 'shipping/shipping_ups_boxes.geojson',
                  'shipping/shipping.js'},
     'contours': {'contours.pmtiles'},
+    'njaddress': {'njaddress.db'},
     'contour-vectors': {'contours.geojsonseq.gz', 'contours.geojsonseq.gz.sha256', 'extraction.json'},
 }
 PAGE_DATASETS = ('shipping', 'contours')
-TAG = re.compile(r'^dataset-(shipping|contours|contour-vectors)-[0-9]+-[0-9]+$')
+OPTIONAL_PAGE_DATASETS = ('njaddress',)
+TAG = re.compile(r'^dataset-(shipping|contours|contour-vectors|njaddress)-[0-9]+-[0-9]+$')
 REPO = os.environ.get('GITHUB_REPOSITORY', 'mbligh/mapping')
 
 
@@ -36,7 +38,7 @@ def releases():
 def complete(release, dataset):
     return (not release['draft'] and TAG.fullmatch(release['tag_name']) is not None
             and release['tag_name'].startswith(f'dataset-{dataset}-')
-            and {a['name'] for a in release['assets']} >= {'dataset.tar.gz', 'manifest.json'})
+            and {a['name'] for a in release['assets']} >= ({'dataset.tar.gz', 'manifest.json'} | ({'njaddress.db'} if dataset == 'njaddress' else set())))
 
 
 def ordered(items, dataset):
@@ -77,7 +79,8 @@ def create(dataset, root, input_manifest=None):
     # A draft is invisible to selection until BOTH uploads have completed.
     gh('release', 'create', tag, '--repo', REPO, '--target', target, '--draft',
        '--title', f'{dataset.title()} dataset {run}', '--notes', json.dumps(manifest, indent=2))
-    gh('release', 'upload', tag, str(archive), str(out / 'manifest.json'), '--repo', REPO)
+    extra_assets = [str(root / 'njaddress.db')] if dataset == 'njaddress' else []
+    gh('release', 'upload', tag, str(archive), str(out / 'manifest.json'), *extra_assets, '--repo', REPO)
     gh('release', 'edit', tag, '--repo', REPO, '--draft=false', '--latest=false')
     print(f'Published {tag}')
 
@@ -103,6 +106,10 @@ def extract(archive, output, dataset, manifest):
         with path.open('rb') as stream:
             if stream.read(7) != b'PMTiles' or path.stat().st_size <= 10000:
                 raise ValueError('Invalid PMTiles archive')
+    elif dataset == 'njaddress':
+        import runpy
+        validate = runpy.run_path(str(Path(__file__).with_name('build_njaddress')))['validate_database']
+        validate(output / 'njaddress.db')
     else:
         for name in DATASETS[dataset]:
             if name.endswith('.geojson'):
@@ -148,9 +155,11 @@ def download(dataset, output, tag, allow_missing, selection):
 def assemble(output):
     all_releases = releases()
     selected = {}
-    for dataset in PAGE_DATASETS:
+    for dataset in (*PAGE_DATASETS, *OPTIONAL_PAGE_DATASETS):
         candidates = ordered(all_releases, dataset)
         if not candidates:
+            if dataset in OPTIONAL_PAGE_DATASETS:
+                continue  # Do not block existing pages before the first address build.
             print(f'Waiting for the first complete {dataset} release; existing Pages left intact.')
             return False
         selected[dataset] = candidates[0]
@@ -234,3 +243,4 @@ if __name__ == '__main__':
                 stream.write(f'changed={str(changed).lower()}\n')
     else:
         cleanup(args.selection)
+

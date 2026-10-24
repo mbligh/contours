@@ -1,0 +1,50 @@
+name: Build NJ address database
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/njaddress.yml'
+      - 'scripts/build_njaddress'
+      - 'scripts/test_njaddress'
+      - 'scripts/dataset_releases'
+  schedule:
+    - cron: '41 8 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: njaddress-dataset
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install GDAL bindings for system Python
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-gdal
+      - name: Test SQLite lookups, source reading, and release assembly
+        run: |
+          /usr/bin/python3 scripts/test_njaddress
+          /usr/bin/python3 scripts/test_dataset_releases
+      - name: Download and build the complete NJ address database
+        run: /usr/bin/python3 -u scripts/build_njaddress
+      - name: Publish versioned address release and raw SQLite asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: /usr/bin/python3 scripts/dataset_releases create njaddress build/njaddress --input-manifest build/njaddress-report.json
+      - name: Record build summary
+        run: |
+          /usr/bin/python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          from pathlib import Path
+          r = json.loads(Path('build/njaddress-report.json').read_text())
+          print(f"Imported **{r['records']:,} addresses**, indexed **{r['spatial_records']:,} coordinates**.")
+          print(f"Database: **{r['bytes'] / 1024**2:.1f} MiB**; SHA256: `{r['sha256']}`.")
+          print('Published by the separate Publish mapping pages workflow as `njaddress.db`.')
+          PY

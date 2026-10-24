@@ -48,3 +48,12 @@ The root of `public/` and every subdirectory get automatically generated directo
 ## Interactive map
 
 Open [the MapLibre demo](https://mapping.mbligh.org/maplibre-demo/). Its source is [public/maplibre-demo/index.html](public/maplibre-demo/index.html); changes publish through **Publish mapping pages**, independently of dataset builds. Shipping and contours load from this site's relative paths. Surveillance loads from the separate surveillance site. The former URL under `mbligh.github.io/tools/maplibre-demo/` has a redirect in the tools repository.
+
+## New Jersey address database
+
+An independent monthly workflow publishes the stripped statewide address-point
+dataset as [njaddress.db](https://mapping.mbligh.org/njaddress.db), with indexed
+address lookup and an R-tree for proximity searches. It is also downloadable as
+a versioned GitHub Release asset. See [njaddress.md](njaddress.md) for the six-field
+schema, SQL examples, source attribution, and refresh details.
+

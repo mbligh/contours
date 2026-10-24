@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+"""Offline SQLite, lookup, extraction and GDAL integration tests."""
+import io
+from pathlib import Path
+import runpy
+import sqlite3
+import tempfile
+import unittest
+from unittest.mock import patch
+import zipfile
+
+MODULE = runpy.run_path(str(Path(__file__).with_name('build_njaddress')))
+ROWS = [
+    ('174 Lamington Road', 'NJ', 'Oldwick', '08858', -74.75, 40.67),
+    ('174 Lamington Road', 'NJ', 'Other town', '07001', -74.1, 40.6),
+    ('57 Old Turnpike Road', 'NJ', 'Oldwick', '08858', -74.7501, 40.6701),
+    ('An address without coordinates', 'NJ', 'Oldwick', '08858', None, None),
+    ('A subaddress sharing its main address', 'NJ', 'Oldwick', '08858', -74.75, 40.67),
+]
+
+
+class DatabaseTests(unittest.TestCase):
+    def build(self, path, rows=ROWS, **kwargs):
+        return MODULE['build_database'](iter(rows), path, len(rows), {'source': 'test'}, **kwargs)
+
+    def test_exact_six_fields_and_preserved_zip_codes(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / 'address.db'
+            result = self.build(path)
+            self.assertEqual(result['records'], len(ROWS))
+            self.assertEqual(result['spatial_records'], len(ROWS) - 1)
+            self.assertEqual(len(result['sha256']), 64)
+            with sqlite3.connect(path) as con:
+                self.assertEqual(tuple(r[1] for r in con.execute('PRAGMA table_info(addresses)')), MODULE['FIELDS'])
+                self.assertEqual(con.execute('SELECT * FROM addresses ORDER BY rowid').fetchall(), ROWS)
+                self.assertEqual(con.execute('SELECT POST_CODE FROM addresses WHERE rowid=1').fetchone()[0], '08858')
+
+    def test_case_insensitive_full_address_lookup_uses_index(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / 'address.db'
+            self.build(path)
+            with sqlite3.connect(path) as con:
+                sql = 'SELECT * FROM addresses WHERE FULLADDR=? COLLATE NOCASE AND POST_CODE=?'
+                # Force the planner to prefer an index even on a tiny fixture.
+                con.execute('DELETE FROM sqlite_stat1')
+                con.execute('ANALYZE sqlite_schema')
+                plan = str(con.execute('EXPLAIN QUERY PLAN ' + sql, ('174 lamington road', '08858')).fetchall())
+                self.assertIn('addresses_fulladdr', plan)
+                self.assertEqual(con.execute(sql, ('174 lamington road', '08858')).fetchall(), ROWS[:1])
+                sql = 'SELECT * FROM addresses WHERE POST_COMM=? COLLATE NOCASE AND FULLADDR=? COLLATE NOCASE'
+                self.assertEqual(con.execute(sql, ('oldwick', '174 LAMINGTON ROAD')).fetchall(), ROWS[:1])
+
+    def test_rtree_proximity_box_includes_nearby_and_excludes_faraway(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / 'address.db'
+            self.build(path)
+            with sqlite3.connect(path) as con:
+                sql = '''SELECT a.FULLADDR FROM address_rtree r JOIN addresses a ON a.rowid=r.id
+                         WHERE r.min_lon<=? AND r.max_lon>=? AND r.min_lat<=? AND r.max_lat>=?
+                         AND a.LONG_ BETWEEN ? AND ? AND a.LAT BETWEEN ? AND ? ORDER BY a.rowid'''
+                result = con.execute(sql, (-74.749, -74.751, 40.671, 40.669,
+                                           -74.751, -74.749, 40.669, 40.671)).fetchall()
+                self.assertEqual([r[0] for r in result], [ROWS[i][0] for i in (0, 2, 4)])
+
+    def test_incomplete_or_invalid_build_keeps_previous_output(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / 'address.db'
+            self.build(path)
+            before = path.read_bytes()
+            for rows, expected, minimum in [(ROWS, 100, 1), (ROWS, len(ROWS), 100),
+                                             ([(*ROWS[0][:4], 181, 40)], 1, 1),
+                                             ([(*ROWS[0][:3], 8858, -74, 40)], 1, 1)]:
+                with self.subTest(rows=rows, expected=expected), self.assertRaises(ValueError):
+                    MODULE['build_database'](iter(rows), path, expected, {}, minimum)
+                self.assertEqual(path.read_bytes(), before)
+
+    def test_validation_rejects_corrupted_spatial_index(self):
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / 'address.db'
+            self.build(path)
+            with sqlite3.connect(path) as con:
+                con.execute('DELETE FROM address_rtree WHERE id=1')
+            with self.assertRaises(ValueError):
+                MODULE['validate_database'](path)
+
+    def test_zip_extraction_and_path_safety(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            archive = root / 'source.zip'
+            with zipfile.ZipFile(archive, 'w') as out:
+                out.writestr('Addr_NG911.gdb/a.gdbtable', b'test')
+                out.writestr('unrelated.txt', b'not part of GDB')
+            gdb = MODULE['unpack_gdb'](archive, root / 'extract')
+            self.assertEqual((gdb / 'a.gdbtable').read_bytes(), b'test')
+            self.assertFalse((root / 'extract/unrelated.txt').exists())
+            with zipfile.ZipFile(archive, 'w') as out:
+                out.writestr('../escape', b'test')
+            with self.assertRaises(ValueError):
+                MODULE['unpack_gdb'](archive, root / 'bad')
+            self.assertFalse((root / 'escape').exists())
+
+    def test_download_retries_incomplete_response(self):
+        class Response(io.BytesIO):
+            status = 200
+            headers = {'Content-Length': '4', 'Last-Modified': 'test date'}
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / 'source.zip'
+            with patch.object(MODULE['urllib'].request, 'urlopen', side_effect=[Response(b'x'), Response(b'data')]), \
+                    patch.object(MODULE['time'], 'sleep'):
+                result = MODULE['download']('https://example.org/source.zip', path)
+            self.assertEqual(result['bytes'], 4)
+            self.assertEqual(path.read_bytes(), b'data')
+
+    def test_real_gdal_geodatabase_reader(self):
+        try:
+            from osgeo import ogr, osr
+        except ImportError:
+            self.skipTest('GDAL unavailable locally; required in the address build workflow')
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            gdb = root / 'test.gdb'
+            driver = ogr.GetDriverByName('OpenFileGDB')
+            self.assertIsNotNone(driver)
+            dataset = driver.CreateDataSource(str(gdb))
+            srs = osr.SpatialReference()
+            srs.ImportFromEPSG(4326)
+            layer = dataset.CreateLayer('AddressPoints', srs=srs, geom_type=ogr.wkbPoint)
+            for i, name in enumerate(MODULE['FIELDS']):
+                layer.CreateField(ogr.FieldDefn(name, ogr.OFTString if i < 4 else ogr.OFTReal))
+            for row in ROWS:
+                feature = ogr.Feature(layer.GetLayerDefn())
+                for name, value in zip(MODULE['FIELDS'], row):
+                    if value is not None:
+                        feature.SetField(name, value)
+                layer.CreateFeature(feature)
+            feature = layer = dataset = None
+            rows, count, name = MODULE['open_addresses'](gdb)
+            self.assertEqual(count, len(ROWS))
+            self.assertEqual(name, 'AddressPoints')
+            result = MODULE['build_database'](rows, root / 'address.db', count, {})
+            self.assertEqual(result['records'], len(ROWS))
+
+
+if __name__ == '__main__':
+    unittest.main()
