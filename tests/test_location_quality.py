@@ -200,7 +200,7 @@ class AddressCache(unittest.TestCase):
             queries.append(urllib.parse.parse_qs(urllib.parse.urlsplit(url).query)['where'][0])
             return {'features':[api_feature()]}
         NJAddressPoints(self.directory.name,fetch=fetch).resolve_many([self.address])
-        self.assertTrue(queries[0].startswith('FULLADDR IN ('))
+        self.assertTrue(queries[0].startswith('ADD_NUMBER IN (174) AND FULLADDR IN ('))
         self.assertIn("'174 LAMINGTON ROAD'",queries[0])
         self.assertNotIn('UPPER(',queries[0])
 

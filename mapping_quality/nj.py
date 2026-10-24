@@ -89,7 +89,11 @@ class NJAddressPoints:
                     value=f'{number} {spelling}'
                     variants.add(value)
         values=','.join("'"+s.replace("'","''")+"'" for s in sorted(variants))
-        where=f'FULLADDR IN ({values})'
+        # Numeric filtering is important on this service: FULLADDR has no
+        # attribute index. Restrict house numbers before evaluating the much
+        # more expensive string comparisons across the statewide table.
+        numbers=','.join(str(n) for n in sorted({key[0] for key in keys}))
+        where=f'ADD_NUMBER IN ({numbers}) AND FULLADDR IN ({values})'
         features=[];offset=0;seen=set()
         while True:
             params={'where':where,'outFields':FIELDS,'outSR':4326,'f':'geojson',
