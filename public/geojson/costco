@@ -482,34 +482,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.24362182617188,
-     40.40141677856445
-    ]
-   },
-   "properties": {
-    "id": "3980d4c4-f0a9-4d68-950b-5d019bfa2c26",
-    "name": "Costco",
-    "street": "100 Grand Ave",
-    "city": "North Brunswick",
-    "region": "NJ",
-    "postcode": "08902",
-    "brand": "BMO",
-    "basic_category": "atm",
-    "category": "atm",
-    "category_hierarchy": [
-     "services_and_business",
-     "financial_service",
-     "atm"
-    ],
-    "website": "https://usbranches.bmo.com/nj/north-brunswick/cwd90137/",
-    "confidence": 0.8
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.50711822509766,
      40.43668746948242
     ]
@@ -563,34 +535,6 @@
     "website": "http://www.costco.com/",
     "confidence": 0.9813855886459351,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.57868194580078,
-     40.577056884765625
-    ]
-   },
-   "properties": {
-    "id": "35b7e880-966d-4d77-b8b0-8b90035d0d4f",
-    "name": "Costco",
-    "street": "1290 Us Hwy 22 E",
-    "city": "North Plainfield",
-    "region": "NJ",
-    "postcode": "07060",
-    "brand": "BMO",
-    "basic_category": "atm",
-    "category": "atm",
-    "category_hierarchy": [
-     "services_and_business",
-     "financial_service",
-     "atm"
-    ],
-    "website": "https://usbranches.bmo.com/nj/north-plainfield/cwd30413/",
-    "confidence": 0.8
    }
   },
   {
@@ -712,34 +656,6 @@
     "phone": "+19088101458",
     "website": "http://www.costco.com/",
     "confidence": 0.9825798869132996,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.56905364990234,
-     40.90684127807617
-    ]
-   },
-   "properties": {
-    "id": "9682b2d8-0234-431d-98a4-e097358d3ef6",
-    "name": "Costco",
-    "street": "315 STATE ROUTE 15 N",
-    "city": "WHARTON",
-    "region": "NJ",
-    "postcode": "07885-1222",
-    "brand": "Costco",
-    "basic_category": "warehouse_club_store",
-    "category": "warehouse_club_store",
-    "category_hierarchy": [
-     "shopping",
-     "warehouse_club_store"
-    ],
-    "website": "https://www.costco.com/warehouse-locations/wharton-nj-315.html",
-    "confidence": 0.9722161889076233,
     "operating_status": "open"
    }
   },

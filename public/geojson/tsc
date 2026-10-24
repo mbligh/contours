@@ -1169,36 +1169,6 @@
     "confidence": 0.9902192950248718,
     "operating_status": "open"
    }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.92899322509766,
-     39.807106018066406
-    ]
-   },
-   "properties": {
-    "id": "e352468f-da32-44ce-99a0-10e279b847f3",
-    "name": "Tractor Supply Co.",
-    "street": "901 S Route 73",
-    "city": "West Berlin",
-    "region": "NJ",
-    "postcode": "08091",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "hardware_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "hardware_store"
-    ],
-    "phone": "(856) 809-2320",
-    "website": "https://www.tractorsupply.com/tsc/store_Westberlin-NJ-08091_2578",
-    "confidence": 0.77,
-    "operating_status": "open"
-   }
   }
  ]
 }

@@ -188,35 +188,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -73.99019622802734,
-     40.808597564697266
-    ]
-   },
-   "properties": {
-    "id": "8f73e8f6-fe8e-442e-8066-8d9b20139f75",
-    "name": "Trader Joe's",
-    "street": "715 River Rd",
-    "city": "Edgewater",
-    "region": "NJ",
-    "postcode": "07020-1108",
-    "basic_category": "food_and_beverage_store",
-    "category": "grocery_store",
-    "category_hierarchy": [
-     "shopping",
-     "food_and_beverage_store",
-     "grocery_store"
-    ],
-    "phone": "12019455932",
-    "website": "https://www.traderjoes.com",
-    "confidence": 0.95,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.92403411865234,
      39.88949966430664
     ]
@@ -594,34 +565,6 @@
     "website": "https://locations.traderjoes.com/nj/wayne/603/",
     "confidence": 0.9583381414413452,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.24246215820312,
-     40.96123504638672
-    ]
-   },
-   "properties": {
-    "id": "39cc892b-f82f-439d-95de-db0d3cbb8e7a",
-    "name": "Trader Joe's",
-    "street": "910 Hamburg Tpke",
-    "city": "Wayne",
-    "region": "NJ",
-    "postcode": "07470",
-    "basic_category": "food_and_beverage_store",
-    "category": "grocery_store",
-    "category_hierarchy": [
-     "shopping",
-     "food_and_beverage_store",
-     "grocery_store"
-    ],
-    "phone": "(973) 872-4604",
-    "website": "https://locations.traderjoes.com/nj/wayne/603/",
-    "confidence": 0.77
    }
   },
   {

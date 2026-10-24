@@ -657,35 +657,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -73.9637451171875,
-     40.99771499633789
-    ]
-   },
-   "properties": {
-    "id": "a6ff0eb0-3325-46be-b414-bfeafbbf91e0",
-    "name": "Chipotle Mexican Grill",
-    "street": "83 Ver Valen St",
-    "city": "Closter",
-    "region": "NJ",
-    "postcode": "07624",
-    "basic_category": "supplier_or_distributor",
-    "category": "beverage_supplier",
-    "category_hierarchy": [
-     "services_and_business",
-     "b2b_service",
-     "supplier_or_distributor",
-     "beverage_supplier"
-    ],
-    "phone": "2017682505",
-    "website": "https://www.chipotle.com/",
-    "confidence": 0.85
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -73.95516967773438,
      40.96992111206055
     ]
@@ -831,36 +802,6 @@
     "phone": "+19735991370",
     "website": "https://locations.chipotle.com/nj/east-hanover/368-state-route-10?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D1233",
     "confidence": 0.9855164885520935,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.09992980957031,
-     40.821964263916016
-    ]
-   },
-   "properties": {
-    "id": "f24e1432-f044-4da3-9e84-b654dce04403",
-    "name": "Chipotle Mexican Grill",
-    "street": "40 State Rt 17",
-    "city": "East Rutherford",
-    "region": "NJ",
-    "postcode": "07073",
-    "basic_category": "supplier_or_distributor",
-    "category": "beverage_supplier",
-    "category_hierarchy": [
-     "services_and_business",
-     "b2b_service",
-     "supplier_or_distributor",
-     "beverage_supplier"
-    ],
-    "phone": "2015495302",
-    "website": "http://www.chipotle.com/",
-    "confidence": 0.9199122190475464,
     "operating_status": "open"
    }
   },
@@ -2071,35 +2012,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.07352447509766,
-     41.06806564331055
-    ]
-   },
-   "properties": {
-    "id": "06dd92b6-cf97-46ba-90e9-6d4dc6503d1d",
-    "name": "Chipotle Mexican Grill",
-    "street": "18 Farm Vw",
-    "city": "Montvale",
-    "region": "NJ",
-    "postcode": "07645-1865",
-    "basic_category": "restaurant",
-    "category": "mexican_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "latin_american_restaurant",
-     "mexican_restaurant"
-    ],
-    "phone": "12013918986",
-    "confidence": 0.95,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.06197357177734,
      41.0510368347168
     ]
@@ -2531,35 +2443,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.08221435546875,
-     40.92329788208008
-    ]
-   },
-   "properties": {
-    "id": "cc9f56f9-9cb3-4cda-9573-ba0c6e2ab0df",
-    "name": "Chipotle Mexican Grill",
-    "street": "81 Route 4 W",
-    "city": "Paramus",
-    "region": "NJ",
-    "postcode": "07652",
-    "basic_category": "supplier_or_distributor",
-    "category": "beverage_supplier",
-    "category_hierarchy": [
-     "services_and_business",
-     "b2b_service",
-     "supplier_or_distributor",
-     "beverage_supplier"
-    ],
-    "phone": "2015560180",
-    "website": "http://www.chipotle.com/",
-    "confidence": 0.85
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.06488037109375,
      40.91923522949219
     ]
@@ -2832,35 +2715,6 @@
     "website": "http://www.chipotle.com",
     "confidence": 0.9804317951202393,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.55201721191406,
-     40.903526306152344
-    ]
-   },
-   "properties": {
-    "id": "2e49f349-946d-4b1d-a903-9207a9fe797a",
-    "name": "Chipotle Mexican Grill",
-    "street": "301 Mount Hope Ave",
-    "city": "Rockaway",
-    "region": "NJ",
-    "postcode": "07866",
-    "basic_category": "supplier_or_distributor",
-    "category": "beverage_supplier",
-    "category_hierarchy": [
-     "services_and_business",
-     "b2b_service",
-     "supplier_or_distributor",
-     "beverage_supplier"
-    ],
-    "phone": "9734420900",
-    "website": "http://www.chipotle.com/",
-    "confidence": 0.85
    }
   },
   {
@@ -3383,35 +3237,6 @@
     "phone": "+18567830380",
     "website": "https://locations.chipotle.com/nj/voorhees/700-haddonfield-berlin-rd?utm_source=facebook&utm_medium=yext&utm_campaign=yext_listings%3Frestaurant%3D1893",
     "confidence": 0.9902192950248718,
-    "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.9798583984375,
-     39.84978485107422
-    ]
-   },
-   "properties": {
-    "id": "668ee3a8-03c4-4370-aa7e-3eed23d50372",
-    "name": "Chipotle Mexican Grill",
-    "street": "700 Haddonfield Berlin Rd",
-    "city": "Voorhees",
-    "region": "NJ",
-    "postcode": "08043-4305",
-    "basic_category": "restaurant",
-    "category": "mexican_restaurant",
-    "category_hierarchy": [
-     "food_and_drink",
-     "restaurant",
-     "latin_american_restaurant",
-     "mexican_restaurant"
-    ],
-    "phone": "18567830380",
-    "confidence": 0.95,
     "operating_status": "open"
    }
   },

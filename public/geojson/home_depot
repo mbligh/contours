@@ -1019,35 +1019,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -74.09800720214844,
-     40.68119812011719
-    ]
-   },
-   "properties": {
-    "id": "7552966f-a45b-4978-bb80-7f9a7b389fe5",
-    "name": "The Home Depot",
-    "street": "440 State Rt 440",
-    "city": "Jersey City",
-    "region": "NJ",
-    "postcode": "07305",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "do_it_yourself_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "do_it_yourself_store"
-    ],
-    "website": "https://www.homedepot.com/l/storeDirectory",
-    "confidence": 0.8
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.16366577148438,
      40.05465316772461
     ]
@@ -1350,35 +1321,6 @@
     "website": "https://www.homedepot.com/l/South-Brunswick/NJ/Monmouth-Junction/08852/6917?emt=MSFBPage",
     "confidence": 0.9999766858100891,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.3517074584961,
-     40.85759353637695
-    ]
-   },
-   "properties": {
-    "id": "ccb38752-2409-4cc8-bb23-87e4f5a102fa",
-    "name": "The Home Depot",
-    "street": "79 Route 46 E",
-    "city": "Montville",
-    "region": "NJ",
-    "postcode": "07045",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "do_it_yourself_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "do_it_yourself_store"
-    ],
-    "website": "https://www.homedepot.com/l/storeDirectory",
-    "confidence": 0.8
    }
   },
   {
@@ -1939,35 +1881,6 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     -75.0487060546875,
-     39.77859878540039
-    ]
-   },
-   "properties": {
-    "id": "9d29f0e7-a6b3-4102-a9ac-264b530c9d14",
-    "name": "The Home Depot",
-    "street": "2735 Route 42",
-    "city": "Sicklerville",
-    "region": "NJ",
-    "postcode": "08081",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "do_it_yourself_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "do_it_yourself_store"
-    ],
-    "website": "https://www.homedepot.com/l/storeDirectory",
-    "confidence": 0.8
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
      -74.43268585205078,
      40.55853271484375
     ]
@@ -2207,35 +2120,6 @@
     "website": "https://www.homedepot.com/l/Vineland/NJ/Vineland/08360/946?emt=MSFBPage",
     "confidence": 0.9722161889076233,
     "operating_status": "open"
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -74.42280578613281,
-     40.63859939575195
-    ]
-   },
-   "properties": {
-    "id": "173f13d9-70be-44ce-9524-e1a141db6c41",
-    "name": "The Home Depot",
-    "street": "1515 Route 22",
-    "city": "Watchung",
-    "region": "NJ",
-    "postcode": "07069",
-    "brand": "The Home Depot",
-    "basic_category": "hardware_home_and_garden_store",
-    "category": "do_it_yourself_store",
-    "category_hierarchy": [
-     "shopping",
-     "specialty_store",
-     "hardware_home_and_garden_store",
-     "do_it_yourself_store"
-    ],
-    "website": "https://www.homedepot.com/l/storeDirectory",
-    "confidence": 0.8
    }
   },
   {
