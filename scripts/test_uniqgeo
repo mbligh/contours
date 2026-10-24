@@ -61,6 +61,27 @@ class NameTests(unittest.TestCase):
 
 
 class GroupTests(unittest.TestCase):
+
+    def test_far_apart_fuzzy_address_match(self):
+        a = point('Chipotle Mexican Grill', id='a', confidence=.5)
+        b = point('Chipotle Mexican Grill', north_feet=10560, id='b', confidence=.9)
+        a['properties'].update(street='83 Ver Valen St', city='Closter',
+                               region='NJ', postcode='07624')
+        b['properties'].update(street='83 Vervalen St.', city='Closter',
+                               region='NJ', postcode='07624-2612')
+        self.assertEqual(deduplicate(collection(a, b))['features'], [b])
+
+    def test_address_match_requires_matching_name_and_house_number(self):
+        a = point('Chipotle Mexican Grill', id='a')
+        b = point('Other Restaurant', north_feet=10560, id='b')
+        for feature in (a, b):
+            feature['properties'].update(street='83 Ver Valen St', city='Closter',
+                                         region='NJ', postcode='07624')
+        self.assertEqual(len(deduplicate(collection(a, b))['features']), 2)
+        b['properties']['name'] = a['properties']['name']
+        b['properties']['street'] = '84 Ver Valen St'
+        self.assertEqual(len(deduplicate(collection(a, b))['features']), 2)
+
     def test_more_than_two_and_transitive_chain(self):
         points = [point(name=n, east_feet=d, confidence=c, id=str(d)) for n, d, c in [
             ('The Home Depot', 0, .7), ('Home Depot', 250, .99),
