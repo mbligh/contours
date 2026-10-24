@@ -83,6 +83,49 @@ def names_match(a, b):
             and one_typo(*different[0]))
 
 
+
+# USPS-style suffix expansion, applied only to complete words.
+ADDRESS_WORDS = {
+    'ST':'STREET','STR':'STREET','RD':'ROAD','AVE':'AVENUE','AV':'AVENUE',
+    'AVEN':'AVENUE','BLVD':'BOULEVARD','DR':'DRIVE','LN':'LANE',
+    'CT':'COURT','PL':'PLACE','PKWY':'PARKWAY','HWY':'HIGHWAY',
+    'RTE':'ROUTE','RT':'ROUTE','SQ':'SQUARE','TER':'TERRACE',
+    'CIR':'CIRCLE','TRL':'TRAIL','TPKE':'TURNPIKE','PIKE':'TURNPIKE',
+    'N':'NORTH','S':'SOUTH','E':'EAST','W':'WEST',
+    'APT':'APARTMENT','STE':'SUITE','FL':'FLOOR','BLDG':'BUILDING',
+}
+
+
+def address_key(properties):
+    """Canonical address assembled from street, locality, state and 5-digit ZIP."""
+    if not isinstance(properties, dict):
+        return ''
+    parts = []
+    for field in ('street', 'city', 'region', 'postcode'):
+        value = properties.get(field)
+        if not isinstance(value, str) or not value.strip():
+            return ''  # Incomplete addresses must not create false matches.
+        if field == 'postcode':
+            match = re.search(r'\\b\\d{5}\\b', value)
+            if not match:
+                return ''
+            value = match.group()
+        words = re.findall(r'[A-Z0-9]+', value.upper())
+        parts.extend(ADDRESS_WORDS.get(word, word) for word in words)
+    return ' '.join(parts)
+
+
+def address_candidates(keys):
+    """Block on house number and ZIP to avoid quadratic all-pairs comparisons."""
+    blocks = defaultdict(list)
+    for i, key in enumerate(keys):
+        if not key:
+            continue
+        words = key.split()
+        if words and words[0].isdigit():
+            blocks[(words[0], words[-1])].append(i)
+    return blocks
+
 def finite_number(value):
     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
@@ -176,6 +219,20 @@ def deduplicate(document, distance_feet=800):
                 if a != b:
                     parents[b] = a
         cells[cell].append(i)
+
+    # Independent address pass: geometry is deliberately not consulted.
+    # Keep this pass on the original input, not just spatial survivors.
+    from rapidfuzz import fuzz
+    keys = [address_key(f.get('properties')) for f in features]
+    for indices in address_candidates(keys).values():
+        for offset, i in enumerate(indices):
+            for j in indices[:offset]:
+                if names_match(names[i], names[j]) and fuzz.ratio(keys[i], keys[j]) >= 90:
+                    print(f'uniqgeo: address match features {j} and {i}: '
+                          f'{keys[j]!r} <> {keys[i]!r}', file=sys.stderr)
+                    a, b = find(i), find(j)
+                    if a != b:
+                        parents[b] = a
 
     groups = defaultdict(list)
     for i in range(len(features)):
