@@ -21,7 +21,8 @@ EARTH = MODULE['EARTH_METRES']
 
 
 def point(name='The Home Depot', north_feet=0, east_feet=0, confidence=None, id='store'):
-    props = {'name': name, 'id': id, 'street': '123 Main St'}
+    # Spatial-only fixtures deliberately omit address fields; address tests supply them.
+    props = {'name': name, 'id': id}
     if confidence is not None:
         props['confidence'] = confidence
     return {'type': 'Feature', 'properties': props,
