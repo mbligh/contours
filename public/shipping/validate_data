@@ -19,6 +19,22 @@ for name,minimum in minimums.items():
         assert -75.57<=c[0]<=-73.88 and 38.88<=c[1]<=41.36,(name,c)
         assert p.get('carrier') and p.get('source'),(name,p)
     counts=Counter(f['properties']['carrier'] for f in features)
+    if 'location_quality' in data:
+        quality_counts=Counter()
+        for f in features:
+            p=f['properties']
+            if 'All The Places' not in p['source'] and 'MailingLocations' not in p['source']:continue
+            q=p.get('location_quality') or {}
+            assert q.get('version')==1 and q.get('status') in ('checked','corrected','unresolved'),(name,p)
+            assert p.get('position_quality'),(name,p)
+            original=q.get('original_coordinates')
+            assert isinstance(original,list) and len(original)==2 and all(isinstance(v,(int,float)) and math.isfinite(v) for v in original),(name,q)
+            if q['status']=='corrected':
+                assert f['geometry']['coordinates']==q['reference_coordinates'],(name,q)
+                assert q.get('reference_id') and q.get('reference_source') and p.get('coordinate_source'),(name,q)
+            quality_counts[q['status']]+=1
+        assert dict(quality_counts)==data['location_quality']['counts'],(name,quality_counts)
+        print(f'{name} coordinate quality: {dict(quality_counts)}')
     if name=='shipping.geojson':
         boxes=[f for f in features if f['properties']['carrier']=='USPS' and f['properties'].get('location_type')=='drop_box']
         assert len(boxes)>=1000,('Missing USPS collection boxes',len(boxes))

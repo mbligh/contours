@@ -39,3 +39,7 @@ initShipping(map, maplibregl);
 The page supplies checkboxes with IDs `shipping`, `fedex-boxes`, `ups-boxes`, `usps-boxes`, and a status element `shipping-status`. USPS collection boxes use a separate blue point layer and checkbox backed by the shared shipping source. The module resolves data relative to its own URL, restores layers after style changes, and merges conservative same-location matches while retaining source details. Drop boxes remain distinct from staffed counters. Tests can override `dataBaseUrl`.
 
 Contour and shipping refreshes are independent; the single Pages publisher assembles both datasets and serializes deployments.
+
+## Shared coordinate cleanup
+
+Feeders retain structured `address_parts` for `scripts/clean_locations` and the reusable `mapping_quality` package. The workflow checks directory coordinates against independent NJ address points before committing data. Corrections over 250 metres are labeled estimates and retain original coordinates; unresolved lookups retain their source positions. GeoJSON contains per-point provenance and collection-level counts, and popups show the position-check label. The same pass covers USPS, FedEx, UPS/CVS, and MailingLocations with a shared cache. OSM/USGS points and separate source identities are preserved. See `mapping_quality/README.md` at the repository root.

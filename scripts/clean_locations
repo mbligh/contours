@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""Apply shared coordinate quality checks to GeoJSON point feeder outputs."""
+import argparse
+import json
+import os
+from pathlib import Path
+import sys
+
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from mapping_quality import clean_features
+from mapping_quality.nj import NJAddressPoints
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('files',nargs='+',type=Path)
+    parser.add_argument('--source',action='append',default=[],help='Restrict to source text containing this value (repeatable)')
+    parser.add_argument('--cache-dir',type=Path,default=Path(os.environ.get('MAPPING_QUALITY_CACHE',str(Path.home()/'.cache/mapping/location-quality'))))
+    parser.add_argument('--max-shift-m',type=float,default=250)
+    parser.add_argument('--dry-run',action='store_true')
+    args=parser.parse_args()
+    if len({p.resolve() for p in args.files})!=len(args.files):
+        parser.error('Input paths must be distinct')
+    documents=[json.loads(path.read_text()) for path in args.files]
+    for doc in documents:
+        if doc.get('type')!='FeatureCollection' or not isinstance(doc.get('features'),list):
+            raise ValueError('Expected GeoJSON FeatureCollections')
+    lengths=[len(doc['features']) for doc in documents]
+    features=[f for doc in documents for f in doc['features']]
+    def selected(f):
+        source=str(f.get('properties',{}).get('source','')).casefold()
+        return not args.source or any(value.casefold() in source for value in args.source)
+    resolver=NJAddressPoints(args.cache_dir)
+    cleaned,report=clean_features(features,resolver,selected=selected,max_shift_m=args.max_shift_m)
+    print(json.dumps(report,sort_keys=True),flush=True)
+    staged=[];offset=0
+    for path,doc,length in zip(args.files,documents,lengths):
+        subset=cleaned[offset:offset+length];offset+=length
+        counts={}
+        for f in subset:
+            if selected(f):
+                status=f['properties']['location_quality']['status'];counts[status]=counts.get(status,0)+1
+        doc={**doc,'features':subset,'location_quality':{**report,'counts':counts,'selected':sum(counts.values())}}
+        if not args.dry_run:
+            temp=path.with_name(path.name+'.quality.tmp')
+            temp.write_text(json.dumps(doc,separators=(',',':'),allow_nan=False));staged.append((temp,path))
+        print(f'{path}: {counts}',flush=True)
+    for temp,path in staged:temp.replace(path)
+
+
+if __name__=='__main__':main()

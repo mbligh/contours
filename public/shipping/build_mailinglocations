@@ -68,6 +68,8 @@ def parse_location(html,url,retrieved_at):
         'carrier':'UPS','name':lines[1] if lines[1]!='UPS' else 'UPS Drop Box',
         'service_type':'UPS Drop Box','location_type':'drop_box',
         'address':' '.join(lines[2:]),'street_address':' '.join(lines[2:-1]),
+        'address_parts':{'street':' '.join(lines[2:-1]),'city':lines[-1].rsplit(',',1)[0].strip(),
+                         'state':'NJ','postcode':re.search(r'\b\d{5}\b',lines[-1])[0]},
         'hours':'','phone':phone.get_text(' ',strip=True) if phone else '',
         'ref':'mailinglocations:ups:'+ref,'osm':'','website':url,
         'source':'MailingLocations.com','source_url':url,'retrieved_at':retrieved_at,
@@ -140,4 +142,3 @@ def main():
     print(f'Wrote {len(features)} MailingLocations NJ UPS drop boxes',flush=True)
 
 if __name__=='__main__':main()
-

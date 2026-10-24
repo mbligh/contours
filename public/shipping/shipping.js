@@ -149,7 +149,7 @@ export function initShipping(map,maplibregl,{dataBaseUrl}={}){
   function shippingPopup(e){
     if(!e.features?.length)return;
     const p=e.features[0].properties,container=document.createElement('div');
-    for(const [label,key] of [['Carrier','carrier'],['Name','name'],['Type','service_type'],['Retailer','host'],['Address','address'],['Hours','hours'],['Collection times','collection_times'],['Indoor / lobby','indoor'],['Notes','note'],['Phone','phone'],['Verification','verification'],['Position','coordinate_source']]){
+    for(const [label,key] of [['Carrier','carrier'],['Name','name'],['Type','service_type'],['Retailer','host'],['Address','address'],['Hours','hours'],['Collection times','collection_times'],['Indoor / lobby','indoor'],['Notes','note'],['Phone','phone'],['Verification','verification'],['Position','coordinate_source'],['Position check','position_quality']]){
       if(!p[key])continue;
       const line=document.createElement('div'),strong=document.createElement('strong');
       strong.textContent=label+': ';line.append(strong,document.createTextNode(String(p[key])));container.append(line);

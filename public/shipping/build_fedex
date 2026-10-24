@@ -41,6 +41,8 @@ def build(features):
             'service_type': service, 'host': host,
             'location_type': 'staffed' if service in STAFFED else 'drop_box',
             'address': ' '.join(filter(None, [street, p.get('addr:city'), p.get('addr:state'), p.get('addr:postcode')])),
+            'address_parts': {'street':street,'city':p.get('addr:city') or '',
+                              'state':'NJ','postcode':p.get('addr:postcode') or ''},
             'hours': hours, 'phone': p.get('phone') or '', 'ref': ref,
             'website': p.get('website') or '', 'osm': '',
             'source': 'FedEx locator via All The Places',
@@ -66,4 +68,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

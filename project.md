@@ -63,6 +63,12 @@ To add an overlay, put its GeoJSON under `public/` and add its group/dataset ent
 
 Pages runs `node scripts/test_geosources.cjs` to check the committed config, grouped toggles, URL resolution, styles, popups, error handling, and basemap restoration. Config and GeoJSON updates trigger only Pages publication.
 
+## Shared location quality
+
+`mapping_quality/` is a reusable standard-library Python package for address normalization, independent address-point matching, coordinate arbitration, and quality/provenance reporting. Its pure matching engine accepts an injected resolver; the NJ provider batches public statewide address-point queries and caches complete results across feeders and workflow runs. It never chooses a reference based on suspect source coordinates or merges separate source IDs. Strong unique address matches correct displacements over 250 metres; nearby observations stay intact. Ambiguous/missing references keep the current position with an explicit quality label, and stale successful cache entries remain usable during service outages. No manual intervention is required.
+
+The USPS, FedEx, UPS/CVS, and MailingLocations feeders preserve structured address components. `scripts/clean_locations` runs one shared pass across their outputs before shipping validation, commit, and release, targeting directory sources while leaving OSM/USGS observations unchanged. Each GeoJSON embeds per-point provenance and a collection-level quality summary, preserving the existing release member set. The cache is derived, rebuildable data stored in GitHub Actions cache, not a separate database. Changes to the library, CLI, or offline tests trigger shipping rebuilds. See `mapping_quality/README.md` for the API, matching policy, failure behavior, and tests.
+
 ## Source research
 
 `research/usps/` contains a read-only, reproducible comparison of NJ USPS collection boxes from ATP and Overture Infrastructure/Places. It records release/input provenance, state-boundary selection, conservative carrier classification, exact ID/reference matches, and proximity candidates. Its scratch downloads and extracts do not modify shipping inputs or public assets; research changes do not trigger dataset refreshes. See `research/usps/README.md` and `comparison.json` for the October 23, 2026 findings.
@@ -74,4 +80,3 @@ Pages runs `node scripts/test_geosources.cjs` to check the committed config, gro
 Example: `scripts/overture --name Costco --name "Home Depot" -o stores.geojson`. Use `-o -` (or `--output -`) to write the GeoJSON to stdout for piping or redirection; progress and diagnostics remain on stderr. Stdout is left open and no file named `-` is created.
 
 Run `python scripts/test_overture` for offline CLI regression checks using a simulated remote DuckDB connection; these do not download Overture data.
-

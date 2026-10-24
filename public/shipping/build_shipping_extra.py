@@ -47,6 +47,8 @@ def as_feature(f,carrier,name,source):
     p=f.get('properties') or {}
     return {'type':'Feature','geometry':f['geometry'],'properties':{
         'carrier':carrier,'name':name,'address':' '.join(filter(None,[addr(p),p.get('addr:city'),p.get('addr:state'),p.get('addr:postcode')])),
+        'address_parts':{'street':addr(p),'city':p.get('addr:city') or '',
+                         'state':'NJ','postcode':p.get('addr:postcode') or ''},
         'hours':p.get('opening_hours') or '','source':source,'osm':'',
         'website':p.get('website') or ''}}
 def cvs_page(city):
@@ -127,4 +129,3 @@ def main():
 
 if __name__=='__main__':
     main()
-

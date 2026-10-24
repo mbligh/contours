@@ -32,6 +32,8 @@ def build(features):
             'carrier': 'USPS', 'name': p.get('name') or 'USPS Collection Box',
             'service_type': 'USPS Collection Box', 'location_type': 'drop_box',
             'address': address, 'ref': ref, 'collection_times': p.get('collection_times') or '',
+            'address_parts': {'street':street,'city':p.get('addr:city') or '',
+                              'state':'NJ','postcode':p.get('addr:postcode') or ''},
             'indoor': p.get('indoor') or '', 'note': p.get('note') or '',
             'hours': '', 'osm': '', 'source': 'USPS locator via All The Places',
             'source_url': p.get('@source_uri') or URL, 'atp_id': feature.get('id') or '',

@@ -6,6 +6,9 @@ on:
       - '.github/workflows/shipping.yml'
       - 'public/shipping/**'
       - 'scripts/dataset_releases'
+      - 'mapping_quality/**'
+      - 'scripts/clean_locations'
+      - 'tests/test_location_quality.py'
   workflow_dispatch:
   schedule:
     - cron: '25 9 * * 0'
@@ -29,6 +32,7 @@ jobs:
       - run: pip install osmium beautifulsoup4
       - name: Check shipping importers and browser module
         run: |
+          python -m unittest discover -s tests -p 'test_location_quality.py'
           python public/shipping/test_fedex
           python public/shipping/test_shipping_geometry
           python public/shipping/test_mailinglocations
@@ -53,6 +57,20 @@ jobs:
         with:
           path: /tmp/mailinglocations-cache
           key: shipping-mailinglocations-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Restore shared address-reference cache
+        uses: actions/cache/restore@v4
+        with:
+          path: /tmp/mapping-location-quality
+          key: location-quality-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: location-quality-v1-
+      - name: Clean directory coordinates using independent address points
+        run: python scripts/clean_locations public/shipping/*.geojson --source 'All The Places' --source MailingLocations --cache-dir /tmp/mapping-location-quality
+      - name: Save shared address-reference cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: /tmp/mapping-location-quality
+          key: location-quality-v1-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Validate rebuilt shipping data
         run: python public/shipping/validate_data
       - name: Commit shipping datasets
