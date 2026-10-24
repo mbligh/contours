@@ -16,7 +16,8 @@ permissions:
   contents: write
 concurrency:
   group: shipping-dataset
-  cancel-in-progress: false
+  # Code fixes supersede an unfinished rebuild; scheduled/manual runs queue.
+  cancel-in-progress: ${{ github.event_name == 'push' }}
 jobs:
   refresh:
     runs-on: ubuntu-latest

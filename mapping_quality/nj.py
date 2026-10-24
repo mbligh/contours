@@ -6,11 +6,16 @@ from pathlib import Path
 import time
 import urllib.parse
 import urllib.request
+from urllib.error import HTTPError
 
-from . import Address, Reference, coordinates
+from . import Address, Reference, coordinates, SUFFIXES
 
 SERVICE='https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/AddressPoints/FeatureServer/0'
 FIELDS='OBJECTID,FULLADDR,POST_CODE,POST_COMM,PRIMARYPT,PLACEMENT,STATUS,SOURCE'
+
+
+class InvalidQuery(ValueError):
+    pass
 
 
 def fetch_json(url):
@@ -26,8 +31,15 @@ def fetch_json(url):
             with urllib.request.urlopen(request,timeout=60) as response:
                 data=json.load(response)
             if 'error' in data:
+                if data['error'].get('code')==400:raise InvalidQuery(str(data['error']))
                 raise ValueError(str(data['error']))
             return data
+        except InvalidQuery:
+            raise
+        except HTTPError as error:
+            if error.code in (400,413,414):raise InvalidQuery(str(error)) from error
+            if attempt==2:raise
+            time.sleep(2**attempt)
         except Exception:
             if attempt==2:raise
             time.sleep(2**attempt)
@@ -48,7 +60,7 @@ class NJAddressPoints:
         self.summary={}
 
     def _path(self,key):
-        digest=hashlib.sha256(json.dumps([SERVICE,1,key],sort_keys=True).encode()).hexdigest()
+        digest=hashlib.sha256(json.dumps([SERVICE,2,key],sort_keys=True).encode()).hexdigest()
         return self.cache/(digest+'.json')
 
     def _read(self,key):
@@ -60,17 +72,36 @@ class NJAddressPoints:
         except (OSError,ValueError):return None
 
     def _query(self,keys):
-        clauses=[]
-        for number,stems in keys:
-            values=','.join("'"+s.replace("'","''")+"'" for s in stems)
-            clauses.append(f'(ADD_NUMBER={number} AND (UPPER(ST_NAME) IN ({values}) OR UPPER(LST_NAME) IN ({values})))')
-        where=' OR '.join(clauses)
+        # Use the service's full-address field without applying UPPER() to
+        # every row of its multi-million-point table. The hosted field uses
+        # case-insensitive comparisons; supply spelling variants only, then
+        # use the pure normalized matcher afterwards.
+        variants=set()
+        reverse={v:k for k,v in SUFFIXES.items()}
+        for number,names in keys:
+            for name in names:
+                tokens=name.split()
+                spellings={name,' '.join(reverse.get(t,t) for t in tokens)}
+                if tokens:spellings.add(' '.join(tokens[:-1]+[reverse.get(tokens[-1],tokens[-1])]))
+                if name.startswith('US '):
+                    for prefix in ('US HIGHWAY ','US ROUTE ','US HWY '):spellings.add(prefix+name[3:])
+                for spelling in spellings:
+                    value=f'{number} {spelling}'
+                    variants.add(value)
+        values=','.join("'"+s.replace("'","''")+"'" for s in sorted(variants))
+        where=f'FULLADDR IN ({values})'
         features=[];offset=0;seen=set()
         while True:
             params={'where':where,'outFields':FIELDS,'outSR':4326,'f':'geojson',
                     'resultRecordCount':1000,'resultOffset':offset,'orderByFields':'OBJECTID ASC'}
             url=SERVICE+'/query?'+urllib.parse.urlencode(params)
-            data=self.fetch(url)
+            try:
+                data=self.fetch(url)
+            except InvalidQuery:
+                if len(keys)==1:raise
+                middle=len(keys)//2
+                parts=self._query(keys[:middle])+self._query(keys[middle:])
+                return list({f.get('id',f['properties'].get('OBJECTID')):f for f in parts}.values())
             page=data.get('features')
             if not isinstance(page,list):raise ValueError('Invalid address-point response')
             for feature in page:

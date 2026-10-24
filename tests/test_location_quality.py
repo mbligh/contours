@@ -9,7 +9,7 @@ import unittest
 import urllib.parse
 
 from mapping_quality import Address, Reference, choose_reference, clean_features, distance, street_key
-from mapping_quality.nj import NJAddressPoints
+from mapping_quality.nj import NJAddressPoints, InvalidQuery
 
 OLDWICK=(-74.748041996261,40.665531511097186)
 WRONG=(-74.737096,40.662367)
@@ -172,6 +172,37 @@ class AddressCache(unittest.TestCase):
         f=api_feature();f['properties']['STATUS']='R'
         resolver=NJAddressPoints(self.directory.name,fetch=lambda _: {'features':[f]})
         self.assertEqual(resolver.resolve_many([self.address])[self.address],[])
+
+    def test_oversized_expression_splits_and_keeps_all_successful_results(self):
+        calls=[]
+        other=Address('161 Meister Ave','Branchburg','NJ','08876')
+        def fetch(url):
+            where=urllib.parse.parse_qs(urllib.parse.urlsplit(url).query)['where'][0];calls.append(where)
+            if '161 ' in where and '174 ' in where:raise InvalidQuery('expression too complex')
+            if '161 ' in where:
+                f=api_feature(2);f['properties']['FULLADDR']='161 Meister Avenue'
+                return {'features':[f]}
+            return {'features':[api_feature()]}
+        result=NJAddressPoints(self.directory.name,fetch=fetch).resolve_many([self.address,other])
+        self.assertEqual(len(calls),3)
+        self.assertEqual(len(result[self.address]),1);self.assertEqual(len(result[other]),1)
+
+    def test_flat_query_cross_product_is_filtered_before_caching(self):
+        other=Address('161 Meister Ave','Branchburg','NJ','08876')
+        false=api_feature(3);false['properties']['FULLADDR']='174 Meister Avenue'
+        result=NJAddressPoints(self.directory.name,fetch=lambda _: {'features':[api_feature(),false]}).resolve_many([self.address,other])
+        self.assertEqual(len(result[self.address]),1)
+        self.assertEqual(result[other],[])
+
+    def test_query_uses_full_address_spelling_variants_without_table_functions(self):
+        queries=[]
+        def fetch(url):
+            queries.append(urllib.parse.parse_qs(urllib.parse.urlsplit(url).query)['where'][0])
+            return {'features':[api_feature()]}
+        NJAddressPoints(self.directory.name,fetch=fetch).resolve_many([self.address])
+        self.assertTrue(queries[0].startswith('FULLADDR IN ('))
+        self.assertIn("'174 LAMINGTON ROAD'",queries[0])
+        self.assertNotIn('UPPER(',queries[0])
 
 
 class CliIntegration(unittest.TestCase):
