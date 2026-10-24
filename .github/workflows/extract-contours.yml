@@ -1,11 +1,6 @@
 name: Extract NJ contour vectors
 on:
   workflow_dispatch:
-    inputs:
-      bbox:
-        description: 'EPSG:6527 bbox west south east north (feet)'
-        required: false
-        default: '390000 650000 450000 710000'
   push:
     branches: [main]
     paths:
@@ -22,36 +17,67 @@ concurrency:
 jobs:
   extract:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        stripe: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     steps:
       - uses: actions/checkout@v4
       - name: Install GDAL
         run: |
           sudo apt-get update
           sudo apt-get install -y gdal-bin
-      - name: Extract 10-foot contours
+      - name: Extract statewide stripe
         env:
-          BBOX: ${{ inputs.bbox || '390000 650000 450000 710000' }}
+          STRIPE: ${{ matrix.stripe }}
         run: |
-          read -r WEST SOUTH EAST NORTH <<< "$BBOX"
+          # NJ extent in EPSG:6527 (US survey feet), padded beyond state borders.
+          WEST=170000
+          EAST=680000
+          SOUTH=$((STRIPE * 80000))
+          NORTH=$(((STRIPE + 1) * 80000))
           python3 scripts/build_contours.py --bbox "$WEST" "$SOUTH" "$EAST" "$NORTH"
           test -s build/contours.geojsonseq
-          gzip -9 -n build/contours.geojsonseq
+          gzip -1 -n build/contours.geojsonseq
+          mv build/contours.geojsonseq.gz "build/stripe-${STRIPE}.gz"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: contour-stripe-${{ matrix.stripe }}
+          path: build/stripe-*.gz
+          retention-days: 3
+
+  publish:
+    needs: extract
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: contour-stripe-*
+          path: build/stripes
+          merge-multiple: true
+      - name: Combine stripes and record metadata
+        run: |
+          python3 - <<'PY'
+          import gzip, json
+          from pathlib import Path
+          stripes = sorted(Path('build/stripes').glob('stripe-*.gz'), key=lambda p: int(p.stem.split('-')[1]))
+          assert len(stripes) == 12, f'Expected 12 stripes, found {len(stripes)}'
+          with open('build/contours.geojsonseq', 'wb') as output:
+              for stripe in stripes:
+                  with gzip.open(stripe, 'rb') as source:
+                      import shutil
+                      shutil.copyfileobj(source, output)
+          with open('build/extraction.json', 'w') as f:
+              json.dump({'bbox': [170000, 0, 680000, 960000], 'crs': 'EPSG:6527',
+                         'vertical_interval_ft': 10, 'stripes': 12,
+                         'source': 'https://maps.nj.gov/arcgis/rest/services/Elevation/NJ_10ft_DEM/ImageServer'}, f, indent=2)
+          PY
+          gzip -1 -n build/contours.geojsonseq
           (cd build && sha256sum contours.geojsonseq.gz > contours.geojsonseq.gz.sha256)
           ls -lh build/contours.geojsonseq.gz
-      - name: Record extraction parameters
-        env:
-          BBOX: ${{ inputs.bbox || '390000 650000 450000 710000' }}
-        run: |
-          python - <<'PYMETA'
-          import json, os
-          from pathlib import Path
-          Path('build/extraction.json').write_text(json.dumps({
-              'bbox': [int(value) for value in os.environ['BBOX'].split()],
-              'crs': 'EPSG:6527', 'vertical_interval_ft': 10,
-              'source': 'https://maps.nj.gov/arcgis/rest/services/Elevation/NJ_10ft_DEM/ImageServer',
-          }, indent=2) + '\n')
-          PYMETA
       - name: Publish versioned contour vector release
         env:
           GH_TOKEN: ${{ github.token }}
