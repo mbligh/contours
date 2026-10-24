@@ -30,23 +30,27 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - name: Download and verify released contour vectors
+      - name: Download extracted contour vectors
         id: vectors
         env:
           GH_TOKEN: ${{ github.token }}
-          VECTOR_TAG: ${{ inputs.vector_release_tag }}
           EXTRACTION_RUN: ${{ github.event.workflow_run.id }}
-          EXTRACTION_ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
+          mkdir -p build
           if [ "$EVENT_NAME" = workflow_run ]; then
-            VECTOR_TAG="dataset-contour-vectors-${EXTRACTION_RUN}-${EXTRACTION_ATTEMPT}"
+            gh run download "$EXTRACTION_RUN" --repo "$GITHUB_REPOSITORY" --name contour-vectors-combined --dir build
+            echo 'found=true' >> "$GITHUB_OUTPUT"
+          else
+            # Explicit manual/push build: reuse the most recent successful extraction artifact.
+            RUN_ID=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow extract-contours.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId')
+            if [ -z "$RUN_ID" ]; then
+              echo 'found=false' >> "$GITHUB_OUTPUT"
+            else
+              gh run download "$RUN_ID" --repo "$GITHUB_REPOSITORY" --name contour-vectors-combined --dir build
+              echo 'found=true' >> "$GITHUB_OUTPUT"
+            fi
           fi
-          args=()
-          if [ "$EVENT_NAME" = push ]; then
-            args+=(--allow-missing)
-          fi
-          python scripts/dataset_releases download contour-vectors build --tag "$VECTOR_TAG" "${args[@]}"
       - name: Uncompress verified vectors
         if: steps.vectors.outputs.found == 'true'
         run: |
@@ -72,9 +76,4 @@ jobs:
         if: steps.vectors.outputs.found == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python scripts/dataset_releases create contours build/output --input-manifest build/vector-selection.manifest.json
-      - name: Keep three versions of successfully consumed vectors
-        if: steps.vectors.outputs.found == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: python scripts/dataset_releases cleanup --selection build/vector-selection.json
+        run: python scripts/dataset_releases create contours build/output
