@@ -10,7 +10,9 @@ const {chromium} = require('playwright');
   const aliases = {
     'https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.mjs': 'maplibre-gl',
     'https://esm.sh/terra-draw@1.24.2': 'terra-draw',
-    'https://esm.sh/terra-draw-maplibre-gl-adapter@1.1.2': 'terra-draw-maplibre-gl-adapter'
+    'https://esm.sh/terra-draw-maplibre-gl-adapter@1.1.2': 'terra-draw-maplibre-gl-adapter',
+    'https://esm.sh/@tmcw/togeojson@7.1.2': '@tmcw/togeojson',
+    'https://esm.sh/fflate@0.8.2': 'fflate'
   };
   const bundle = await build({entryPoints:[path.join(root,'editor.js')],bundle:true,write:false,format:'esm',plugins:[{name:'local-cdn-dependencies',setup(builder){builder.onResolve({filter:/^https:/}, args => builder.resolve(aliases[args.path], {kind:'import-statement',resolveDir:process.env.NODE_PATH}));}}]});
   const server=http.createServer((req,res)=>{
