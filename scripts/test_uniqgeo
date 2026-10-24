@@ -103,6 +103,7 @@ class GroupTests(unittest.TestCase):
         first = point('Tractor Supply')
         near = point('Tractor Supply Co', north_feet=299)
         far = point('Tractor Supply', north_feet=-301)
+        far['properties']['street'] = '987 Different Road'
         other = point('Contractor Supply')
         self.assertEqual(deduplicate(collection(first, near, far, other))['features'], [first, far, other])
 
@@ -113,7 +114,9 @@ class GroupTests(unittest.TestCase):
 
     def test_radius_boundary_is_inclusive(self):
         self.assertEqual(len(deduplicate(collection(point(), point(north_feet=300)))['features']), 1)
-        self.assertEqual(len(deduplicate(collection(point(), point(north_feet=300.01)))['features']), 2)
+        a, b = point(), point(north_feet=300.01)
+        b['properties']['street'] = '987 Different Road'
+        self.assertEqual(len(deduplicate(collection(a, b))['features']), 2)
 
     def test_preserve_high_confidence_record_metadata_and_input(self):
         low, high, other = point(confidence=.2), point(confidence=.99), point('Different store')
@@ -156,6 +159,7 @@ class GroupTests(unittest.TestCase):
         features = [point(name=rng.choice(['Home Depot', 'The Home Depot Rental', 'Tractor Supply', 'Contractor Supply']),
                           east_feet=rng.uniform(-2000, 2000), north_feet=rng.uniform(-2000, 2000), id=str(i))
                     for i in range(150)]
+        # No full address in this fixture: test only the spatial algorithm.
         adjacency = [set() for _ in features]
         for i, a in enumerate(features):
             for j in range(i):
