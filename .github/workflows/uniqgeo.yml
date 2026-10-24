@@ -1,4 +1,4 @@
-name: Test GeoJSON deduplication filter
+name: Test uniqgeo
 on:
   push:
     branches: [main]
