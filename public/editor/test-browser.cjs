@@ -68,6 +68,27 @@ const {chromium} = require('playwright');
     page.once('dialog',dialog=>dialog.accept());await page.click('#open');
     await page.waitForFunction(()=>document.getElementById('error').textContent.includes('only Point'));
     assert.equal(await page.locator('#features option').count(),3);
+    // Library-level rejection must preserve the old layer and the original error,
+    // including when a batch contains both accepted and rejected candidates.
+    await page.evaluate(()=>{window.__saveFails=false;window.__fixture={type:'FeatureCollection',features:[
+      {type:'Feature',properties:{},geometry:{type:'Point',coordinates:[-74,40]}},
+      {type:'Feature',properties:{},geometry:{type:'Point',coordinates:[1e-20,40]}}
+    ]};});
+    page.once('dialog',dialog=>dialog.accept());await page.click('#open');
+    await page.waitForFunction(()=>document.getElementById('error').textContent.includes('excessive precision'));
+    assert.equal(await page.locator('#features option').count(),3);
+    await page.click('#save');await page.waitForFunction(()=>window.__writes.length===4);
+    assert.deepEqual(await page.evaluate(()=>JSON.parse(window.__writes[3]).features),drawn.features.filter((_,i)=>i!==2));
+    // Real Overture coordinates exceed the adapter's default nine decimal places.
+    const homeDepot=JSON.parse(fs.readFileSync(path.join(root,'../geojson/home_depot'),'utf8'));
+    await page.evaluate(data=>window.__fixture=data,homeDepot);
+    await page.click('#open');
+    await page.waitForFunction(count=>document.querySelectorAll('#features option').length===count,homeDepot.features.length);
+    assert.equal(await page.locator('#error').textContent(),'');
+    await page.selectOption('#basemap','a');
+    await page.waitForFunction(()=>!document.getElementById('basemap').disabled);
+    await page.click('#save');await page.waitForFunction(()=>window.__writes.length===5);
+    assert.deepEqual(await page.evaluate(()=>JSON.parse(window.__writes[4])),homeDepot);
     assert.deepEqual(pageErrors,[]);
     console.log('Browser checks passed: open/save round trip, properties, basemap restoration, points, trails, deletion, failed saves, rejected imports.');
   } catch(error) {await page.screenshot({path:'editor-test-failure.png',fullPage:true});throw error;}

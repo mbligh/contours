@@ -73,7 +73,11 @@ async function installLayer(data) {
     savedText = JSON.stringify(layer());
     selected = undefined;
   } catch (error) {
-    draw.removeFeatures(next.features.map(f => f.id));
+    // A rejected candidate was never inserted. Only roll back IDs actually present,
+    // otherwise removeFeatures masks the validation error with a missing-ID error.
+    const candidates = new Set(next.features.map(f => f.id));
+    const inserted = snapshot().filter(f => candidates.has(f.id)).map(f => f.id);
+    if (inserted.length) draw.removeFeatures(inserted);
     throw error;
   } finally { suspended = false; }
   chooseMode('select'); showSelection(undefined); refresh();
@@ -173,7 +177,7 @@ async function boot() {
   map.addControl(new maplibregl.ScaleControl({unit:'imperial'}));
   map.on('error', event => report(event.error || new Error('Map resource failed to load.')));
   const makeDraw = () => {
-    draw = new TerraDraw({adapter:new TerraDrawMapLibreGLAdapter({map}), modes:[
+    draw = new TerraDraw({adapter:new TerraDrawMapLibreGLAdapter({map, coordinatePrecision:17}), modes:[
       new TerraDrawPointMode(), new TerraDrawLineStringMode(),
       new TerraDrawSelectMode({flags:{point:{feature:{draggable:true}}, linestring:{feature:{draggable:false,coordinates:{draggable:true,midpoints:{draggable:true},deletable:true}}}}})
     ]});
