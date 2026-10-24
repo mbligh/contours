@@ -1,4 +1,4 @@
-name: Refresh NJ shipping locations
+name: NJ shipping locations
 on:
   push:
     branches: [main]
