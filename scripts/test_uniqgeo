@@ -104,6 +104,7 @@ class GroupTests(unittest.TestCase):
         near = point('Tractor Supply Co', north_feet=299)
         far = point('Tractor Supply', north_feet=-301)
         far['properties']['street'] = '987 Different Road'
+        far['properties'].pop('city', None)
         other = point('Contractor Supply')
         self.assertEqual(deduplicate(collection(first, near, far, other))['features'], [first, far, other])
 
@@ -159,7 +160,7 @@ class GroupTests(unittest.TestCase):
         features = [point(name=rng.choice(['Home Depot', 'The Home Depot Rental', 'Tractor Supply', 'Contractor Supply']),
                           east_feet=rng.uniform(-2000, 2000), north_feet=rng.uniform(-2000, 2000), id=str(i))
                     for i in range(150)]
-        # No full address in this fixture: test only the spatial algorithm.
+        # All points lack city, region and postcode: test only the spatial algorithm.
         adjacency = [set() for _ in features]
         for i, a in enumerate(features):
             for j in range(i):
